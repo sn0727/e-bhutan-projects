@@ -21,14 +21,14 @@ const Aeps = () => {
       image: ImageFingerprint,
       name: "Figure biometric Device"
     },
-    {
-      image: ImageMobile,
-      name: "HP Biometric Device"
-    },
-    {
-      image: ImageHp,
-      name: "Dell Biometric Device"
-    }
+    // {
+    //   image: ImageMobile,
+    //   name: "HP Biometric Device"
+    // },
+    // {
+    //   image: ImageHp,
+    //   name: "Dell Biometric Device"
+    // }
   ]
   // console.log(BiometricDeviceOption)
   return (

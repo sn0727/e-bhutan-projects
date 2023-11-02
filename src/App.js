@@ -53,6 +53,7 @@ import MoneyRequest from './pages/Wallet/MoneyRequest';
 import MoneyRequestStatus from './pages/Transaction/MoneyRequestStatus';
 import BackPage from './pages/test/BackPage';
 import PaymentSuccessful from './pages/test/PaymentSuccessful';
+import PaymentGateway from './pages/Wallet/content/PaymentGateway';
 
 function App() {
   // const authToken = localStorage.getItem("token");
@@ -120,6 +121,7 @@ function App() {
           <Route path='/add-wallet' element={<AddWallet />} />
           <Route path='/money-request' element={<MoneyRequest />} />
           <Route path='/money-request-status' element={<MoneyRequestStatus />} />
+          <Route path='/payment-gateway' element={<PaymentGateway />} />
         </Route>
         {/* protected router */}
       </Routes>

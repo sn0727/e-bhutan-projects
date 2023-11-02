@@ -11,6 +11,7 @@ import { APIRequest, ApiUrl } from '../../../utils/api'
 import QRCode from 'react-qr-code'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
+import { RadioButton } from '../../../components/Feature/RadioButton'
 
 const AddWalletContent = () => {
   const navigate = useNavigate()
@@ -21,6 +22,8 @@ const AddWalletContent = () => {
   const [Id, setId] = useState('');
   const [QrCode, setQrCode] = useState('');
   const [seconds, setSeconds] = useState(0);
+  const [type, settype] = useState('wallet');
+
 
   console.log(contactNumber, "contactNumber")
 
@@ -103,8 +106,16 @@ const AddWalletContent = () => {
 
   const Submit = () => {
     // Add()
-    generateQRCode()
+    if (type === 'wallet') {
+      generateQRCode()
+    } else {
+      navigate('/payment-gateway')
+    }
   }
+  // Set radio value
+  const radioChangeHandler = (e) => {
+    settype(e.target.value);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -113,6 +124,11 @@ const AddWalletContent = () => {
     SendRequest(decoded.user.id)
     setId(decoded.user.id)
   }, []);
+
+  useEffect(() => {
+    console.log(type, '232323');
+  }, [type])
+
 
 
 
@@ -135,20 +151,41 @@ const AddWalletContent = () => {
     <React.Fragment>
       <div className="comman-container px-4">
         <div className={styles.WalletBalance}>
-          <button onClick={()=> navigate('/money-request-status')} type='button' style={{width:150}} className={styles.addMoney}>
+          <button onClick={() => navigate('/money-request-status')} type='button' style={{ width: 150 }} className={styles.addMoney}>
             <div className={`text-white`}>Request status</div>
           </button>
-          <button onClick={()=>navigate('/money-request')} type='button' style={{width:150}} className={styles.addMoney}>
+          <button onClick={() => navigate('/money-request')} type='button' style={{ width: 150 }} className={styles.addMoney}>
             <div className={`text-white`}>Money Request</div>
           </button>
         </div>
         <div style={{ display: 'block' }}>
           <div className="Wallet-desing">
-            <label className={styles.textAddmon}>Add Money to Wallet</label>
+            {/* <label className={styles.textAddmon}>Add Money to Wallet</label> */}
+            <label className={styles.textAddmon}>Choose payment method </label>
             <div className='set-p-relative'>
               <div className={styles.getOffer}>
                 <AiOutlineExclamationCircle className={styles.IconSixe} />
                 <p>Get Upto 10% on wallet top-up via Axis Bank credit card</p>
+              </div>
+            </div>
+            <div style={{ width: 344, margin: 'auto', paddingBottom: 20 }} className='flex'>
+              <div >
+                <RadioButton
+                  changed={radioChangeHandler}
+                  id="1"
+                  isSelected={type === "wallet"}
+                  label="Wallet"
+                  value="wallet"
+                />
+              </div>
+              <div className='ms-8'>
+                <RadioButton
+                  changed={radioChangeHandler}
+                  id="2"
+                  isSelected={type === "bank"}
+                  label="Bank"
+                  value="bank"
+                />
               </div>
             </div>
             <div className={`set-p-relative ${styles.getOfferAmount}`}>
@@ -161,7 +198,7 @@ const AddWalletContent = () => {
           <div className='buttonBtn'>
             {
               [200, 500, 1000, 2000].map((items, index) => (
-                <button className={`btn-sucess ${items === AddAmount ? "activeColor" : ''}`} onClick={() => setAddAmount(items)}>{items}</button>
+                <button className={`btn-sucess ${items === AddAmount ? "activeColor" : ''}`} onClick={() => setAddAmount(items)} key={`button${index}`}>{items}</button>
               ))
             }
           </div>
@@ -179,8 +216,8 @@ const AddWalletContent = () => {
           </div>
           :
           <div className='button-process' style={{ display: 'block' }}>
-            <button type='button' className='button-pro'>
-              <Link onClick={() => Submit()} className={styles.ButtnWidth}>Add Money {AddAmount}</Link>
+            <button type='button' className='button-pro' onClick={() => Submit()}>
+              <Link className={styles.ButtnWidth}>Add Money {AddAmount}</Link>
             </button>
           </div>
         }

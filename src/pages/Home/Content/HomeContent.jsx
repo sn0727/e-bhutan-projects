@@ -93,13 +93,12 @@ const HomeContent = () => {
       {/* Recharge & Bill Payment */}
 
       {/* Banking Services & Insurance Services */}
-      {/* <section className='rechages-bill-payment'>
+      <section className='rechages-bill-payment'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox h-344">
             <h2>Banking Services & Insurance Services</h2>
             <div className='servics-list banking-service'>
               {
-
                 services.map(({BankingServicesAndInsuranceServices}) => (
                   BankingServicesAndInsuranceServices.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
@@ -111,11 +110,10 @@ const HomeContent = () => {
                   ))
                 ))
               }
-
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Banking Services & Insurance Services */}
 
       {/* Tour & Travel */}
