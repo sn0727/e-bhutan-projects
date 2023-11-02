@@ -1,0 +1,141 @@
+@media screen and (max-width: 1470px) {}
+
+@media screen and (max-width: 1366px) {}
+
+@media screen and (max-width: 1199px) {}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .inputFeild {
+        gap: 47px 40px !important;
+    }
+}
+
+/* ================= media query max-width : 991 ============ */
+@media screen and (max-width: 991px) {
+    .h-344 {
+        height: 100% !important;
+    }
+
+    .h-178 {
+        height: 100% !important;
+    }
+
+    .h-318 {
+        height: 100% !important;
+    }
+
+    .newlater-wrap {
+        height: 100%;
+    }
+
+    .perentsNode {
+        gap: 20px 0;
+        padding: 20px;
+    }
+
+    .perentsNode .download-ebbutan {
+        gap: 20px 0;
+    }
+}
+
+/* ================= media query max-width : 991 ============ */
+@media screen and (max-width: 767px) {
+    .recharge-bill-payment-innerBox .servics-list {
+        justify-content: center;
+    }
+
+    .inputFeild {
+        justify-content: center !important;
+    }
+
+    .style_WalletBalance__NiXxH {
+        justify-content: center !important;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .MuiTabs-scroller.MuiTabs-fixed.css-jpln7h-MuiTabs-scroller {
+        overflow-x: auto !important;
+    }
+
+    .MuiTabs-scroller.MuiTabs-fixed.css-1anid1y {
+        overflow-x: auto !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .footer-perents .container .footer-row .footer-col-3:first-child {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer-perents .container .footer-row .footer-col-3 {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .inputFeild {
+        justify-content: center !important;
+    }
+
+    .formGroup {
+        flex-direction: column;
+    }
+
+    .formGroup .w-50 {
+        width: 100%;
+    }
+
+    .footer-buttom {
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        align-items: center;
+        border-top: 1px solid #e9e1e16b;
+        padding: 15px 0;
+        flex-direction: column;
+    }
+
+    .set-p-relative {
+        padding-left: 0 !important;
+    }
+
+    .recharge-colurm {
+        width: calc(100% - 0px) !important;
+    }
+
+    .style_WalletBalance__NiXxH .style_WalletBalanceRf__W6RVG {
+        justify-content: center !important;
+    }
+
+    ul.footer-list-information li {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .bill-details .bill-details-right {
+        width: 100%;
+    }
+
+    .bill-details .bill-details-left,
+    .bill-details-right {
+        width: 100%;
+        max-width: 100% !important;
+    }
+
+    .bill-details .bill-details-left12 {
+        width: 100%;
+    }
+
+    .inputFeild1 {
+        padding-left: 15px !important;
+    }
+}
+
+@media screen and (max-width: 360px) {}
+
+@media screen and (max-width: 320px) {}

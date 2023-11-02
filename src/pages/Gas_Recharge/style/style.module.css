@@ -1,0 +1,39 @@
+.mainRadioBtn {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  justify-content: space-between;
+  margin-bottom: 45px;
+}
+.mainRadioBtn > div input {
+  cursor: pointer;
+}
+.mainRadioBtn input[type=checkbox], input[type=radio] {
+  max-width: 30px;
+  width: 100%;
+  height: 30px;
+}
+.mainRadioBtn > div label {
+  color: #3E3E3F;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.mainRadioBtn > div {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+.mainRadioBtn input[name="fav_language"] {
+	accent-color: #2C427D;;
+}
+.active-btn {
+  background: #2C427D;
+  color: #fff;
+}

@@ -1,0 +1,397 @@
+/* =============== Mobile recharge page css ============= */
+.mobile-recharge {
+  margin: 62px 0;
+}
+
+.mobile-recharge h1 {
+  color: var(--black);
+  text-align: center;
+  font-family: var(--Manrope);
+  font-size: var(--fontSize18);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+}
+
+/* =============== comman home and mom btn css code ========= */
+.buttonBtn button {
+  display: inline-flex;
+  padding: 5px 10px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+.buttonBtn button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.buttonBtn {
+  display: inline-flex;
+  gap: 15px;
+  color: #0F161E;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 17.5px */
+}
+
+.inputFeild1 {
+  padding-left: 88px;
+  margin-top: 60px;
+}
+
+.inputFeild1 p {
+  color: #8B8893;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  margin-bottom: 10px;
+  /* 17.5px */
+}
+/* 
+.set-p-relative {
+  position: relative;
+  padding-left: 10px;
+} */
+.set-p-relative {
+  position: relative;
+  padding-left: 0;
+}
+.enter-mobilenum #demo-select-small {
+  display: flex;
+  max-width: 265px;
+}
+
+.set-absolute {
+  position: absolute;
+  top: 12px;
+  left: 2px;
+}
+
+.channge-number-s {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  text-transform: capitalize;
+  color: #2C427D;
+  text-decoration: underline;
+}
+
+/* =============== comman home and mom btn css code ========= */
+/* ================= comman input box css code ==================  */
+.enter-mobilenum input {
+  min-width: 340px;
+  /* min-width: 300px; */
+  width: 100%;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #F0F0F0;
+  padding: 0 16px;
+}
+.enter-mobilenum input::placeholder {
+  color: #AEADB3;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+}
+
+.lable-text {
+  color: #0F161E;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 20px */
+}
+
+/* ================= comman input box css code ==================  */
+.inputFeild {
+  display: flex;
+  justify-content: flex-start;
+  gap: 47px 87px;
+  flex-wrap: wrap;
+  max-width: 799px;
+  margin: auto;
+}
+
+.enter-mobilenum span {
+  display: block;
+  color: #57565C;
+  text-align: left;
+  padding-left: 10px;
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 15px */
+}
+
+.select-plan input.select-plan-input {
+  max-width: 340px;
+  width: 100%;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #2C427D !important;
+  background: #FFF;
+  padding: 0 16px;
+}
+
+.Pervious-recharge-numbers h4 {
+  color: #0F161E;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 17.5px */
+}
+
+.operator-innner-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.opretor-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.comman-container {
+  max-width: 966px;
+  width: 100%;
+  margin: auto;
+}
+
+.oprator-content {
+  line-height: 1.2;
+}
+
+.oprator-content p {
+  color: #0F161E;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 17.5px */
+}
+
+.oprator-content p b {
+  color: #0F161E;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+  /* 20px */
+}
+
+.button-process button a {
+  display: flex;
+  flex-wrap: wrap;
+  width: 175px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 32px;
+  background: #2C427D;
+  color: #fff;
+}
+
+.button-process button a:hover {
+  background-color: #1f2d55;
+}
+
+.button-process {
+  text-align: center;
+  margin: 100px 0;
+}
+
+.airtal-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border-color: #000;
+  border-width: 1px;
+  object-fit: contain;
+}
+
+.enter-mobilenum #demo-select-small {
+  display: flex;
+}
+
+/* =============== Mobile recharge page css ============= */
+
+/* =============== Mobile recharge choice plan page css ============= */
+.selectpaln {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.recharge-colurm {
+  width: calc(50% - 20px);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: #efefef;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recharge-colurm.addborder {
+  border: 2px solid #2c427d;
+}
+
+.recharge-colurm .price-text {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background: #2c427d;
+  padding: 0px 10px;
+  color: #ffff;
+}
+
+.recharge-colurm .other-content p {
+
+  color: #000;
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* =============== Mobile recharge choice plan page css ============= */
+
+/* =============== Mobile recharge bill details page css ============= */
+.amount-total h2 {
+  color: #000;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+  margin-top: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 37.5px */
+}
+
+.bill-details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.bill-details .bill-details-left, .bill-details-right {
+  max-width: 45%;
+  width: 100%;
+}
+
+.bill-details .bill-details-tittle {
+  color: #0F161E;
+  text-align: left;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 125%;
+  /* 20px */
+}
+
+.bill-details .bill-details-left .inner-bill-details {
+  display: flex;
+  justify-content: space-between;
+}
+.bill-details .bill-details-right .inner-bill-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bill-details .inner-bill-details ul.bill-list-left li {
+  color: #AEADB3;
+  font-family: Manrope;
+  font-size: 16px;
+  padding-bottom: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  /* 20px */
+}
+.bill-details .inner-bill-details ul.bill-list-right li {
+  color: #0F161E;
+  font-family: Manrope;
+  text-align: right;
+  font-size: 16px;
+  padding-bottom: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+}
+.visibilty-hidden {
+  visibility: hidden;
+}
+.bill-list-left.text-black li{
+  color: #000 !important;
+}
+
+input, select, textarea{
+  color: #000 !important;
+}
+.autocomplete-custom-style {
+  min-width: 340px !important;
+  
+}
+.autocomplete-custom-style-input label + div {
+  padding: 0 50px 0 10px !important;
+  height: 40px !important;
+}
+.autocomplete-custom-style-input label + div > input {
+  background-color: transparent !important;
+  height: fit-content !important;
+}
+.autocomplete-custom-style-input label {
+  top: -7px !important;
+}
+.enter-mobilenum > div {
+  margin-left: 0 !important;
+}
+/* =============== Mobile recharge bill details page css ============= */

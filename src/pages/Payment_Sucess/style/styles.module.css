@@ -1,0 +1,68 @@
+.main {
+  padding: 30px 0;
+}
+.paymentSuccess img {
+  width: 100%;
+  max-width: 200px;
+  margin: auto;
+}
+
+.innerbillDetails {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.liTextR {
+  text-align: right;
+}
+
+.liTextR li,
+.liTextL li {
+  color: #0F161E;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%;
+  margin-bottom: 10px;
+  /* 20px */
+}
+
+liTextL {
+  text-align: left;
+}
+
+.header1 {
+  display: block;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.header2 {
+  color: #0F161E;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  margin-bottom: 45px;
+}
+.mediaIcon {
+  max-width: 400px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.mediaIcon a {
+  font-size: 32px;
+  color: rgba(44, 66, 125, 1);
+  font-weight: bold;
+}

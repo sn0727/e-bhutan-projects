@@ -1,0 +1,110 @@
+/*  =============== footer section css code =============== */
+.footer-perents {
+    background: #2C427D;
+    width: 100%;
+    height: 100%;
+}
+
+.footer-perents .container {
+    max-width: 1276px;
+    margin: auto;
+    width: 100%;
+    /* height: 482px; */
+    flex-shrink: 0;
+}
+
+.footer-perents .container .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+}
+
+.footer-perents .container .footer-row .footer-col-3:first-child {
+    max-width: 296px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-perents .container .footer-row .footer-col-3:first-child h3 {
+    text-align: left;
+}
+
+/* .footer-perents .container .footer-row .footer-col-3 {
+    max-width: 152px;
+    width: 100%;
+} */
+.footer-perents .container .footer-row .footer-col-3 {
+    max-width: 220px;
+    width: 100%;
+}
+
+.footer-perents .container .footer-row .footer-col-3 h3 {
+    color: var(--white);
+    text-align: left;
+    font-family: var(--Manrope);
+    font-size: var(--fontsize16);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+
+}
+
+.footer-perents .container .footer-row .footer-col-3 ul li a {
+    color: var(--white);
+    text-align: center;
+    font-family: var(--Manrope);
+    font-size: var(--fontsize16);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+}
+
+.footer-perents .container .footer-row .footer-col-3 ul li p {
+    color: var(--white) !important;
+    font-family: var(--Manrope);
+    font-size: var(--fontsize14);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+ul.footer-list-information li {
+    display: flex;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+ul.footer-list-information li svg{
+    margin-top: 6px !important;
+    width: 10%;
+}
+address.text-white.address-text {
+    width: 90%;
+}
+.footer-buttom {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    align-items: center;
+    border-top: 1px solid #e9e1e16b;
+    padding: 15px 0;
+}
+
+.term-and-condition ul {
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.term-and-condition ul li a {
+    text-transform: capitalize;
+}
+.perentsNode .social-media div > a img {
+    width: 40px;
+}
+/*  =============== footer section css code =============== */

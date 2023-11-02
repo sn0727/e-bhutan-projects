@@ -1,0 +1,144 @@
+.Figure-biometric-Device {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}
+
+.Figure-biometric-Device .box-style {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+  padding: 5px 10px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  width: 32.33%;
+  cursor: pointer;
+
+}
+
+.Figure-biometric-Device .box-style.box-style-active {
+  border: 1px solid #2C427D;
+}
+
+.Figure-biometric-Device .box-style.box-style-active p {
+  color: var(--white);
+}
+
+.Figure-biometric-Device .box-style.box-style-active {
+  background: #2C427D;
+}
+
+.Figure-biometric-Device .box-style.box-style-active .Image-Fingerprint-style {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1px;
+  stroke: #FFF;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.Figure-biometric-Device .box-style .Image-Fingerprint-style {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1px;
+  stroke: #FFF;
+  border: 1px solid #2C427D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.Select-Biometric-Device {
+  color: #000;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 10px;
+}
+
+.new-input-cls {
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.payment_feild {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.payment_feild .size-col-12 {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.payment_feild .size-col-12 .Airtel_Payment_Bank {
+  /* max-width: 340px; */
+  max-width: 49%;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #2C427D;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 5px;
+}
+
+.style-row {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.style-row .col-6 {
+  width: 49%;
+}
+
+.col-6.aligin-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.check-condition {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+.check-condition input, .check-condition label {
+  cursor: pointer;
+}
+.Image-Fingerprint.colorActive {
+  filter: brightness(0.5);
+}
+
+@media screen and (max-width: 767px) {
+  .Figure-biometric-Device .box-style {
+    width: 100%;
+  }
+  .style-row .col-6 {
+    width: 100%;
+  }
+  .payment_feild .size-col-12 .Airtel_Payment_Bank {
+    width: 100%;
+    max-width: 100%;
+  }
+  .col-6.aligin-center {
+    margin-top: 10px;
+  }
+}
