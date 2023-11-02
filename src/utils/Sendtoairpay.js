@@ -90,7 +90,7 @@ class Sendtoairpay extends React.Component {
 
         var paramsHtml = '<input type="hidden" name="privatekey" value="' + privateKey + '"><input type="hidden" name="checksum" value="' + checksum + '"><input type="hidden" name="mercid" value="' + this.conf.mercid + '">';
         var isoCurrency = '<input type="hidden" name="isoCurrency" value="INR">';
-        $('.main-transaction-form').append(paramsHtml);
+        $('.main-transaction-form').append(isoCurrency);
         $('.main-transaction-form').append(paramsHtml);
         $('.main-transaction-form').submit();
 
