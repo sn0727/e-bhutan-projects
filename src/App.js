@@ -115,7 +115,7 @@ function App() {
 
           <Route path='/bill-detail' element={<BillDetails />} />
           <Route path='/fastag-bill-detail' element={<FastagBillDetails />} />
-          <Route path='/payment-success' element={<PaymentSuccess />} />
+          {/* <Route path='/payment-success' element={<PaymentSuccess />} /> */}
           <Route path='/dth-bill-detail' element={<DTHBillDetails />} />
           <Route path='/wallet' element={<Wallet />} />
           <Route path='/add-wallet' element={<AddWallet />} />
