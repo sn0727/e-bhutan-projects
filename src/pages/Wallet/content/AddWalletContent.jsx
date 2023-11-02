@@ -12,6 +12,7 @@ import QRCode from 'react-qr-code'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
 import { RadioButton } from '../../../components/Feature/RadioButton'
+import { makeid } from '../../../utils/MakeId'
 
 const AddWalletContent = () => {
   const navigate = useNavigate()
@@ -109,7 +110,7 @@ const AddWalletContent = () => {
     if (type === 'wallet') {
       generateQRCode()
     } else {
-      navigate('/payment-gateway')
+      navigate('/payment-gateway',{ state: { amount: AddAmount } })
     }
   }
   // Set radio value
@@ -127,6 +128,8 @@ const AddWalletContent = () => {
 
   useEffect(() => {
     console.log(type, '232323');
+    console.log(makeid(10));
+
   }, [type])
 
 
@@ -146,6 +149,8 @@ const AddWalletContent = () => {
       setQrCode('')
     }
   }, [seconds]);
+
+
 
   return (
     <React.Fragment>

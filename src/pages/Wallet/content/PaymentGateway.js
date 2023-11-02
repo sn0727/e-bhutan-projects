@@ -2,10 +2,17 @@
 import React from 'react';
 import Sendtoairpay from '../../../utils/Sendtoairpay'
 import $ from 'jquery';
+import styles from "./../style/style.module.css"
+import jwt_decode from "jwt-decode";
+import { makeid } from '../../../utils/MakeId';
+
 export default class PaymentGateway extends React.Component {
     constructor() {
         super();
+
     }
+
+
 
     ;
     getErrorMessages() {
@@ -41,11 +48,27 @@ export default class PaymentGateway extends React.Component {
     }
 
     render() {
+        const { location } = this.props;
+        const receivedData = location?.state ? location.state.data : null;
+        console.log(location);
+
+
+        const token = localStorage.getItem('token')
+        let decoded = jwt_decode(token);
+        console.log(decoded.user);
+        var email = decoded.user.email;
+        var fname = decoded.user.name;
+        var lname = 'anand';
+        var city = decoded.user.district;
+        var state = decoded.user.state;
+        var country = 'India';
+        var address = decoded.user.address;
+        var orderid = makeid(10);
         return (
 
-            <div className="comman-container px-4">
-                <form className="main-transaction-form" action="https://payments.airpay.co.in/pay/index.php" method="post">
-                    <input type="text" placeholder="Buyer Email" name="buyerEmail" hidden  required  />
+            <div className="comman-container px-4" >
+                <form style={{display: 'grid'}} className="main-transaction-form" action="https://payments.airpay.co.in/pay/index.php" method="post">
+                    <input type="text" value={email} placeholder="Buyer Email" name="buyerEmail" hidden required />
                     <input type="text" placeholder="Buyer Phone" name="buyerPhone" required />
                     <input type="text" placeholder="Buyer First Name" name="buyerFirstName" required />
                     <input type="text" placeholder="Buyer Last Name" name="buyerLastName" />
@@ -55,15 +78,23 @@ export default class PaymentGateway extends React.Component {
                     <input type="text" placeholder="Buyer Country" name="buyerCountry" />
                     <input type="text" placeholder="Buyer Pincode" name="BuyerPincode" />
                     <input type="text" placeholder="Order ID" name="orderid" />
-                    <input type="text" placeholder="Amount" name="amount" />
+                    <input type="text" placeholder="Amount" name="amount" value={this.receivedData?.amount} />
                     <input type="text" placeholder="Custom Field 1" name="customvar" />
                     <input type="text" placeholder="chmod" name="chmod" />
                     <input type="text" placeholder="Token" name="token" />
                     <input type="text" placeholder="Transaction Wallet" name="wallet" />
-                    <input type="text" placeholder="Currency" name="currency" />
-                    {/* <input type="text" placeholder="isoCurrency" name="isocurrency" /> */}
+                    <input type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' />
+                    {/* <input type="text" placeholder='1234567890' className='enter-mobile-num bg-white border-cs InputTextColor' /> */}
+
+                    <input type="text" placeholder="isoCurrency" name="isocurrency" />
                     <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" />
-                    <button type="button" onClick={this.validates}>Pay Here</button>
+                    {/* <button type="button" onClick={this.validates}>Pay Here</button> */}
+                    <div className='p-5'>
+                        <button onClick={this.validates} type='button' style={{ width: 150 }} className={styles.addMoney}>
+                            <div className={`text-white`}>Pay Here</div>
+                        </button>
+                    </div>
+
                 </form>
                 <p>
                     {this.getErrorMessages()}

@@ -1,9 +1,10 @@
 import React from 'react';
 
 import App from '../pages/Wallet/content/PaymentGateway';
-
+import jwt_decode from "jwt-decode";
 import { sha256 } from 'js-sha256';
 import $ from 'jquery';
+import { makeid } from './MakeId';
 window.$ = $;
 const customData = require('../config.json');
 class Sendtoairpay extends React.Component {
@@ -65,6 +66,23 @@ class Sendtoairpay extends React.Component {
     }
 
     submit() {
+
+        const token = localStorage.getItem('token')
+        let decoded = jwt_decode(token);
+        console.log(decoded.user);
+
+        // var email = decoded.user.email;
+        // var fname = decoded.user.name;
+        // var lname = 'anand';
+        // var city = decoded.user.district;
+        // var state = decoded.user.state;
+        // var country = 'India';
+        // var address = decoded.user.address;
+        // var orderid = makeid(10);
+        // var amount = $('[name="amount"]').val();
+
+        
+
         var email = $('[name="buyerEmail"]').val();
         var fname = $('[name="buyerFirstName"]').val();
         var lname = $('[name="buyerLastName"]').val();
@@ -89,8 +107,8 @@ class Sendtoairpay extends React.Component {
         checksum = sha256(key + "@" + alldata);
 
         var paramsHtml = '<input type="hidden" name="privatekey" value="' + privateKey + '"><input type="hidden" name="checksum" value="' + checksum + '"><input type="hidden" name="mercid" value="' + this.conf.mercid + '">';
-        var isoCurrency = '<input type="hidden" name="isoCurrency" value="INR">';
-        $('.main-transaction-form').append(isoCurrency);
+        // var isoCurrency = '<input type="hidden" name="isoCurrency" value="INR">';
+        // $('.main-transaction-form').append(isoCurrency);
         $('.main-transaction-form').append(paramsHtml);
         $('.main-transaction-form').submit();
 
