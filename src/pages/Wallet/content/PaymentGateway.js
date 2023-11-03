@@ -74,7 +74,7 @@ const  PaymentGateway = () => {
                 <input type="text" placeholder="chmod" name="chmod"  hidden />
                 <input type="text" placeholder="Token" name="token"  hidden />
                 <input type="text" placeholder="Transaction Wallet" name="wallet" hidden  />
-                <input value={365} type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' hidden  />
+                <input value={'356'} type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' hidden  />
                 <input value={'INR'} type="text" placeholder="isoCurrency" name="isocurrency"  hidden />
                 <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" hidden  />
                 {/* <button type="button" onClick={this.validates}>Pay Here</button> */}
