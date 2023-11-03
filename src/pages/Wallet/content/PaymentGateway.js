@@ -5,25 +5,34 @@ import $ from 'jquery';
 import styles from "./../style/style.module.css"
 import jwt_decode from "jwt-decode";
 import { makeid } from '../../../utils/MakeId';
+import { useLocation } from 'react-router-dom';
 
-export default class PaymentGateway extends React.Component {
-    constructor() {
-        super();
+const  PaymentGateway = () => {
+    const location = useLocation();
+    const Data = location.state;
 
-    }
+    const token = localStorage.getItem('token')
+    let decoded = jwt_decode(token);
+    console.log(decoded.user);
+    var email = decoded.user.email.replaceAll(' ', '');
+    var fname = decoded.user.name;
+    var lname = '';
+    var city = decoded.user.district;
+    var state = decoded.user.state;
+    var country = 'India';
+    var address = decoded.user.address;
+    var contact = decoded.user.contact;
+    var orderid = makeid(10);
+    var amount = Data?.amount
+    var Pincode = decoded.user?.postalCode
 
 
 
-    ;
-    getErrorMessages() {
-        return this.err;
-    }
-    getCs() {
+    const getCs = () => {
         var airpay = new Sendtoairpay()
         airpay.getConfig();
-
     }
-    validates() {
+    const validates = () => {
         var email = $('[name="buyerEmail"]').val();
         var buyerPhone = $('[name="buyerPhone"]').val();
         var fname = $('[name="buyerFirstName"]').val();
@@ -41,66 +50,43 @@ export default class PaymentGateway extends React.Component {
         var rt_type = true;
 
 
-        var app = new PaymentGateway();
-        app.getCs();
-
+        // var app = new PaymentGateway();
+        // app.getCs();
+        getCs()
 
     }
 
-    render() {
-        const { location } = this.props;
-        const receivedData = location?.state ? location.state.data : null;
-        console.log(location);
+    return (
+        <div className="comman-container px-4" >
+            <form style={{ display: 'grid' }} className="main-transaction-form" action="https://payments.airpay.co.in/pay/index.php" method="post">
+                <input type="text" value={email} placeholder="Buyer Email" name="buyerEmail" required hidden  />
+                <input type="text" value={contact} placeholder="Buyer Phone" name="buyerPhone" required  hidden />
+                <input type="text" value={fname}  placeholder="Buyer First Name" name="buyerFirstName" required  hidden />
+                <input type="text" value={lname} placeholder="Buyer Last Name" name="buyerLastName"  hidden />
+                <input type="text" value={address} placeholder="Buyer Address" name="buyerAddress" hidden  />
+                <input type="text" value={city} placeholder="Buyer City" name="buyerCity"  hidden />
+                <input type="text" value={state} placeholder="Buyer State" name="buyerState" hidden  />
+                <input type="text" value={country} placeholder="Buyer Country" name="buyerCountry"  hidden />
+                <input type="text" value={Pincode} placeholder="Buyer Pincode" name="BuyerPincode"  hidden />
+                <input value={orderid} type="text" placeholder="Order ID" name="orderid"  hidden />
+                <input value={amount}  type="text" placeholder="Amount" name="amount"  hidden />
+                <input type="text" placeholder="Custom Field 1" name="customvar"  hidden />
+                <input type="text" placeholder="chmod" name="chmod"  hidden />
+                <input type="text" placeholder="Token" name="token"  hidden />
+                <input type="text" placeholder="Transaction Wallet" name="wallet" hidden  />
+                <input value={365} type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' hidden  />
+                <input value={'INR'} type="text" placeholder="isoCurrency" name="isocurrency"  hidden />
+                <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" hidden  />
+                {/* <button type="button" onClick={this.validates}>Pay Here</button> */}
+                <div className='p-5'>
+                    <button onClick={() => validates()} type='button' style={{ width: 150 }} className={styles.addMoney}>
+                        <div className={`text-white`}>Pay Here</div>
+                    </button>
+                </div>
 
-
-        const token = localStorage.getItem('token')
-        let decoded = jwt_decode(token);
-        console.log(decoded.user);
-        var email = decoded.user.email;
-        var fname = decoded.user.name;
-        var lname = 'anand';
-        var city = decoded.user.district;
-        var state = decoded.user.state;
-        var country = 'India';
-        var address = decoded.user.address;
-        var orderid = makeid(10);
-        return (
-
-            <div className="comman-container px-4" >
-                <form style={{display: 'grid'}} className="main-transaction-form" action="https://payments.airpay.co.in/pay/index.php" method="post">
-                    <input type="text" value={email} placeholder="Buyer Email" name="buyerEmail" hidden required />
-                    <input type="text" placeholder="Buyer Phone" name="buyerPhone" required />
-                    <input type="text" placeholder="Buyer First Name" name="buyerFirstName" required />
-                    <input type="text" placeholder="Buyer Last Name" name="buyerLastName" />
-                    <input type="text" placeholder="Buyer Address" name="buyerAddress" />
-                    <input type="text" placeholder="Buyer City" name="buyerCity" />
-                    <input type="text" placeholder="Buyer State" name="buyerState" />
-                    <input type="text" placeholder="Buyer Country" name="buyerCountry" />
-                    <input type="text" placeholder="Buyer Pincode" name="BuyerPincode" />
-                    <input type="text" placeholder="Order ID" name="orderid" />
-                    <input type="text" placeholder="Amount" name="amount" value={this.receivedData?.amount} />
-                    <input type="text" placeholder="Custom Field 1" name="customvar" />
-                    <input type="text" placeholder="chmod" name="chmod" />
-                    <input type="text" placeholder="Token" name="token" />
-                    <input type="text" placeholder="Transaction Wallet" name="wallet" />
-                    <input type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' />
-                    {/* <input type="text" placeholder='1234567890' className='enter-mobile-num bg-white border-cs InputTextColor' /> */}
-
-                    <input type="text" placeholder="isoCurrency" name="isocurrency" />
-                    <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" />
-                    {/* <button type="button" onClick={this.validates}>Pay Here</button> */}
-                    <div className='p-5'>
-                        <button onClick={this.validates} type='button' style={{ width: 150 }} className={styles.addMoney}>
-                            <div className={`text-white`}>Pay Here</div>
-                        </button>
-                    </div>
-
-                </form>
-                <p>
-                    {this.getErrorMessages()}
-                </p>
-            </div>
-        )
-    }
-
+            </form>
+        </div>
+    )
 }
+
+export default PaymentGateway
