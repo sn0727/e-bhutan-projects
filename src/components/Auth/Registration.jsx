@@ -75,9 +75,11 @@ const Registration = () => {
       toast.error('Please enter valid email!')
       return true
     }
-    if (!ValidatePan(panNo)) {
-      toast.error('Please enter valid pan no!')
-      return true
+    if (panNo) {
+      if (!ValidatePan(panNo)) {
+        toast.error('Please enter valid pan no!')
+        return true
+      }
     }
     if (!ValidateZipCode(postalCode)) {
       toast.error('Please enter valid pin code!')
@@ -179,7 +181,7 @@ const Registration = () => {
                   <input type="text"
                     style={{ textTransform: 'uppercase' }}
                     onChange={(e) => setPanNo(e.target.value.toUpperCase())}
-                    name="panNo" id="panNo" maxLength={10} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ASDFF1232R" required />
+                    name="panNo" id="panNo" maxLength={10} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ASDFF1232R" />
                 </div>
                 {Role === 'Franchise' || Role === 'Retailer' ? <div>
                   <label htmlFor="refId" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Distributor Id</label>
