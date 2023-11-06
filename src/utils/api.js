@@ -12,6 +12,8 @@ export const transactionByType = ['All', 'Sent', 'Received']
 
 const APIUser = `${apiBaseUrl}user/`
 const APISuperadmin = `${apiBaseUrl}superAdmin/`
+const APIBank = `${apiBaseUrl}bank/`
+
 
 export const ApiUrl = {
   signup: `${APIUser}signup`,
@@ -124,6 +126,13 @@ export const ApiUrl = {
   broadbandGetOperatorList: `${apiBaseUrl}broadband/bill-payment/getOperaterList`,
   broadbandFetchBill: `${apiBaseUrl}broadband/bill-payment/fetchBill`,
   broadbandPayBill: `${apiBaseUrl}broadband/bill-payment/payBill`,
+
+
+
+  
+  // banking api route
+  aepsOnboarding: `${APIBank}aeps/onboarding`,
+  aepsRegistration: `${APIBank}aeps/registration`,
 
 };
 

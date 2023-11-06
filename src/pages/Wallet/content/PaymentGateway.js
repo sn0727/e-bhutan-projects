@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import { makeid } from '../../../utils/MakeId';
 import { useLocation } from 'react-router-dom';
 
-const  PaymentGateway = () => {
+const PaymentGateway = () => {
     const location = useLocation();
     const Data = location.state;
 
@@ -59,30 +59,39 @@ const  PaymentGateway = () => {
     return (
         <div className="comman-container px-4" >
             <form style={{ display: 'grid' }} className="main-transaction-form" action="https://payments.airpay.co.in/pay/index.php" method="post">
-                <input type="text" value={email} placeholder="Buyer Email" name="buyerEmail" required hidden  />
-                <input type="text" value={contact} placeholder="Buyer Phone" name="buyerPhone" required  hidden />
-                <input type="text" value={fname}  placeholder="Buyer First Name" name="buyerFirstName" required  hidden />
-                <input type="text" value={lname} placeholder="Buyer Last Name" name="buyerLastName"  hidden />
-                <input type="text" value={address} placeholder="Buyer Address" name="buyerAddress" hidden  />
-                <input type="text" value={city} placeholder="Buyer City" name="buyerCity"  hidden />
-                <input type="text" value={state} placeholder="Buyer State" name="buyerState" hidden  />
-                <input type="text" value={country} placeholder="Buyer Country" name="buyerCountry"  hidden />
-                <input type="text" value={Pincode} placeholder="Buyer Pincode" name="BuyerPincode"  hidden />
-                <input value={orderid} type="text" placeholder="Order ID" name="orderid"  hidden />
-                <input value={amount}  type="text" placeholder="Amount" name="amount"  hidden />
-                <input type="text" placeholder="Custom Field 1" name="customvar"  hidden />
-                <input type="text" placeholder="chmod" name="chmod"  hidden />
-                <input type="text" placeholder="Token" name="token"  hidden />
-                <input type="text" placeholder="Transaction Wallet" name="wallet" hidden  />
-                <input value={'356'} type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' hidden  />
-                <input value={'INR'} type="text" placeholder="isoCurrency" name="isocurrency"  hidden />
-                <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" hidden  />
+                <input type="text" value={email} placeholder="Buyer Email" name="buyerEmail" required hidden />
+                <input type="text" value={contact} placeholder="Buyer Phone" name="buyerPhone" required hidden />
+                <input type="text" value={fname} placeholder="Buyer First Name" name="buyerFirstName" required hidden />
+                <input type="text" value={lname} placeholder="Buyer Last Name" name="buyerLastName" hidden />
+                <input type="text" value={address} placeholder="Buyer Address" name="buyerAddress" hidden />
+                <input type="text" value={city} placeholder="Buyer City" name="buyerCity" hidden />
+                <input type="text" value={state} placeholder="Buyer State" name="buyerState" hidden />
+                <input type="text" value={country} placeholder="Buyer Country" name="buyerCountry" hidden />
+                <input type="text" value={Pincode} placeholder="Buyer Pincode" name="BuyerPincode" hidden />
+                <input value={orderid} type="text" placeholder="Order ID" name="orderid" hidden />
+                <input value={amount} type="text" placeholder="Amount" name="amount" hidden />
+                <input type="text" placeholder="Custom Field 1" name="customvar" hidden />
+                <input type="text" placeholder="chmod" name="chmod" hidden />
+                <input type="text" placeholder="Token" name="token" hidden />
+                <input type="text" placeholder="Transaction Wallet" name="wallet" hidden />
+                <input value={'356'} type="text" placeholder="Currency" name="currency" className='enter-mobile-num pl-4' hidden />
+                <input value={'INR'} type="text" placeholder="isoCurrency" name="isocurrency" hidden />
+                <input type="text" id="subtype" placeholder="subtype" name="txnsubtype" hidden />
                 {/* <button type="button" onClick={this.validates}>Pay Here</button> */}
-                <div className='p-5'>
-                    <button onClick={() => validates()} type='button' style={{ width: 150 }} className={styles.addMoney}>
-                        <div className={`text-white`}>Pay Here</div>
-                    </button>
+
+                <div className='card'>
+                    <div className='p-8'>
+                        <h2>Make your payment</h2>
+                        <p>Name : {fname}</p>
+                    </div>
+                    <div className='p-5'>
+                        <button onClick={() => validates()} type='button' style={{ width: 150, margin: 'auto' }} className={styles.addMoney}>
+                            <div className={`text-white`}>Pay Here</div>
+                        </button>
+                    </div>
+
                 </div>
+
 
             </form>
         </div>

@@ -37,6 +37,7 @@ const MobileNumber = () => {
       err => {
         console.log(err);
         setisLoading(false)
+        toast.error(err?.message)
       }
     );
 
