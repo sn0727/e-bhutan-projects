@@ -129,13 +129,24 @@ export const ApiUrl = {
 
 
 
-  
+
   // banking api route
   aepsOnboarding: `${APIBank}aeps/onboarding`,
   aepsRegistration: `${APIBank}aeps/registration`,
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
+ 
+
+  // DMT api route
+  queryImmitor: `${APIBank}dmt/transfer/queryRemitter`,
+  registerBeneficiary: `${APIBank}dmt/transfer/registerBeneficiary`,
+  registerRemitter: `${APIBank}dmt/transfer/registerRemitter`,
+  fetchBeneficiary: `${APIBank}dmt/transfer/fetchBeneficiary`,
+  getRemitterById: `${APIBank}dmt/transfer/getRemitterById`,
+  deleteBeneficiary: `${APIBank}dmt/transfer/deleteBeneficiary`,
+  transactionMoney: `${APIBank}dmt/transfer/transaction`,
+  pennyDrop: `${APIBank}dmt/transfer/pennyDrop`,
 
 };
 
@@ -276,4 +287,4 @@ export const Statelist = [
   'Delhi',
   'Lakshadweep',
   'Pondicherry',
-  ]
+]

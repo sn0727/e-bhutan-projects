@@ -54,6 +54,10 @@ import MoneyRequestStatus from './pages/Transaction/MoneyRequestStatus';
 import BackPage from './pages/test/BackPage';
 import PaymentSuccessful from './pages/test/PaymentSuccessful';
 import PaymentGateway from './pages/Wallet/content/PaymentGateway';
+import { ChakraProvider } from '@chakra-ui/react';
+import Money_Transfer from './pages/Money_Transfer/Money_Transfer';
+import RegisterBeneficiary from './pages/Money_Transfer/RegisterBeneficiary';
+import OpenAccount from './pages/OpenAccount/OpenAccount';
 
 function App() {
   // const authToken = localStorage.getItem("token");
@@ -122,6 +126,11 @@ function App() {
           <Route path='/money-request' element={<MoneyRequest />} />
           <Route path='/money-request-status' element={<MoneyRequestStatus />} />
           <Route path='/payment-gateway' element={<PaymentGateway />} />
+
+
+          <Route path='/open-account' element={<OpenAccount />} />
+          <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
+          <Route path='/Money_Transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
         </Route>
         {/* protected router */}
       </Routes>

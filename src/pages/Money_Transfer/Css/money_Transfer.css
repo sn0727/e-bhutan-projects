@@ -1,0 +1,316 @@
+.danger {
+  color: red;
+}
+.Figure-biometric-Device {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}
+
+.Figure-biometric-Device .box-style {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+  padding: 5px 10px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  width: 32.33%;
+  cursor: pointer;
+
+}
+
+.add-baneficiary{
+  display: flex;
+  flex-direction: row;
+  border-bottom-width: 2px;
+  justify-content: space-between;
+}
+.add-baneficiary-inner{
+  display: flex;
+  flex-direction: row;
+
+  /* border-bottom-width: 2px; */
+
+}
+
+.recenttext{
+  padding: 10px;
+
+}
+.recenttext h1{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.search-baneficry-main-div{
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+margin-left: 10px;
+margin-right: 10px;
+margin-bottom: 20px;
+}
+.search-div{
+  height: 40px;
+  border-radius: 10px;
+  width: 85%;
+  background-color: #F0F0F0;
+  flex-direction: row;
+  display: flex;
+}
+.search-div svg{
+  padding: 5px;
+  align-self: center;
+  height: 30px;
+  width: 30px;
+  fill: #B4B4B3;
+}
+
+.ban_left_deatils{
+
+  width: 60%;
+
+}
+
+.ban_left_deatils p {
+  margin-left: 20 px;
+
+}
+
+.bene_delete{
+  display: flex;
+  justify-content: end;
+
+}
+
+.bane_right_detai{
+
+  width: 40%;
+}
+
+
+.ben_deatails{
+  padding: 10px;
+  background-color: #FFF;
+  box-shadow: -2px 1px 32px #00000026;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin: 10px;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.FaChevronRight {
+  margin-bottom: 5px;
+}
+.search-input{
+  width:100%;
+  background-color: #F0F0F0;
+border-radius: 10px;
+}
+
+.refersh-div{
+  align-self: center;
+height: 30px;
+width: 30px;
+border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  background-color: #B4B4B3;
+}
+.refersh-div svg{
+  align-self: center;
+  height: 25px;
+  width: 25px;
+
+  fill: #2C427D;
+}
+
+.add-baneficiary svg {
+  height: 30px;
+  width: 30px;
+  fill: #2c427d;
+  /* align-self: center; */
+  margin: 5px;
+}
+
+.add-baneficiary .add-baneficiary-inner svg {
+  height: 30px;
+  width: 30px;
+  /* align-self: center; */
+  margin: 5px;
+  margin-right: 50px;
+}
+
+.add-baneficiary h1 {
+  font-size: 20px;
+  align-self: center;
+}
+
+.Figure-biometric-Device .box-style.box-style-active {
+  border: 1px solid #2C427D;
+}
+
+.Figure-biometric-Device .box-style.box-style-active p {
+  color: var(--white);
+}
+
+.Figure-biometric-Device .box-style.box-style-active {
+  background: #2C427D;
+}
+
+.Figure-biometric-Device .box-style.box-style-active .Image-Fingerprint-style {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1px;
+  stroke: #FFF;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.Figure-biometric-Device .box-style .Image-Fingerprint-style {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1px;
+  stroke: #FFF;
+  border: 1px solid #2C427D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.Select-Biometric-Device {
+  color: #000;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 10px;
+}
+
+.new-input-cls {
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.payment_feild {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.payment_feild .size-col-12 {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.payment_feild .size-col-12 .Airtel_Payment_Bank {
+  /* max-width: 340px; */
+  max-width: 49%;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #2C427D;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 5px;
+}
+
+.style-row {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.style-row .col-6 {
+  width: 49%;
+}
+
+.col-6.aligin-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.check-condition {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+.check-condition input, .check-condition label {
+  cursor: pointer;
+}
+.Image-Fingerprint.colorActive {
+  filter: brightness(0.5);
+}
+.warring-icon svg{
+  width: 100%;
+  text-align: center;
+}
+.Verified-Transfer svg {
+  width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: red;
+}
+.Verified-Transfer {
+  text-align: center;
+}
+.m-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.m-row .col-12 {
+  width: 100%;
+}
+.m-row .col-6 {
+  width: 49%;
+}
+.d-block {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+label.d-block.BasicDetails {
+  display: block;
+  background: #2c427d;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .Figure-biometric-Device .box-style {
+    width: 100%;
+  }
+  .style-row .col-6 {
+    width: 100%;
+  }
+  .payment_feild .size-col-12 .Airtel_Payment_Bank {
+    width: 100%;
+    max-width: 100%;
+  }
+  .col-6.aligin-center {
+    margin-top: 10px;
+  }
+}

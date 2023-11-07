@@ -103,7 +103,7 @@ const HomeContent = () => {
                   BankingServicesAndInsuranceServices.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
                       <div className='serviceItem'>
-                        <img src={item.image} alt="upi" />
+                        {item.image ? <img src={item.image} alt="upi" /> : <div>{item.icon}</div>}
                       </div>
                       <p>{item.title}</p>
                     </Link>

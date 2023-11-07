@@ -1,3 +1,4 @@
+import { AiFillBank } from "react-icons/ai"
 import { image } from "./image"
 export const services = [
     {
@@ -119,12 +120,25 @@ export const services = [
         ],
         // // banking service objects
         BankingServicesAndInsuranceServices: [
-            {
-                id: 1,
-                link: "/aeps",
-                title: "AEPS",
-                image: image.AEPS
-            },
+            // {
+            //     id: 1,
+            //     link: "/aeps",
+            //     title: "AEPS",
+            //     image: image.AEPS
+            // },
+            // {
+            //     id: 2,
+            //     link: "/open-account",
+            //     title: "Open Account",
+            //     image: "",
+            //     icon: <AiFillBank />
+            // },
+            // {
+            //     id: 2,
+            //     link: "/Money_Transfer",
+            //     title: "Money Transfer",
+            //     image: image.MoneyTransfer
+            // },
             // {
             //     id: 2,
             //     link: "/",

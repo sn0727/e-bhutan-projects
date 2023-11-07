@@ -200,7 +200,8 @@
     justify-content: center;
     align-items: center;
 }
-.recharge-bill-payment-innerBox .servics-list .services_is .serviceItem.ImageColor > img {
+
+.recharge-bill-payment-innerBox .servics-list .services_is .serviceItem.ImageColor>img {
     filter: brightness(0) invert(1);
 }
 
@@ -230,6 +231,11 @@
     gap: 47.9px;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+.recharge-bill-payment-innerBox .servics-list .services_is .serviceItem>div>svg {
+    font-size: 38px;
+    color: #fff;
 }
 
 /* =================== services section css code ====================== */
