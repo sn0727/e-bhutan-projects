@@ -133,6 +133,9 @@ export const ApiUrl = {
   // banking api route
   aepsOnboarding: `${APIBank}aeps/onboarding`,
   aepsRegistration: `${APIBank}aeps/registration`,
+  aepsGetBankList: `${APIBank}aeps/getBankList`,
+  aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
+  aepsDeposit: `${APIBank}aeps/aadhaarPay `,
 
 };
 
