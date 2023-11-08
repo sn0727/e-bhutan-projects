@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 import AddBaneficiaryModal from '../../components/Modal/AddBaneficiaryModal';
 import PayPannyModal from '../../components/Modal/PayPannyModal';
 import PayToSendMoneyModal from '../../components/Modal/PayToSendMoneyModal';
+import { mobileNoValidation } from '../../components/Validation';
 
 // mobile no verifed
 const MobileNumberVerify = () => {
@@ -33,34 +34,35 @@ const MobileNumberVerify = () => {
   const [mob, setMob] = useState("")
 
   const onsubmitQuaryEmmiter = () => {
-    setisLoading(true)
-    let data = {
-      "mobile": mob,
-      "bank3_flag": "No"
-    }
-
-    let config = {
-      url: ApiUrl.queryImmitor,
-      method: 'post',
-      body: data
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res, "=================== res mobile")
-        toast.success(res?.message)
-        setInOpen(false)
-        setisLoading(false)
-        navigate('/register-beneficiary', { state: { res: res?.data, mobileNo: mob } })
-      },
-      err => {
-        console.log(err);
-        toast.error(err?.message)
-        setisLoading(false)
+    if (mobileNoValidation(mob)) {
+      setisLoading(true)
+      let data = {
+        "mobile": mob,
+        "bank3_flag": "No"
       }
 
-    )
+      let config = {
+        url: ApiUrl.queryImmitor,
+        method: 'post',
+        body: data
+      };
+      APIRequest(
+        config,
+        res => {
+          console.log(res, "=================== res mobile")
+          toast.success(res?.message)
+          setInOpen(false)
+          setisLoading(false)
+          navigate('/register-beneficiary', { state: { res: res?.data, mobileNo: mob } })
+        },
+        err => {
+          console.log(err);
+          toast.error(err?.message)
+          setisLoading(false)
+        }
 
+      )
+    }
   }
 
   return (
@@ -68,7 +70,7 @@ const MobileNumberVerify = () => {
       {/* pop modal  */}
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <Modal isOpen={true} >
-        {/* <ModalOverlay /> */}
+        <ModalOverlay />
         <ModalContent>
           {/* <ModalCloseButton /> */}
           <ModalBody>
@@ -113,7 +115,8 @@ const Money_Transfer = () => {
 
   const getTokenData = () => {
     let config = {
-      url: "https://api.ebhuktan.com/api/user/getByToken",
+      url: ApiUrl?.getByToken,
+      // url: "https://api.ebhuktan.com/api/user/getByToken",
       method: 'get',
     };
     APIRequest(
@@ -179,7 +182,7 @@ const Money_Transfer = () => {
 
   // delete record  deleteBeneficiary
   const deleteBeneficiary = (bene_id) => {
-    alert('Your want to delete')
+    alert("You'd like to delete record.")
     let config = {
       url: ApiUrl?.deleteBeneficiary,
       method: 'delete',
@@ -193,7 +196,7 @@ const Money_Transfer = () => {
       res => {
         console.log(res, "==================== delete")
         toast.success(res?.message)
-        setTimeout(()=> {
+        setTimeout(() => {
           window.location.reload(false);
         }, 1000)
       },
@@ -211,12 +214,12 @@ const Money_Transfer = () => {
 
 
 
-  
+
 
   return (
     <>
       <Header />
-      <div className="comman-container px-4" style={{marginBottom: '50px'}}>
+      <div className="comman-container px-4" style={{ marginBottom: '50px' }}>
         <div className='mobile-recharge'>
           <BackButton link={"home"} />
           <h1>Send Money To Any Bank</h1>
@@ -234,46 +237,33 @@ const Money_Transfer = () => {
           <h1>React And Saved Baneficiary</h1>
         </div>
 
-        {/* <div className='search-baneficry-main-div'>
-          <div className='search-div'>
-            <AiOutlineSearch />
-            <Input placeholder='Search Banefeciry' className='search-input' />
-          </div>
-          <div className='refersh-div'>
-            <BsArrowRepeat />
-          </div>
-          <div className='refersh-div'>
-            <AiOutlineUserAdd />
-          </div>
-        </div> */}
-
         {/* baneficery details  */}
         {
           fetchBeneficiaryData.length > 0 ?
-          fetchBeneficiaryData.map((item, index) => (
-            <div className='ben_deatails' key={index}>
-              <div className='ban_left_deatils'>
-                <p>Name :- {item?.name}</p>
-                <p>A/c :- {item?.bankname}</p>
-                <p>IFSC :- {item?.ifsc}</p>
-              </div>
-              <div className='bane_right_detai'>
-                <div className='bene_delete'>
-                  {/* <Button > Pay 1&#8377; For Test</Button> */}
-                  <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} />
-                  <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} />
-                  <Button colorScheme='blue' onClick={() => deleteBeneficiary(item?.bene_id)}>
-                    <RiDeleteBin6Line />
-                  </Button>
+            fetchBeneficiaryData.map((item, index) => (
+              <div className='ben_deatails' key={index}>
+                <div className='ban_left_deatils'>
+                  <p>Name :- {item?.name}</p>
+                  <p>A/c :- {item?.bankname}</p>
+                  <p>IFSC :- {item?.ifsc}</p>
+                </div>
+                <div className='bane_right_detai'>
+                  <div className='bene_delete'>
+                    {/* <Button > Pay 1&#8377; For Test</Button> */}
+                    <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} />
+                    <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} />
+                    <Button colorScheme='blue' onClick={() => deleteBeneficiary(item?.bene_id)}>
+                      <RiDeleteBin6Line />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )) : <div className='not-Found'>Not Found.</div>
+            )) : <div className='not-Found'>Not Found.</div>
         }
       </div >
       <Footer />
       <>
-        {tokenData?.dmtuse === "false" ? <MobileNumberVerify />  : null}
+        {tokenData?.dmtuse === "false" ? <MobileNumberVerify /> : null}
         {/* <MobileNumberVerify /> */}
       </>
     </>

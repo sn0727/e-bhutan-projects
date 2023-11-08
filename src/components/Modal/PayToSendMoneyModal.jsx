@@ -61,9 +61,10 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
 
     return (
         <>
-            <Button onClick={sendAmount} className='FaChevronRight' colorScheme='blue' marginRight={'10px'}>
+            {userDetails?.verified === "0" ? null : <Button onClick={sendAmount} className='FaChevronRight' colorScheme='blue' marginRight={'10px'}>
                 Pay Now
-            </Button>
+                {userDetails?.verified === "0" ? null : <div className='verifyBtn'>&#10003;</div>}
+            </Button> }
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -80,7 +81,7 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
                                         <input type="text" placeholder='0'
                                             onChange={(e) => setAmout(e.target.value)}
                                             className='input_pay' />
-                                        <sub>rs</sub>
+                                        {/* <sub>rs</sub> */}
                                     </div>
                                     <div className='hello-btn-dd'>
                                         <p className='mb-2'>Txntype :- IMPS</p>

@@ -126,19 +126,19 @@ export const services = [
             //     title: "AEPS",
             //     image: image.AEPS
             // },
-            // {
-            //     id: 2,
-            //     link: "/open-account",
-            //     title: "Open Account",
-            //     image: "",
-            //     icon: <AiFillBank />
-            // },
-            // {
-            //     id: 2,
-            //     link: "/Money_Transfer",
-            //     title: "Money Transfer",
-            //     image: image.MoneyTransfer
-            // },
+            {
+                id: 2,
+                link: "/open-account",
+                title: "Open Account",
+                image: "",
+                icon: <AiFillBank />
+            },
+            {
+                id: 2,
+                link: "/Money_Transfer",
+                title: "Money Transfer",
+                image: image.MoneyTransfer
+            },
             // {
             //     id: 2,
             //     link: "/",

@@ -6,11 +6,12 @@ import Header from '../../components/Common/Header/Header'
 import Footer from '../../components/Common/Footer/Footer'
 import { APIRequest, ApiUrl } from '../../utils/api'
 import { toast } from 'react-toastify'
+import { nameValidation, postalCodeValidation, validateAddress, validateDateFormat, validateFirstName, validateLastName } from '../../components/Validation'
 
 const RegisterBeneficiary = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const recivedData = location?.state;
+    const [recivedData] = useState(location?.state)
     const [isLoading, setisLoading] = useState(false)
     const [inputValue, setInputValue] = useState({
         firtname: "",
@@ -20,49 +21,57 @@ const RegisterBeneficiary = () => {
         pincode: "",
     })
 
-    console.log(recivedData, "============================== kkk")
-
     const handlerInput = (event) => {
         setInputValue({ ...inputValue, [event.target.name]: event.target.value })
     }
 
     // Register Beneficiary funcation
-    const registerBeneficiaryfun = () => {
-        setisLoading(true)
-        let config = {
-            url: ApiUrl.registerRemitter,
-            method: 'post',
-            body: {
-                "mobile": recivedData?.mobileNo,
-                "firstname": inputValue?.firtname,
-                "lastname": inputValue?.lastname,
-                "address": inputValue?.address,
-                "otp": inputValue?.otp,
-                "pincode": inputValue?.pincode,
-                "stateresp": recivedData?.res?.stateresp,
-                "bank3_flag": "No",
-                "dob": inputValue?.date,
-                "gst_state": "07"
-            }
-        };
-        APIRequest(
-            config,
-            res => {
-                console.log(res, "=================== res add benuficiand")
-                toast.success(res?.message)
-                navigate("/Money_Transfer")
-                setisLoading(false)
-            },
-            err => {
-                console.log(err);
-                toast.error(err?.message)
-                setisLoading(false)
-            }
+    const registerBeneficiaryfun = (event) => {
+        event.stopPropagation()
+        if (
+            validateFirstName(inputValue?.firtname) &&
+            validateLastName(inputValue?.lastname) && 
+            validateDateFormat(inputValue?.date) &&
+            validateAddress(inputValue?.address) &&
+            postalCodeValidation(inputValue?.pincode)
 
-        )
+        ) {
+            setisLoading(true)
+            let config = {
+                url: ApiUrl.registerRemitter,
+                method: 'post',
+                body: {
+                    "mobile": recivedData?.mobileNo,
+                    "firstname": inputValue?.firtname,
+                    "lastname": inputValue?.lastname,
+                    "address": inputValue?.address,
+                    "otp": inputValue?.otp,
+                    "pincode": inputValue?.pincode,
+                    "stateresp": recivedData?.res?.stateresp,
+                    "bank3_flag": "No",
+                    "dob": inputValue?.date,
+                    "gst_state": "07"
+                }
+            };
+            APIRequest(
+                config,
+                res => {
+                    console.log(res, "=================== res add benuficiand")
+                    toast.success(res?.message)
+                    setisLoading(false)
+                    navigate("/Money_Transfer")
+                },
+                err => {
+                    console.log(err);
+                    toast.error(err?.message)
+                    setisLoading(false)
+                }
 
+            )
+        }
     }
 
+    console.log(recivedData, '================== hh')
 
     return (
         <>
@@ -76,7 +85,7 @@ const RegisterBeneficiary = () => {
                     <div className='Verified-Transfer'>
                         <div className='m-row'>
                             <div className='col-12 mb-5'>
-                                <label htmlFor="otp" className='d-block'>Enter OTP</label>
+                                <label htmlFor="otp" className='d-block'>Enter OTP <span className='text-red'>*</span></label>
                                 <Input placeholder='Enter OTP'
                                     name="otp"
                                     onChange={handlerInput}
@@ -90,7 +99,7 @@ const RegisterBeneficiary = () => {
                         </div>
                         <div className='m-row'>
                             <div className='col-6'>
-                                <label htmlFor="otp" className='d-block'>Enter Your Full Name</label>
+                                <label htmlFor="otp" className='d-block'>Enter First Name <span className='text-red'>*</span></label>
                                 <Input placeholder='First Name'
                                     name="firtname"
                                     onChange={handlerInput}
@@ -98,6 +107,7 @@ const RegisterBeneficiary = () => {
                                     className='search-input' />
                             </div>
                             <div className='col-6'>
+                                <label htmlFor="otp" className='d-block'>Enter Last Name <span className='text-red'>*</span></label>
                                 <Input placeholder='Last Name'
 
                                     name="lastname"
@@ -108,7 +118,7 @@ const RegisterBeneficiary = () => {
                         </div>
                         <div className='m-row'>
                             <div className='col-12 my-2'>
-                                <label htmlFor="otp" className='d-block'>Enter Date Of Birth</label>
+                                <label htmlFor="otp" className='d-block'>Enter Date Of Birth <span className='text-red'>*</span></label>
                                 <Input placeholder='2001-03-02'
                                     name="date"
                                     onChange={handlerInput}
@@ -117,7 +127,7 @@ const RegisterBeneficiary = () => {
                         </div>
                         <div className='m-row'>
                             <div className='col-12 my-2'>
-                                <label htmlFor="otp" className='d-block'>Enter Full Address</label>
+                                <label htmlFor="otp" className='d-block'>Enter Full Address (Optional)</label>
                                 <Input placeholder='Enter Address'
                                     name="address"
                                     onChange={handlerInput}
@@ -126,7 +136,7 @@ const RegisterBeneficiary = () => {
                         </div>
                         <div className='m-row'>
                             <div className='col-12 my-2'>
-                                <label htmlFor="otp" className='d-block'>Enter Pincode</label>
+                                <label htmlFor="otp" className='d-block'>Enter Pincode <span className='text-red'>*</span></label>
                                 <Input placeholder='Enter Pin Code'
                                     name="pincode"
                                     onChange={handlerInput}
@@ -137,7 +147,7 @@ const RegisterBeneficiary = () => {
 
                     <div className='button-process my-0' style={{ margin: '20px 0' }}>
                         <button type='button' className='button-pro'>
-                            <Link onClick={() => registerBeneficiaryfun()}>
+                            <Link onClick={(event) => registerBeneficiaryfun(event)}>
                                 {
                                     isLoading ? <div>
                                         <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

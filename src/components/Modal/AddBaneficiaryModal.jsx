@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
+import { nameValidation, postalCodeValidation, validateAccountNumber, validateBankId, validateDateFormat, validateIFSCCode } from '../Validation';
 
 const AddBaneficiaryModal = ({ mobileNo }) => {
   const navigate = useNavigate()
@@ -31,41 +32,51 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
 
   // Register Beneficiary funcation
   const addBaneficiaryRegistration = () => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.registerBeneficiary,
-      method: 'post',
-      body: {
-        "mobile": mobileNo,
-        "benename": inputValue?.name,
-        "bankid": inputValue?.bandId,
-        "accno": inputValue?.accountNo,
-        "ifsccode": inputValue?.ifscCode,
-        "verified": "0",
-        "gst_state": "07",
-        "dob": inputValue?.date,
-        // "dob": "2001-03-02",
-        "address": inputValue?.address,
-        "pincode": inputValue?.pincode
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res, "=================== res add benuficiand")
-        toast.success(res?.message)
-        setisLoading(false)
-        setTimeout(()=> {
-          window.location.reload(false);
-        }, 1000)
-      },
-      err => {
-        console.log(err);
-        toast.error(err?.message)
-        setisLoading(false)
-      }
+    if (
+      validateAccountNumber(inputValue?.accountNo) && 
+      validateIFSCCode(inputValue?.ifscCode) && 
+      validateBankId(inputValue?.bandId) &&
+      nameValidation(inputValue?.name) && 
+      validateDateFormat(inputValue?.date) && 
+      postalCodeValidation(inputValue?.pincode)
+    ) {
+      setisLoading(true)
+      let config = {
+        url: ApiUrl.registerBeneficiary,
+        method: 'post',
+        body: {
+          "mobile": mobileNo,
+          "benename": inputValue?.name,
+          "bankid": inputValue?.bandId,
+          "accno": inputValue?.accountNo,
+          "ifsccode": inputValue?.ifscCode.toLowerCase(),
+          "verified": "0",
+          "gst_state": "07",
+          "dob": inputValue?.date,
+          // "dob": "2001-03-02",
+          "address": inputValue?.address,
+          "pincode": inputValue?.pincode
+        }
+      };
+      APIRequest(
+        config,
+        res => {
+          console.log(res, "=================== res add benuficiand")
+          toast.success(res?.message)
+          setisLoading(false)
+          setTimeout(() => {
+            window.location.reload(false);
+          }, 1000)
+        },
+        err => {
+          console.log(err);
+          toast.error(err?.message)
+          setisLoading(false)
+        }
 
-    )
+      )
+    }
+
 
   }
 
@@ -88,7 +99,7 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Account Number</label>
+                      <label htmlFor="otp" className='d-block'>Account Number <span className='text-red'>*</span></label>
                       <Input placeholder='Enter A/C Number'
                         name="accountNo"
                         onChange={handlerInput}
@@ -97,15 +108,15 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-6'>
-                      <label htmlFor="IFSC" className='d-block'>Enter IFSC Code</label>
+                      <label htmlFor="IFSC" className='d-block'>Enter IFSC Code <span className='text-red'>*</span></label>
                       <Input placeholder='IFSC Code'
                         name="ifscCode"
+                        style={{ textTransform: 'uppercase' }}
                         onChange={handlerInput}
-
                         className='search-input' />
                     </div>
                     <div className='col-6'>
-                      <label htmlFor="IFSC" className='d-block'>Enter Bank Id</label>
+                      <label htmlFor="IFSC" className='d-block'>Enter Bank Id <span className='text-red'>*</span></label>
                       <Input placeholder='Bank Id'
                         name="bandId"
                         onChange={handlerInput}
@@ -114,7 +125,7 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Enter Name</label>
+                      <label htmlFor="otp" className='d-block'>Enter Name <span className='text-red'>*</span></label>
                       <Input placeholder='Enter Name'
                         name="name"
                         onChange={handlerInput}
@@ -123,8 +134,8 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Enter Date Of Birth</label>
-                      <Input placeholder='2001-03-02'
+                      <label htmlFor="otp" className='d-block'>Enter Date Of Birth <span className='text-red'>*</span></label>
+                      <Input placeholder='YYYY-MM-DD'
                         name="date"
                         onChange={handlerInput}
                         className='search-input' />
@@ -132,7 +143,7 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Enter Full Address</label>
+                      <label htmlFor="otp" className='d-block'>Enter Full Address <span className='text-red'>*</span></label>
                       <Input placeholder='Enter Address'
                         name="address"
                         onChange={handlerInput}
@@ -141,7 +152,7 @@ const AddBaneficiaryModal = ({ mobileNo }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Enter Pincode</label>
+                      <label htmlFor="otp" className='d-block'>Enter Pincode <span className='text-red'>*</span></label>
                       <Input placeholder='Enter Pin Code'
                         name="pincode"
                         onChange={handlerInput}

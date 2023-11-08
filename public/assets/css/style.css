@@ -550,3 +550,31 @@ div.btn.btn-danger:hover {
 .w-50.position-relative {
     position: relative;
 }
+.indianRupes {
+    font-size: 40px;
+    color: #2C427D;
+    margin: 30px 0;
+    width: 100%;
+    display: block;
+}
+.chakra-button {
+    color: #fff !important;
+    background-color: #2C427D !important;
+}
+.text-red {
+    color: red ;
+}
+.FaChevronRight {
+    position: relative;
+}
+.verifyBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: green;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 0 10px;
+    /* width: 100%; */
+}
