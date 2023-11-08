@@ -62,7 +62,7 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
     return (
         <>
             {userDetails?.verified === "0" ? null : <Button onClick={sendAmount} className='FaChevronRight' colorScheme='blue' marginRight={'10px'}>
-                Pay Now change
+                Pay Now
                 {userDetails?.verified === "0" ? null : <div className='verifyBtn'>&#10003;</div>}
             </Button> }
 
