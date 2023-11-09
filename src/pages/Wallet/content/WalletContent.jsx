@@ -175,7 +175,7 @@ const WalletContent = () => {
         </div>
         <div style={{display: 'block'}}>
           <div className="Wallet-desing">
-            <label className={styles.textAddmon}>Add Money to Wallet</label>
+            <label className={styles.textAddmon}>Send Money to Wallet</label>
             <div className='set-p-relative'>
               <div className={styles.getOffer}>
                 <AiOutlineExclamationCircle className={styles.IconSixe} />

@@ -1165,7 +1165,7 @@ const Aeps = () => {
         <Footer />
       </>
     )
-  } else if (getTokenData?.isRegister !== 'false') {
+  } else if (getTokenData?.isRegister === 'false') {
     return (
       <>
         <Header />
