@@ -50,7 +50,7 @@ const MobileRechargeContent = () => {
   // get operator and circle auto fetch
   const GetOperatorAndCircle = async () => {
     setisLoading(true)
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     try {
       const result = await axios.post(ApiUrl.rechargeCheckHLR,
         {
@@ -115,7 +115,7 @@ const MobileRechargeContent = () => {
 
   const postOperator1 = async () => {
     setisLoading(true)
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     try {
       const result = await axios.post(ApiUrl.recharGetPlan,
         {

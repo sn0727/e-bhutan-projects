@@ -9,7 +9,7 @@ import ProfileDropdown from '../../ProfileDropdown/ProfileDropdown';
 
 const Header = () => {
     const [profileData, seProfileData] = useState([])
-    const token = localStorage.getItem("token")
+    const token = sessionStorage.getItem("token")
     const decodeToken = jwtDecode(token);
 
     const getProfile = async () => {

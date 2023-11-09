@@ -10,7 +10,6 @@ import TableRow from '@mui/material/TableRow';
 // import axios from 'axios';
 import { ApiUrl, APIRequest } from '../../../utils/api';
 import Loader from '../../../components/Feature/Loader';
-
 // select dropdown
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -21,7 +20,7 @@ import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 // select dropdown
-
+import BackButton from '../../../components/Button/BackButton'
 
 const transactionByType = ['all', 'pending', 'approved']
 
@@ -36,7 +35,7 @@ export default function MoneyRequestStatusContent() {
 
 
   // get user data from token 
-  const token = localStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
   const decodeToken = jwtDecode(token);
   const userId = decodeToken.user.id;
 
@@ -167,6 +166,9 @@ export default function MoneyRequestStatusContent() {
     <section className='transaction-table'>
 
       <div className="comman-container px-4">
+        <div className='pt-5 ps-5'>
+          <BackButton link={"add-wallet"} />
+        </div>
         <Box >
           <FormControl sx={{ m: 1, minWidth: 160 }} size="small">
             <InputLabel id="demo-simple-select-label">Status</InputLabel>

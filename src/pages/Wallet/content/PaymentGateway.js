@@ -11,7 +11,7 @@ const PaymentGateway = () => {
     const location = useLocation();
     const Data = location.state;
 
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     let decoded = jwt_decode(token);
     console.log(decoded.user);
     var email = decoded.user.email.replaceAll(' ', '');

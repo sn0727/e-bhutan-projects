@@ -133,6 +133,7 @@ export const ApiUrl = {
   // banking api route
   aepsOnboarding: `${APIBank}aeps/onboarding`,
   aepsRegistration: `${APIBank}aeps/registration`,
+  aepsAuthentication: `${APIBank}aeps/authentication`,
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
@@ -157,7 +158,7 @@ export const ApiUrl = {
 
 export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null) => {
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   try {
     let data = {};
@@ -203,7 +204,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
 };
 
 export const APIRequestWithFile = async (config = {}, onSuccess, onError) => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   try {
     let data;

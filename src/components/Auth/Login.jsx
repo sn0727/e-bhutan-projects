@@ -35,7 +35,7 @@ const Login = () => {
       if (!error) {
         setisLoading(false)
         toast.success(message)
-        localStorage.setItem("token", token)
+        sessionStorage.setItem("token", token)
         navigate("/home")
       } else {
         setisLoading(false)
@@ -57,7 +57,7 @@ const Login = () => {
 
   }
   const GetToken = async () => {
-    let token = await localStorage.getItem("token")
+    let token = await sessionStorage.getItem("token")
     // console.log(token, 'out condition home');
     if (token) {
       navigate('/home');

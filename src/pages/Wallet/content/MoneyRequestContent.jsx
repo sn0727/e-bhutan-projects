@@ -11,6 +11,7 @@ import { APIRequest, APIRequestWithFile, ApiUrl } from '../../../utils/api'
 import QRCode from 'react-qr-code'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
+import BackButton from '../../../components/Button/BackButton'
 
 const MoneyRequestContent = () => {
   const navigate = useNavigate()
@@ -64,7 +65,9 @@ const MoneyRequestContent = () => {
   return (
     <React.Fragment>
       <div className="comman-container px-4">
-
+        <div className='pt-5 ps-5'>
+          <BackButton link={"add-wallet"} />
+        </div>
         <div style={{ display: 'block' }}>
           <div className="Wallet-desing pt-10">
             <label className={styles.textAddmon}>Send  Money Request</label>
@@ -76,7 +79,7 @@ const MoneyRequestContent = () => {
               <input type="text" value={transactionId} className='enter-mobile-num' onChange={(e) => settransactionId(e.target.value)} placeholder={'Enter Transaction Id '} />
             </div>
 
-            <label className={styles.textAddmon} style={{fontSize:12, fontWeight:500}}>Add your screenshot</label>
+            <label className={styles.textAddmon} style={{ fontSize: 12, fontWeight: 500 }}>Add your screenshot</label>
             <div className={`set-p-relative ${styles.getOfferAmount}`}>
               <input type="file" className='enter-mobile-num' onChange={(e) => setFilePath(e.target.files[0])} />
             </div>

@@ -57,7 +57,7 @@ const Registration = () => {
       const { error, message } = result?.data;
       if (!error) {
         toast.success(message);
-        // localStorage.setItem("token", token);
+        // sessionStorage.setItem("token", token);
         navigate("/")
       }
     } catch (server_error) {

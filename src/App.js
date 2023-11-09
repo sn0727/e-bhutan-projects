@@ -60,7 +60,7 @@ import RegisterBeneficiary from './pages/Money_Transfer/RegisterBeneficiary';
 import OpenAccount from './pages/OpenAccount/OpenAccount';
 
 function App() {
-  // const authToken = localStorage.getItem("token");
+  // const authToken = sessionStorage.getItem("token");
   return (
     <BrowserRouter>
       <ToastContainer />

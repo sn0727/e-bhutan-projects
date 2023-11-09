@@ -32,7 +32,7 @@ export default function WalletTransactionContent() {
 
 
   // get user data from token 
-  const token = localStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
   const decodeToken = jwtDecode(token);
   const userId = decodeToken.user.id;
 

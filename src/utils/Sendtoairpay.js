@@ -67,7 +67,7 @@ class Sendtoairpay extends React.Component {
 
     submit() {
 
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         let decoded = jwt_decode(token);
         console.log(decoded.user);
 

@@ -30,7 +30,7 @@ export default function WalletTransactionContent() {
   const [categoriedata, setCategorieData] = useState([]);
 
   // get user data from token 
-  const token = localStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
   const decodeToken = jwtDecode(token);
   const userId = decodeToken.user.id;
 

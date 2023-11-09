@@ -13,6 +13,7 @@ import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
 import { RadioButton } from '../../../components/Feature/RadioButton'
 import { makeid } from '../../../utils/MakeId'
+import BackButton from '../../../components/Button/BackButton'
 
 const AddWalletContent = () => {
   const navigate = useNavigate()
@@ -110,7 +111,7 @@ const AddWalletContent = () => {
     if (type === 'wallet') {
       generateQRCode()
     } else {
-      navigate('/payment-gateway',{ state: { amount: AddAmount } })
+      navigate('/payment-gateway', { state: { amount: AddAmount } })
     }
   }
   // Set radio value
@@ -119,7 +120,7 @@ const AddWalletContent = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     let decoded = jwt_decode(token);
     console.log(decoded);
     SendRequest(decoded.user.id)
@@ -155,12 +156,15 @@ const AddWalletContent = () => {
   return (
     <React.Fragment>
       <div className="comman-container px-4">
+        <div className='pt-5 ps-5'>
+          <BackButton link={"wallet"} />
+        </div>
         <div className={styles.WalletBalance}>
           <button onClick={() => navigate('/money-request-status')} type='button' style={{ width: 150 }} className={styles.addMoney}>
             <div className={`text-white`}>Request status</div>
           </button>
           <button onClick={() => navigate('/money-request')} type='button' style={{ width: 150 }} className={styles.addMoney}>
-            <div className={`text-white`}>Money Request</div>
+            <div className={`text-white`}>Request money</div>
           </button>
         </div>
         <div style={{ display: 'block' }}>
