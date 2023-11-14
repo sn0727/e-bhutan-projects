@@ -58,6 +58,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Money_Transfer from './pages/Money_Transfer/Money_Transfer';
 import RegisterBeneficiary from './pages/Money_Transfer/RegisterBeneficiary';
 import OpenAccount from './pages/OpenAccount/OpenAccount';
+import AepsSuccess from './pages/AEPS/AepsSuccess';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -110,6 +111,7 @@ function App() {
           <Route path='/transaction' element={<Transaction />} />
           <Route path='/commission-transaction' element={<CommisionTransaction />} />
           <Route path='/aeps' element={<Aeps />} />
+          <Route path='/aeps-success' element={<AepsSuccess />} />
           <Route path='/travel-and-tour' element={<TravelAndTour />} />
           <Route path='/wallet-transaction' element={<WalletTransaction />} />
           <Route path='/landline-recharge' element={<Laandline />} />

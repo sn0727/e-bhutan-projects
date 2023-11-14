@@ -1,11 +1,13 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import ClearSession from "./ClearSession";
 
 export const BASEURL = 'https://api.ebhuktan.com';
 // export const BASEURL = 'http://65.2.143.179:3000';
 
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
-export const SaveBillOption1 = ['Withdrawal', 'Deposit']
+export const SaveBillOption1 = ['Withdrawal',  'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 
@@ -137,7 +139,13 @@ export const ApiUrl = {
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
- 
+
+  newOnboarding: `${APIBank}aeps/newOnboarding `,
+  twoFactorAuthLogin: `${APIBank}aeps/twoFactorAuthLogin `,
+  withdrawal: `${APIBank}aeps/withdrawal `,
+  balanceEnquiry: `${APIBank}aeps/balanceEnquiry `,
+  getMiniStatement: `${APIBank}aeps/getMiniStatement `,
+
 
   // DMT api route
   queryImmitor: `${APIBank}dmt/transfer/queryRemitter`,
@@ -167,6 +175,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
         method: config.method,
         url: config.url,
         data: config.body,
+        timeout: 180000, // Wait for 5 seconds
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -196,6 +205,9 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
       })
       .catch(err => {
         console.log(err);
+        if (err?.response?.data?.message === 'Token expired please login again.') {
+          ClearSession()
+        }
         onError(err?.response?.data ? err?.response.data : err?.response);
       });
   } catch (error) {
@@ -289,3 +301,43 @@ export const Statelist = [
   'Lakshadweep',
   'Pondicherry',
 ]
+
+export const StatelistCode = [
+  { State: 'Andhra Pradesh', Abbreviation: 'AP' },
+  { State: 'Arunachal Pradesh', Abbreviation: 'AR' },
+  { State: 'Assam', Abbreviation: 'AS' },
+  { State: 'Bihar', Abbreviation: 'BR' },
+  { State: 'Chhattisgarh', Abbreviation: 'CG' },
+  { State: 'Goa', Abbreviation: 'GA' },
+  { State: 'Gujarat', Abbreviation: 'GJ' },
+  { State: 'Haryana', Abbreviation: 'HR' },
+  { State: 'Himachal Pradesh', Abbreviation: 'HP' },
+  { State: 'Jammu and Kashmir', Abbreviation: 'JK' },
+  { State: 'Jharkhand', Abbreviation: 'JH' },
+  { State: 'Karnataka', Abbreviation: 'KA' },
+  { State: 'Kerala', Abbreviation: 'KL' },
+  { State: 'Madhya Pradesh', Abbreviation: 'MP' },
+  { State: 'Maharashtra', Abbreviation: 'MH' },
+  { State: 'Manipur', Abbreviation: 'MN' },
+  { State: 'Meghalaya', Abbreviation: 'ML' },
+  { State: 'Mizoram', Abbreviation: 'MZ' },
+  { State: 'Nagaland', Abbreviation: 'NL' },
+  { State: 'Orissa', Abbreviation: 'OR' },
+  { State: 'Punjab', Abbreviation: 'PB' },
+  { State: 'Rajasthan', Abbreviation: 'RJ' },
+  { State: 'Sikkim', Abbreviation: 'SK' },
+  { State: 'Tamil Nadu', Abbreviation: 'TN' },
+  { State: 'Tripura', Abbreviation: 'TR' },
+  { State: 'Uttarakhand', Abbreviation: 'UK' },
+  { State: 'Uttar Pradesh', Abbreviation: 'UP' },
+  { State: 'West Bengal', Abbreviation: 'WB' },
+  { State: 'Tamil Nadu', Abbreviation: 'TN' },
+  { State: 'Tripura', Abbreviation: 'TR' },
+  { State: 'Andaman and Nicobar Islands', Abbreviation: 'AN' },
+  { State: 'Chandigarh', Abbreviation: 'CH' },
+  { State: 'Dadra and Nagar Haveli', Abbreviation: 'DH' },
+  { State: 'Daman and Diu', Abbreviation: 'DD' },
+  { State: 'Delhi', Abbreviation: 'DL' },
+  { State: 'Lakshadweep', Abbreviation: 'LD' },
+  { State: 'Pondicherry', Abbreviation: 'PY' }
+];
