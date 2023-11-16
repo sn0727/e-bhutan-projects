@@ -44,6 +44,14 @@ export const validateAddress = (address) => {
     return true;
 }
 
+export const validateBankName = (bankName) => {
+    if (bankName === '') {
+        toast.error(`Bank name is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
 export const mobileNoValidation = (mobileNo) => {
     let mobileNoReg = /^[0-9]{10}$/  //validated name 
     if (mobileNo === '') {

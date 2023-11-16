@@ -6,12 +6,12 @@ import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 
-const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
+const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isLoading, setisLoading] = useState(false)
     const [amount, setAmout] = useState('')
 
-    console.log(userDetails, "====== userDetails")
+    // console.log(userDetails, "====== userDetails")
 
     const sendAmount =()=>{
         if(userDetails?.verified==="1")
@@ -32,7 +32,7 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
                 "mobile": mobileNo,
                 "pipe": "bank1",
                 "pincode": 110027,
-                "address": "New Delhi",
+                "address": "city",
                 "dob": "DD-MM-YYYY",
                 "gst_state": "07",
                 "bene_id": userDetails?.bene_id,
@@ -46,14 +46,16 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo }) => {
                 console.log(res, "====================res ")
                 setisLoading(false)
                 toast.success(res?.message)
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 1000)
+                onClose()
+                fetchBeneficiaryFun()
+                // setTimeout(() => {
+                //     window.location.reload(false);
+                // }, 1000)
             },
             err => {
                 console.log(err, "================== err mili");
                 setisLoading(false)
-                toast.success(err?.message)
+                toast.error(err?.message)
             }
         );
 

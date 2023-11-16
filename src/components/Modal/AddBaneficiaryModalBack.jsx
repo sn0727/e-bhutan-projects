@@ -13,9 +13,9 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setisLoading] = useState(false)
-  const [bankNameData, setBankNameData] = useState([])
+  const [bankNameData, setBankNameData ] = useState([])
 
-  console.log(bankNameData, "= ====================== bankNameData")
+  // console.log(bankNameData, "= ====================== bankNameData")
 
   // here is input feild object,
   const [inputValue, setInputValue] = useState({
@@ -28,7 +28,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
     pincode: "",
   })
 
-
+  
   // i take input feild value, here
   const handlerInput = (event) => {
     setInputValue({ ...inputValue, [event.target.name]: event.target.value.toUpperCase() })
@@ -54,87 +54,51 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
 
   // This is a Register Beneficiary funcation
   const addBaneficiaryRegistration = () => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.registerBeneficiary,
-      method: 'post',
-      body: {
-        "mobile": mobileNo,
-        "benename": inputValue?.name,
-        "bankid": inputValue?.bandId,
-        "accno": inputValue?.accountNo,
-        "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
-        "verified": "0",
-        "gst_state": "07",
-        "dob": inputValue?.date,
-        "address": inputValue?.address,
-        "pincode": inputValue?.pincode
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res, "=================== res add benuficiand")
-        toast.success(res?.message)
-        setisLoading(false)
-        onClose()
-        fetchBeneficiaryFun()
-        // setTimeout(() => {
-        //   window.location.reload(false);
-        // }, 1000)
-      },
-      err => {
-        console.log(err);
-        toast.error(err?.message)
-        setisLoading(false)
-      }
+    if (
+      validateAccountNumber(inputValue?.accountNo) &&
+      // validateIFSCCode(inputValue?.IFSCCODE) &&
+      validateBankName(inputValue?.bandId) &&
+      nameValidation(inputValue?.name) &&
+      validateDateFormat(inputValue?.date) &&
+      postalCodeValidation(inputValue?.pincode)
+    ) {
+      setisLoading(true)
+      let config = {
+        url: ApiUrl.registerBeneficiary,
+        method: 'post',
+        body: {
+          "mobile": mobileNo,
+          "benename": inputValue?.name,
+          "bankid": inputValue?.bandId,
+          "accno": inputValue?.accountNo,
+          "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
+          "verified": "0",
+          "gst_state": "07",
+          "dob": inputValue?.date,
+          "address": inputValue?.address,
+          "pincode": inputValue?.pincode
+        }
+      };
+      APIRequest(
+        config,
+        res => {
+          console.log(res, "=================== res add benuficiand")
+          toast.success(res?.message)
+          setisLoading(false)
+          onClose()
+          fetchBeneficiaryFun()
+          // setTimeout(() => {
+          //   window.location.reload(false);
+          // }, 1000)
+        },
+        err => {
+          console.log(err);
+          toast.error(err?.message)
+          setisLoading(false)
+        }
 
-    )
-    // if (
-    //   validateAccountNumber(inputValue?.accountNo) &&
-    //   // validateIFSCCode(inputValue?.IFSCCODE) &&
-    //   validateBankName(inputValue?.bandId) &&
-    //   nameValidation(inputValue?.name) &&
-    //   validateDateFormat(inputValue?.date) &&
-    //   postalCodeValidation(inputValue?.pincode)
-    // ) {
-    //   setisLoading(true)
-    //   let config = {
-    //     url: ApiUrl.registerBeneficiary,
-    //     method: 'post',
-    //     body: {
-    //       "mobile": mobileNo,
-    //       "benename": inputValue?.name,
-    //       "bankid": inputValue?.bandId,
-    //       "accno": inputValue?.accountNo,
-    //       "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
-    //       "verified": "0",
-    //       "gst_state": "07",
-    //       "dob": inputValue?.date,
-    //       "address": inputValue?.address,
-    //       "pincode": inputValue?.pincode
-    //     }
-    //   };
-    //   APIRequest(
-    //     config,
-    //     res => {
-    //       console.log(res, "=================== res add benuficiand")
-    //       toast.success(res?.message)
-    //       setisLoading(false)
-    //       onClose()
-    //       fetchBeneficiaryFun()
-    //       // setTimeout(() => {
-    //       //   window.location.reload(false);
-    //       // }, 1000)
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       toast.error(err?.message)
-    //       setisLoading(false)
-    //     }
-
-    //   )
-    // }
+      )
+    }
 
 
   }
@@ -151,7 +115,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
         <ModalContent>
           <ModalCloseButton />
           <ModalBody>
-            <ChakraProvider>
+            <>
               <div className="comman-container px-4">
                 <div className='Verified-Transfer' style={{ marginTop: '60px' }}>
                   <div className='m-row'>
@@ -182,7 +146,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <Stack spacing={3}>
                         <Select placeholder='Select bank name' name="bandId" onChange={handlerInput}>
                           {
-                            bankNameData?.map((option, index) => (
+                            bankNameData?.map((option, index)=>(
                               <option key={index} value={option?.bankid}>{option?.bankname}</option>
                             ))
                           }
@@ -248,7 +212,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                   </button>
                 </div>
               </div>
-            </ChakraProvider>
+            </>
           </ModalBody>
         </ModalContent>
       </Modal>

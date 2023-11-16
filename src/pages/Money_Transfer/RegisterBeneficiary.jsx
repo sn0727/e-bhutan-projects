@@ -71,7 +71,6 @@ const RegisterBeneficiary = () => {
         }
     }
 
-    console.log(recivedData, '================== hh')
 
     return (
         <>

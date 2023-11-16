@@ -15,6 +15,7 @@
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "bootstrap": "^4.6.0",
+    "chakra-ui-autocomplete": "^1.4.5",
     "framer-motion": "^10.16.4",
     "jquery": "^3.7.1",
     "js-sha256": "^0.10.1",

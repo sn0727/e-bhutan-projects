@@ -6,11 +6,11 @@ import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 
-const PayPannyModal = ({ itemData, mobileNo }) => {
+const PayPannyModal = ({ itemData, mobileNo, fetchBeneficiaryFun }) => {
     const [isLoading, setisLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    // console.log(itemData, "= ================= itemData")
+    console.log(itemData, "= ================= itemData")
 
     const transferMoneyDropPenny = () => {
         setisLoading(true)
@@ -23,7 +23,7 @@ const PayPannyModal = ({ itemData, mobileNo }) => {
                 "bankid": itemData?.bankid,
                 "benename": itemData?.name,
                 "pincode": 110095,
-                "address": "New Delhi",
+                "address": "city",
                 "dob": "13-09-2001",
                 "gst_state": "07",
                 "bene_id": itemData?.bene_id
@@ -35,9 +35,11 @@ const PayPannyModal = ({ itemData, mobileNo }) => {
                 console.log(res, "====================res ")
                 setisLoading(false)
                 toast.success(res?.message)
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 1000)
+                onClose()
+                fetchBeneficiaryFun()
+                // setTimeout(() => {
+                //     window.location.reload(false);
+                // }, 1000)
             },
             err => {
                 console.log(err, "================== err mili");

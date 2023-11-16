@@ -15,7 +15,6 @@ import AddBaneficiaryModal from '../../components/Modal/AddBaneficiaryModal';
 import PayPannyModal from '../../components/Modal/PayPannyModal';
 import PayToSendMoneyModal from '../../components/Modal/PayToSendMoneyModal';
 import { mobileNoValidation } from '../../components/Validation';
-import image404 from "../../../src/assets/error/notFound.png"
 
 // This is a pop modal, for the mobile no verify, here
 const MobileNumberVerify = () => {
@@ -101,64 +100,59 @@ const MobileNumberVerify = () => {
 // This is a perent component, I take added all chidren components
 const Money_Transfer = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [getRemitterData, setGetRemitterData] = useState(null);
+  const [getRemitterData, setGetRemitterData] = useState({});
+  const [tokenData, setTokenData] = useState('');
   const [fetchBeneficiaryData, setFetchBeneficiaryData] = useState([]);
-  const [tokenData, setTokenData] = useState(null);
-  const [status404, setStatus404] = useState(null);
-  const [status404A, setStatus404A] = useState("");
 
-  useEffect(() => {
-    const getTokenData = () => {
-      let config = {
-        url: ApiUrl?.getByToken,
-        method: 'get',
-      };
-      APIRequest(
-        config,
-        res => {
-          // console.log(res, "token data, ===================")
-          setTokenData(res?.user)
-        },
-        err => {
-          console.log(err, "token data err, ===================");
-          toast.error(err?.message, "token data err, ===================");
-        }
-      );
+  const getTokenData = () => {
+    let config = {
+      url: ApiUrl?.getByToken,
+      method: 'get',
+    };
+    APIRequest(
+      config,
+      res => {
+        // console.log(res, "token data, ===================")
+        getRemitterByIdFun(res?.user?.partnerId);
+        setTokenData(res?.user)
+      },
+      err => {
+        console.log(err, "token data err, ===================");
+      }
+    );
 
-    }
-    return () => getTokenData()
-  }, [])
+  }
 
-  const getRemitterByIdFun = () => {
+  console.log(tokenData, '==================== tokenData');
+
+  const getRemitterByIdFun = (partnerId) => {
     let config = {
       url: ApiUrl.getRemitterById,
       method: 'post',
       body: {
-        "partnerId": tokenData?.partnerId
+        "partnerId": partnerId
       }
 
     };
     APIRequest(
       config,
       res => {
-        // console.log(res, "setGetRemitterData res ==================");
+        fetchBeneficiaryFun(res?.data?.mobile)
         setGetRemitterData(res?.data)
       },
       err => {
         console.log(err, "setGetRemitterData error ==================");
       }
     );
+
   }
 
-  const fetchBeneficiaryFun = () => {
-    setIsLoading(true)
+  const fetchBeneficiaryFun = (mobileNo) => {
     let config = {
       url: ApiUrl?.fetchBeneficiary,
       method: 'post',
       body: {
-        // "mobile": '9354940727',
-        "mobile": getRemitterData?.mobile,
+        "mobile": mobileNo,
       }
     };
     APIRequest(
@@ -166,55 +160,43 @@ const Money_Transfer = () => {
       res => {
         // console.log(res, "====================res == new data mila")
         setFetchBeneficiaryData(res?.data?.data)
-        setStatus404(res)
-        setIsLoading(false)
       },
       err => {
         console.log(err, "================== err mili");
-        setIsLoading(false)
       }
     );
   }
 
   // delete record  deleteBeneficiary
   const deleteBeneficiary = (bene_id) => {
-    let result = window.confirm("You'd like to delete record.")
-    if (result) {
-      let config = {
-        url: ApiUrl?.deleteBeneficiary,
-        method: 'delete',
-        body: {
-          "mobile": getRemitterData?.mobile,
-          "bene_id": bene_id
-        }
-      };
-      APIRequest(
-        config,
-        res => {
-          console.log(res, "==================== delete")
-          toast.success(res?.message)
-          fetchBeneficiaryFun()
-        },
-        err => {
-          console.log(err, "================== err mili");
-          toast.success(err?.message)
-        }
-      );
-    }
+    alert("You'd like to delete record.")
+    let config = {
+      url: ApiUrl?.deleteBeneficiary,
+      method: 'delete',
+      body: {
+        "mobile": getRemitterData?.mobile,
+        "bene_id": bene_id
+      }
+    };
+    APIRequest(
+      config,
+      res => {
+        console.log(res, "==================== delete")
+        toast.success(res?.message)
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 1000)
+      },
+      err => {
+        console.log(err, "================== err mili");
+        toast.success(err?.message)
+      }
+    );
   }
 
   useEffect(() => {
-    if (tokenData) {
-      return getRemitterByIdFun()
-    }
-  }, [tokenData]);
-
-  useEffect(() => {
-    if (getRemitterData) {
-      return fetchBeneficiaryFun()
-    }
-  }, [getRemitterData]);
-
+    return () => getTokenData();
+  }, []);
 
   return (
     <>
@@ -230,7 +212,7 @@ const Money_Transfer = () => {
             <BsBank className='s1' />
             <h1>Add Baneficiary Account Details </h1>
           </div>
-          <AddBaneficiaryModal fetchBeneficiaryFun={fetchBeneficiaryFun} mobileNo={getRemitterData?.mobile} />
+          <AddBaneficiaryModal fetchBeneficiaryFun={fetchBeneficiaryFun} isOpenOff={isOpen} mobileNo={getRemitterData?.mobile} />
         </div>
 
         <div className='recenttext'>
@@ -238,16 +220,8 @@ const Money_Transfer = () => {
         </div>
 
         {/* baneficery details  */}
-
         {
-          status404?.statusCode === 404 && (
-            <h1 className='statusCode-sd'>
-              <img src={image404} alt="error404" />
-            </h1>
-          )
-        }
-        {
-          fetchBeneficiaryData.length > 0 ? (
+          fetchBeneficiaryData?.length > 0 ?
             fetchBeneficiaryData?.map((item, index) => (
               <div className='ben_deatails' key={index}>
                 <div className='ban_left_deatils'>
@@ -258,16 +232,15 @@ const Money_Transfer = () => {
                 <div className='bane_right_detai'>
                   <div className='bene_delete'>
                     {/* <Button > Pay 1&#8377; For Test</Button> */}
-                    <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
-                    <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
+                    <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} />
+                    <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} />
                     <Button colorScheme='blue' onClick={() => deleteBeneficiary(item?.bene_id)}>
                       <RiDeleteBin6Line />
                     </Button>
                   </div>
                 </div>
               </div>
-            ))
-          ) : status404?.statusCode === 404 ? null : <h1 className='statusCode-sd'>Loading...</h1>
+            )) : <div className='not-Found'>Not Found.</div>
         }
       </div >
       <Footer />

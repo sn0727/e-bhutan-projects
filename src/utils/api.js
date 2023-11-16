@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const BASEURL = 'https://api.ebhuktan.com';
 // export const BASEURL = 'http://65.2.143.179:3000';
@@ -136,7 +137,9 @@ export const ApiUrl = {
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
- 
+  generateURL: `${APIBank}account/generateURL `,
+  getBanks: `${APIBank}dmt/transfer/getBanks `,
+
 
   // DMT api route
   queryImmitor: `${APIBank}dmt/transfer/queryRemitter`,
@@ -147,6 +150,7 @@ export const ApiUrl = {
   deleteBeneficiary: `${APIBank}dmt/transfer/deleteBeneficiary`,
   transactionMoney: `${APIBank}dmt/transfer/transaction`,
   pennyDrop: `${APIBank}dmt/transfer/pennyDrop`,
+  getBankList: `${APIBank}aeps/getBankList`,
 
 };
 
@@ -186,7 +190,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
     // console.log(data);
     axios(data)
       .then(res => {
-        // console.log(res, 'api--------');
+        console.log(res, 'api--------');
         if (!res?.data?.error) {
           onSuccess(res?.data);
         } else {
@@ -194,7 +198,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, "=hhhhhhh ");
         onError(err?.response?.data ? err?.response.data : err?.response);
       });
   } catch (error) {

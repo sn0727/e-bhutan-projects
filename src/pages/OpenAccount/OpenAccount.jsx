@@ -13,9 +13,10 @@ export const SavingAccount = ({ title, accountId }) => {
     const navigate = useNavigate();
 
     const Submit = () => {
+        // alert('click')
         setIsloading(true)
         let config = {
-            url: ApiUrl.generateURL,
+            url: ApiUrl?.generateURL,
             method: "post",
             body: {
                 "merchantcode": getTokenData?.partnerId,
@@ -37,18 +38,10 @@ export const SavingAccount = ({ title, accountId }) => {
         )
     }
 
-    // redirect url funcation
-    function redirectUrl() {
-        if (getUrl?.status) {
-            window.open(getUrl?.data, '_blank');
-            console.log(getUrl?.data)
-        }
-    }
-
     // getting details from the user token
     const GetByToken = () => {
         let config = {
-            url: ApiUrl.userGetByToken,
+            url: ApiUrl?.userGetByToken,
             method: "get"
         }
         APIRequest(
@@ -63,8 +56,18 @@ export const SavingAccount = ({ title, accountId }) => {
         )
     }
 
+    // redirect url funcation
+    function redirectUrl() {
+        if (getUrl?.status) {
+            window.open(getUrl?.data, '_blank');
+            console.log(getUrl?.data)
+        }
+    }
+
+
+
     useEffect(() => {
-        GetByToken()
+        return () => GetByToken()
     }, [])
 
     return (

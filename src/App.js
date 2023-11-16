@@ -58,13 +58,15 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Money_Transfer from './pages/Money_Transfer/Money_Transfer';
 import RegisterBeneficiary from './pages/Money_Transfer/RegisterBeneficiary';
 import OpenAccount from './pages/OpenAccount/OpenAccount';
+import NetwordError from './pages/NetwordError/NetwordError';
+import Testing from './pages/Testing/Testing';
 
 function App() {
   // const authToken = localStorage.getItem("token");
   return (
     <BrowserRouter>
       <ToastContainer />
-      <Routes>
+      {navigator.onLine ? <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<MobileNumber />} />
         <Route path='/account-verification' element={<AccountVerification />} />
@@ -81,10 +83,6 @@ function App() {
 
         <Route path='/payment-successful' element={<PaymentSuccessful />} />
         <Route path='/back-page' element={<BackPage />} />
-
-
-
-
 
         <Route path='/*' element={<Navigate replace to="/404page" />}></Route>
         {/* protected router */}
@@ -126,14 +124,14 @@ function App() {
           <Route path='/money-request' element={<MoneyRequest />} />
           <Route path='/money-request-status' element={<MoneyRequestStatus />} />
           <Route path='/payment-gateway' element={<PaymentGateway />} />
-
-
+          <Route path='/network-error' element={<NetwordError />} />
           <Route path='/open-account' element={<OpenAccount />} />
+          <Route path='/testing' element={<Testing />} />
           <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
           <Route path='/Money_Transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
         </Route>
         {/* protected router */}
-      </Routes>
+      </Routes> : <NetwordError />}
     </BrowserRouter>
   );
 }
