@@ -108,26 +108,26 @@ const Money_Transfer = () => {
   const [status404, setStatus404] = useState(null);
   const [status404A, setStatus404A] = useState("");
 
-  useEffect(() => {
-    const getTokenData = () => {
-      let config = {
-        url: ApiUrl?.getByToken,
-        method: 'get',
-      };
-      APIRequest(
-        config,
-        res => {
-          // console.log(res, "token data, ===================")
-          setTokenData(res?.user)
-        },
-        err => {
-          console.log(err, "token data err, ===================");
-          toast.error(err?.message, "token data err, ===================");
-        }
-      );
+  const getTokenData = () => {
+    let config = {
+      url: ApiUrl?.getByToken,
+      method: 'get',
+    };
+    APIRequest(
+      config,
+      res => {
+        // console.log(res, "token data, ===================")
+        setTokenData(res?.user)
+      },
+      err => {
+        console.log(err, "token data err, ===================");
+        toast.error(err?.message, "token data err, ===================");
+      }
+    );
 
-    }
-    return () => getTokenData()
+  }
+  useEffect(() => {
+    getTokenData()
   }, [])
 
   const getRemitterByIdFun = () => {
@@ -205,13 +205,13 @@ const Money_Transfer = () => {
 
   useEffect(() => {
     if (tokenData) {
-      return getRemitterByIdFun()
+       getRemitterByIdFun()
     }
   }, [tokenData]);
 
   useEffect(() => {
     if (getRemitterData) {
-      return fetchBeneficiaryFun()
+       fetchBeneficiaryFun()
     }
   }, [getRemitterData]);
 
