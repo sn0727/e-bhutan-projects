@@ -468,7 +468,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": '106.210.102.217',
+        "ipaddress": '192.168.1.37',
         // "ipaddress": location_ip,
       }
     }
