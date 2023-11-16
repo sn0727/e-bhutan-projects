@@ -468,7 +468,8 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": location_ip,
+        "ipaddress": '106.210.102.217',
+        // "ipaddress": location_ip,
       }
     }
     APIRequest(
@@ -654,139 +655,143 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
 
 
   // Withdraw and deposit api hit.
-  const MerchantBoarding = () => {
-    navigate('/aeps-success', {
-      state: {
-        data: {
-          "error": false,
-          "message": "Transaction is successful",
-          "data": {
-              "status": true,
-              "message": "Transaction is successful",
-              "ackno": 59,
-              "amount": 0,
-              "balanceamount": "AVL.BA",
-              "bankrrn": "208113393345",
-              "bankiin": "990320",
-              "ministatement": null,
-              "ministatementlist": {
-                  "npcidata": "14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       110.00            13/05/19 DR       110.00            13/05/19 DR       118.00            13/05/19 DR       117.00            13/05/19 DR       112.00            AVL.BAL           155544           "
-              },
-              "response_code": 1,
-              "errorcode": "AEPS-NPCI-00",
-              "clientrefno": 100004635,
-              "last_aadhar": "4234",
-              "name": "Rizwan "
-          }
-      }
-      }
-    })
-  }
-  // const MerchantBoarding = async () => {
-
-
-
-  //   if (!savePaymentOption) {
-  //     toast.error('Please select your service!')
-  //     return true
-  //   }
-  //   if (!Bank?.bankName) {
-  //     toast.error('Please select your bank!')
-  //     return true
-  //   }
-  //   if (!ValidateAadhaar(inputFeildValue?.adhaarnumber)) {
-  //     toast.error('Please enter valid aadhaar no!')
-  //     return true
-  //   }
-  //   if (!ValidatePhone(inputFeildValue?.mobilenumber)) {
-  //     toast.error('Please enter valid mobile no!')
-  //     return true
-  //   }
-  //   if (!ValidatePan(inputFeildValue?.pannumber)) {
-  //     toast.error('Please enter valid pan no!')
-  //     return true
-  //   }
-  //   if (inputFeildValue?.city?.length < 3) {
-  //     toast.error('Please enter valid city!')
-  //     return true
-  //   }
-  //   if (inputFeildValue?.amount < 100) {
-  //     toast.error('Minimum amount limit 100!')
-  //     return true
-  //   }
-
-
-  //   setIsloading(true)
-  //   let location_ip = await sessionStorage.getItem('location_ip')
-  //   let location_latitude = await sessionStorage.getItem('location_latitude')
-  //   let location_longitude = await sessionStorage.getItem('location_longitude')
-
-  //   if (!location_ip || !location_latitude || !location_longitude) {
-  //     alert('please enable location permission in your browser')
-  //     setIsloading(false)
-  //     return true;
-  //   }
-  //   const stateCode = GetStateCode(getTokenData?.state);
-  //   let url, transcationtype;
-  //   if (savePaymentOption === 'Withdrawal') {
-  //     transcationtype = 'CW'
-  //     url = ApiUrl?.withdrawal
-  //   } else if (savePaymentOption === 'Deposit') {
-  //     transcationtype = 'M'
-  //     url = ApiUrl?.aepsDeposit
-  //   } else if (savePaymentOption === 'Balance Enquiry') {
-  //     transcationtype = 'BE'
-  //     url = ApiUrl?.balanceEnquiry
-  //   } else if (savePaymentOption === 'Mini Statement') {
-  //     transcationtype = 'MS'
-  //     url = ApiUrl?.getMiniStatement
-  //   }
-  //   let config = {
-  //     url: url,
-  //     method: 'post',
-  //     body: {
-
-  //       'merchant_name': getTokenData?.name,
-  //       'pannumber': inputFeildValue?.pannumber,
-  //       'address': getTokenData?.address,
-  //       'city': inputFeildValue?.city,
-  //       'pincode': getTokenData?.postalCode,
-  //       'statecode': stateCode,
-  //       'merchantmobilenumber': getTokenData?.contact,
-  //       'mobilenumber': inputFeildValue?.mobilenumber,
-  //       'accessmodetype': 'SITE',
-  //       'ipaddress': location_ip,
-  //       'adhaarnumber': inputFeildValue?.adhaarnumber,
-  //       'latitude': location_latitude,
-  //       'longitude': location_longitude,
-  //       'referenceno': invoiceNo,
-  //       'nationalbankidentification': Bank.iinno,
-  //       'pipe': 'bank5',
-  //       'transcationtype': transcationtype,
-  //       'requestremarks': 'Ok',
-  //       'submerchantid': getTokenData?.partnerId,
-  //       'data': FingerData,
-  //       'timestamp': formateDate,
-  //       'amount': savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' ? inputFeildValue?.amount : null
-  //     },
-
-  //   }
-  //   APIRequest(
-  //     config,
-  //     res => {
-  //       console.log(res)
-  //       toast.success(res?.message)
-  //       ResetState()
-  //       setIsloading(false)
-  //       navigate('/aeps-success', { state: { data: res?.data } })
-  //     },
-  //     err => {
-  //       toast.error(err?.message)
-  //       ResetState()
-  //       setIsloading(false)
+  // const MerchantBoarding = () => {
+  //   navigate('/aeps-success', {
+  //     state: {
+  //       data: {
+  //         "error": false,
+  //         "message": "Transaction is successful",
+  //         "data": {
+  //             "status": true,
+  //             "message": "Transaction is successful",
+  //             "ackno": 59,
+  //             "amount": 0,
+  //             "balanceamount": "AVL.BA",
+  //             "bankrrn": "208113393345",
+  //             "bankiin": "990320",
+  //             "ministatement": null,
+  //             "ministatementlist": {
+  //                 "npcidata": "14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       110.00            13/05/19 DR       110.00            13/05/19 DR       118.00            13/05/19 DR       117.00            13/05/19 DR       112.00            AVL.BAL           155544           "
+  //             },
+  //             "response_code": 1,
+  //             "errorcode": "AEPS-NPCI-00",
+  //             "clientrefno": 100004635,
+  //             "last_aadhar": "4234",
+  //             "name": "Rizwan "
+  //         }
   //     }
-  //   )
+  //     }
+  //   })
   // }
+  const MerchantBoarding = async () => {
+
+
+
+    if (!savePaymentOption) {
+      toast.error('Please select your service!')
+      return true
+    }
+    if (!Bank?.bankName) {
+      toast.error('Please select your bank!')
+      return true
+    }
+    if (!ValidateAadhaar(inputFeildValue?.adhaarnumber)) {
+      toast.error('Please enter valid aadhaar no!')
+      return true
+    }
+    if (!ValidatePhone(inputFeildValue?.mobilenumber)) {
+      toast.error('Please enter valid mobile no!')
+      return true
+    }
+    if (!ValidatePan(inputFeildValue?.pannumber)) {
+      toast.error('Please enter valid pan no!')
+      return true
+    }
+    if (inputFeildValue?.city?.length < 3) {
+      toast.error('Please enter valid city!')
+      return true
+    }
+    if (savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit') {
+      if (inputFeildValue?.amount < 100) {
+        toast.error('Minimum amount limit 100!')
+        return true
+      }
+    }
+
+
+
+    setIsloading(true)
+    let location_ip = await sessionStorage.getItem('location_ip')
+    let location_latitude = await sessionStorage.getItem('location_latitude')
+    let location_longitude = await sessionStorage.getItem('location_longitude')
+
+    if (!location_ip || !location_latitude || !location_longitude) {
+      alert('please enable location permission in your browser')
+      setIsloading(false)
+      return true;
+    }
+    const stateCode = GetStateCode(getTokenData?.state);
+    let url, transcationtype;
+    if (savePaymentOption === 'Withdrawal') {
+      transcationtype = 'CW'
+      url = ApiUrl?.withdrawal
+    } else if (savePaymentOption === 'Deposit') {
+      transcationtype = 'M'
+      url = ApiUrl?.aepsDeposit
+    } else if (savePaymentOption === 'Balance Enquiry') {
+      transcationtype = 'BE'
+      url = ApiUrl?.balanceEnquiry
+    } else if (savePaymentOption === 'Mini Statement') {
+      transcationtype = 'MS'
+      url = ApiUrl?.getMiniStatement
+    }
+    let config = {
+      url: url,
+      method: 'post',
+      body: {
+
+        'merchant_name': getTokenData?.name,
+        'pannumber': inputFeildValue?.pannumber,
+        'address': getTokenData?.address,
+        'city': inputFeildValue?.city,
+        'pincode': getTokenData?.postalCode,
+        'statecode': stateCode,
+        'merchantmobilenumber': getTokenData?.contact,
+        'mobilenumber': inputFeildValue?.mobilenumber,
+        'accessmodetype': 'SITE',
+        // 'ipaddress': location_ip,
+        "ipaddress": '106.210.102.217',
+        'adhaarnumber': inputFeildValue?.adhaarnumber,
+        'latitude': location_latitude,
+        'longitude': location_longitude,
+        'referenceno': invoiceNo,
+        'nationalbankidentification': Bank.iinno,
+        'pipe': 'bank5',
+        'transcationtype': transcationtype,
+        'requestremarks': 'Ok',
+        'submerchantid': getTokenData?.partnerId,
+        'data': FingerData,
+        'timestamp': formateDate,
+        'amount': savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' ? inputFeildValue?.amount : null
+      },
+
+    }
+    APIRequest(
+      config,
+      res => {
+        console.log(res)
+        toast.success(res?.message)
+        ResetState()
+        setIsloading(false)
+        navigate('/aeps-success', { state: { data: res?.data } })
+      },
+      err => {
+        toast.error(err?.message)
+        ResetState()
+        setIsloading(false)
+      }
+    )
+  }
 
   function discoverAvdm() {
     const Data = FingerPrintDevice()
@@ -930,9 +935,9 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
 
           </button> :
             <div className='Figure-biometric-Device'
-            //  onClick={() => discoverAvdm()}
-             onClick={() => MerchantBoarding()}
-             >
+              onClick={() => discoverAvdm()}
+            // onClick={() => MerchantBoarding()}
+            >
               <div className={`box-style box-style-active m-auto`} >
                 <div className='Image-Fingerprint-style'>
                   <img src={ImageFingerprint} alt="Fingerprint" className={`Image-Fingerprint `} />
@@ -1061,7 +1066,8 @@ const Aeps = () => {
         <Footer />
       </>
     )
-  } else {
+  }
+   else {
     return (
       <>
         <Header />

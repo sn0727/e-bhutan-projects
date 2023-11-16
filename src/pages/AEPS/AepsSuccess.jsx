@@ -37,8 +37,6 @@ const AepsSuccess = () => {
         if (data?.data?.ministatementlist) {
             const data1 = data?.data?.ministatementlist?.npcidata?.split("    ");
             console.log(data1);
-
-
             const regex = /(\d{2}\/\d{2}\/\d{2})\s+(DR)\s+(\d+\.\d{2})/g;
             let matches;
             const transactions = [];
@@ -52,16 +50,6 @@ const AepsSuccess = () => {
             }
 
             setListData(transactions)
-
-
-            console.log(transactions, '---------------------');
-
-            // const data2  = (data1.length - 2) / 3;
-            // let arrayofarray = []
-            // for (let index = 0; index < data2; index++) {
-            //     arrayofarray.push([data1[index*3+1], data1[index*3+2], data1[index*3+3]]);
-            // }
-            // console.log(arrayofarray);
         }
         console.log(data?.data, 'data--');
     }, [data])
@@ -94,26 +82,27 @@ const AepsSuccess = () => {
                             {data?.clientrefno ? <li>{data?.clientrefno}</li> : null}
                         </ul>
                     </div>
-                    <div>
-                        <table>
+                    {ListData?.length > 0?<div>
+                        <h1 className={styles.header1}>Mini Statement</h1>
+                        <table className={styles.table}>
                             <tr>
-                                <th >Amount</th>
-                                <th>Date</th>
-                                <th>Type</th>
+                                <th className={styles.thth} >Amount</th>
+                                <th className={styles.thth}>Date</th>
+                                <th className={styles.thth}>Type</th>
                             </tr>
 
                             {ListData?.length > 0 ?
                                 ListData?.map((item, index) => (
                                     <tr>
-                                        <td>{item?.amount}</td>
-                                        <td>{item?.date}</td>
-                                        <td>{item?.type}</td>
+                                        <td className={styles.thth}>{item?.amount}</td>
+                                        <td className={styles.thth}>{item?.date}</td>
+                                        <td className={styles.thth}>{item?.type}</td>
                                     </tr>
                                 ))
                                 : null}
                         </table>
 
-                    </div>
+                    </div>:null}
 
                 </div>
 

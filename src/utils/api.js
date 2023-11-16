@@ -175,7 +175,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
         method: config.method,
         url: config.url,
         data: config.body,
-        timeout: 180000, // Wait for 5 seconds
+        // timeout: 180000, // Wait for 5 seconds
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
