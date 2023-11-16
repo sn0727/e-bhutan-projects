@@ -24,9 +24,7 @@ const PaymentSuccess = () => {
 
     window.addEventListener('popstate', handlePopstate);
 
-    return () => {
-      window.removeEventListener('popstate', handlePopstate);
-    };
+    window.removeEventListener('popstate', handlePopstate);
   }, []);
   return (
     <React.Fragment>

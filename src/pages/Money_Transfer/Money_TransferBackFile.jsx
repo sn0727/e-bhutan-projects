@@ -195,7 +195,7 @@ const Money_Transfer = () => {
   }
 
   useEffect(() => {
-    return () => getTokenData();
+    getTokenData();
   }, []);
 
   return (

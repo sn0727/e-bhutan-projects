@@ -123,9 +123,7 @@ const WalletContent = () => {
         setSeconds(prevSeconds => prevSeconds - 1);
       }, 1000);
 
-      return () => {
-        clearInterval(intervalId);
-      };
+      clearInterval(intervalId);
     }
     if (seconds < 1) {
       setQrCode('')
