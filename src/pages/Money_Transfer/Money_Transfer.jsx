@@ -127,7 +127,7 @@ const Money_Transfer = () => {
       );
 
     }
-    return () => getTokenData()
+    getTokenData()
   }, [])
 
   const getRemitterByIdFun = () => {
@@ -205,13 +205,13 @@ const Money_Transfer = () => {
 
   useEffect(() => {
     if (tokenData) {
-      return getRemitterByIdFun()
+      getRemitterByIdFun()
     }
   }, [tokenData]);
 
   useEffect(() => {
     if (getRemitterData) {
-      return fetchBeneficiaryFun()
+      fetchBeneficiaryFun()
     }
   }, [getRemitterData]);
 
