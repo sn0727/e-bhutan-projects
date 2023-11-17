@@ -75,8 +75,18 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
           "pincode": inputValue?.pincode
         }
       };
+      setInputValue({
+        accountNo: "",
+        IFSCCODE: "",
+        bandId: "",
+        name: "",
+        date: "",
+        address: "",
+        pincode: "",
+      })
       APIRequest(
         config,
+        
         res => {
           console.log(res, "=================== res add benuficiand")
           toast.success(res?.message)
@@ -126,7 +136,8 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <Input placeholder='Enter A/C Number'
                         name="accountNo"
                         onChange={handlerInput}
-                        className='search-input' />
+                        className='search-input'
+                         />
                     </div>
                   </div>
                   <div className='m-row'>
@@ -171,6 +182,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <label htmlFor="otp" className='d-block'>Enter Date Of Birth <span className='text-red'>*</span></label>
                       <Input placeholder='YYYY-MM-DD'
                         name="date"
+                        type='date'
                         onChange={handlerInput}
                         className='search-input' />
                     </div>
