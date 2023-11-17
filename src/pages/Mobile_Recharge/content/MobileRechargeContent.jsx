@@ -5,7 +5,7 @@ import viImage from "../../../assets/operator/vi.png"
 import "./../Style/Style.css"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ApiUrl } from '../../../utils/api';
+import { APIRequest, ApiUrl } from '../../../utils/api';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -23,7 +23,7 @@ const MobileRechargeContent = () => {
   // const receivedData = location.state;
   const [receivedData, setreceivedData] = useState(location.state)
   const [operator, setOperator] = useState(receivedData?.operator ? receivedData?.operator?.id : '');
-  const [state, setState] = useState({circle:''});
+  const [state, setState] = useState(null);
   const [ConsumerNumber, setConsumerNumber] = useState(receivedData?.returnNumber1 ? receivedData?.returnNumber1 : '');
   const [operatordata, setOperatorData] = useState([]);
   const [stateData, setStateData] = useState([]);
@@ -85,6 +85,8 @@ const MobileRechargeContent = () => {
 
   const findState = (data) => {
     const result = stateData.filter((item) => data.includes(item.circle));
+    // setState({circle:result[0]})
+    console.log(result[0], 'result....')
     setState(result[0])
   }
 
@@ -116,25 +118,46 @@ const MobileRechargeContent = () => {
   const postOperator1 = async () => {
     setisLoading(true)
     let token = sessionStorage.getItem('token');
-    try {
-      const result = await axios.post(ApiUrl.recharGetPlan,
-        {
-          circle: state?.circle,
-          op: selectOperator.name
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            token: token
-          }
-        }
-      )
-      setisLoading(false)
-      navigate("/mobile-choice-plan", { state: { data: result?.data?.data, operator: selectOperator, circle: state, ConsumerNumber: ConsumerNumber } })
-    } catch (error) {
-      console.log(error)
-      setisLoading(false)
-    }
+    let config = {
+      url: ApiUrl.recharGetPlan,
+      method: 'post',
+      body: {
+        circle: state?.circle,
+        op: selectOperator.name
+      }
+    };
+    APIRequest(
+      config,
+      res => {
+        console.log(res, "=================== res add benuficiand")
+        setisLoading(true)
+        navigate("/mobile-choice-plan", { state: { data: res?.data, operator: selectOperator, circle: state, ConsumerNumber: ConsumerNumber } })
+      },
+      err => {
+        console.log(err);
+        toast.error(err?.message)
+        setisLoading(false)
+      }
+    )
+    // try {
+    //   const result = await axios.post(ApiUrl.recharGetPlan,
+    //     {
+    //       circle: state?.circle,
+    //       op: selectOperator.name
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         token: token
+    //       }
+    //     }
+    //   )
+    //   setisLoading(false)
+    //   navigate("/mobile-choice-plan", { state: { data: result?.data?.data, operator: selectOperator, circle: state, ConsumerNumber: ConsumerNumber } })
+    // } catch (error) {
+    //   console.log(error)
+    //   setisLoading(false)
+    // }
   }
 
 
@@ -158,9 +181,9 @@ const MobileRechargeContent = () => {
     if (ConsumerNumber.length === 10) {
       GetOperatorAndCircle()
     }
-    if (ConsumerNumber.length === 9 || ConsumerNumber.length === 11 || ConsumerNumber.length === 0) {
-      setState({})
-    }
+    // if (ConsumerNumber.length === 9 || ConsumerNumber.length === 11 || ConsumerNumber.length === 0) {
+    //   setState({})
+    // }
 
   }, [ConsumerNumber])
 
@@ -206,38 +229,40 @@ const MobileRechargeContent = () => {
                 value={operator ? parseInt(operator) : receivedData?.operator?.id ? parseInt(receivedData?.operator?.id) : ''}
               >
                 {
-                  operatordata?.length > 0 ? 
-                  operatordata.map((items, index) => (
-                    <MenuItem value={items.id}>
-                      <img src={items.image} alt={''} className='airtal-image mr-2' />
-                      <div>
-                        <p>{items.category}</p>
-                        <p>{items.name}</p>
-                      </div>
-                    </MenuItem>
+                  operatordata?.length > 0 ?
+                    operatordata.map((items, index) => (
+                      <MenuItem value={items.id}>
+                        <img src={items.image} alt={''} className='airtal-image mr-2' />
+                        <div>
+                          <p>{items.category}</p>
+                          <p>{items.name}</p>
+                        </div>
+                      </MenuItem>
 
-                  ))
-                   : null
+                    ))
+                    : null
                 }
               </Select>
             </FormControl>
           </div>
           <div className="enter-mobilenum select-plan">
-            {/* {state?.circle ?  */}
-            <Autocomplete
-              // value={defaultValue}
-              defaultValue={state}
-              id="combo-box-demo"
-              className='autocomplete-custom-style'
-              // getOptionLabel={(option) => getOptionLabel(option)}
-              getOptionLabel={(item) => item.circle} // Adjust this according to your API response structure
-              options={stateData}
-              sx={{ width: 300 }}
-              size='sm'
-              onInputChange={statehandleChange}
-              renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label='Please select state' />}
-            /> 
-            {/* : null} */}
+            {/* {state?.circle ? */}
+            {stateData?.length>0 ?
+              <Autocomplete
+                // value={defaultValue}
+                id="combo-box-demo"
+                className='autocomplete-custom-style'
+                // getOptionLabel={(option) => getOptionLabel(option)}
+                getOptionLabel={(item) => item.circle} // Adjust this according to your API response structure
+                options={stateData}
+                sx={{ width: 300 }}
+                size='sm'
+                onInputChange={statehandleChange}
+                value={state}
+
+                renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label='Please select state' />}
+              />
+              : null}
 
 
             {/* <FormControl sx={{ m: 1, minWidth: 340 }} size="small">

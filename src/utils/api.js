@@ -207,14 +207,16 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
         } else {
           if (res?.data?.message === 'Token expired please login again.') {
             ClearSession()
+            window.location.reload();
           }
           onError(res?.data ? res.data : res);
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, 'catch--');
         if (err?.response?.data?.message === 'Token expired please login again.') {
           ClearSession()
+          window.location.reload();
         }
         onError(err?.response?.data ? err?.response.data : err?.response);
       });
