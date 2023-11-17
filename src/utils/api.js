@@ -145,6 +145,7 @@ export const ApiUrl = {
   withdrawal: `${APIBank}aeps/withdrawal `,
   balanceEnquiry: `${APIBank}aeps/balanceEnquiry `,
   getMiniStatement: `${APIBank}aeps/getMiniStatement `,
+  getBanks: `${APIBank}dmt/transfer/getBanks `,
 
 
   // DMT api route
