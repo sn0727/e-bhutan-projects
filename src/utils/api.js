@@ -156,6 +156,11 @@ export const ApiUrl = {
   deleteBeneficiary: `${APIBank}dmt/transfer/deleteBeneficiary`,
   transactionMoney: `${APIBank}dmt/transfer/transaction`,
   pennyDrop: `${APIBank}dmt/transfer/pennyDrop`,
+  getBankList: `${APIBank}aeps/getBankList`,
+
+  // Bank Account
+  generateURL: `${APIBank}account/generateURL`,
+
 
   // Bank Account
   generateURL: `${APIBank}account/generateURL`,
@@ -200,7 +205,7 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
     // console.log(data);
     axios(data)
       .then(res => {
-        // console.log(res, 'api--------');
+        console.log(res, 'api--------');
         if (!res?.data?.error) {
           onSuccess(res?.data);
         } else {

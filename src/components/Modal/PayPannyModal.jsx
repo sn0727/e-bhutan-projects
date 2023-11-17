@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ChakraProvider, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import { FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 
 const PayPannyModal = ({ itemData, mobileNo, fetchBeneficiaryFun }) => {
     const [isLoading, setisLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
-
-    console.log(itemData, "= ================= itemData")
 
     const transferMoneyDropPenny = () => {
         setisLoading(true)

@@ -6,16 +6,11 @@ import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 import { nameValidation, postalCodeValidation, validateAccountNumber, validateBankId, validateBankName, validateDateFormat, validateIFSCCode } from '../Validation';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
-  const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setisLoading] = useState(false)
   const [bankNameData, setBankNameData] = useState([])
-
-  console.log(bankNameData, "= ====================== bankNameData")
 
   // here is input feild object,
   const [inputValue, setInputValue] = useState({
@@ -54,93 +49,57 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
 
   // This is a Register Beneficiary funcation
   const addBaneficiaryRegistration = () => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.registerBeneficiary,
-      method: 'post',
-      body: {
-        "mobile": mobileNo,
-        "benename": inputValue?.name,
-        "bankid": inputValue?.bandId,
-        "accno": inputValue?.accountNo,
-        "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
-        "verified": "0",
-        "gst_state": "07",
-        "dob": inputValue?.date,
-        "address": inputValue?.address,
-        "pincode": inputValue?.pincode
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res, "=================== res add benuficiand")
-        toast.success(res?.message)
-        setisLoading(false)
-        onClose()
-        fetchBeneficiaryFun()
-        // setTimeout(() => {
-        //   window.location.reload(false);
-        // }, 1000)
-      },
-      err => {
-        console.log(err);
-        toast.error(err?.message)
-        setisLoading(false)
-      }
+    if (
+      validateAccountNumber(inputValue?.accountNo) &&
+      validateIFSCCode(inputValue?.IFSCCODE) &&
+      validateBankName(inputValue?.bandId) &&
+      nameValidation(inputValue?.name) &&
+      validateDateFormat(inputValue?.date) &&
+      postalCodeValidation(inputValue?.pincode)
+    ) {
+      setisLoading(true)
+      let config = {
+        url: ApiUrl.registerBeneficiary,
+        method: 'post',
+        body: {
+          "mobile": mobileNo,
+          "benename": inputValue?.name,
+          "bankid": inputValue?.bandId,
+          "accno": inputValue?.accountNo,
+          "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
+          "verified": "0",
+          "gst_state": "07",
+          "dob": inputValue?.date,
+          "address": inputValue?.address,
+          "pincode": inputValue?.pincode
+        }
+      };
+      APIRequest(
+        config,
+        res => {
+          console.log(res, "=================== res add benuficiand")
+          toast.success(res?.message)
+          setisLoading(false)
+          onClose()
+          fetchBeneficiaryFun()
+          // setTimeout(() => {
+          //   window.location.reload(false);
+          // }, 1000)
+        },
+        err => {
+          console.log(err);
+          toast.error(err?.message)
+          setisLoading(false)
+        }
 
-    )
-    // if (
-    //   validateAccountNumber(inputValue?.accountNo) &&
-    //   // validateIFSCCode(inputValue?.IFSCCODE) &&
-    //   validateBankName(inputValue?.bandId) &&
-    //   nameValidation(inputValue?.name) &&
-    //   validateDateFormat(inputValue?.date) &&
-    //   postalCodeValidation(inputValue?.pincode)
-    // ) {
-    //   setisLoading(true)
-    //   let config = {
-    //     url: ApiUrl.registerBeneficiary,
-    //     method: 'post',
-    //     body: {
-    //       "mobile": mobileNo,
-    //       "benename": inputValue?.name,
-    //       "bankid": inputValue?.bandId,
-    //       "accno": inputValue?.accountNo,
-    //       "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
-    //       "verified": "0",
-    //       "gst_state": "07",
-    //       "dob": inputValue?.date,
-    //       "address": inputValue?.address,
-    //       "pincode": inputValue?.pincode
-    //     }
-    //   };
-    //   APIRequest(
-    //     config,
-    //     res => {
-    //       console.log(res, "=================== res add benuficiand")
-    //       toast.success(res?.message)
-    //       setisLoading(false)
-    //       onClose()
-    //       fetchBeneficiaryFun()
-    //       // setTimeout(() => {
-    //       //   window.location.reload(false);
-    //       // }, 1000)
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       toast.error(err?.message)
-    //       setisLoading(false)
-    //     }
-
-    //   )
-    // }
+      )
+    }
 
 
   }
 
   useEffect(() => {
-    getByBankName()
+    return () => getByBankName()
   }, [])
   return (
     <>
