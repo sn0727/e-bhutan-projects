@@ -130,7 +130,7 @@ function App() {
           <Route path='/open-account' element={<OpenAccount />} />
           <Route path='/testing' element={<Testing />} />
           <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
-          <Route path='/Money_Transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
+          <Route path='/money-transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
         </Route>
         {/* protected router */}
       </Routes> : <NetwordError />}

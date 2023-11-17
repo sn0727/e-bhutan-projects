@@ -124,7 +124,7 @@ const Money_Transfer = () => {
       );
 
     }
-    return () => getTokenData()
+    getTokenData()
   }, [])
 
   const getRemitterByIdFun = () => {

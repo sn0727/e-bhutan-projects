@@ -7,7 +7,7 @@ export const BASEURL = 'https://api.ebhuktan.com';
 
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
-export const SaveBillOption1 = ['Withdrawal',  'Balance Enquiry', 'Mini Statement']
+export const SaveBillOption1 = ['Withdrawal', 'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 
@@ -204,6 +204,9 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
         if (!res?.data?.error) {
           onSuccess(res?.data);
         } else {
+          if (res?.data?.message === 'Token expired please login again.') {
+            ClearSession()
+          }
           onError(res?.data ? res.data : res);
         }
       })

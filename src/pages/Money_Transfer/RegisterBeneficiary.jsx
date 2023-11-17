@@ -59,7 +59,7 @@ const RegisterBeneficiary = () => {
                     console.log(res, "=================== res add benuficiand")
                     toast.success(res?.message)
                     setisLoading(false)
-                    navigate("/Money_Transfer")
+                    navigate("/money-transfer")
                 },
                 err => {
                     console.log(err);

@@ -135,7 +135,7 @@ export const services = [
             },
             {
                 id: 2,
-                link: "/Money_Transfer",
+                link: "/money-transfer",
                 title: "Money Transfer",
                 image: image.MoneyTransfer
             },
