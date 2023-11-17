@@ -161,11 +161,6 @@ export const ApiUrl = {
   // Bank Account
   generateURL: `${APIBank}account/generateURL`,
 
-
-  // Bank Account
-  generateURL: `${APIBank}account/generateURL`,
-
-
 };
 
 
