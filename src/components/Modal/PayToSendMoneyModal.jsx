@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Button, ChakraProvider, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import { FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 
@@ -10,8 +8,6 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isLoading, setisLoading] = useState(false)
     const [amount, setAmout] = useState('')
-
-    // console.log(userDetails, "====== userDetails")
 
     const sendAmount =()=>{
         if(userDetails?.verified==="1")

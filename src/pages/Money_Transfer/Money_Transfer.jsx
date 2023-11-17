@@ -41,7 +41,7 @@ const MobileNumberVerify = () => {
       APIRequest(
         config,
         res => {
-          console.log(res, "=================== res mobile")
+          // console.log(res, "=================== res mobile")
           toast.success(res?.message)
           setInOpen(false)
           setisLoading(false)
@@ -72,7 +72,6 @@ const MobileNumberVerify = () => {
               </div>
               <p className='danger mb-2'>You'r not Verified To Transfer Money</p>
               <p className='mb-4'>(Enter Details To Be Verified)</p>
-
               <Input placeholder='Enter mobile no.' className='search-input' onChange={(e) => setMob(e.target.value)} />
             </div>
 
@@ -100,13 +99,11 @@ const MobileNumberVerify = () => {
 
 // This is a perent component, I take added all chidren components
 const Money_Transfer = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [getRemitterData, setGetRemitterData] = useState(null);
   const [fetchBeneficiaryData, setFetchBeneficiaryData] = useState([]);
   const [tokenData, setTokenData] = useState(null);
   const [status404, setStatus404] = useState(null);
-  const [status404A, setStatus404A] = useState("");
 
   useEffect(() => {
     const getTokenData = () => {
@@ -127,7 +124,7 @@ const Money_Transfer = () => {
       );
 
     }
-    getTokenData()
+    return () => getTokenData()
   }, [])
 
   const getRemitterByIdFun = () => {
@@ -142,7 +139,6 @@ const Money_Transfer = () => {
     APIRequest(
       config,
       res => {
-        // console.log(res, "setGetRemitterData res ==================");
         setGetRemitterData(res?.data)
       },
       err => {
@@ -157,7 +153,6 @@ const Money_Transfer = () => {
       url: ApiUrl?.fetchBeneficiary,
       method: 'post',
       body: {
-        // "mobile": '9354940727',
         "mobile": getRemitterData?.mobile,
       }
     };
@@ -191,7 +186,7 @@ const Money_Transfer = () => {
       APIRequest(
         config,
         res => {
-          console.log(res, "==================== delete")
+          // console.log(res, "==================== delete")
           toast.success(res?.message)
           fetchBeneficiaryFun()
         },

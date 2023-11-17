@@ -162,14 +162,15 @@ export const validateBankId = (BankId) => {
 }
 
 export const validateIFSCCode = (ifscCode) => {
-    let ifscCodeReg = /^[A-Z]{4}\d{7}$/ //validated name 
+    // let ifscCodeReg = /^[A-Z]{4}\d{7}$/ //validated name 
     if (ifscCode === '') {
         toast.error(`IFSC code is a mandatory field.`)
         return false;
-    }else if (!ifscCodeReg?.test(ifscCode)) {
-        toast.error(`IFSC code is not valid.`);
-        return false;
     }
+    // else if (!ifscCodeReg?.test(ifscCode)) {
+    //     toast.error(`IFSC code is not valid.`);
+    //     return false;
+    // }
     return true;
 }
 
