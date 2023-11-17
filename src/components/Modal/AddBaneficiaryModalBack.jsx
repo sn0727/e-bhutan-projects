@@ -13,7 +13,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setisLoading] = useState(false)
-  const [bankNameData, setBankNameData ] = useState([])
+  const [bankNameData, setBankNameData] = useState([])
 
   // console.log(bankNameData, "= ====================== bankNameData")
 
@@ -28,7 +28,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
     pincode: "",
   })
 
-  
+
   // i take input feild value, here
   const handlerInput = (event) => {
     setInputValue({ ...inputValue, [event.target.name]: event.target.value.toUpperCase() })
@@ -104,7 +104,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   }
 
   useEffect(() => {
-    return () => getByBankName()
+    getByBankName()
   }, [])
   return (
     <>
@@ -146,7 +146,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <Stack spacing={3}>
                         <Select placeholder='Select bank name' name="bandId" onChange={handlerInput}>
                           {
-                            bankNameData?.map((option, index)=>(
+                            bankNameData?.map((option, index) => (
                               <option key={index} value={option?.bankid}>{option?.bankname}</option>
                             ))
                           }
