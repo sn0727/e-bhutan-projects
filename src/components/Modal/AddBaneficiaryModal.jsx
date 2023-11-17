@@ -75,24 +75,23 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
           "pincode": inputValue?.pincode
         }
       };
-      setInputValue({
-        accountNo: "",
-        IFSCCODE: "",
-        bandId: "",
-        name: "",
-        date: "",
-        address: "",
-        pincode: "",
-      })
       APIRequest(
         config,
-        
         res => {
           console.log(res, "=================== res add benuficiand")
           toast.success(res?.message)
           setisLoading(false)
           onClose()
           fetchBeneficiaryFun()
+          setInputValue({
+            accountNo: "",
+            IFSCCODE: "",
+            bandId: "",
+            name: "",
+            date: "",
+            address: "",
+            pincode: "",
+          })
           // setTimeout(() => {
           //   window.location.reload(false);
           // }, 1000)
