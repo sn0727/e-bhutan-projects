@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ChakraProvider, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Stack, useDisclosure } from '@chakra-ui/react';
-import { FaChevronRight } from 'react-icons/fa';
+import { IoMdAdd } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
@@ -23,6 +23,8 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
     address: "",
     pincode: "",
   })
+
+  console.log(inputValue, '=================== inputValue')
 
 
   // i take input feild value, here
@@ -114,7 +116,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   }, [])
   return (
     <>
-      <Button onClick={onOpen} className='FaChevronRight'><FaChevronRight /></Button>
+      <Button onClick={onOpen} className='FaChevronRight'><IoMdAdd /></Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
