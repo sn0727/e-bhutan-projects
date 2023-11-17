@@ -75,12 +75,6 @@ const Registration = () => {
       toast.error('Please enter valid email!')
       return true
     }
-    if (panNo) {
-      if (!ValidatePan(panNo)) {
-        toast.error('Please enter valid pan no!')
-        return true
-      }
-    }
     if (!ValidateZipCode(postalCode)) {
       toast.error('Please enter valid pin code!')
       return true
@@ -91,6 +85,10 @@ const Registration = () => {
     }
     if (!district) {
       toast.error('Please enter district!')
+      return true
+    }
+    if (!ValidatePan(panNo)) {
+      toast.error('Please enter valid pan no!')
       return true
     }
 
@@ -150,30 +148,30 @@ const Registration = () => {
                 </div>
               </div>
               <div className="formGroup">
-              <div className='w-40' >
-                <Autocomplete
-                  value={state}
-                  onChange={(event, newValue) => {
-                    setstate(newValue);
-                  }}
-                  size='sm'
-                  id="controllable-states-demo"
-                  options={Statelist}
-                  renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label="Select state" />}
-                />
-              </div>
-              <div className='w-40' >
-                <Autocomplete
-                  value={Role}
-                  onChange={(event, newValue) => {
-                    setRole(newValue);
-                  }}
-                  size='sm'
-                  id="controllable-states-demo"
-                  options={['Retailer', 'Franchise', 'User']}
-                  renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label="Select role" />}
-                />
-              </div>
+                <div className='w-40' >
+                  <Autocomplete
+                    value={state}
+                    onChange={(event, newValue) => {
+                      setstate(newValue);
+                    }}
+                    size='sm'
+                    id="controllable-states-demo"
+                    options={Statelist}
+                    renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label="Select state" />}
+                  />
+                </div>
+                <div className='w-40' >
+                  <Autocomplete
+                    value={Role}
+                    onChange={(event, newValue) => {
+                      setRole(newValue);
+                    }}
+                    size='sm'
+                    id="controllable-states-demo"
+                    options={['Retailer', 'Franchise', 'User']}
+                    renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label="Select role" />}
+                  />
+                </div>
               </div>
               <div className="formGroup">
                 <div>
@@ -181,7 +179,7 @@ const Registration = () => {
                   <input type="text"
                     style={{ textTransform: 'uppercase' }}
                     onChange={(e) => setPanNo(e.target.value.toUpperCase())}
-                    name="panNo" id="panNo" maxLength={10} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ASDFF1232R" />
+                    name="panNo" id="panNo" maxLength={10} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ASDFF1232R" required />
                 </div>
                 {Role === 'Franchise' || Role === 'Retailer' ? <div>
                   <label htmlFor="refId" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Distributor Id</label>

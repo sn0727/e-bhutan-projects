@@ -157,6 +157,10 @@ export const ApiUrl = {
   transactionMoney: `${APIBank}dmt/transfer/transaction`,
   pennyDrop: `${APIBank}dmt/transfer/pennyDrop`,
 
+  // Bank Account
+  generateURL: `${APIBank}account/generateURL`,
+
+
 };
 
 

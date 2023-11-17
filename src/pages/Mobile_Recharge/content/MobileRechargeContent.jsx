@@ -23,7 +23,7 @@ const MobileRechargeContent = () => {
   // const receivedData = location.state;
   const [receivedData, setreceivedData] = useState(location.state)
   const [operator, setOperator] = useState(receivedData?.operator ? receivedData?.operator?.id : '');
-  const [state, setState] = useState('');
+  const [state, setState] = useState({circle:''});
   const [ConsumerNumber, setConsumerNumber] = useState(receivedData?.returnNumber1 ? receivedData?.returnNumber1 : '');
   const [operatordata, setOperatorData] = useState([]);
   const [stateData, setStateData] = useState([]);
@@ -206,7 +206,8 @@ const MobileRechargeContent = () => {
                 value={operator ? parseInt(operator) : receivedData?.operator?.id ? parseInt(receivedData?.operator?.id) : ''}
               >
                 {
-                  operatordata?.length > 0 ? operatordata.map((items, index) => (
+                  operatordata?.length > 0 ? 
+                  operatordata.map((items, index) => (
                     <MenuItem value={items.id}>
                       <img src={items.image} alt={''} className='airtal-image mr-2' />
                       <div>
@@ -215,13 +216,15 @@ const MobileRechargeContent = () => {
                       </div>
                     </MenuItem>
 
-                  )) : null
+                  ))
+                   : null
                 }
               </Select>
             </FormControl>
           </div>
           <div className="enter-mobilenum select-plan">
-            {state?.circle ? <Autocomplete
+            {/* {state?.circle ?  */}
+            <Autocomplete
               // value={defaultValue}
               defaultValue={state}
               id="combo-box-demo"
@@ -233,7 +236,8 @@ const MobileRechargeContent = () => {
               size='sm'
               onInputChange={statehandleChange}
               renderInput={(params) => <TextField {...params} className='autocomplete-custom-style-input' label='Please select state' />}
-            /> : null}
+            /> 
+            {/* : null} */}
 
 
             {/* <FormControl sx={{ m: 1, minWidth: 340 }} size="small">
