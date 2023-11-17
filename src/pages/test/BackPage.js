@@ -3,8 +3,7 @@ import React from 'react'
 const BackPage = () => {
   return (
     <div>
-      <h1>Payment add about</h1>
-      <h1>Payment Add home button</h1>
+      <h1>This is a testing component</h1>
     </div>
   )
 }
