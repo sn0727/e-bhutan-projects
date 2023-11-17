@@ -3,7 +3,7 @@ import React from 'react'
 const BackPage = () => {
   return (
     <div>
-      <h1>Payment</h1>
+      <h1>Payment heloo sdsf</h1>
     </div>
   )
 }
