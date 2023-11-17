@@ -99,6 +99,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   }
 
   useEffect(() => {
+    // hhh
     getByBankName()
   }, [])
   return (
