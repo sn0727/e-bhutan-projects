@@ -71,7 +71,7 @@ const MobileRechargeContent = () => {
 
   const postOperator = async () => {
     setisLoading(true)
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     try {
       const result = await axios.post(ApiUrl.recharGetPlan,
         {

@@ -14,7 +14,7 @@ import jwtDecode from 'jwt-decode';
 
 const DTHRechargeContent = () => {
   const navigate = useNavigate()
-  const usertoken = localStorage.getItem('token');
+  const usertoken = sessionStorage.getItem('token');
   const usertokenId = jwtDecode(usertoken);
   const [isLoading, setisLoading] = useState(true);
   const [operator, setOperator] = useState('');

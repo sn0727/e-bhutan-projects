@@ -11,6 +11,7 @@ import { APIRequest, ApiUrl } from '../../../utils/api'
 import QRCode from 'react-qr-code'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
+import BackButton from '../../../components/Button/BackButton'
 
 const WalletContent = () => {
   const navigate = useNavigate()
@@ -107,7 +108,7 @@ const WalletContent = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     let decoded = jwt_decode(token);
     console.log(decoded);
     SendRequest(decoded.user.id)
@@ -122,9 +123,7 @@ const WalletContent = () => {
         setSeconds(prevSeconds => prevSeconds - 1);
       }, 1000);
 
-      return () => {
-        clearInterval(intervalId);
-      };
+      clearInterval(intervalId);
     }
     if (seconds < 1) {
       setQrCode('')
@@ -134,8 +133,11 @@ const WalletContent = () => {
   return (
     <React.Fragment>
       <div className="comman-container px-4">
+        <div className='pt-5 ps-5'>
+          <BackButton link={"home"} />
+        </div>
         <div className={styles.WalletBalance}>
-          <div className={styles.WalletBalanceLf} style={{maxWidth:420}}>
+          <div className={styles.WalletBalanceLf} style={{ maxWidth: 420 }}>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="57" height="52" viewBox="0 0 57 52" fill="none">
                 <path d="M55.1494 33.2482H43.6956C39.49 33.2457 36.0812 29.8394 36.0787 25.6339C36.0787 21.4283 39.49 18.0221 43.6956 18.0195H55.1494" stroke="#2C427D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -148,7 +150,7 @@ const WalletContent = () => {
               <p className={styles.text}>Wallet Balance</p>
               <strong className={styles.dflex}><LuIndianRupee /> <span>{parseFloat(WalletAmount).toFixed(2)}</span></strong>
             </div>
-            <button onClick={()=> navigate('/add-wallet')} type='button' className={styles.addMoney}>
+            <button onClick={() => navigate('/add-wallet')} type='button' className={styles.addMoney}>
               <div className='text-white'>Add Money</div>
             </button>
           </div>
@@ -173,9 +175,9 @@ const WalletContent = () => {
             </div>
           </div> */}
         </div>
-        <div style={{display: 'block'}}>
+        <div style={{ display: 'block' }}>
           <div className="Wallet-desing">
-            <label className={styles.textAddmon}>Add Money to Wallet</label>
+            <label className={styles.textAddmon}>Send Money to Wallet</label>
             <div className='set-p-relative'>
               <div className={styles.getOffer}>
                 <AiOutlineExclamationCircle className={styles.IconSixe} />
@@ -191,11 +193,11 @@ const WalletContent = () => {
             </div>
           </div>
         </div>
-        <div className={styles.inputFeild2} style={{display: 'block'}}>
+        <div className={styles.inputFeild2} style={{ display: 'block' }}>
           <div className='buttonBtn'>
             {
               [200, 500, 1000, 2000].map((items, index) => (
-                <button className={`btn-sucess ${items === AddAmount ? "activeColor" : ''}`} onClick={()=>setAddAmount(items)}>{items}</button>
+                <button className={`btn-sucess ${items === AddAmount ? "activeColor" : ''}`} onClick={() => setAddAmount(items)}>{items}</button>
               ))
             }
           </div>
@@ -212,7 +214,7 @@ const WalletContent = () => {
 
           </div>
           :
-          <div className='button-process' style={{display: 'block'}}>
+          <div className='button-process' style={{ display: 'block' }}>
             <button type='button' className='button-pro'>
               <Link onClick={() => Submit()} className={styles.ButtnWidth}>Send Money {AddAmount}</Link>
             </button>

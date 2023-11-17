@@ -6,9 +6,9 @@ import ImageFingerprint from "../../assets/aeps/fingerprint.png"
 import ImageHp from "../../assets/aeps/hp.png"
 import ImageMobile from "../../assets/aeps/mobile.png"
 import ImageAirtal from "../../assets/operator/airtal.png"
-import { APIRequest, ApiUrl, SaveBillOption, SaveBillOption1, StatelistCode } from '../../utils/api';
+import { APIRequest, ApiUrl, SaveBillOption, SaveBillOption1 } from '../../utils/api';
 import "./Css/aeps.css"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import BackButton from '../../components/Button/BackButton';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ import moment from 'moment';
 
 import $ from 'jquery';
 import { Autocomplete, TextField } from '@mui/material';
-import { ValidateAadhaar, ValidatePan, ValidatePhone, isAddressValid } from '../../utils/validation';
+import { ValidateAadhaar, ValidatePhone } from '../../utils/validation';
 import FingerPrintDevice from '../../utils/FingerPrintDevice';
 
 let url, finalUrl, MethodCapture, MethodInfo, OldPort, DString, device, thrownError
@@ -72,13 +72,12 @@ const SelectBiometricDeviceTab = ({ savePaymentOption, setSavePaymentOption }) =
 }
 
 // merchant on boarding componen
-export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) => {
+export const MarchantOnBoarding = ({ children, getTokenData }) => {
   const [isLoading, setIsloading] = useState(false);
   const [getUrl, setGetUrl] = useState({});
   const [inputFeildValue, setInputFeildValue] = useState({
-    city: "",
-    pannumber: getTokenData?.panNo,
-    address: getTokenData?.address
+    mobileNo: "",
+    emailId: ""
   })
 
   // i am getting input feild value.
@@ -86,66 +85,26 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
     setInputFeildValue({ ...inputFeildValue, [event.target.name]: event.target.value })
   }
 
-
-  // Get state code
-  const GetStateCode = (data) => {
-    const state = StatelistCode.filter((item) => item.State === data)
-    return state[0].Abbreviation
-  }
-
   // Merchant On boarding api hit.
-  const MerchantBoarding = async () => {
-
-    if (inputFeildValue?.city?.length < 3) {
-      toast.error('Please enter valid city!')
-      return true
-    }
-    if (!isAddressValid(inputFeildValue?.address)) {
-      toast.error('Address Should contain minimum 3 word!')
-      return true
-    }
-    if (!ValidatePan(inputFeildValue?.pannumber)) {
-      toast.error('Please enter valid pan no!')
-      return true
-    }
-
-
+  const MerchantBoarding = () => {
     setIsloading(true)
-
-    let location_ip = await sessionStorage.getItem('location_ip')
-    let location_latitude = await sessionStorage.getItem('location_latitude')
-    let location_longitude = await sessionStorage.getItem('location_longitude')
-
-    if (!location_ip || !location_latitude || !location_longitude) {
-      alert('please enable location permission in your browser')
-      setIsloading(false)
-      return true;
-    }
-    const stateCode = GetStateCode(getTokenData?.state);
     let config = {
-      url: ApiUrl?.newOnboarding,
+      url: ApiUrl?.aepsOnboarding,
       method: 'post',
       body: {
-        merchantmobilenumber: getTokenData?.contact,
-        latitude: location_latitude,
-        longitude: location_longitude,
-        submerchantid: getTokenData?.partnerId,
-        statecode: stateCode,
-        city: inputFeildValue?.city,
-        merchant_name: getTokenData?.name,
-        address: inputFeildValue?.address,
-        pannumber: inputFeildValue?.pannumber,
-        pincode: getTokenData?.postalCode,
-        pipe: 'bank5',
+        "merchantcode": getTokenData?.partnerId,
+        "mobile": getTokenData?.contact ? getTokenData?.contact : inputFeildValue?.mobileNo,
+        "is_new": "0",
+        "email": getTokenData?.email ? getTokenData?.email : inputFeildValue?.emailId,
+        "firm": "PAYMONEY"
       }
     }
     APIRequest(
       config,
       res => {
         console.log(res, '====================== de de')
+        setGetUrl(res?.data)
         toast.success(res?.message)
-        // window.location.reload()
-        // setStateUpdate('2')
         setIsloading(false)
       },
       err => {
@@ -155,6 +114,16 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
     )
   }
 
+  // redirect url funcation
+  function redirectUrl() {
+    if (getUrl?.status) {
+      setTimeout(() => {
+        window.open(getUrl?.redirecturl, '_blank');
+        console.log(getUrl?.redirecturl)
+      }, 2000)
+    }
+  }
+  redirectUrl();
 
   return (
     <div className="comman-container px-4">
@@ -171,10 +140,10 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
                   <input type="text" min="1" max="5"
-                    name="city"
+                    name="mobileNo"
                     onChange={inputHandle}
-                    placeholder='City'
-                    value={inputFeildValue?.city}
+                    placeholder='Mobile Number'
+                    defaultValue={getTokenData?.contact}
                     className='enter-mobile-num bg-white border-cs InputTextColor' />
                 </div>
               </div>
@@ -185,24 +154,10 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
                   <input type="text" min="1" max="5"
-                    name="address"
+                    name="emailId"
+                    defaultValue={getTokenData?.email}
                     onChange={inputHandle}
-                    placeholder='Address'
-                    value={inputFeildValue?.address}
-                    className='enter-mobile-num bg-white border-cs InputTextColor' />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-6">
-            <div className="enter-mobilenum select-plan mt-2">
-              <div className="enter-mobilenum">
-                <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
-                    name="pannumber"
-                    value={inputFeildValue?.pannumber}
-                    onChange={inputHandle}
-                    placeholder='Pan number'
+                    placeholder='Email id'
                     className='enter-mobile-num bg-white border-cs InputTextColor' />
                 </div>
               </div>
@@ -236,7 +191,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
 }
 
 // registration on boarding componen
-export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) => {
+export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
   const [getLocationData, setGetLocationData] = useState({});
@@ -271,7 +226,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) =
     let location_latitude = await sessionStorage.getItem('location_latitude')
     let location_longitude = await sessionStorage.getItem('location_longitude')
 
-    if (!location_ip || !location_latitude || !location_longitude) {
+    if (!location_ip && !location_latitude && !location_longitude) {
       alert('please enable location permission in your browser')
       setIsloading(false)
       return true;
@@ -403,7 +358,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) =
   )
 }
 // Authentication on boarding componen
-export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setStateUpdate }) => {
+export const AepsAuthentication = ({ children, getTokenData, invoiceNo }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
 
@@ -434,30 +389,19 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 
   // Merchant On boarding api hit.
   const MerchantBoarding = async () => {
-
-    if (!ValidateAadhaar(inputFeildValue?.adhaarnumber)) {
-      toast.error('Please enter valid aadhaar no!')
-      return true
-    }
-    if (!ValidatePhone(inputFeildValue?.mobilenumber)) {
-      toast.error('Please enter valid mobile no!')
-      return true
-    }
-
     setIsloading(true)
     let location_ip = await sessionStorage.getItem('location_ip')
     let location_latitude = await sessionStorage.getItem('location_latitude')
     let location_longitude = await sessionStorage.getItem('location_longitude')
 
-    if (!location_ip || !location_latitude || !location_longitude) {
+    if (!location_ip && !location_latitude && !location_longitude) {
       alert('please enable location permission in your browser')
       setIsloading(false)
       return true;
     }
 
     let config = {
-      url: ApiUrl?.twoFactorAuthLogin,
-      // url: 'https://paysprint.in/service-api/api/v1/service/balance/balance/authenticationcheck',
+      url: ApiUrl?.aepsAuthentication,
       method: 'post',
       body: {
         "accessmodetype": "SITE",
@@ -469,8 +413,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": '192.168.1.37',
-        // "ipaddress": location_ip,
+        "ipaddress": location_ip,
       }
     }
     APIRequest(
@@ -479,8 +422,6 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         console.log(res)
         toast.success(res?.message)
         ResetState()
-        setStateUpdate('1')
-        // window.location.reload()
         setIsloading(false)
       },
       err => {
@@ -591,7 +532,6 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 
 
 export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOption, setSavePaymentOption }) => {
-  const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
 
@@ -600,11 +540,9 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
   let formateDate = moment(date).format('yyyy-DD-mm H:mm:ss');
 
   const [inputFeildValue, setInputFeildValue] = useState({
-    adhaarnumber: getTokenData?.aadharNo,
-    mobilenumber: getTokenData?.contact,
-    amount: "",
-    pannumber: getTokenData?.panNo,
-    city: ''
+    adhaarnumber: "",
+    mobilenumber: "",
+    amount: ""
   })
   const [BankList, setBankList] = useState([]);
   const [Bank, setBank] = useState({ bankName: '' })
@@ -639,54 +577,16 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
     setInputFeildValue({
       adhaarnumber: "",
       mobilenumber: "",
-      amount: '',
-      pannumber: '',
-      city: ''
+      amount: ''
     })
     setFingerData('')
     setBank({ bankName: '' })
     setSavePaymentOption('')
   }
 
-  // Get state code
-  const GetStateCode = (data) => {
-    const state = StatelistCode.filter((item) => item.State === data)
-    return state[0].Abbreviation
-  }
-
 
   // Withdraw and deposit api hit.
-  // const MerchantBoarding = () => {
-  //   navigate('/aeps-success', {
-  //     state: {
-  //       data: {
-  //         "error": false,
-  //         "message": "Transaction is successful",
-  //         "data": {
-  //             "status": true,
-  //             "message": "Transaction is successful",
-  //             "ackno": 59,
-  //             "amount": 0,
-  //             "balanceamount": "AVL.BA",
-  //             "bankrrn": "208113393345",
-  //             "bankiin": "990320",
-  //             "ministatement": null,
-  //             "ministatementlist": {
-  //                 "npcidata": "14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       110.00            13/05/19 DR       110.00            13/05/19 DR       118.00            13/05/19 DR       117.00            13/05/19 DR       112.00            AVL.BAL           155544           "
-  //             },
-  //             "response_code": 1,
-  //             "errorcode": "AEPS-NPCI-00",
-  //             "clientrefno": 100004635,
-  //             "last_aadhar": "4234",
-  //             "name": "Rizwan "
-  //         }
-  //     }
-  //     }
-  //   })
-  // }
   const MerchantBoarding = async () => {
-
-
 
     if (!savePaymentOption) {
       toast.error('Please select your service!')
@@ -704,21 +604,10 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
       toast.error('Please enter valid mobile no!')
       return true
     }
-    if (!ValidatePan(inputFeildValue?.pannumber)) {
-      toast.error('Please enter valid pan no!')
+    if (inputFeildValue?.amount < 100) {
+      toast.error('Minimum amount limit 100!')
       return true
     }
-    if (inputFeildValue?.city?.length < 3) {
-      toast.error('Please enter valid city!')
-      return true
-    }
-    if (savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit') {
-      if (inputFeildValue?.amount < 100) {
-        toast.error('Minimum amount limit 100!')
-        return true
-      }
-    }
-
 
 
     setIsloading(true)
@@ -726,54 +615,38 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
     let location_latitude = await sessionStorage.getItem('location_latitude')
     let location_longitude = await sessionStorage.getItem('location_longitude')
 
-    if (!location_ip || !location_latitude || !location_longitude) {
+    if (!location_ip && !location_latitude && !location_longitude) {
       alert('please enable location permission in your browser')
       setIsloading(false)
       return true;
     }
-    const stateCode = GetStateCode(getTokenData?.state);
-    let url, transcationtype;
+    let url
     if (savePaymentOption === 'Withdrawal') {
-      transcationtype = 'CW'
-      url = ApiUrl?.withdrawal
-    } else if (savePaymentOption === 'Deposit') {
-      transcationtype = 'M'
+      url = ApiUrl?.aepsWithdraw
+    } else {
       url = ApiUrl?.aepsDeposit
-    } else if (savePaymentOption === 'Balance Enquiry') {
-      transcationtype = 'BE'
-      url = ApiUrl?.balanceEnquiry
-    } else if (savePaymentOption === 'Mini Statement') {
-      transcationtype = 'MS'
-      url = ApiUrl?.getMiniStatement
     }
     let config = {
       url: url,
       method: 'post',
       body: {
-
-        'merchant_name': getTokenData?.name,
-        'pannumber': inputFeildValue?.pannumber,
-        'address': getTokenData?.address,
-        'city': inputFeildValue?.city,
-        'pincode': getTokenData?.postalCode,
-        'statecode': stateCode,
-        'merchantmobilenumber': getTokenData?.contact,
-        'mobilenumber': inputFeildValue?.mobilenumber,
-        'accessmodetype': 'SITE',
-        // 'ipaddress': location_ip,
-        "ipaddress": '106.210.102.217',
-        'adhaarnumber': inputFeildValue?.adhaarnumber,
-        'latitude': location_latitude,
-        'longitude': location_longitude,
-        'referenceno': invoiceNo,
-        'nationalbankidentification': Bank.iinno,
-        'pipe': 'bank5',
-        'transcationtype': transcationtype,
-        'requestremarks': 'Ok',
-        'submerchantid': getTokenData?.partnerId,
-        'data': FingerData,
-        'timestamp': formateDate,
-        'amount': savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' ? inputFeildValue?.amount : null
+        "accessmodetype": "SITE",
+        "adhaarnumber": inputFeildValue?.adhaarnumber,
+        "mobilenumber": inputFeildValue?.mobilenumber,
+        "latitude": location_latitude,
+        "longitude": location_longitude,
+        "referenceno": invoiceNo,
+        "submerchantid": getTokenData?.partnerId,
+        "timestamp": formateDate,
+        "data": FingerData,
+        "ipaddress": location_ip,
+        "nationalbankidentification": Bank.iinno,
+        "requestremarks": "ok",
+        "pipe": "bank2",
+        "transactiontype": "M",
+        // "transactiontype": "CW",
+        "amount": inputFeildValue?.amount,
+        "is_iris": "NO",
       },
 
     }
@@ -784,7 +657,6 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
         toast.success(res?.message)
         ResetState()
         setIsloading(false)
-        navigate('/aeps-success', { state: { data: res?.data } })
       },
       err => {
         toast.error(err?.message)
@@ -810,9 +682,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
       {
         adhaarnumber: getTokenData?.aadharNo,
         mobilenumber: getTokenData?.contact,
-        amount: "",
-        pannumber: getTokenData?.panNo,
-        city: ''
+        amount: ""
       }
     )
   }, [getTokenData])
@@ -874,34 +744,6 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
                   <input type="text" min="1" max="5"
-                    name="pannumber"
-                    value={inputFeildValue?.pannumber}
-                    onChange={inputHandle}
-                    placeholder='Pan number'
-                    className='enter-mobile-num bg-white border-cs InputTextColor' />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-6">
-            <div className="enter-mobilenum select-plan mt-5">
-              <div className="enter-mobilenum">
-                <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
-                    name="city"
-                    value={inputFeildValue?.city}
-                    onChange={inputHandle}
-                    placeholder='City'
-                    className='enter-mobile-num bg-white border-cs InputTextColor' />
-                </div>
-              </div>
-            </div>
-          </div>
-          {(savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit') ? <div className="col-6">
-            <div className="enter-mobilenum select-plan mt-5">
-              <div className="enter-mobilenum">
-                <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
                     name="amount"
                     value={inputFeildValue?.amount}
                     onChange={inputHandle}
@@ -911,7 +753,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
                 </div>
               </div>
             </div>
-          </div> : null}
+          </div>
           {/* <div className="col-6 aligin-center">
             <div className="check-condition">
               <input type="checkbox" id='condition' />
@@ -935,15 +777,12 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             {/* <button type="button" className='button-pro' onClick={() => discoverAvdm()}>CHECK DEVICE</button> */}
 
           </button> :
-            <div className='Figure-biometric-Device'
-              onClick={() => discoverAvdm()}
-            // onClick={() => MerchantBoarding()}
-            >
+            <div className='Figure-biometric-Device' onClick={() => discoverAvdm()}>
               <div className={`box-style box-style-active m-auto`} >
                 <div className='Image-Fingerprint-style'>
                   <img src={ImageFingerprint} alt="Fingerprint" className={`Image-Fingerprint `} />
                 </div>
-                <p className='p-0 m-0'>Scan Finger</p>
+                <p className='p-0 m-0'>Scan to registration</p>
               </div>
             </div>}
           <input id="method" type="hidden" value="" />
@@ -961,7 +800,6 @@ const Aeps = () => {
   const [getTokenData, setGetTokenData] = useState({});
   const [invoiceNo, setInvoiceNo] = useState({});
   const [savePaymentOption, setSavePaymentOption] = useState('');
-  const [StateUpdate, setStateUpdate] = useState('')
 
 
   // getting details from the user token
@@ -1021,7 +859,7 @@ const Aeps = () => {
     let location_ip = await sessionStorage.getItem('location_ip')
     let location_latitude = await sessionStorage.getItem('location_latitude')
     let location_longitude = await sessionStorage.getItem('location_longitude')
-    if (!location_ip || !location_latitude || !location_longitude) {
+    if (!location_ip && !location_latitude && !location_longitude) {
       geoLocation()
     }
   }
@@ -1039,36 +877,33 @@ const Aeps = () => {
     return (
       <>
         <Header />
-        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}>
+        <MarchantOnBoarding getTokenData={getTokenData}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </MarchantOnBoarding>
         <Footer />
       </>
     )
-  }
-  // else if (getTokenData?.isRegister === 'false') {
-  //   return (
-  //     <>
-  //       <Header />
-  //       <RegistrationOnBoarding getTokenData={getTokenData} invoiceNo={invoiceNo} >
-  //         <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
-  //       </RegistrationOnBoarding>
-  //       <Footer />
-  //     </>
-  //   )
-  // }
-  else if (getTokenData?.isAuthentication === null || moment().diff(getTokenData?.isAuthentication, 'hours') > 24) {
+  } else if (getTokenData?.isRegister === 'false') {
     return (
       <>
         <Header />
-        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} >
+        <RegistrationOnBoarding getTokenData={getTokenData} invoiceNo={invoiceNo} >
+          <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
+        </RegistrationOnBoarding>
+        <Footer />
+      </>
+    )
+  } else if (getTokenData?.isAuthentication === null || moment().diff(getTokenData?.isAuthentication, 'hours') > 24) {
+    return (
+      <>
+        <Header />
+        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} >
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsAuthentication>
         <Footer />
       </>
     )
-  }
-   else {
+  } else {
     return (
       <>
         <Header />

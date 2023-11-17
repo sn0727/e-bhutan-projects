@@ -13,11 +13,9 @@ const PaymentSuccess = () => {
   const navigateToAnotherRoute = () => {
     console.log('navigateToAnotherRoute');
     navigate('/home');
-
   }
   useEffect(() => {
     !billDetails && navigate('/home')
-
     const handlePopstate = () => {
       // Prevent the default "back" behavior
       // Navigate to another route instead
@@ -26,9 +24,7 @@ const PaymentSuccess = () => {
 
     window.addEventListener('popstate', handlePopstate);
 
-    return () => {
-      window.removeEventListener('popstate', handlePopstate);
-    };
+    window.removeEventListener('popstate', handlePopstate);
   }, []);
   return (
     <React.Fragment>

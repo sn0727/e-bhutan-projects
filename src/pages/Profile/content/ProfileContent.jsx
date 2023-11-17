@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const ProfileContent = () => {
   // get user data from token 
-  const token = localStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
   const decodeToken = jwtDecode(token);
   const result = decodeToken.user;
 

@@ -10,7 +10,7 @@ const ProfileDropdown = ({ token02, profileData }) => {
 
   const LogOut = () => {
     toast.success("Log Out Successfully.")
-    localStorage.clear("token")
+    sessionStorage.clear("token")
     navigate("/")
   }
 
