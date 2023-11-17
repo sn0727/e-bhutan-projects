@@ -602,10 +602,14 @@ h1.statusCode-sd img {
     max-width: 800px;
     width: 100%;
 }
+.search-input-cs input {
+    min-height: 40px;
+    padding: 0 30px 0 10px;
+}
 .matching-data {
     border: 1px solid #000;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    /* height: 100%; */
     font-size: var(--input-font-size);
     -webkit-padding-start: var(--input-padding);
     padding-inline-start: var(--input-padding);
@@ -628,7 +632,14 @@ h1.statusCode-sd img {
     --input-height: var(--chakra-sizes-8);
     border: 1px solid;
     border-color: inherit;
-    background: inherit;
+    text-align: left;
+    position: absolute;
+    background-color: #fff;
+    z-index: 1;
+    top: 45px;
+    max-height: 200px;
+    /* height: 200px; */
+    overflow: auto;
 }
 .matching-data ul li {
     padding: 5px;
@@ -638,17 +649,3 @@ h1.statusCode-sd img {
 .matching-data ul li:hover {
     background-color: #dcdce1;
 }
-/* .Verified-Transfer svg {
-    margin: 0 !important;
-}
-.chakra-stack.css-bdq3wy {
-    display: none;
-}
-.custome-autocomplete .css-efk3t2 {
-    display: block;
-}
-.css-efk3t2 {
-    text-align: left;
-    padding: 0 !important;
-    margin: 0 !important;
-} */
