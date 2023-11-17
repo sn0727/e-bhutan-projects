@@ -6,6 +6,7 @@ import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 import { nameValidation, postalCodeValidation, validateAccountNumber, validateBankId, validateBankName, validateDateFormat, validateIFSCCode } from '../Validation';
+import BackPage from '../../pages/test/BackPage';
 
 const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -139,6 +140,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                     </div>
                     <div className='col-6'>
                       <label htmlFor="IFSC" className='d-block'>Enter Bank Id <span className='text-red'>*</span></label>
+                      {/* <BackPage bankNameData={bankNameData} /> */}
                       <Stack spacing={3}>
                         <Select placeholder='Select bank name' name="bandId" onChange={handlerInput}>
                           {

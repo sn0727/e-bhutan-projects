@@ -685,3 +685,22 @@ p.verify {
 .text-break {
   white-space: nowrap
 }
+.search-input-cs, .set-position-select {
+  position: relative;
+}
+.search-input-cs span.arrow-down {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 28px;
+  line-height: unset;
+  display: inline-block;
+}
+.search-input-cs span.arrow-up {
+  position: absolute;
+  top: -17px;
+  right: 5px;
+  font-size: 28px;
+  line-height: unset;
+  display: inline-block;
+}
