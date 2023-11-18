@@ -139,12 +139,12 @@ export const passwordValidation = (password) => {
 }
 
 export const validateAccountNumber = (accountNumber) => {
-    let accountNumberReg = /^\d{12,}$/  //validated name 
+    let accountNumberReg = /^\d{9,}$/  //validated name 
     if (accountNumber === '') {
         toast.error(`Account number is a mandatory field.`)
         return false;
     }else if (!accountNumberReg?.test(accountNumber)) {
-        toast.error(`Account number is not valid. It should be 12 characters long.`);
+        toast.error(`Account number is not valid. maximum 9 digits`);
         return false;
     }
     return true;
