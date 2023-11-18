@@ -7,7 +7,7 @@ export const BASEURL = 'https://api.ebhuktan.com';
 
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
-export const SaveBillOption1 = ['Withdrawal',  'Balance Enquiry', 'Mini Statement']
+export const SaveBillOption1 = ['Withdrawal', 'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 
@@ -145,6 +145,7 @@ export const ApiUrl = {
   withdrawal: `${APIBank}aeps/withdrawal `,
   balanceEnquiry: `${APIBank}aeps/balanceEnquiry `,
   getMiniStatement: `${APIBank}aeps/getMiniStatement `,
+  getBanks: `${APIBank}dmt/transfer/getBanks `,
 
 
   // DMT api route
@@ -156,6 +157,10 @@ export const ApiUrl = {
   deleteBeneficiary: `${APIBank}dmt/transfer/deleteBeneficiary`,
   transactionMoney: `${APIBank}dmt/transfer/transaction`,
   pennyDrop: `${APIBank}dmt/transfer/pennyDrop`,
+  getBankList: `${APIBank}aeps/getBankList`,
+
+  // Bank Account
+  generateURL: `${APIBank}account/generateURL`,
 
 };
 
@@ -196,17 +201,22 @@ export const APIRequest = async (config = {}, onSuccess, onError, noAuth = null)
     // console.log(data);
     axios(data)
       .then(res => {
-        // console.log(res, 'api--------');
+        console.log(res, 'api--------');
         if (!res?.data?.error) {
           onSuccess(res?.data);
         } else {
+          if (res?.data?.message === 'Token expired please login again.') {
+            ClearSession()
+            window.location.reload();
+          }
           onError(res?.data ? res.data : res);
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, 'catch--');
         if (err?.response?.data?.message === 'Token expired please login again.') {
           ClearSession()
+          window.location.reload();
         }
         onError(err?.response?.data ? err?.response.data : err?.response);
       });
