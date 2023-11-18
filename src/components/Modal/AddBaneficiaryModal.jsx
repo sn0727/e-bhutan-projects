@@ -133,7 +133,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                   </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
-                      <label htmlFor="otp" className='d-block'>Account Number <span className='text-red'>*</span></label>
+                      <label htmlFor="otp" className='d-block'>Bank Account Number <span className='text-red'>*</span></label>
                       <Input placeholder='Enter A/C Number'
                         name="accountNo"
                         onChange={handlerInput}
