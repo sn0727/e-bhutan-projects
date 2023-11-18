@@ -133,12 +133,12 @@ export const services = [
                 image: "",
                 icon: <AiFillBank />
             },
-            {
-                id: 2,
-                link: "/Money_Transfer",
-                title: "Money Transfer",
-                image: image.MoneyTransfer
-            },
+            // {
+            //     id: 2,
+            //     link: "/Money_Transfer",
+            //     title: "Money Transfer",
+            //     image: image.MoneyTransfer
+            // },
             // {
             //     id: 2,
             //     link: "/",
