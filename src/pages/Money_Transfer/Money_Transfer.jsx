@@ -229,7 +229,7 @@ const Money_Transfer = () => {
         </div>
 
         <div className='recenttext'>
-          <h1>React And Saved Baneficiary</h1>
+          <h1>Saved Baneficiary</h1>
         </div>
 
         {/* baneficery details  */}
