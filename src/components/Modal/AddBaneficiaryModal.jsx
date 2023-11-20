@@ -128,7 +128,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                 <div className='Verified-Transfer' style={{ marginTop: '60px' }}>
                   <div className='m-row'>
                     <div className='col-12 mb-1'>
-                      <label htmlFor="basic" className='d-block BasicDetails'><b>Fill Account Details</b></label>
+                      <label htmlFor="basic" className='d-block BasicDetails'><b>Fill Account Details dd</b></label>
                     </div>
                   </div>
                   <div className='m-row'>
