@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ChakraProvider, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Stack, useDisclosure } from '@chakra-ui/react';
-import { FaChevronRight } from 'react-icons/fa';
+import { IoMdAdd } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
@@ -23,6 +23,8 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
     address: "",
     pincode: "",
   })
+
+  console.log(inputValue, '=================== inputValue')
 
 
   // i take input feild value, here
@@ -74,10 +76,19 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
           toast.success(res?.message)
           setisLoading(false)
           onClose()
-          // fetchBeneficiaryFun()
-          setTimeout(() => {
-            window.location.reload(false);
-          }, 1000)
+          fetchBeneficiaryFun()
+          setInputValue({
+            accountNo: "",
+            IFSCCODE: "",
+            bandId: "",
+            name: "",
+            date: "",
+            address: "",
+            pincode: "",
+          })
+          // setTimeout(() => {
+          //   window.location.reload(false);
+          // }, 1000)
         },
         err => {
           console.log(err);
@@ -106,7 +117,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   }, [])
   return (
     <>
-      <Button onClick={onOpen} className='FaChevronRight'><FaChevronRight /></Button>
+      <Button onClick={onOpen} className='FaChevronRight'><IoMdAdd /></Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -127,7 +138,8 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <Input placeholder='Enter A/C Number'
                         name="accountNo"
                         onChange={handlerInput}
-                        className='search-input' />
+                        className='search-input'
+                         />
                     </div>
                   </div>
                   <div className='m-row'>
@@ -172,6 +184,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                       <label htmlFor="otp" className='d-block'>Enter Date Of Birth <span className='text-red'>*</span></label>
                       <Input placeholder='YYYY-MM-DD'
                         name="date"
+                        type='date'
                         onChange={handlerInput}
                         className='search-input' />
                     </div>

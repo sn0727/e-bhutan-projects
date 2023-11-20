@@ -1,14 +1,15 @@
 import { toast } from "react-toastify";
 
 export const nameValidation = (name) => {
-    let nameReg = /^[a-zA-Z_]+( [a-zA-Z_]+)+$/  //validated name 
+    // let nameReg = /^[a-zA-Z_]+( [a-zA-Z_]+)+$/  //validated name 
     if (name === '') {
         toast.error(`Name is a mandatory field.`)
         return false;
-    }else if (!nameReg?.test(name)) {
-        toast.error(`Only alphabets and. are allowed`);
-        return false;
     }
+    // else if (!nameReg?.test(name)) {
+    //     toast.error(`Enter full name.`);
+    //     return false;
+    // }
     return true;
 }
 
