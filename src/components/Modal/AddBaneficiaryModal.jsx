@@ -6,26 +6,28 @@ import BackButton from '../Button/BackButton';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 import { nameValidation, postalCodeValidation, validateAccountNumber, validateBankId, validateBankName, validateDateFormat, validateIFSCCode } from '../Validation';
-import BackPage from '../../pages/test/BackPage';
+import SearchFilter from '../SearchFilter/SearchFilter';
 
 const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isLoading, setisLoading] = useState(false)
-  const [bankNameData, setBankNameData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [bankDetailsData, setBankNameData] = useState([])
+  const [getBankId, setGetBankId] = useState('')
 
   // here is input feild object,
   const [inputValue, setInputValue] = useState({
     accountNo: "",
     IFSCCODE: "",
-    bandId: "",
     name: "",
     date: "",
     address: "",
     pincode: "",
   })
 
-  console.log(inputValue, '=================== inputValue')
-
+  // get bank id from the select component
+  const sendBandIdToPopModal = (id) => {
+    setGetBankId(id)
+  }
 
   // i take input feild value, here
   const handlerInput = (event) => {
@@ -34,6 +36,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
 
   // We are doing get bank id from the api,
   const getByBankName = () => {
+    setIsLoading(true)
     let config = {
       url: ApiUrl?.getBanks,
       method: 'get',
@@ -43,9 +46,11 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
       res => {
         // console.log(res, "=================== res of bank id")
         setBankNameData(res?.data)
+        setIsLoading(false)
       },
       err => {
         console.log(err, "=================== bank id err")
+        setIsLoading(false)
       }
     )
   }
@@ -55,19 +60,18 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
     if (
       validateAccountNumber(inputValue?.accountNo) &&
       validateIFSCCode(inputValue?.IFSCCODE) &&
-      validateBankName(inputValue?.bandId) &&
       nameValidation(inputValue?.name) &&
       validateDateFormat(inputValue?.date) &&
       postalCodeValidation(inputValue?.pincode)
     ) {
-      setisLoading(true)
+      setIsLoading(true)
       let config = {
         url: ApiUrl.registerBeneficiary,
         method: 'post',
         body: {
           "mobile": mobileNo,
           "benename": inputValue?.name,
-          "bankid": inputValue?.bandId,
+          "bankid": getBankId,
           "accno": inputValue?.accountNo,
           "ifsccode": inputValue?.IFSCCODE.toUpperCase(),
           "verified": "0",
@@ -82,7 +86,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
         res => {
           console.log(res, "=================== res add benuficiand")
           toast.success(res?.message)
-          setisLoading(false)
+          setIsLoading(false)
           onClose()
           fetchBeneficiaryFun()
           setInputValue({
@@ -101,7 +105,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
         err => {
           console.log(err);
           toast.error(err?.message)
-          setisLoading(false)
+          setIsLoading(false)
         }
 
       )
@@ -128,7 +132,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                 <div className='Verified-Transfer' style={{ marginTop: '60px' }}>
                   <div className='m-row'>
                     <div className='col-12 mb-1'>
-                      <label htmlFor="basic" className='d-block BasicDetails'><b>Fill Account Details dd</b></label>
+                      <label htmlFor="basic" className='d-block BasicDetails'><b>Fill Account Details</b></label>
                     </div>
                   </div>
                   <div className='m-row'>
@@ -138,7 +142,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                         name="accountNo"
                         onChange={handlerInput}
                         className='search-input'
-                         />
+                      />
                     </div>
                   </div>
                   <div className='m-row'>
@@ -152,21 +156,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                     </div>
                     <div className='col-6'>
                       <label htmlFor="IFSC" className='d-block'>Enter Bank Id <span className='text-red'>*</span></label>
-                      {/* <BackPage bankNameData={bankNameData} /> */}
-                      <Stack spacing={3}>
-                        <Select placeholder='Select bank name' name="bandId" onChange={handlerInput}>
-                          {
-                            bankNameData?.map((option, index) => (
-                              <option key={index} value={option?.bankid}>{option?.bankname}</option>
-                            ))
-                          }
-                        </Select>
-                      </Stack>
-
-                      {/* <Input placeholder='Bank Id'
-                        name="bandId"
-                        onChange={handlerInput}
-                        className='search-input' /> */}
+                      <SearchFilter bankDetailsData={bankDetailsData} sendBandIdToPopModal={sendBandIdToPopModal} />
                     </div>
                   </div>
                   <div className='m-row'>

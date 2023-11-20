@@ -1,6 +1,7 @@
 .danger {
   color: red;
 }
+
 .Figure-biometric-Device {
   display: flex;
   justify-content: space-between;
@@ -23,13 +24,14 @@
 
 }
 
-.add-baneficiary{
+.add-baneficiary {
   display: flex;
   flex-direction: row;
   border-bottom-width: 2px;
   justify-content: space-between;
 }
-.add-baneficiary-inner{
+
+.add-baneficiary-inner {
   display: flex;
   flex-direction: row;
 
@@ -37,24 +39,35 @@
 
 }
 
-.recenttext{
+.recenttext {
   padding: 10px;
 
 }
-.recenttext h1{
+
+.recenttext h1 {
   font-size: 20px;
   font-weight: 600;
 }
 
-.search-baneficry-main-div{
+.search-baneficry-main-div {
   display: flex;
   flex-direction: row;
-justify-content: space-between;
-margin-left: 10px;
-margin-right: 10px;
-margin-bottom: 20px;
+  justify-content: end;
+  margin-left: 10px;
+  /* margin-right: 10px; */
+  margin-bottom: 20px;
+  max-width: 500px;
+  width: 100%;
 }
-.search-div{
+
+.recenttext {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-div {
   height: 40px;
   border-radius: 10px;
   width: 85%;
@@ -62,15 +75,25 @@ margin-bottom: 20px;
   flex-direction: row;
   display: flex;
 }
-.search-div svg{
+
+.search-div input.chakra-input.search-input.css-1cjy4zv {
+  box-shadow: none;
+  outline: none;
+  border: 0;
+}
+
+.search-div svg {
   padding: 5px;
   align-self: center;
   height: 30px;
   width: 30px;
   fill: #B4B4B3;
+  position: relative;
+  left: 8px;
+  z-index: 1;
 }
 
-.ban_left_deatils{
+.ban_left_deatils {
 
   width: 60%;
 
@@ -81,19 +104,19 @@ margin-bottom: 20px;
 
 }
 
-.bene_delete{
+.bene_delete {
   display: flex;
   justify-content: end;
 
 }
 
-.bane_right_detai{
+.bane_right_detai {
 
   width: 40%;
 }
 
 
-.ben_deatails{
+.ben_deatails {
   padding: 10px;
   background-color: #FFF;
   box-shadow: -2px 1px 32px #00000026;
@@ -104,25 +127,28 @@ margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
+
 .FaChevronRight {
   margin-bottom: 5px;
 }
-.search-input{
-  width:100%;
+
+.search-input {
+  width: 100%;
   background-color: #F0F0F0;
-border-radius: 10px;
+  border-radius: 10px;
 }
 
-.refersh-div{
+.refersh-div {
   align-self: center;
-height: 30px;
-width: 30px;
-border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   background-color: #B4B4B3;
 }
-.refersh-div svg{
+
+.refersh-div svg {
   align-self: center;
   height: 25px;
   width: 25px;
@@ -137,9 +163,11 @@ border-radius: 15px;
   /* align-self: center; */
   margin: 5px;
 }
+
 button.chakra-button.FaChevronRight.css-ez23ye svg {
   fill: #fff !important;
 }
+
 .YouArePaying input {
   font-size: 20px;
   text-align: center;
@@ -259,38 +287,48 @@ button.chakra-button.FaChevronRight.css-ez23ye svg {
   justify-content: flex-start;
   margin-top: 20px;
 }
-.check-condition input, .check-condition label {
+
+.check-condition input,
+.check-condition label {
   cursor: pointer;
 }
+
 .Image-Fingerprint.colorActive {
   filter: brightness(0.5);
 }
-.warring-icon svg{
+
+.warring-icon svg {
   width: 100%;
   text-align: center;
 }
+
 .Verified-Transfer svg {
   width: 100%;
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: red;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: red;
 }
+
 .Verified-Transfer {
   text-align: center;
 }
+
 .m-row {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
 }
+
 .m-row .col-12 {
   width: 100%;
 }
+
 .m-row .col-6 {
   width: 49%;
 }
+
 .d-block {
   display: block;
   width: 100%;
@@ -298,6 +336,7 @@ button.chakra-button.FaChevronRight.css-ez23ye svg {
   font-size: 15px;
   margin-bottom: 5px;
 }
+
 label.d-block.BasicDetails {
   display: block;
   background: #2c427d;
@@ -307,17 +346,25 @@ label.d-block.BasicDetails {
   padding: 10px 0;
 }
 
+.search-filter-dd {
+  height: 400px;
+  overflow: auto;
+}
+
 @media screen and (max-width: 767px) {
   .Figure-biometric-Device .box-style {
     width: 100%;
   }
+
   .style-row .col-6 {
     width: 100%;
   }
+
   .payment_feild .size-col-12 .Airtel_Payment_Bank {
     width: 100%;
     max-width: 100%;
   }
+
   .col-6.aligin-center {
     margin-top: 10px;
   }

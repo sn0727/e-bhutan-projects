@@ -5,9 +5,9 @@ import Footer from "../../components/Common/Footer/Footer";
 import "./Css/money_Transfer.css"
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/Button/BackButton';
-import { BsBank } from 'react-icons/bs'
+import { BsArrowRepeat, BsBank } from 'react-icons/bs'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import { AiFillWarning } from "react-icons/ai"
+import { AiFillWarning, AiOutlineSearch, AiOutlineUserAdd } from "react-icons/ai"
 import { ApiUrl, APIRequest } from '../../utils/api';
 import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, useDisclosure } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
@@ -104,6 +104,7 @@ const Money_Transfer = () => {
   const [fetchBeneficiaryData, setFetchBeneficiaryData] = useState([]);
   const [tokenData, setTokenData] = useState(null);
   const [status404, setStatus404] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     const getTokenData = () => {
@@ -198,6 +199,34 @@ const Money_Transfer = () => {
     }
   }
 
+  // search filter value 
+  const inputHandler = (event) => {
+    setSearchValue(event.target.value)
+  }
+
+  // live search and highlight text 
+  function getHighlightedText(text, highlight) {
+    // Split text on highlight term, include term itself into parts, ignore case
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+
+    return (
+      <span>
+        {parts.map((part, index) =>
+          part.toLowerCase() === highlight.toLowerCase() ? (
+            <b key={index} style={{ color: '#2c427d' }}>{part}</b>
+          ) : (
+            part
+          )
+        )}
+      </span>
+    );
+  }
+
+  // search filter code auto search,
+  let getSearchData = fetchBeneficiaryData?.filter((item) =>
+    item?.name?.toLowerCase().includes(searchValue?.toLowerCase())
+  );
+
   useEffect(() => {
     if (tokenData) {
       getRemitterByIdFun()
@@ -230,8 +259,13 @@ const Money_Transfer = () => {
 
         <div className='recenttext'>
           <h1>Saved Baneficiary</h1>
+          <div className='search-baneficry-main-div'>
+            <div className='search-div'>
+              <AiOutlineSearch />
+              <Input placeholder='Search Name' className='search-input' onChange={inputHandler} />
+            </div>
+          </div>
         </div>
-
         {/* baneficery details  */}
 
         {
@@ -241,29 +275,33 @@ const Money_Transfer = () => {
             </h1>
           )
         }
-        {
-          fetchBeneficiaryData.length > 0 ? (
-            fetchBeneficiaryData?.map((item, index) => (
-              <div className='ben_deatails' key={index}>
-                <div className='ban_left_deatils'>
-                  <p>Name :- {item?.name}</p>
-                  <p>A/c :- {item?.bankname}</p>
-                  <p>IFSC :- {item?.ifsc}</p>
-                </div>
-                <div className='bane_right_detai'>
-                  <div className='bene_delete'>
-                    {/* <Button > Pay 1&#8377; For Test</Button> */}
-                    <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
-                    <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
-                    <Button colorScheme='blue' onClick={() => deleteBeneficiary(item?.bene_id)}>
-                      <RiDeleteBin6Line />
-                    </Button>
+        <div className='search-filter-dd'>
+          {
+            getSearchData.length > 0 ? (
+              getSearchData?.map((item, index) => (
+                <div className='ben_deatails' key={index}>
+                  <div className='ban_left_deatils'>
+                    <p>Name :- {getHighlightedText(item?.name, searchValue)}</p>
+                    <p>A/c :- {item?.bankname}</p>
+                    <p>IFSC :- {item?.ifsc}</p>
+                  </div>
+                  <div className='bane_right_detai'>
+                    <div className='bene_delete'>
+                      {/* <Button > Pay 1&#8377; For Test</Button> */}
+                      <PayToSendMoneyModal userDetails={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
+                      <PayPannyModal itemData={item} mobileNo={getRemitterData?.mobile} fetchBeneficiaryFun={fetchBeneficiaryFun} />
+                      <Button colorScheme='blue' onClick={() => deleteBeneficiary(item?.bene_id)}>
+                        <RiDeleteBin6Line />
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : status404?.statusCode === 404 ? null : <h1 className='statusCode-sd'>Loading...</h1>
-        }
+              ))
+            ) : status404?.statusCode === 404 ? null : isLoading ? <h1 className='statusCode-sd'>Loading...</h1> : <h1 className='statusCode-sd'>
+              <img src={image404} alt="error404" />
+            </h1>
+          }
+        </div>
       </div >
       <Footer />
       <>

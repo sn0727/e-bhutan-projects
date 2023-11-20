@@ -1,35 +1,40 @@
 import { ChakraProvider, Input, Stack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-const BackPage = ({bankNameData}) => {
+const BackPage = ({bankDetailsData, sendBandIdToPopModal}) => {
   const [selectTitle, setSelectTitle] = useState('');
+  const [selectTitleid, setSelectTitleId] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
-  console.log(inputValue, '=============== inputValue')
+  const handleInputFocus = () => {
+    showDropdown ? setShowDropdown(false) : setShowDropdown(true);
+  };
+
+  // console.log(selectTitleid, '=============== selectTitleid')
 
   // live search and highlight text 
   function getHighlightedText(text, highlight) {
     // Split text on highlight term, include term itself into parts, ignore case
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
 
-    // console.log(parts, "parts= ====================")
     return (
-      <span>
-        {parts.map((part, index) =>
-          part.toLowerCase() === highlight.toLowerCase() ? (
-            <b key={index} style={{ color: '#2c427d' }}>{part}</b>
-          ) : (
-            part
-          )
-        )}
-      </span>
+        <span>
+            {parts.map((part, index) =>
+                part.toLowerCase() === highlight.toLowerCase() ? (
+                    <b key={index} style={{ color: '#2c427d' }}>{part}</b>
+                ) : (
+                    part
+                )
+            )}
+        </span>
     );
-  }
+}
 
   const selectItem = (selectItem) => {
-    setSelectTitle(selectItem);
-    setInputValue(selectItem); // Update the input value on selection
+    setSelectTitle(selectItem?.bankname);
+    setInputValue(selectItem?.bankname); // Update the input value on selection
+    setSelectTitleId(selectItem?.bankid)
     setShowDropdown(false); // Hide dropdown on selection
   };
 
@@ -39,14 +44,11 @@ const BackPage = ({bankNameData}) => {
     setSelectTitle(''); // Reset the selected title when the input changes
   };
 
-  const handleInputFocus = () => {
-    showDropdown ? setShowDropdown(false) : setShowDropdown(true);
-  };
-
-  const filteredData = bankNameData.filter((bank) =>
-    bank.bankname.toLowerCase().includes(inputValue.toLowerCase())
+  const filteredData = bankDetailsData?.filter((bank) =>
+    bank?.bankname?.toLowerCase().includes(inputValue?.toLowerCase())
   );
 
+  sendBandIdToPopModal(selectTitleid)
 
   return (
     <div>
@@ -65,9 +67,10 @@ const BackPage = ({bankNameData}) => {
           {showDropdown && (
             <div className="matching-data">
               <ul>
-                {filteredData.map((title, index) => (
-                  <li key={index} onClick={() => selectItem(title.bankname)}>
+                {filteredData?.map((title, index) => (
+                  <li key={index} onClick={() => selectItem(title)}>
                     {getHighlightedText(title?.bankname, inputValue)}
+                    {/* {title?.bankname} */}
                   </li>
                 ))}
               </ul>
