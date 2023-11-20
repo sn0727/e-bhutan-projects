@@ -50,15 +50,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
 
   // This is a Register Beneficiary funcation
   const addBaneficiaryRegistration = () => {
-    if (
-      validateAccountNumber(inputValue?.accountNo) &&
-      validateIFSCCode(inputValue?.IFSCCODE) &&
-      validateBankName(inputValue?.bandId) &&
-      nameValidation(inputValue?.name) &&
-      validateDateFormat(inputValue?.date) &&
-      postalCodeValidation(inputValue?.pincode)
-    ) {
-      setisLoading(true)
+    setisLoading(true)
       let config = {
         url: ApiUrl.registerBeneficiary,
         method: 'post',
@@ -82,10 +74,10 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
           toast.success(res?.message)
           setisLoading(false)
           onClose()
-          fetchBeneficiaryFun()
-          // setTimeout(() => {
-          //   window.location.reload(false);
-          // }, 1000)
+          // fetchBeneficiaryFun()
+          setTimeout(() => {
+            window.location.reload(false);
+          }, 1000)
         },
         err => {
           console.log(err);
@@ -94,7 +86,16 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
         }
 
       )
-    }
+    // if (
+    //   validateAccountNumber(inputValue?.accountNo) &&
+    //   validateIFSCCode(inputValue?.IFSCCODE) &&
+    //   validateBankName(inputValue?.bandId) &&
+    //   nameValidation(inputValue?.name) &&
+    //   validateDateFormat(inputValue?.date) &&
+    //   postalCodeValidation(inputValue?.pincode)
+    // ) {
+      
+    // }
 
 
   }
