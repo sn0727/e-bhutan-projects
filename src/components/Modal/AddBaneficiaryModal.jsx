@@ -109,16 +109,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
         }
 
       )
-    // if (
-    //   validateAccountNumber(inputValue?.accountNo) &&
-    //   validateIFSCCode(inputValue?.IFSCCODE) &&
-    //   validateBankName(inputValue?.bandId) &&
-    //   nameValidation(inputValue?.name) &&
-    //   validateDateFormat(inputValue?.date) &&
-    //   postalCodeValidation(inputValue?.pincode)
-    // ) {
-      
-    // }
+    }
 
 
   }
