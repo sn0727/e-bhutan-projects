@@ -657,7 +657,8 @@ h1.statusCode-sd img {
 .matching-data ul li {
     padding: 5px;
     margin: 2px;
-
+    cursor: pointer;
+    
 }
 
 .matching-data ul li:hover {
