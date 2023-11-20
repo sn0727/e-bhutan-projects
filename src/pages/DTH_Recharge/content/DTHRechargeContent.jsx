@@ -177,7 +177,6 @@ const DTHRechargeContent = () => {
       res => {
         console.log(res);
         setisLoading(false)
-        GetPdf(res?.invoiceNo)
       },
       err => {
         console.log(err);
@@ -227,38 +226,7 @@ const DTHRechargeContent = () => {
       }
     );
   }
-  const GetPdf = (invoiceNo) => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.generatePdf,
-      method: 'post',
-      body: {
-        orderId: invoiceNo,
-        consumerId: usertokenId?.user?.id,
-        consumerName: 'ebhuktan',
-        amount: AddAmount,
-        invoiceNo: invoiceNo,
-        billDate: new Date().toLocaleString().split(',')[0],
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res);
-        setisLoading(false)
-        // setPdfLink(res?.data)
-        SendRequestPay(invoiceNo, res?.data)
-      },
-      err => {
-        console.log(err);
-        setisLoading(false)
-        if (err?.message) {
-          toast.error(err?.message)
-        }
-      }
-    );
-  }
-
+  
   const Submit = () => {
     if (operator) {
       if (ConsumerNumber) {

@@ -51,4 +51,5 @@ export const image = {
     BondInvestment : require("../assets/service-icon/FinancialServices/Bond Investment.png"),
     EducationFee : require("../assets/service-icon/FinancialServices/Education Fee.png"),
     DigitalSignature : require("../assets/service-icon/FinancialServices/Digital Signature.png"),
+    SyncArrow : require("../assets/travel/SyncArrow.png")
 }

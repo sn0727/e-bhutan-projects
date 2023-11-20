@@ -40,41 +40,9 @@ const DTHBillDetailsContent = ({ billDetails }) => {
     );
   }
 
-  const SendRequest1 = () => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.generatePdf,
-      method: 'post',
-      body: {
-        orderId: data?.invoiceNo,
-        consumerId: data?.consumerId,
-        consumerName: data?.name,
-        dueDate: data?.duedate,
-        amount: data?.amount,
-        invoiceNo: data?.invoiceNo,
-        billDate: data?.currentDate,
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res);
-        setisLoading(false)
-        setPdfLink(res?.data)
-      },
-      err => {
-        console.log(err);
-        setisLoading(false)
-        if (err?.message) {
-          toast.error(err?.message)
-        }
-      }
-    );
-  }
 
   useEffect(() => {
     !billDetails && navigate('/home')
-    SendRequest1()
   }, []);
   return (
     <React.Fragment>

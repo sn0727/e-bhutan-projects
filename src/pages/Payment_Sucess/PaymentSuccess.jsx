@@ -9,7 +9,6 @@ const PaymentSuccess = () => {
   const location = useLocation();
   const billDetails = location.state;
 
-
   const navigateToAnotherRoute = () => {
     console.log('navigateToAnotherRoute');
     navigate('/home');

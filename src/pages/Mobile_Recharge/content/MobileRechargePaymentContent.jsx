@@ -84,39 +84,9 @@ const MobileRechargePaymentContent = () => {
   }
 
 
-  const SendRequest1 = () => {
-    setisLoading(true)
-    let config = {
-      url: ApiUrl.generatePdf,
-      method: 'post',
-      body: {
-        orderId: UserData?.invoiceNo,
-        consumerId: UserData?.consumerId,
-        amount: UserData?.amount,
-        invoiceNo: UserData?.invoiceNo,
-      }
-    };
-    APIRequest(
-      config,
-      res => {
-        console.log(res);
-        setisLoading(false)
-        setPdfLink(res?.data)
-      },
-      err => {
-        console.log(err);
-        setisLoading(false)
-        if (err?.message) {
-          alert(err?.message)
-        }
-      }
-    );
-  }
-
 
   useEffect(() => {
     !receivedData && navigate('/home')
-    SendRequest1()
   }, []);
 
   return (
