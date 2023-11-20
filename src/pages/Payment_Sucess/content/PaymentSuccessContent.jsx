@@ -5,7 +5,7 @@ import { FiDownload } from 'react-icons/fi';
 import styles from "./../style/styles.module.css"
 import PaymentSuccess from "../../../assets/loading/payment-success.gif"
 import { Link, useNavigate } from 'react-router-dom';
-import Loading from '../../../components/Feature/Loading';
+// import Loading from '../../../components/Feature/Loading';
 import BackButton from '../../../components/Button/BackButton';
 import { APIRequest, ApiUrl } from '../../../utils/api';
 import Loader from '../../../components/Feature/Loader';
@@ -47,7 +47,7 @@ const PaymentSuccessContent = ({ billDetails }) => {
   return (
     <React.Fragment>
       {
-        isLoading ? <Loading />
+        isLoading ? <Loader />
           : <div className={styles.main}>
             <div className={styles.paymentSuccess} >
               <div className="comman-container px-4">
@@ -93,7 +93,6 @@ const PaymentSuccessContent = ({ billDetails }) => {
               <a onClick={() => GetPdf()} >
                 <FiDownload style={{ fontSize: 60, margin: 'auto' }} />
               </a>}
-            <Loader isLoading={isLoading} />
           </div>
       }
 
