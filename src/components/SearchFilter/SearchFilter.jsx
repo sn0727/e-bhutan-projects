@@ -1,5 +1,6 @@
 import { ChakraProvider, Input, Stack } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 
 const SearchFilter = ({ bankDetailsData, sendBandIdToPopModal }) => {
     const [selectTitle, setSelectTitle] = useState('');
@@ -60,7 +61,11 @@ const SearchFilter = ({ bankDetailsData, sendBandIdToPopModal }) => {
                             onClick={handleInputFocus}
                             size="sm"
                         />
-                        {showDropdown ? <span className='arrow-up'>&#129169;</span> : <span className='arrow-down'>&#129171;</span>}
+                        {showDropdown ? <span className='arrow-up'>
+                            <IoMdArrowDropup />
+                        </span> : <span className='arrow-down'>
+                            <IoMdArrowDropdown />
+                        </span>}
                     </div>
                     {showDropdown && (
                         <div className="matching-data">
