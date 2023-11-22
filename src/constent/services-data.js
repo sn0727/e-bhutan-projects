@@ -1,4 +1,5 @@
 import { AiFillBank } from "react-icons/ai"
+import { GiMoneyStack } from "react-icons/gi";
 import { image } from "./image"
 export const services = [
     {
@@ -138,6 +139,12 @@ export const services = [
                 link: "/money-transfer",
                 title: "Money Transfer",
                 image: image.MoneyTransfer
+            },
+            {
+                id: 3,
+                link: "/quick-dhan",
+                title: "Quick Dhan",
+                icon: <GiMoneyStack />
             },
             // {
             //     id: 2,
