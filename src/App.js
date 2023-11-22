@@ -61,6 +61,7 @@ import OpenAccount from './pages/OpenAccount/OpenAccount';
 import AepsSuccess from './pages/AEPS/AepsSuccess';
 import NetwordError from './pages/NetwordError/NetwordError';
 import Testing from './pages/Testing/Testing';
+import QuickDhan from './pages/QuickDhan/QuickDhan';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -131,6 +132,7 @@ function App() {
           <Route path='/testing' element={<Testing />} />
           <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
           <Route path='/Money_Transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
+          <Route path='/quick-dhan' element={<QuickDhan />} />
         </Route>
         {/* protected router */}
       </Routes> : <NetwordError />}
