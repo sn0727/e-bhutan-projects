@@ -121,12 +121,12 @@ export const services = [
         ],
         // // banking service objects
         BankingServicesAndInsuranceServices: [
-            {
-                id: 1,
-                link: "/aeps",
-                title: "AEPS",
-                image: image.AEPS
-            },
+            // {
+            //     id: 1,
+            //     link: "/aeps",
+            //     title: "AEPS",
+            //     image: image.AEPS
+            // },
             {
                 id: 2,
                 link: "/open-account",
