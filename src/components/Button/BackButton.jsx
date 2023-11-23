@@ -7,7 +7,7 @@ const BackButton = ({ link }) => {
 
   return (
     <div className='go-to-back'>
-      <Link className='btn btn-primary' to={`/${link}`}><IoMdArrowRoundBack /></Link>
+      <Link className='' to={`/${link}`}><IoMdArrowRoundBack /></Link>
     </div>
   )
 }

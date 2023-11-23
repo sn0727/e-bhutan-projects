@@ -155,7 +155,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                         className='search-input' />
                     </div>
                     <div className='col-6'>
-                      <label htmlFor="IFSC" className='d-block'>Enter Bank Id <span className='text-red'>*</span></label>
+                      <label htmlFor="IFSC" className='d-block'>Select Bank <span className='text-red'>*</span></label>
                       <SearchFilter bankDetailsData={bankDetailsData} sendBandIdToPopModal={sendBandIdToPopModal} />
                     </div>
                   </div>

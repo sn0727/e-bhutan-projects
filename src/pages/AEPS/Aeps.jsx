@@ -19,6 +19,7 @@ import $ from 'jquery';
 import { Autocomplete, TextField } from '@mui/material';
 import { ValidateAadhaar, ValidatePan, ValidatePhone, isAddressValid } from '../../utils/validation';
 import FingerPrintDevice from '../../utils/FingerPrintDevice';
+import CustomModal from '../../components/Modal/CustomModal';
 
 let url, finalUrl, MethodCapture, MethodInfo, OldPort, DString, device, thrownError
 

@@ -659,7 +659,7 @@ h1.statusCode-sd img {
     padding: 5px;
     margin: 2px;
     cursor: pointer;
-    
+
 }
 
 .matching-data ul li:hover {
@@ -686,7 +686,7 @@ h1.statusCode-sd img {
     line-height: 125%;
 }
 
-.card {
+.card-box {
     border-radius: 10px;
     box-shadow: 0 0px 10px rgba(44, 66, 125, 0.25);
     padding: 10px;
@@ -775,4 +775,49 @@ input.ticket-gray-text {
 
 .ticket-savebill .btn-sucess {
     border-radius: 30px;
+}
+
+.ticket-savebill .active-btn {
+    border-radius: 30px;
+}
+
+.border-underline {
+    border-bottom: 1px solid #000;
+}
+
+.save-bill-title {
+    font-size: 14px;
+}
+
+.date-picker-parent input {
+    width: 100%;
+}
+.date-picker-parent .react-datepicker-wrapper {
+    width: 100%;
+}
+
+.date-picker-parent.right input {
+    text-align: right;
+}
+
+.heading-name{
+    font-family: var(--Inter);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+
+}
+.add-member-headig{
+    font-family: var(--Inter);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+}
+.add-member-subheading{
+    font-family: var(--Inter);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
 }
