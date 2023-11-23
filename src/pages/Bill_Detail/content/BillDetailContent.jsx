@@ -36,7 +36,7 @@ const BillDetailContent = ({ billDetails }) => {
         console.log(res);
         setisLoading(false)
         // alert(res.message)
-        navigate('/payment-success', { state: { data: data, PdfLink: PdfLink, operator: operator } })
+        navigate('/payment-success', { state: { data: data, operator: operator } })
       },
       err => {
         console.log(err);

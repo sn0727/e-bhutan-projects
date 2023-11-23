@@ -47,7 +47,7 @@ const PaymentSuccessContent = ({ billDetails }) => {
   return (
     <React.Fragment>
       {
-        isLoading ? <Loader />
+        isLoading ? <div style={{height:500}}><Loader isLoading={isLoading} /></div>
           : <div className={styles.main}>
             <div className={styles.paymentSuccess} >
               <div className="comman-container px-4">
@@ -93,6 +93,7 @@ const PaymentSuccessContent = ({ billDetails }) => {
               <a onClick={() => GetPdf()} >
                 <FiDownload style={{ fontSize: 60, margin: 'auto' }} />
               </a>}
+
           </div>
       }
 
