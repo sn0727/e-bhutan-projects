@@ -38,6 +38,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 125%;
+  flex-wrap: wrap;
+
   /* 17.5px */
 }
 
