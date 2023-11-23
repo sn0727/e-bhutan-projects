@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { Button, ChakraProvider, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { APIRequest, ApiUrl } from '../../utils/api';
 import { toast } from 'react-toastify';
 
 const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => {
+    const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isLoading, setisLoading] = useState(false)
     const [amount, setAmout] = useState('')
 
-    const sendAmount =()=>{
-        if(userDetails?.verified==="1")
-        {
+    const sendAmount = () => {
+        if (userDetails?.verified === "1") {
             onOpen()
         }
-        else{
+        else {
             alert("Sender Is Not Varified !, Please Pay Penny TO Varified Sender !..")
         }
     }
@@ -43,10 +43,16 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => 
                 setisLoading(false)
                 toast.success(res?.message)
                 onClose()
+                navigate('/payment-success', {
+                    state: {
+                        data: {
+                            invoiceNo: res?.invoiceNo,
+                            name:res?.data?.benename,
+                            amount:res?.data?.txn_amount,
+                        }
+                    }
+                })
                 fetchBeneficiaryFun()
-                // setTimeout(() => {
-                //     window.location.reload(false);
-                // }, 1000)
             },
             err => {
                 console.log(err, "================== err mili");
@@ -62,7 +68,7 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => 
             {userDetails?.verified === "0" ? null : <Button onClick={sendAmount} className='FaChevronRight' colorScheme='blue' marginRight={'10px'}>
                 Pay Now
                 {userDetails?.verified === "0" ? null : <div className='verifyBtn'>&#10003;</div>}
-            </Button> }
+            </Button>}
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
