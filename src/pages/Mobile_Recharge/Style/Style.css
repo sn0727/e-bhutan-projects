@@ -59,6 +59,7 @@
   margin-bottom: 10px;
   /* 17.5px */
 }
+
 /* 
 .set-p-relative {
   position: relative;
@@ -68,6 +69,7 @@
   position: relative;
   padding-left: 0;
 }
+
 .enter-mobilenum #demo-select-small {
   display: flex;
   max-width: 265px;
@@ -100,6 +102,19 @@
   background: #F0F0F0;
   padding: 0 16px;
 }
+
+.messageArea {
+  min-width: 340px;
+  width: 100%;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 16px;
+  resize: none;
+  outline: none;
+}
+
 .enter-mobilenum input::placeholder {
   color: #AEADB3;
   text-align: left;
@@ -322,7 +337,8 @@
   justify-content: space-between;
 }
 
-.bill-details .bill-details-left, .bill-details-right {
+.bill-details .bill-details-left,
+.bill-details-right {
   max-width: 45%;
   width: 100%;
 }
@@ -343,6 +359,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .bill-details .bill-details-right .inner-bill-details {
   display: flex;
   justify-content: space-between;
@@ -358,6 +375,7 @@
   line-height: 125%;
   /* 20px */
 }
+
 .bill-details .inner-bill-details ul.bill-list-right li {
   color: #0F161E;
   font-family: Manrope;
@@ -368,32 +386,42 @@
   font-weight: 400;
   line-height: 125%;
 }
+
 .visibilty-hidden {
   visibility: hidden;
 }
-.bill-list-left.text-black li{
+
+.bill-list-left.text-black li {
   color: #000 !important;
 }
 
-input, select, textarea{
+input,
+select,
+textarea {
   color: #000 !important;
 }
+
 .autocomplete-custom-style {
   min-width: 340px !important;
-  
+
 }
-.autocomplete-custom-style-input label + div {
+
+.autocomplete-custom-style-input label+div {
   padding: 0 50px 0 10px !important;
   height: 40px !important;
 }
-.autocomplete-custom-style-input label + div > input {
+
+.autocomplete-custom-style-input label+div>input {
   background-color: transparent !important;
   height: fit-content !important;
 }
+
 .autocomplete-custom-style-input label {
   top: -7px !important;
 }
-.enter-mobilenum > div {
+
+.enter-mobilenum>div {
   margin-left: 0 !important;
 }
+
 /* =============== Mobile recharge bill details page css ============= */

@@ -162,6 +162,11 @@ export const ApiUrl = {
   // Bank Account
   generateURL: `${APIBank}account/generateURL`,
 
+  //Quik Dhan
+  dhanSendOTP: `${APIBank}account/quick/dhan/sendOTP`,
+  dhanVerifyOTP: `${APIBank}account/quick/dhan/verifyOTP`,
+
+
 };
 
 

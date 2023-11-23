@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -52,8 +52,7 @@ const MobileChoicePlanContent = () => {
   const receivedData = location.state;
   const { info } = receivedData.data;
   const { circle, operator, data, ConsumerNumber } = receivedData;
-  const { COMBO, Romaing, SMS, TOPUP } = info
-
+  const { COMBO, Romaing, SMS, TOPUP, FULLTT } = info
   const [value, setValue] = useState(0);
   const [isActive, setIsActive] = useState(false)
 
@@ -79,11 +78,13 @@ const MobileChoicePlanContent = () => {
 
   }
 
+  
+
   return (
     <div className="comman-container px-4">
       <div className='mobile-recharge'>
-      <BackButton link={"mobile-recharge"}/>
-        <h1>Choice Plan</h1>
+        <BackButton link={"mobile-recharge"} />
+        <h1>Select Plan</h1>
       </div>
 
       <Box sx={{ width: '100%' }}>
@@ -176,6 +177,17 @@ const MobileChoicePlanContent = () => {
             <div className="selectpaln">
               {
                 COMBO?.map((items, index) => (
+                  <div className={`recharge-colurm ${isActive.rs !== items.rs ? "recharge-colurm" : "addborder"}`} key={index} onClick={() => setIsActive(items)}>
+                    <div className='price-text'><LuIndianRupee /> <span>{items.rs}</span></div>
+                    <div className='other-content'>
+                      <p>{items.validity}</p>
+                      <p>{items.desc}</p>
+                    </div>
+                  </div>
+                ))
+              }
+              {
+                FULLTT?.map((items, index) => (
                   <div className={`recharge-colurm ${isActive.rs !== items.rs ? "recharge-colurm" : "addborder"}`} key={index} onClick={() => setIsActive(items)}>
                     <div className='price-text'><LuIndianRupee /> <span>{items.rs}</span></div>
                     <div className='other-content'>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Loader(props) {
+ function Loader(props) {
   const { isLoading = false } = props
   return (
     <div>
@@ -15,3 +15,5 @@ export default function Loader(props) {
     </div>
   );
 }
+
+export default Loader

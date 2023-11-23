@@ -27,6 +27,11 @@ export function ValidateOtp4(data) {
     return otp.test(data);
 }
 
+export function ValidateOtp6(data) {
+    const otp = /^\+?[1-9][0-9]{5,5}$/;
+    return otp.test(data);
+}
+
 export function ValidatePassword(data) {
     const password = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     return password.test(data);
@@ -35,11 +40,10 @@ export function ValidatePassword(data) {
 export function isAddressValid(address) {
     // Remove leading and trailing whitespaces
     const trimmedAddress = address.trim();
-  
+
     // Split the address into words
     const words = trimmedAddress.split(/\s+/);
-  
+
     // Check if the number of words is at least 3
     return words.length >= 3;
-  }
-  
+}

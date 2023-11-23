@@ -1,0 +1,15 @@
+.textAddmon {
+ width: 250px;
+ margin: auto;
+ color: #0F161E;
+ font-family: Manrope;
+ font-size: 14px;
+ font-style: normal;
+ font-weight: 700;
+ line-height: 125%;
+ display: flex;
+ margin-bottom: 10px;
+ justify-content: space-around;
+
+ /* 17.5px */
+}

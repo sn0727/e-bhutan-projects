@@ -1,4 +1,5 @@
 import { AiFillBank } from "react-icons/ai"
+import { GiMoneyStack } from "react-icons/gi";
 import { image } from "./image"
 export const services = [
     {
@@ -140,6 +141,12 @@ export const services = [
                 image: image.MoneyTransfer
             },
             // {
+            //     id: 3,
+            //     link: "/quick-dhan",
+            //     title: "Upi cash withdrawal",
+            //     icon: <GiMoneyStack />
+            // },
+            // {
             //     id: 2,
             //     link: "/",
             //     title: "Money Transfer",
@@ -209,44 +216,44 @@ export const services = [
             // }
         ],
         // // Tour and Travel service objects
-        TourAndTravel: [
-            {
-                id: 1,
-                link: "/",
-                title: "Hotel",
-                image: image.Hotel
-            },
-            {
-                id: 2,
-                link: "/",
-                title: "Flights",
-                image: image.Flights
-            },
-            {
-                id: 3,
-                link: "/",
-                title: "Bus",
-                image: image.Bus
-            },
-            {
-                id: 4,
-                link: "/",
-                title: "Train",
-                image: image.Train 
-            },
-            {
-                id: 5,
-                link: "/travel-and-tour",
-                title: "Tour & Travel",
-                image: image.TourTravel
-            },
-            {
-                id: 6,
-                link: "/",
-                title: "Offers & Package",
-                image: image.OffersPackage
-            }
-        ],
+        // TourAndTravel: [
+        //     {
+        //         id: 1,
+        //         link: "/",
+        //         title: "Hotel",
+        //         image: image.Hotel
+        //     },
+        //     {
+        //         id: 2,
+        //         link: "/",
+        //         title: "Flights",
+        //         image: image.Flights
+        //     },
+        //     {
+        //         id: 3,
+        //         link: "/",
+        //         title: "Bus",
+        //         image: image.Bus
+        //     },
+        //     {
+        //         id: 4,
+        //         link: "/",
+        //         title: "Train",
+        //         image: image.Train 
+        //     },
+        //     {
+        //         id: 5,
+        //         link: "/travel-and-tour",
+        //         title: "Tour & Travel",
+        //         image: image.TourTravel
+        //     },
+        //     {
+        //         id: 6,
+        //         link: "/",
+        //         title: "Offers & Package",
+        //         image: image.OffersPackage
+        //     }
+        // ],
 
         // // Financial Services objects
         // FinancialServices: [
