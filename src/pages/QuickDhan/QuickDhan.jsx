@@ -150,7 +150,7 @@ const QuickDhan = () => {
             <div className="comman-container px-4">
                 <div className='mobile-recharge'>
                     <BackButton link={"home"} />
-                    <h1>Send Money</h1>
+                    <h1>Upi cash withdrawal</h1>
                 </div>
                 <div className="comman-container px-4">
                     <div className='button-process'>
@@ -195,7 +195,7 @@ const QuickDhan = () => {
                                         PlaceHolderTitle={'Enter amount'}
                                         InputFeildValue={Amount}
                                         setInputFeildValue={setAmount}
-                                        disc={'Please enter amount'}
+                                        disc={'Please enter amount (multiple of 100)'}
                                     />
 
                                     <div className='py-3'>

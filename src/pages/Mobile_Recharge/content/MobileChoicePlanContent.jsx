@@ -84,7 +84,7 @@ const MobileChoicePlanContent = () => {
     <div className="comman-container px-4">
       <div className='mobile-recharge'>
         <BackButton link={"mobile-recharge"} />
-        <h1>Choice Plan</h1>
+        <h1>Select Plan</h1>
       </div>
 
       <Box sx={{ width: '100%' }}>
