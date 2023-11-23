@@ -140,12 +140,12 @@ export const services = [
                 title: "Money Transfer",
                 image: image.MoneyTransfer
             },
-            // {
-            //     id: 3,
-            //     link: "/quick-dhan",
-            //     title: "Upi cash withdrawal",
-            //     icon: <GiMoneyStack />
-            // },
+            {
+                id: 3,
+                link: "/quick-dhan",
+                title: "Upi cash withdrawal",
+                icon: <GiMoneyStack />
+            },
             // {
             //     id: 2,
             //     link: "/",
