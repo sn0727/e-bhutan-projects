@@ -71,7 +71,7 @@ const QuickDhan = () => {
             res => {
                 console.log(res?.data);
                 setResData(res?.data?.data)
-                toast.error(res?.message)
+                toast.success(res?.message)
                 setisLoading(false)
             },
             err => {
@@ -113,8 +113,8 @@ const QuickDhan = () => {
             res => {
                 console.log(res?.data);
                 setQrCode(res?.data?.qr_link)
-                toast.error(res?.message)
-                setSeconds(20)
+                toast.success(res?.message)
+                setSeconds(30)
                 setisLoading(false)
             },
             err => {
@@ -144,19 +144,6 @@ const QuickDhan = () => {
         }
     }, [seconds, setQrCode]);
 
-    // useEffect(() => {
-    //     if (seconds > 0) {
-    //         const intervalId = setInterval(() => {
-    //             setSeconds(prevSeconds => prevSeconds - 1);
-    //         }, 1000);
-
-    //         clearInterval(intervalId);
-    //     }
-    //     if (seconds < 1) {
-    //         setQrCode('')
-    //     }
-    //     console.log(seconds);
-    // }, [seconds]);
     return (
         <>
             <Header />
