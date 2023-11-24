@@ -71,6 +71,8 @@ const HomeContent = () => {
         <div className="container mx-auto px-4">
           <div className="recharge-bill-payment-innerBox h-344">
             <h2>Recharge & Bill Payment</h2>
+            <h1>add home title</h1>
+            <h1>add home title01</h1>
             <div className='servics-list'>
               {
 
@@ -117,7 +119,7 @@ const HomeContent = () => {
       {/* Banking Services & Insurance Services */}
 
       {/* Tour & Travel */}
-      {/* <section className='rechages-bill-payment'>
+      <section className='rechages-bill-payment'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox h-178">
             <h2>Tour & Travel</h2>
@@ -139,7 +141,7 @@ const HomeContent = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Tour & Travel */}
 
       {/* Financial Services */}
