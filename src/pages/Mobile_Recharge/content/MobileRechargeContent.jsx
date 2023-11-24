@@ -202,6 +202,8 @@ const MobileRechargeContent = () => {
           <div className='mobile-recharge'>
             <BackButton link={"home"} />
             <h1>Mobile Recharge</h1>
+            <h1>Mobile Recharge</h1>
+            <h1>Mobile Recharge</h1>
           </div>
         </div>
         <div className="inputFeild">
