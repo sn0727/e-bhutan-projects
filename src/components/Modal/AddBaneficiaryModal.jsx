@@ -128,7 +128,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
           <ModalCloseButton />
           <ModalBody>
             <ChakraProvider>
-              <div className="comman-container px-4">
+              <div className="comman-container">
                 <div className='Verified-Transfer' style={{ marginTop: '60px' }}>
                   <div className='m-row'>
                     <div className='col-12 mb-1'>
@@ -146,7 +146,7 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                     </div>
                   </div>
                   <div className='m-row'>
-                    <div className='col-6'>
+                    <div className='col-12'>
                       <label htmlFor="IFSC" className='d-block'>Enter IFSC Code <span className='text-red'>*</span></label>
                       <Input placeholder='IFSC Code'
                         name="IFSCCODE"
@@ -154,11 +154,13 @@ const AddBaneficiaryModal = ({ mobileNo, fetchBeneficiaryFun }) => {
                         onChange={handlerInput}
                         className='search-input' />
                     </div>
-                    <div className='col-6'>
+                  </div>
+                  <div className='m-row'>
+                    <div className='col-12 my-2'>
                       <label htmlFor="IFSC" className='d-block'>Select Bank <span className='text-red'>*</span></label>
                       <SearchFilter bankDetailsData={bankDetailsData} sendBandIdToPopModal={sendBandIdToPopModal} />
                     </div>
-                  </div>
+                    </div>
                   <div className='m-row'>
                     <div className='col-12 my-2'>
                       <label htmlFor="otp" className='d-block'>Enter Name <span className='text-red'>*</span></label>
