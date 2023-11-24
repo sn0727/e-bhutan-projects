@@ -1,32 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/Common/Header/Header'
 import Footer from '../../components/Common/Footer/Footer'
-import { TourAndTravelData } from '../../constent/services-data'
-import { Link } from 'react-router-dom'
-import FlightTicket01 from './FlightBookingComponents/FlightTicket01'
+import  "./css/flightBooking.css"
+import FlightTicketForm from './FlightBookingComponents/FlightTicketForm'
+import FlightListOfService from './FlightBookingComponents/FlightListOfService'
+import FlightTicketList from './FlightBookingComponents/FlightTicketList'
+import PreviousButton from './FlightBookingComponents/PreviousButton'
+
 
 const FlightsBooking = () => {
+    const [idComponent, setIdComponent] = useState(2)
+
     return (
-        <div>
+        <>
             <Header />
-            {/* Tour & Travel */}
-            <div className="px-4">
-                <div className='travel-service-list py-8'>
-                    {
-                        TourAndTravelData.map((item, index) => (
-                            <Link to={item.link} className='services_is' key={index}>
-                                <div className='serviceItem'>
-                                    <img src={item.image} alt="upi" />
-                                </div>
-                                <p>{item.title}</p>
-                            </Link>
-                        ))
-                    }
-                </div>
-                <FlightTicket01 />
+            <div className='comman-container px-4'>
+                <PreviousButton setIdComponent={setIdComponent} idComponent={idComponent} />
+                {
+                    idComponent === 1 && (
+                        <>
+                            <FlightListOfService />
+                            <FlightTicketForm setIdComponent={setIdComponent} />
+                        </>
+                    )
+                }
+                {
+                    idComponent === 2 && (
+                        <>
+                            <FlightTicketList />
+                        </>
+                    )
+                }
             </div>
             <Footer />
-        </div>
+        </>
     )
 }
 
