@@ -71,8 +71,6 @@ const HomeContent = () => {
         <div className="container mx-auto px-4">
           <div className="recharge-bill-payment-innerBox h-344">
             <h2>Recharge & Bill Payment</h2>
-            <h1>add home title</h1>
-            <h1>add home title01</h1>
             <div className='servics-list'>
               {
 
