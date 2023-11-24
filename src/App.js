@@ -36,9 +36,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import BillDetails from './pages/Bill_Detail/BillDetails';
 import Wallet from './pages/Wallet/Wallet';
 import DTHBillDetails from './pages/DTH_Recharge/DTHBillDetails';
-import EnterAadhaar from './components/Auth/EnterAadhaar';
 import Aeps from './pages/AEPS/Aeps';
-import TravelAndTour from './pages/Travel_And_Tour/TravelAndTour';
 import WalletTransaction from './pages/Transaction/WalletTransaction';
 import Laandline from './pages/Landline/Landline';
 import Loan from './pages/Loan/Loan';
@@ -62,7 +60,7 @@ import AepsSuccess from './pages/AEPS/AepsSuccess';
 import NetwordError from './pages/NetwordError/NetwordError';
 import Testing from './pages/Testing/Testing';
 import QuickDhan from './pages/QuickDhan/QuickDhan';
-import QuickDhanTest from './pages/QuickDhan/QuickDhanTesting';
+import FlightsBooking from './pages/FlightsBooking/FlightsBooking';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -112,7 +110,7 @@ function App() {
           <Route path='/commission-transaction' element={<CommisionTransaction />} />
           <Route path='/aeps' element={<Aeps />} />
           <Route path='/aeps-success' element={<AepsSuccess />} />
-          <Route path='/travel-and-tour' element={<TravelAndTour />} />
+          <Route path='/filght-booking' element={<FlightsBooking />} />
           <Route path='/wallet-transaction' element={<WalletTransaction />} />
           <Route path='/landline-recharge' element={<Laandline />} />
           <Route path='/loan-payment' element={<Loan />} />

@@ -1,0 +1,173 @@
+/* ================= comman button color code ============== */
+:root {
+    --themTextColor: #2C427D;
+    --themWhiteColor: #fff;
+    --themBlackColor: #000;
+    --themTextDarkColor: #0F161E;
+    --themTextGreenColor: #009D06;
+}
+
+/* =================== top button css code part 01 ====================== */
+.booking-list-tb-button {
+    width: 100%;
+    /* max-width: 700px; */
+    margin: auto;
+}
+
+.booking-list-tb-button .booking-list-tb-button-inr {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.booking-list-tb-button .booking-list-tb-button-inr button {
+    display: flex;
+    padding: 5px 17px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--themTextColor);
+    background: var(--themWhiteColor);
+    color: var(--themTextColor);
+}
+.booking-list-tb-button .booking-list-tb-button-inr button.activeColor {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+
+/* =================== top button css code part 01 ====================== */
+
+
+/* =================== top button css code part 02 ====================== */
+.booking-list-tb-content h3 {
+    color: var(--themTextColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin-bottom: 32px;
+}
+
+.booking-01 {
+    width: 100%;
+}
+
+.booking-01 {
+    width: 100%;
+    max-width: 753px;
+    min-height: 91px;
+    margin: auto;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid var(--themBlackColor);
+    background: var(--themWhiteColor);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 22px;
+}
+
+.booking-01 .booking-01-inr .service-logo img {
+    width: 100%;
+    max-width: 57px;
+}
+
+.booking-01 .booking-01-inr:nth-child(1) {
+    max-width: 25%;
+    width: 100%;
+    position: relative;
+}
+
+.booking-01 .booking-01-inr:nth-child(2) {
+    max-width: 50%;
+    width: 100%;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) {
+    max-width: 25%;
+    width: 100%;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) {
+    position: relative;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.booking-01 .booking-01-inr p.time-inr {
+    color: var(--themTextDarkColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    padding-bottom: 10px;
+}
+
+.booking-01 .booking-01-inr p.time-inr-dt {
+    color: var(--themTextDarkColor);
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.booking-01 .booking-01-inr .avilable-seat {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: #EAEEFF;
+}
+
+.booking-01 .booking-01-inr .avilable-seat {
+    color: var(--themTextColor);
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: -33px;
+    left: -23px;
+}
+
+.Discounted-price-at {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #EAEEFF;
+    position: absolute;
+    top: -45px;
+    right: -16px;
+}
+
+.Discounted-price-at p {
+    color: var(--themTextGreenColor);
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* =================== top button css code part 02 ====================== */

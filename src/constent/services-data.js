@@ -225,7 +225,7 @@ export const services = [
             },
             {
                 id: 2,
-                link: "/",
+                link: "/filght-booking",
                 title: "Flights",
                 image: image.Flights
             },
@@ -243,7 +243,7 @@ export const services = [
             },
             {
                 id: 5,
-                link: "/travel-and-tour",
+                link: "/",
                 title: "Tour & Travel",
                 image: image.TourTravel
             },
