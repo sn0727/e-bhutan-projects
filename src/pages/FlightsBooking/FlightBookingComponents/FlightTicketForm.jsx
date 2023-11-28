@@ -16,9 +16,6 @@ const FlightsBookingForm = ({ setIdComponent, setData }) => {
     const [fromValue, setFromValue] = React.useState(null);
     const [toValue, setToValue] = React.useState(null);
 
-    console.log(fromValue, '================= fromValue')
-    console.log(toValue, '================= toValue')
-
     const defaultProps = {
         options: top100Films,
         getOptionLabel: (option) => option.title,
@@ -28,6 +25,11 @@ const FlightsBookingForm = ({ setIdComponent, setData }) => {
         setIdComponent(2)
     }
 
+    const exchangeValues = () => {
+        // Swap the values between fromValue and toValue
+        setFromValue(toValue);
+        setToValue(fromValue);
+    };
     return (
         <>
             <div className='flight-ticket-outer mb-5 mt-0'>
@@ -47,6 +49,7 @@ const FlightsBookingForm = ({ setIdComponent, setData }) => {
                                         {...defaultProps}
                                         id="disable-close-on-select"
                                         clearOnEscape
+                                        value={fromValue}
                                         onChange={(event, newValue) => {
                                             setFromValue(newValue); // Update the selected option when an option is selected
                                         }}
@@ -55,7 +58,7 @@ const FlightsBookingForm = ({ setIdComponent, setData }) => {
                                         )}
                                     />
                                 </div>
-                                <div style={{width:'10%'}}>
+                                <div style={{ width: '10%' }} onClick={() => exchangeValues()}>
                                     <img src={image.SyncArrow} alt="Fingerprint" className={`Image-SyncArrow `} />
                                 </div>
                                 <div style={{ width: '45%' }}>
@@ -69,6 +72,7 @@ const FlightsBookingForm = ({ setIdComponent, setData }) => {
                                             setToValue(newValue); // Update the selected option when an option is selected
                                         }}
                                         clearOnEscape
+                                        value={toValue}
                                         renderInput={(params) => (
                                             <TextField {...params} label="To" variant="standard" />
                                         )}
