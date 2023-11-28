@@ -55,5 +55,9 @@ export const image = {
 
     // flightBooking service image ===============
     airIndiaImage : require("../assets/flightBooking/air-india.png"),
-    vistara : require("../assets/flightBooking/vistara.png")
+    vistara : require("../assets/flightBooking/vistara.png"),
+    paymentSuccess : require("../assets/gif/paymentSuccess.gif"),
+    downloadIcon : require("../assets/gif/download.png"),
+    printIcon : require("../assets/gif/print.png"),
+    shareIcon : require("../assets/gif/share.png")
 }
