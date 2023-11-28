@@ -4,20 +4,13 @@ import { SvgIcon } from "../../../constent/SvgIcons"
 
 const buttonS = ["Cheapest", "Non-Stop", "Timings", "Duration"]
 
-function FlightTicketList() {
+function FlightTicketList({setIdComponent}) {
     const [activeColor, setActiveColor] = useState('Timings')
     console.log(activeColor)
     return (
         <div className='booking-list-main'>
             <div className='booking-list-tb-button'>
-                {/* <div className='booking-list-tb-button-inr'>
-                    <button type='button'> Cheapest </button>
-                    <button type='button'> Non-Stop </button>
-                    <button type='button' className='activeColor'> Timings </button>
-                    <button type='button'> Duration </button>
-                </div> */}
                 <div className='booking-list-tb-button-inr'>
-
                     {
                         buttonS.map((button, index) => (
                             <button type='button' className={`${activeColor === button ? 'activeColor' : null}`} key={index} onClick={()=>setActiveColor(button)}> {button} </button>
@@ -28,7 +21,7 @@ function FlightTicketList() {
             <div className='booking-list-tb-content'>
                 <h3 className='tb-title'>Fares with Exclusive discounts</h3>
                 {/* row 01 */}
-                <div className='booking-01'>
+                <div className='booking-01' onClick={()=>setIdComponent(3)}>
                     <div className='booking-01-inr'>
                         <div className='service-logo'>
                             <img src={image?.airIndiaImage} alt="logo name" />

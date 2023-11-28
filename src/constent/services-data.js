@@ -1,6 +1,7 @@
 import { AiFillBank } from "react-icons/ai"
 import { GiMoneyStack } from "react-icons/gi";
 import { image } from "./image"
+import { SvgIcon } from "./SvgIcons";
 export const services = [
     {
         RechargeBillPayment: [
@@ -342,39 +343,33 @@ export const services = [
 
 export const TourAndTravelData = [
     {
-        id: 1,
+        id: 6,
         link: "/",
-        title: "Hotel",
-        image: image.Hotel
+        title: "Offers",
+        icon: SvgIcon?.OfferIcon
     },
     {
         id: 2,
         link: "/",
         title: "Flights",
-        image: image.Flights
+        icon: SvgIcon?.FlightsIcon
     },
     {
         id: 3,
         link: "/",
         title: "Bus",
-        image: image.Bus
+        icon: SvgIcon?.BusIcon
+    },
+    {
+        id: 1,
+        link: "/",
+        title: "Metro",
+        icon: SvgIcon?.MetroIcon
     },
     {
         id: 4,
         link: "/",
         title: "Train",
-        image: image.Train 
+        icon: SvgIcon?.TrainIcon
     },
-    {
-        id: 5,
-        link: "/travel-and-tour",
-        title: "Tour & Travel",
-        image: image.TourTravel
-    },
-    {
-        id: 6,
-        link: "/",
-        title: "Offers & Package",
-        image: image.OffersPackage
-    }
 ]

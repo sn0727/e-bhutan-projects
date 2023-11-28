@@ -146,6 +146,7 @@ export const ApiUrl = {
   balanceEnquiry: `${APIBank}aeps/balanceEnquiry `,
   getMiniStatement: `${APIBank}aeps/getMiniStatement `,
   getBanks: `${APIBank}dmt/transfer/getBanks `,
+  bankAccountVerify: `${APIBank}account/verify/details `,
 
 
   // DMT api route

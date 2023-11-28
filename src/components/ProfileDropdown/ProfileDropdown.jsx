@@ -25,6 +25,7 @@ const ProfileDropdown = ({ token02, profileData }) => {
         <MenuList>
           {/* MenuItems are not rendered unless Menu is open */}
           <MenuItem><Link to="/user-profile">Profile</Link></MenuItem>
+          <MenuItem><Link to="/bank-account-verification">Bank Account Verification</Link></MenuItem>
           <MenuItem><Link to="/change-password">Change Password</Link></MenuItem>
           <MenuItem><Link to='/wallet'>Wallet</Link></MenuItem>
           {/* <MenuItem><Link to='/transaction'>All Transaction</Link></MenuItem>
