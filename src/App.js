@@ -62,6 +62,7 @@ import Testing from './pages/Testing/Testing';
 import QuickDhan from './pages/QuickDhan/QuickDhan';
 import FlightsBooking from './pages/FlightsBooking/FlightsBooking';
 import BankAccountVerification from './pages/BankAccountVerification/BankAccountVerification';
+import BusBooking from './pages/BusBooking/BusBooking';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -134,6 +135,7 @@ function App() {
           <Route path='/money-transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
           <Route path='/quick-dhan' element={<QuickDhan />} />
           <Route path='/bank-account-verification' element={<BankAccountVerification />} />
+          <Route path='/bus-booking' element={<BusBooking />} />
         </Route>
         {/* protected router */}
       </Routes> : <NetwordError />}

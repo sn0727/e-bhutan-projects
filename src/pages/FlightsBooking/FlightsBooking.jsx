@@ -10,10 +10,18 @@ import AddTravelDetails from './FlightBookingComponents/AddTravelDetails'
 import BookingDetails from './FlightBookingComponents/BookingDetails'
 import Loading from '../../components/Feature/Loading'
 import AnimateGIF from '../../components/Common/AminateGIF/AnimateGIF'
+import PassengerDetails from './FlightBookingComponents/PassengerDetails'
 
 
 const FlightsBooking = () => {
     const [idComponent, setIdComponent] = useState(1)
+    const [saveResponseData, setSaveResponseData] = useState([])
+
+    const flightBookingData = (data) => {
+        setSaveResponseData(data)
+    }
+    console.log(saveResponseData, '==================== flight booking components')
+
 
     return (
         <>
@@ -24,14 +32,20 @@ const FlightsBooking = () => {
                     idComponent === 1 && (
                         <>
                             <FlightListOfService />
-                            <FlightTicketForm setIdComponent={setIdComponent}  />
+                            <FlightTicketForm
+                                setIdComponent={setIdComponent}
+                                flightBookingData={flightBookingData}
+                            />
                         </>
                     )
                 }
                 {
                     idComponent === 2 && (
                         <>
-                            <FlightTicketList setIdComponent={setIdComponent} />
+                            <FlightTicketList
+                                setIdComponent={setIdComponent}
+                                saveResponseData={saveResponseData}
+                            />
                         </>
                     )
                 }
@@ -45,7 +59,7 @@ const FlightsBooking = () => {
                 {
                     idComponent === 4 && (
                         <>
-                            <BookingDetails setIdComponent={setIdComponent} />
+                            <PassengerDetails setIdComponent={setIdComponent} />
                         </>
                     )
                 }
@@ -53,13 +67,21 @@ const FlightsBooking = () => {
                 {
                     idComponent === 5 && (
                         <>
-                            <Loading setIdComponent={setIdComponent} />
+                            <BookingDetails setIdComponent={setIdComponent} />
                         </>
                     )
                 }
 
                 {
                     idComponent === 6 && (
+                        <>
+                            <Loading setIdComponent={setIdComponent} />
+                        </>
+                    )
+                }
+
+                {
+                    idComponent === 7 && (
                         <>
                             <AnimateGIF setIdComponent={setIdComponent} />
                         </>

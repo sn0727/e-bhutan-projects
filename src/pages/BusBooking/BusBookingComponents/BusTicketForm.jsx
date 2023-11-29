@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import TicketButton from '../../../components/Button/TicketButton'
 import { image } from '../../../constent/image'
 import { Checkbox, FormControlLabel } from '@mui/material'
@@ -7,94 +7,30 @@ import { SvgIcon } from '../../../constent/SvgIcons'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomModal from '../../../components/Modal/CustomModal'
-import { APIRequest, ApiUrl } from '../../../utils/api'
-import Loader from '../../../components/Feature/Loader'
-import { toast } from 'react-toastify'
 
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
-const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
+const BusTicketForm = ({setIdComponent}) => {
     const [Tab, setTab] = useState(1);
-    const [ipAddress, setIpAddress] = useState({});
-    const [isLoading, setIsLoading] = useState(false)
     const [saveBill, setsaveBill] = useState('')
     const [isNonStop, setisNonStop] = useState(false)
     const [fromValue, setFromValue] = React.useState(null);
     const [toValue, setToValue] = React.useState(null);
-    const [saveResponse, setSaveResponse] = React.useState([]);
-
-    // get ip address value
-    const getIpAddressFun = async () => {
-        const response = await fetch(
-            `https://api.db-ip.com/v2/free/self`
-        );
-        const data = await response.json();
-        setIpAddress(data?.ipAddress);
-    }
-    useEffect(() => {
-        getIpAddressFun()
-    }, [])
 
     const defaultProps = {
         options: top100Films,
         getOptionLabel: (option) => option.title,
     };
 
-    // Swap the values between fromValue and toValue
+    const bookingHandlerFun = () => {
+        setIdComponent(2)
+    }
+
     const exchangeValues = () => {
+        // Swap the values between fromValue and toValue
         setFromValue(toValue);
         setToValue(fromValue);
     };
-
-    const bookingHandlerFun = () => {
-        setIsLoading(true)
-        let config = {
-            method: 'post',
-            url: "https://api.ebhuktan.com/api/flight/ticket/booking/search",
-            body: {
-                "EndUserIp": ipAddress,
-                "AdultCount": "1",
-                "ChildCount": "0",
-                "InfantCount": "0",
-                "DirectFlight": "false",
-                "OneStopFlight": "false",
-                "JourneyType": "1",
-                "PreferredAirlines": null,
-                "Segments": [
-                    {
-                        "Origin": fromValue?.title,
-                        "Destination": toValue?.title,
-                        // "Origin": "DEl",
-                        // "Destination": "BOM",
-                        "FlightCabinClass": "1",
-                        "PreferredDepartureTime": "2023-11-29T00: 00: 00",
-                        "PreferredArrivalTime": "2023-12-06T00: 00: 00"
-                    }
-                ],
-                "Sources": null
-            },
-        }
-        APIRequest(
-            config,
-            res => {
-                console.log(res, '====================== res booking')
-                setSaveResponse(res?.data)
-                setIsLoading(false)
-                // send full data perent componets
-                flightBookingData(res?.data)
-                setIdComponent(2)
-            },
-            err => {
-                console.log(err, '====================== err booking')
-                toast.error(err?.message)
-                setIsLoading(false)
-            }
-        )
-    }
-
-
-
-
 
     return (
         <>
@@ -164,7 +100,7 @@ const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
                                 <CustomModal />
                             </div>
                             <div className='ticket-savebill my-4'>
-                                <p className='ticket-gray-text save-bill-title pb-2'>Special Fares (optional)</p>
+                                <p className='ticket-gray-text save-bill-title pb-2'>Save this bill as (optional)</p>
                                 <div className='buttonBtn'>
                                     {SaveBillOption.map((item, i) =>
                                         <button key={`savebillbutton${i}`}
@@ -182,23 +118,16 @@ const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
                     </div>
                 </div>
             </div>
-            <>
-                <Loader isLoading={isLoading} />
-            </>
         </>
-
-
     )
 }
 
-export default FlightsBookingForm;
+export default BusTicketForm
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
     { title: 'Andhra Pradesh', year: 1994 },
-    { title: 'DEL', year: 1994 },
     { title: 'Arunachal Pradesh', year: 1972 },
-    { title: 'BOM', year: 1972 },
     { title: 'Assam', year: 1974 },
     { title: 'Chhattisgarh', year: 2008 },
     { title: 'Goa', year: 1957 },

@@ -6,7 +6,7 @@ const Loading = ({ setIdComponent }) => {
   useEffect(() => {
     // Set a timeout to update the message after 2000 milliseconds (2 seconds)
     const timeoutId = setTimeout(() => {
-      setIdComponent(6)
+      setIdComponent(7)
     }, 2000);
 
     // Clean up the timeout to avoid memory leaks

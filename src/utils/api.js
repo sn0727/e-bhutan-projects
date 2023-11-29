@@ -88,6 +88,10 @@ export const ApiUrl = {
   fastTagFetchDetails: `${apiBaseUrl}fastTag/fetchDetails`,
   fastTagDoRecharge: `${apiBaseUrl}fastTag/doRecharge`,
 
+
+  // booking api route
+  bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
+
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
   // electricityFetchBill: `${apiBaseUrl}electricity/bill-payment/fetchBill`,

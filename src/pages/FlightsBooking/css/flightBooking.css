@@ -155,8 +155,8 @@
     font-weight: 700;
     line-height: normal;
     position: absolute;
-    top: -33px;
-    left: -23px;
+    top: -50px;
+    left: -21px;
 }
 
 .Discounted-price-at {
@@ -179,6 +179,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+.booking-01.activeClassAdd {
+    border: 2px solid #2c427d;
 }
 
 /* =================== top button css code part 02 ====================== */
@@ -366,7 +369,12 @@
 .button-process.procced-chnage-space {
     margin: 52px 0;
 }
-
+h3.flightName {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
 /* =================== Add travel details css code part 03 ====================== */
 
 
