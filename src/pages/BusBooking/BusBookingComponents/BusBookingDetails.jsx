@@ -2,7 +2,7 @@ import React from 'react'
 import { SvgIcon } from '../../../constent/SvgIcons'
 import { Link } from 'react-router-dom'
 
-const BookingDetails = ({ setIdComponent }) => {
+const BusBookingDetails = ({ setIdComponent }) => {
     return (
         <div className='Booking-Details-main'>
             <h3 className='add-travel-detail-title'>Booking Details</h3>
@@ -104,11 +104,11 @@ const BookingDetails = ({ setIdComponent }) => {
             </div>
             <div className='button-process procced-chnage-space'>
                 <button type='button' className='button-pro'>
-                    <Link onClick={() => setIdComponent(7)}>Proceed</Link>
+                    <Link onClick={() => setIdComponent(5)}>Proceed</Link>
                 </button>
             </div>
         </div>
     )
 }
 
-export default BookingDetails
+export default BusBookingDetails

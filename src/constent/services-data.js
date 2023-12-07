@@ -232,7 +232,7 @@ export const services = [
             },
             {
                 id: 3,
-                link: "/",
+                link: "/bus-booking",
                 title: "Bus",
                 image: image.Bus
             },
@@ -350,13 +350,13 @@ export const TourAndTravelData = [
     },
     {
         id: 2,
-        link: "/",
+        link: "/filght-booking",
         title: "Flights",
         icon: SvgIcon?.FlightsIcon
     },
     {
         id: 3,
-        link: "/",
+        link: "/bus-booking",
         title: "Bus",
         icon: SvgIcon?.BusIcon
     },

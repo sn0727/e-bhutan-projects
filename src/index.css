@@ -47,7 +47,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html[native-dark-active] body {
+  background: #000;
+}
 html[native-dark-active] a,
 html[native-dark-active] button {
   color: #fff !important;

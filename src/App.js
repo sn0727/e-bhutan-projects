@@ -62,6 +62,10 @@ import Testing from './pages/Testing/Testing';
 import QuickDhan from './pages/QuickDhan/QuickDhan';
 import FlightsBooking from './pages/FlightsBooking/FlightsBooking';
 import BankAccountVerification from './pages/BankAccountVerification/BankAccountVerification';
+import BusBooking from './pages/BusBooking/BusBooking';
+import HorizontalList from './pages/Testing/HorizontalList';
+import { Another } from './pages/Testing/Another';
+// import HorizontalList from './pages/Testing/HorizontalList';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -129,11 +133,12 @@ function App() {
           <Route path='/payment-gateway' element={<PaymentGateway />} />
           <Route path='/network-error' element={<NetwordError />} />
           <Route path='/open-account' element={<OpenAccount />} />
-          <Route path='/testing' element={<Testing />} />
+          <Route path='/another' element={<Another />} />
           <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
           <Route path='/money-transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
           <Route path='/quick-dhan' element={<QuickDhan />} />
           <Route path='/bank-account-verification' element={<BankAccountVerification />} />
+          <Route path='/bus-booking' element={<BusBooking />} />
         </Route>
         {/* protected router */}
       </Routes> : <NetwordError />}

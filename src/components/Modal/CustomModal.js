@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import IncrementQuantity from '../Button/IncrementQuantity';
 import TicketButton from '../Button/TicketButton';
+import { SvgIcon } from '../../constent/SvgIcons';
 
 const style = {
     modal: {
@@ -29,16 +30,30 @@ export default function CustomModal() {
     const [open, setOpen] = useState(false);
     const [saveClass, setsaveClass] = React.useState('')
 
-
-
-
-
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
-        <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+        <div style={{
+            width: '100%'
+        }}>
+            {/* <Button onClick={handleOpen}>Open modal</Button> */}
+            <div className='flex-fill' onClick={handleOpen}>
+                <p className='ticket-gray-text text-left'>Travellers & Cabin Class</p>
+                <div className='flex border-underline gap-5'>
+                    <p>3 Travellers </p>
+                    <p>
+                        <span
+                            style={{
+                                display: 'inline-block',
+                                paddingRight: '5px'
+                            }}
+                        >{SvgIcon?.dots}</span>
+                        <span
+                        >Premium Economy</span>
+                    </p>
+                </div>
+            </div>
             <Modal
                 open={open}
                 onClose={handleClose}

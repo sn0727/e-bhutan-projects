@@ -2,125 +2,56 @@ import React, { useEffect, useState } from 'react'
 import TicketButton from '../../../components/Button/TicketButton'
 import { image } from '../../../constent/image'
 import { Checkbox, FormControlLabel } from '@mui/material'
-import DatePickerCustom, { DatePickerCustom2 } from '../../../components/Input/DatePicker'
+import DatePickerCustom from '../../../components/Input/DatePicker'
 import { SvgIcon } from '../../../constent/SvgIcons'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomModal from '../../../components/Modal/CustomModal'
-import { APIRequest, ApiUrl } from '../../../utils/api'
-import Loader from '../../../components/Feature/Loader'
-import { toast } from 'react-toastify'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { adultsQuantity1, apiData, childrenQuantity1, infantsQuantity1, ipAddressSave, travelClassValue } from '../atom/atom'
-import FlightBookingCustomeModal from '../modal/FlightBookingCustomeModal'
-import moment from 'moment'
+import { useRecoilState } from 'recoil'
+import { APIRequest } from '../../../utils/api'
+import { apiDataState } from '../atom/atom'
+
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
-const FlightsBookingForm = ({ setIdComponent }) => {
-    const [apiDatas, setApidata] = useRecoilState(apiData)
+const BusTicketForm = ({ setIdComponent }) => {
+    const [apidata, setApiData] = useRecoilState(apiDataState)
     const [Tab, setTab] = useState(1);
-    const [ipAddress, setIpAddress] = useRecoilState(ipAddressSave);
-    const [isLoading, setIsLoading] = useState(false)
     const [saveBill, setsaveBill] = useState('')
     const [isNonStop, setisNonStop] = useState(false)
-    const [startDate, setStartDate] = useState(new Date());
-    const [returnDate, setReturntDate] = useState(new Date());
     const [fromValue, setFromValue] = React.useState(null);
     const [toValue, setToValue] = React.useState(null);
-    const adultsQuantity = useRecoilValue(adultsQuantity1)
-    const childrenQuantity = useRecoilValue(childrenQuantity1)
-    const infantsQuantity = useRecoilValue(infantsQuantity1)
-    const saveClass = useRecoilValue(travelClassValue)
-
-    // get ip address value
-    const getIpAddressFun = async () => {
-        const response = await fetch(
-            `https://api.db-ip.com/v2/free/self`
-        );
-        const data = await response.json();
-        setIpAddress(data?.ipAddress);
-    }
-    useEffect(() => {
-        getIpAddressFun()
-    }, [])
 
     const defaultProps = {
         options: top100Films,
         getOptionLabel: (option) => option.title,
     };
 
-    // Swap the values between fromValue and toValue
-    const exchangeValues = () => {
-        setFromValue(toValue);
-        setToValue(fromValue);
-    };
-
-    const bookingHandlerFun = () => {
-        setIsLoading(true)
-        let Segments;
-        if (Tab === 1) {
-            Segments = [
-                {
-                    "Origin": fromValue?.title,
-                    "Destination": toValue?.title,
-                    "FlightCabinClass": saveClass,
-                    "PreferredDepartureTime": moment(startDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-                    "PreferredArrivalTime": moment(startDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
-                },
-                {
-                    "Origin": toValue?.title,
-                    "Destination": fromValue?.title,
-                    "FlightCabinClass": saveClass,
-                    "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-                    "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
-                }
-            ]   
-        }else if (Tab === 2) {
-            Segments = [
-                
-                {
-                    "Origin": toValue?.title,
-                    "Destination": fromValue?.title,
-                    "FlightCabinClass": saveClass,
-                    "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-                    "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
-                }
-            ]
-        }
+    useEffect(() => {
         let config = {
-            method: 'post',
-            url: ApiUrl?.bookingSearch,
-            url: "https://api.ebhuktan.com/api/flight/ticket/booking/search",
-
-            body: {
-                "EndUserIp": ipAddress,
-                "AdultCount": adultsQuantity,
-                "ChildCount": childrenQuantity,
-                "InfantCount": infantsQuantity,
-                "DirectFlight": "false",
-                "OneStopFlight": isNonStop,
-                "JourneyType": Tab,
-                "PreferredAirlines": null,
-                Segments,
-                "Sources": null
-            },
-
-        }
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/users'
+        };
         APIRequest(
             config,
             res => {
-                console.log(res, '====================== res booking dd')
-                setIsLoading(false)
-                setApidata(res?.data)
-                // setIdComponent(2)
+                setApiData(res)
+
             },
             err => {
-                console.log(err, '====================== err booking')
-                toast.error(err?.message)
-                setIsLoading(false)
+                console.log(err, '=============== err response')
             }
         )
+    }, [setApiData])
+
+    const bookingHandlerFun = () => {
+        setIdComponent(2)
     }
+
+    const exchangeValues = () => {
+        // Swap the values between fromValue and toValue
+        setFromValue(toValue);
+        setToValue(fromValue);
+    };
 
     return (
         <>
@@ -175,22 +106,22 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                                 <div className='flex-fill'>
                                     <p className='ticket-gray-text text-left'>Departure Date</p>
                                     <div className='date-picker-parent border-underline pt-1'>
-                                        <DatePickerCustom setStartDate={setStartDate} startDate={startDate} />
+                                        <DatePickerCustom />
                                     </div>
                                 </div>
 
                                 <div className='flex-fill'>
                                     <p className='ticket-gray-text text-right'>Return Date</p>
                                     <div className='date-picker-parent right border-underline pt-1'>
-                                        <DatePickerCustom2 setReturntDate={setReturntDate} returnDate={returnDate} disabled={Tab === 1 ? 'disabled' : null} className={Tab === 1 ? 'disabled-flight' : null} />
+                                        <DatePickerCustom disabled={Tab === 1 ? 'disabled' : null} className={Tab === 1 ? 'disabled-flight' : null} />
                                     </div>
                                 </div>
                             </div>
                             <div className='flight-input-from-to my-2'>
-                                <FlightBookingCustomeModal />
+                                <CustomModal />
                             </div>
                             <div className='ticket-savebill my-4'>
-                                <p className='ticket-gray-text save-bill-title pb-2'>Special Fares (optional)</p>
+                                <p className='ticket-gray-text save-bill-title pb-2'>Save this bill as (optional)</p>
                                 <div className='buttonBtn'>
                                     {SaveBillOption.map((item, i) =>
                                         <button key={`savebillbutton${i}`}
@@ -208,23 +139,16 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                     </div>
                 </div>
             </div>
-            <>
-                <Loader isLoading={isLoading} />
-            </>
         </>
-
-
     )
 }
 
-export default FlightsBookingForm;
+export default BusTicketForm
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
     { title: 'Andhra Pradesh', year: 1994 },
-    { title: 'DEL', year: 1994 },
     { title: 'Arunachal Pradesh', year: 1972 },
-    { title: 'BOM', year: 1972 },
     { title: 'Assam', year: 1974 },
     { title: 'Chhattisgarh', year: 2008 },
     { title: 'Goa', year: 1957 },

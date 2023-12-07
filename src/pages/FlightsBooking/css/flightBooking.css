@@ -14,9 +14,11 @@
 .mt-20 {
     margin-top: 20px;
 }
+
 .new-class-travel {
     gap: 80.9px;
 }
+
 /* =================== top button css code part 01 ====================== */
 .booking-list-tb-button {
     width: 100%;
@@ -51,7 +53,7 @@
 /* =================== top button css code part 01 ====================== */
 
 
-/* =================== top button css code part 02 ====================== */
+/* =================== service list css code part 02 ====================== */
 .booking-list-tb-content h3 {
     color: var(--themTextColor);
     text-align: left;
@@ -155,8 +157,8 @@
     font-weight: 700;
     line-height: normal;
     position: absolute;
-    top: -33px;
-    left: -23px;
+    top: -50px;
+    left: -21px;
 }
 
 .Discounted-price-at {
@@ -181,7 +183,30 @@
     line-height: normal;
 }
 
-/* =================== top button css code part 02 ====================== */
+.booking-01.activeClassAdd {
+    border: 2px solid #2c427d;
+}
+
+.button-and-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-and-price button {
+    max-width: 150px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--themTextColor);
+    color: var(--themTextColor);
+}
+
+.button-and-price button:hover {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+
+/* =================== service list css code part 02 ====================== */
 
 /* =================== Add travel details css code part 03 ====================== */
 .add-travel-detail-title {
@@ -203,7 +228,7 @@
     gap: 10px;
     border-radius: 15px;
     background: #EAEEFF;
-    max-width: 190px;
+    max-width: 210px;
     height: 43px;
     width: 100%;
     margin-bottom: 8px;
@@ -365,6 +390,13 @@
 
 .button-process.procced-chnage-space {
     margin: 52px 0;
+}
+
+h3.flightName {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 /* =================== Add travel details css code part 03 ====================== */
@@ -541,9 +573,12 @@
     line-height: 125%;
     margin-bottom: 20px;
 }
-.list-of-summary-inr02>div>h3:last-child, .list-of-summary-inr02>div>p:last-child{
+
+.list-of-summary-inr02>div>h3:last-child,
+.list-of-summary-inr02>div>p:last-child {
     margin-bottom: 0;
 }
+
 .list-of-summary-inr02>div>p {
     color: var(--themBlackColor);
     text-align: right;
@@ -560,3 +595,183 @@
 }
 
 /* =================== Booking Details css code part 03 ====================== */
+
+/* =================== tab bar css code part 03 ====================== */
+.tabButtonMain {
+    width: 100%;
+    padding: 0;
+    border: solid #dadada;
+    border-radius: 3px;
+}
+
+.tabButtonMain .button-class-cm {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+}
+
+.HideShow {
+    display: none !important;
+}
+
+/* =================== tab bar css code part 03 ====================== */
+
+/* =================== Seat design css code part 03 ====================== */
+/* styles.css */
+.tabButton {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.tabButton .tab-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EAEEFF;
+    padding: 3px;
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.tabButton .tab-bar .tab {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #101010;
+    font-weight: 600;
+}
+
+.tab-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 2px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab.active {
+    background-color: var(--themTextColor);
+    color: #fff !important;
+}
+
+.mian-box-clas {
+    border: 1px solid #a7a7a74f;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+th,
+td {
+    border: 2px solid #fff;
+    padding: 5px;
+    text-align: center;
+    background-color: #e1e8ff;
+    color: #000;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
+
+.seatList-tr th div {
+    width: 40px !important;
+    margin: auto;
+}
+
+.seat-table {
+    overflow-y: auto;
+}
+.activeSeat {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+.userNmae-list {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.listName-rr {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0;
+}
+.listName-rr > div {
+    width: 100%;
+    max-width: 180px;
+    border: 1px solid var(--themTextColor);
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--themTextColor);
+    cursor: pointer;
+    font-size: 13px;
+}
+.userName-dd > svg {
+    display: inline-block;
+}
+.mealListData {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.mealListData > div {
+    width: 100%;
+    max-width: calc(50% - 5px);
+    border: 1px solid #a7a7a74f;
+    border-radius: 3px;
+}
+.dsfbsdb-dsfsdbjfb {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px;
+}
+.food-icon {
+    max-width: 15%;
+    width: 100%;
+    font-size: 32px;
+}
+.heekj-sdfsdkdsk {
+    max-width: 85%;
+    width: 100%;
+}
+.userName-dd.new-userName-dd {
+    flex-direction: column;
+    align-items: stretch;
+}
+.activeButon {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor) !important;
+}
+/* =================== Seat design css code part 03 ====================== */

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 const IncrementQuantity = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [adultsQuantity, setAdultsQuantity] = useState(1);
 
   const increment = () => {
-    if (quantity < 9) {
-      setQuantity(quantity + 1);
+    if (adultsQuantity < 9) {
+      setAdultsQuantity(adultsQuantity + 1);
     }
   };
 
   const decrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (adultsQuantity > 0) {
+      setAdultsQuantity(adultsQuantity - 1);
     }
   };
 
@@ -21,7 +21,7 @@ const IncrementQuantity = () => {
         <button onClick={decrement} style={{ padding: '5px 10px' }}>-</button>
         <input
           type="number"
-          value={quantity}
+          value={adultsQuantity}
           min="1"
           max="9"
           style={{ width: '40px', textAlign: 'center', margin: '0 10px' }}
