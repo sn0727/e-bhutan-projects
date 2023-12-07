@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TicketButton from '../../../components/Button/TicketButton'
 import { image } from '../../../constent/image'
 import { Checkbox, FormControlLabel } from '@mui/material'
-import DatePickerCustom from '../../../components/Input/DatePicker'
+import DatePickerCustom, { DatePickerCustom2 } from '../../../components/Input/DatePicker'
 import { SvgIcon } from '../../../constent/SvgIcons'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -10,18 +10,27 @@ import CustomModal from '../../../components/Modal/CustomModal'
 import { APIRequest, ApiUrl } from '../../../utils/api'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
-
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { adultsQuantity1, apiData, childrenQuantity1, infantsQuantity1, ipAddressSave, travelClassValue } from '../atom/atom'
+import FlightBookingCustomeModal from '../modal/FlightBookingCustomeModal'
+import moment from 'moment'
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
-const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
+const FlightsBookingForm = ({ setIdComponent }) => {
+    const [apiDatas, setApidata] = useRecoilState(apiData)
     const [Tab, setTab] = useState(1);
-    const [ipAddress, setIpAddress] = useState({});
+    const [ipAddress, setIpAddress] = useRecoilState(ipAddressSave);
     const [isLoading, setIsLoading] = useState(false)
     const [saveBill, setsaveBill] = useState('')
     const [isNonStop, setisNonStop] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
+    const [returnDate, setReturntDate] = useState(new Date());
     const [fromValue, setFromValue] = React.useState(null);
     const [toValue, setToValue] = React.useState(null);
-    const [saveResponse, setSaveResponse] = React.useState([]);
+    const adultsQuantity = useRecoilValue(adultsQuantity1)
+    const childrenQuantity = useRecoilValue(childrenQuantity1)
+    const infantsQuantity = useRecoilValue(infantsQuantity1)
+    const saveClass = useRecoilValue(travelClassValue)
 
     // get ip address value
     const getIpAddressFun = async () => {
@@ -48,41 +57,62 @@ const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
 
     const bookingHandlerFun = () => {
         setIsLoading(true)
+        let Segments;
+        if (Tab === 1) {
+            Segments = [
+                {
+                    "Origin": fromValue?.title,
+                    "Destination": toValue?.title,
+                    "FlightCabinClass": saveClass,
+                    "PreferredDepartureTime": moment(startDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+                    "PreferredArrivalTime": moment(startDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
+                },
+                {
+                    "Origin": toValue?.title,
+                    "Destination": fromValue?.title,
+                    "FlightCabinClass": saveClass,
+                    "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+                    "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
+                }
+            ]   
+        }else if (Tab === 2) {
+            Segments = [
+                
+                {
+                    "Origin": toValue?.title,
+                    "Destination": fromValue?.title,
+                    "FlightCabinClass": saveClass,
+                    "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+                    "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
+                }
+            ]
+        }
         let config = {
             method: 'post',
+            url: ApiUrl?.bookingSearch,
             url: "https://api.ebhuktan.com/api/flight/ticket/booking/search",
+
             body: {
                 "EndUserIp": ipAddress,
-                "AdultCount": "1",
-                "ChildCount": "0",
-                "InfantCount": "0",
+                "AdultCount": adultsQuantity,
+                "ChildCount": childrenQuantity,
+                "InfantCount": infantsQuantity,
                 "DirectFlight": "false",
-                "OneStopFlight": "false",
-                "JourneyType": "1",
+                "OneStopFlight": isNonStop,
+                "JourneyType": Tab,
                 "PreferredAirlines": null,
-                "Segments": [
-                    {
-                        "Origin": fromValue?.title,
-                        "Destination": toValue?.title,
-                        // "Origin": "DEl",
-                        // "Destination": "BOM",
-                        "FlightCabinClass": "1",
-                        "PreferredDepartureTime": "2023-11-29T00: 00: 00",
-                        "PreferredArrivalTime": "2023-12-06T00: 00: 00"
-                    }
-                ],
+                Segments,
                 "Sources": null
             },
+
         }
         APIRequest(
             config,
             res => {
-                console.log(res, '====================== res booking')
-                setSaveResponse(res?.data)
+                console.log(res, '====================== res booking dd')
                 setIsLoading(false)
-                // send full data perent componets
-                flightBookingData(res?.data)
-                setIdComponent(2)
+                setApidata(res?.data)
+                // setIdComponent(2)
             },
             err => {
                 console.log(err, '====================== err booking')
@@ -91,10 +121,6 @@ const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
             }
         )
     }
-
-
-
-
 
     return (
         <>
@@ -149,19 +175,19 @@ const FlightsBookingForm = ({ setIdComponent, setData, flightBookingData }) => {
                                 <div className='flex-fill'>
                                     <p className='ticket-gray-text text-left'>Departure Date</p>
                                     <div className='date-picker-parent border-underline pt-1'>
-                                        <DatePickerCustom />
+                                        <DatePickerCustom setStartDate={setStartDate} startDate={startDate} />
                                     </div>
                                 </div>
 
                                 <div className='flex-fill'>
                                     <p className='ticket-gray-text text-right'>Return Date</p>
                                     <div className='date-picker-parent right border-underline pt-1'>
-                                        <DatePickerCustom disabled={Tab === 1 ? 'disabled' : null} className={Tab === 1 ? 'disabled-flight' : null} />
+                                        <DatePickerCustom2 setReturntDate={setReturntDate} returnDate={returnDate} disabled={Tab === 1 ? 'disabled' : null} className={Tab === 1 ? 'disabled-flight' : null} />
                                     </div>
                                 </div>
                             </div>
                             <div className='flight-input-from-to my-2'>
-                                <CustomModal />
+                                <FlightBookingCustomeModal />
                             </div>
                             <div className='ticket-savebill my-4'>
                                 <p className='ticket-gray-text save-bill-title pb-2'>Special Fares (optional)</p>

@@ -104,7 +104,7 @@ const BookingDetails = ({ setIdComponent }) => {
             </div>
             <div className='button-process procced-chnage-space'>
                 <button type='button' className='button-pro'>
-                    <Link onClick={() => setIdComponent(6)}>Proceed</Link>
+                    <Link onClick={() => setIdComponent(7)}>Proceed</Link>
                 </button>
             </div>
         </div>

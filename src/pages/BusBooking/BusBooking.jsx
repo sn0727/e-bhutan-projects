@@ -9,6 +9,7 @@ import AddBusTravelDetails from './BusBookingComponents/AddBusTravelDetails'
 import BusBookingDetails from './BusBookingComponents/BusBookingDetails'
 import AnimateGIF from '../../components/Common/AminateGIF/AnimateGIF'
 import Loading from '../../components/Feature/Loading'
+import { RecoilRoot } from 'recoil'
 
 const BusBooking = () => {
     const [idComponent, setIdComponent] = useState(1)
@@ -16,54 +17,56 @@ const BusBooking = () => {
     return (
         <>
             <Header />
-            <div className='comman-container px-4'>
-                <PreviousButton setIdComponent={setIdComponent} idComponent={idComponent} />
-                {
-                    idComponent === 1 && (
-                        <>
-                            <FlightListOfService />
-                            <BusTicketForm setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
-                {
-                    idComponent === 2 && (
-                        <>
-                            <BusTicketList setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
-                {
-                    idComponent === 3 && (
-                        <>
-                            <AddBusTravelDetails setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
-                {
-                    idComponent === 4 && (
-                        <>
-                            <BusBookingDetails setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
-                {
-                    idComponent === 5 && (
-                        <>
-                            <Loading setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
+            <RecoilRoot>
+                <div className='comman-container px-4'>
+                    <PreviousButton setIdComponent={setIdComponent} idComponent={idComponent} />
+                    {
+                        idComponent === 1 && (
+                            <>
+                                <FlightListOfService />
+                                <BusTicketForm setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
+                    {
+                        idComponent === 2 && (
+                            <>
+                                <BusTicketList setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
+                    {
+                        idComponent === 3 && (
+                            <>
+                                <AddBusTravelDetails setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
+                    {
+                        idComponent === 4 && (
+                            <>
+                                <BusBookingDetails setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
+                    {
+                        idComponent === 5 && (
+                            <>
+                                <Loading setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
 
-                {
-                    idComponent === 6 && (
-                        <>
-                            <AnimateGIF setIdComponent={setIdComponent} />
-                        </>
-                    )
-                }
+                    {
+                        idComponent === 6 && (
+                            <>
+                                <AnimateGIF setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    }
 
-            </div>
+                </div>
+            </RecoilRoot>
             <Footer />
         </>
     )

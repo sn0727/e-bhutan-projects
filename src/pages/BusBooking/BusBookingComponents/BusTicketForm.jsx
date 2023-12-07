@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TicketButton from '../../../components/Button/TicketButton'
 import { image } from '../../../constent/image'
 import { Checkbox, FormControlLabel } from '@mui/material'
@@ -7,10 +7,14 @@ import { SvgIcon } from '../../../constent/SvgIcons'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomModal from '../../../components/Modal/CustomModal'
+import { useRecoilState } from 'recoil'
+import { APIRequest } from '../../../utils/api'
+import { apiDataState } from '../atom/atom'
 
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
-const BusTicketForm = ({setIdComponent}) => {
+const BusTicketForm = ({ setIdComponent }) => {
+    const [apidata, setApiData] = useRecoilState(apiDataState)
     const [Tab, setTab] = useState(1);
     const [saveBill, setsaveBill] = useState('')
     const [isNonStop, setisNonStop] = useState(false)
@@ -21,6 +25,23 @@ const BusTicketForm = ({setIdComponent}) => {
         options: top100Films,
         getOptionLabel: (option) => option.title,
     };
+
+    useEffect(() => {
+        let config = {
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/users'
+        };
+        APIRequest(
+            config,
+            res => {
+                setApiData(res)
+
+            },
+            err => {
+                console.log(err, '=============== err response')
+            }
+        )
+    }, [setApiData])
 
     const bookingHandlerFun = () => {
         setIdComponent(2)

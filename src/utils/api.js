@@ -91,6 +91,8 @@ export const ApiUrl = {
 
   // booking api route
   bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
+  fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
+  bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
 
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,

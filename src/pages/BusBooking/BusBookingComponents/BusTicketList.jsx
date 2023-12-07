@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { image } from '../../../constent/image'
 import { SvgIcon } from "../../../constent/SvgIcons"
+import { useRecoilValue } from 'recoil'
+import { apiDataState } from '../atom/atom'
 
 const buttonS = ["Cheapest", "Non-Stop", "Timings", "Duration"]
 
 function BusTicketList({setIdComponent}) {
+    const apiDataValue = useRecoilValue(apiDataState)
     const [activeColor, setActiveColor] = useState('Timings')
+
+    console.log(apiDataValue, 'apiDataState list component')
     
     return (
         <div className='booking-list-main'>

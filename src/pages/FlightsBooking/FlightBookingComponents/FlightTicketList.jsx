@@ -1,14 +1,42 @@
 import React, { useState } from 'react'
 import { image } from '../../../constent/image'
 import { SvgIcon } from "../../../constent/SvgIcons"
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { apiData, apiSingalData } from '../atom/atom'
+import moment from 'moment'
 
-const buttonS = ["Cheapest", "Non-Stop", "Timings", "Duration"]
+// const buttonS = ["Cheapest", "Non-Stop", "Timings", "Duration"]
+const buttonS = [
+    {
+        buttonName: 'Cheapest',
+        Cheapest: 'Cheapest',
+    },
+    {
+        buttonName: 'Non-Stop',
+        nonStop: 'Non-Stop',
+    },
+    {
+        id : 3,
+        buttonName: 'Timings',
+        DepTime: 'DepTime',
+        ArrTime: 'ArrTime'
+    },
+    {
+        id: 4,
+        buttonName: 'Duration',
+        Duration: 'Duration'
+    }
+]
 
-function FlightTicketList({ setIdComponent, saveResponseData }) {
-    const [activeColor, setActiveColor] = useState('Timings')
+function FlightTicketList({ setIdComponent }) {
+    const saveResponseData = useRecoilValue(apiData)
+    const [apiSingalData22, setApiSingalData] = useRecoilState(apiSingalData)
+    const [activeColor, setActiveColor] = useState([])
     const [bookingObj, setbookingObj] = useState('')
-    const { Results } = saveResponseData?.Response
-    // console.log(Results, 'saveResponseData 11 ===========================')
+    const { Results } = saveResponseData?.Response;
+    const [shorData, setShorData] = useState(Results[0])
+
+    console.log(Results, '============= apiData')
 
     // Calculate hours and minutes
     function convertToTime(number) {
@@ -20,11 +48,40 @@ function FlightTicketList({ setIdComponent, saveResponseData }) {
         return timeString;
     }
 
-    const getSingalData = (data) => {
-        setbookingObj(data)
+    // const resultsArray = Results.slice();
+    // let shorData = resultsArray.sort((a, b) => new Date(a.DepTime) - new Date(b.DepTime));
+    
+    // short filter Funcation  code.
+    function shortFuncation(data) {
+        const resultsArray = Results[0]?.slice();
+        setActiveColor(data?.buttonName)
+        if (data?.id === 3) {
+            let shorData = resultsArray?.sort((a, b) => new Date(a?.Segments[0][0]?.Origin?.DepTime) - new Date(b?.Segments[0][0]?.Origin?.DepTime));
+            setShorData(shorData);
+        }
+        if (data?.id === 4) {
+            let shorData = resultsArray.sort((a, b) => new Date(a?.Segments[0][0]?.Duration) - new Date(b?.Segments[0][0]?.Duration));
+            setShorData(shorData);
+        }
     }
 
-    // console.log(bookingObj?.ResultIndex, '=================== bookingObj')
+    // getSingalData code.
+    const getSingalData = (data) => {
+        setbookingObj(data)
+        setApiSingalData(data)
+        setIdComponent(3)
+    }
+
+    // filterTime
+    function filterTime(time) {
+        // Parse the date and time using Moment.js
+        const startdateTime = moment(time);
+
+        // Format to display only the time in 12-hour format
+        const startformattedTime = startdateTime.format('h:mm A');
+
+        return startformattedTime; // Output: 4:13 PM
+    }
 
     return (
         <div className='booking-list-main'>
@@ -32,7 +89,7 @@ function FlightTicketList({ setIdComponent, saveResponseData }) {
                 <div className='booking-list-tb-button-inr'>
                     {
                         buttonS.map((button, index) => (
-                            <button type='button' className={`${activeColor === button ? 'activeColor' : null}`} key={index} onClick={() => setActiveColor(button)}> {button} </button>
+                            <button type='button' className={`${activeColor === button?.buttonName ? 'activeColor' : null}`} key={index} onClick={() => shortFuncation(button)}> {button?.buttonName} </button>
                         ))
                     }
                 </div>
@@ -41,25 +98,27 @@ function FlightTicketList({ setIdComponent, saveResponseData }) {
                 <h3 className='tb-title'>Fares with Exclusive discounts</h3>
                 {/* row 01 */}
                 {
-                    Results[0]?.map((bookingItem, index) => (
-                        <div className={`booking-01 ${bookingObj?.ResultIndex === bookingItem?.ResultIndex ? 'activeClassAdd' : '' }`} key={index} onClick={()=> getSingalData(bookingItem)}>
+                    shorData?.map((bookingItem, index) => (
+                        // <div className={`booking-01`} key={index} onClick={() => alert('bookingItem')}>
+                        <div className={`booking-01 ${bookingObj?.ResultIndex === bookingItem?.ResultIndex ? 'activeClassAdd' : ''}`} key={index}>
                             <div className='booking-01-inr'>
                                 <div className='service-logo'>
-                                    {/* <img src={image?.airIndiaImage} alt="logo name" /> */}
                                     <h3 className='flightName'>{bookingItem?.Segments[0][0]?.Airline?.AirlineName}</h3>
                                 </div>
                                 <p className='avilable-seat'>2 Seats Left</p>
                             </div>
                             <div className='booking-01-inr'>
-                                <p className='time-inr'>09:00-10:55</p>
+                                <p className='time-inr'>{filterTime(bookingItem?.Segments[0][0]?.Origin.DepTime)} - {filterTime(bookingItem?.Segments[0][0]?.Destination?.ArrTime)}</p>
+                                <p className='time-inr'>{bookingItem?.Segments[0][0]?.Origin?.Airport?.AirportCode} - {bookingItem?.Segments[0][0]?.Destination?.Airport?.AirportCode}</p>
                                 <p className='time-inr-dt'>{convertToTime(bookingItem?.Segments[0][0]?.Duration)} I Non-Stop</p>
-                                {/* <p className='time-inr-dt'>{bookingItem?.Segments[0]?.map((innerItem, index) => innerItem?.Duration) } I Non-Stop</p> */}
-                                {/* <p className='time-inr-dt'>{bookingItem?.Segments[0]?.map((innerItem, index) => convertToTime(innerItem?.Duration)) } I Non-Stop</p> */}
                             </div>
                             <div className='booking-01-inr'>
-                                <p className='price-inr'>{SvgIcon?.indiaRupe} {bookingItem?.Fare?.PublishedFare}</p>
+                                <div className='button-and-price'>
+                                    <p className='price-inr'>{SvgIcon?.indiaRupe} {bookingItem?.Fare?.PublishedFare?.toFixed(2)}</p>
+                                    <button type="button" class="null" onClick={() => getSingalData(bookingItem)}> Book Now </button>
+                                </div>
                                 <div className='Discounted-price-at'>
-                                    <p>Discounted price at {SvgIcon?.indiaRupeGreen} {bookingItem?.Fare?.OfferedFare}</p>
+                                    <p>Discounted price at {SvgIcon?.indiaRupeGreen} {bookingItem?.Fare?.OfferedFare.toFixed(2)}</p>
                                 </div>
                             </div>
                         </div>
