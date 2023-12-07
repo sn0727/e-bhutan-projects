@@ -21,6 +21,7 @@ const QuickDhan = () => {
     const [isLoading, setisLoading] = useState(false);
     const [QrCode, setQrCode] = useState('')
     const [seconds, setSeconds] = useState(0);
+    const [RefId, setRefId] = useState('')
 
 
 
@@ -114,7 +115,33 @@ const QuickDhan = () => {
                 console.log(res?.data);
                 setQrCode(res?.data?.qr_link)
                 toast.success(res?.message)
+                setRefId(res?.data?.refid)
                 setSeconds(30)
+                setisLoading(false)
+            },
+            err => {
+                console.log(err, "================== err")
+                setisLoading(false)
+                toast.error(err?.message)
+            }
+        )
+    }
+    // Check payment status
+    const CheckPaymentStatus = () => {
+        setisLoading(true)
+        let config = {
+            url: ApiUrl.dhanCheckStatus,
+            method: "post",
+            body: {
+                refid: RefId,
+            }
+        }
+        setRefId('')
+        APIRequest(
+            config,
+            res => {
+                console.log(res?.data);
+                toast.success(res?.message)
                 setisLoading(false)
             },
             err => {
@@ -133,11 +160,25 @@ const QuickDhan = () => {
         if (seconds > 0) {
             const intervalId = setInterval(() => {
                 setSeconds(prevSeconds => prevSeconds - 1);
+                if (seconds == 1) {
+                    CheckPaymentStatus()
+                }
+
             }, 1000);
 
             // To clear the interval when the component unmounts or when seconds becomes 0
             return () => clearInterval(intervalId);
         }
+
+        // if (seconds == 1) {
+        //     setisLoading(true)
+        //     const CheckStatus = setInterval(() => {
+        //         CheckPaymentStatus()
+        //     }, 1000 * 15);
+        //     // To clear the interval when the component unmounts or when seconds becomes 0
+        //     return () => clearInterval(CheckStatus);
+        // }
+
 
         if (seconds === 0) {
             setQrCode('');
@@ -156,7 +197,7 @@ const QuickDhan = () => {
                     <div className='button-process'>
                         {QrCode ?
                             <div style={{ height: "auto", margin: "0 auto", maxWidth: 300, width: "100%", padding: "20px" }}>
-                                <p className={styles.textAddmon} style={{ paddingTop: '10px', fontSize: 20, marginBottom: 20}}>Scan and pay</p>
+                                <p className={styles.textAddmon} style={{ paddingTop: '10px', fontSize: 20, marginBottom: 20 }}>Scan and pay</p>
                                 <QRCode
                                     size={256}
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

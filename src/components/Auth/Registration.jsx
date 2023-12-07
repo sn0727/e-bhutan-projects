@@ -43,6 +43,8 @@ const Registration = () => {
     if (adminId) {
       fd.append('adminId', adminId);
     }
+    setisLoading(true)
+
     try {
 
       const result = await axios.post(ApiUrl.userCreate,
@@ -56,14 +58,21 @@ const Registration = () => {
       )
       const { error, message } = result?.data;
       if (!error) {
+        setisLoading(false)
         toast.success(message);
         // sessionStorage.setItem("token", token);
         navigate("/")
+      }else{
+        toast.error(message);
       }
+      setisLoading(false)
+
     } catch (server_error) {
+      setisLoading(false)
       const { error, message } = server_error?.response?.data;
       if (error) {
         toast.error(message)
+        setisLoading(false)
       }
     }
   }

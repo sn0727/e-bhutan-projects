@@ -165,6 +165,7 @@ export const ApiUrl = {
   //Quik Dhan
   dhanSendOTP: `${APIBank}account/quick/dhan/sendOTP`,
   dhanVerifyOTP: `${APIBank}account/quick/dhan/verifyOTP`,
+  dhanCheckStatus: `${APIBank}account/quick/dhan/checkStatus`,
 
 
 };

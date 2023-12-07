@@ -140,20 +140,21 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
         pipe: 'bank5',
       }
     }
-    APIRequest(
-      config,
-      res => {
-        console.log(res, '====================== de de')
-        toast.success(res?.message)
-        // window.location.reload()
-        // setStateUpdate('2')
-        setIsloading(false)
-      },
-      err => {
-        toast.success(err?.message)
-        setIsloading(false)
-      }
-    )
+    console.log(config);
+    // APIRequest(
+    //   config,
+    //   res => {
+    //     console.log(res, '====================== de de')
+    //     toast.success(res?.message)
+    //     // window.location.reload()
+    //     // setStateUpdate('2')
+    //     setIsloading(false)
+    //   },
+    //   err => {
+    //     toast.success(err?.message)
+    //     setIsloading(false)
+    //   }
+    // )
   }
 
 
