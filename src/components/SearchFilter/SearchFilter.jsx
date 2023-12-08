@@ -52,7 +52,7 @@ const SearchFilter = ({ bankDetailsData, sendBandIdToPopModal }) => {
     return (
         <div>
             <ChakraProvider>
-                <Stack spacing={3} maxWidth={230} margin={'auto'} className='set-position-select'>
+                <Stack spacing={3} width={'100%'} margin={'auto'} className='set-position-select'>
                     <div className='search-input-cs'>
                         <Input
                             placeholder="Search Bank here.."

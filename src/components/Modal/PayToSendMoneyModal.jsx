@@ -93,7 +93,7 @@ const PayToSendMoneyModal = ({ userDetails, mobileNo, fetchBeneficiaryFun }) => 
                                     </div>
                                 </div>
 
-                                <div className='button-process my-0' style={{ margin: '20px 0' }}>
+                                <div className='button-process my-20'>
                                     <button type='button' className='button-pro'>
                                         <Link onClick={() => transferMoney()}>
                                             {

@@ -1,0 +1,777 @@
+/* ================= comman button color code ============== */
+:root {
+    --themTextColor: #2C427D;
+    --themWhiteColor: #fff;
+    --themBlackColor: #000;
+    --themTextDarkColor: #0F161E;
+    --themTextGreenColor: #009D06;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.new-class-travel {
+    gap: 80.9px;
+}
+
+/* =================== top button css code part 01 ====================== */
+.booking-list-tb-button {
+    width: 100%;
+    /* max-width: 700px; */
+    margin: auto;
+}
+
+.booking-list-tb-button .booking-list-tb-button-inr {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.booking-list-tb-button .booking-list-tb-button-inr button {
+    display: flex;
+    padding: 5px 17px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--themTextColor);
+    background: var(--themWhiteColor);
+    color: var(--themTextColor);
+}
+
+.booking-list-tb-button .booking-list-tb-button-inr button.activeColor {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+
+/* =================== top button css code part 01 ====================== */
+
+
+/* =================== service list css code part 02 ====================== */
+.booking-list-tb-content h3 {
+    color: var(--themTextColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin-bottom: 32px;
+}
+
+.booking-01 {
+    width: 100%;
+}
+
+.booking-01 {
+    width: 100%;
+    max-width: 753px;
+    min-height: 91px;
+    margin: auto;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid var(--themBlackColor);
+    background: var(--themWhiteColor);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 22px;
+}
+
+.booking-01 .booking-01-inr .service-logo img {
+    width: 100%;
+    max-width: 57px;
+}
+
+.booking-01 .booking-01-inr:nth-child(1) {
+    max-width: 25%;
+    width: 100%;
+    position: relative;
+}
+
+.booking-01 .booking-01-inr:nth-child(2) {
+    max-width: 50%;
+    width: 100%;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) {
+    max-width: 25%;
+    width: 100%;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) {
+    position: relative;
+}
+
+.booking-01 .booking-01-inr:nth-child(3) p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.booking-01 .booking-01-inr p.time-inr {
+    color: var(--themTextDarkColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    padding-bottom: 10px;
+}
+
+.booking-01 .booking-01-inr p.time-inr-dt {
+    color: var(--themTextDarkColor);
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.booking-01 .booking-01-inr .avilable-seat {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: #EAEEFF;
+}
+
+.booking-01 .booking-01-inr .avilable-seat {
+    color: var(--themTextColor);
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: -50px;
+    left: -21px;
+}
+
+.Discounted-price-at {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #EAEEFF;
+    position: absolute;
+    top: -45px;
+    right: -16px;
+}
+
+.Discounted-price-at p {
+    color: var(--themTextGreenColor);
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.booking-01.activeClassAdd {
+    border: 2px solid #2c427d;
+}
+
+.button-and-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-and-price button {
+    max-width: 150px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--themTextColor);
+    color: var(--themTextColor);
+}
+
+.button-and-price button:hover {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+
+/* =================== service list css code part 02 ====================== */
+
+/* =================== Add travel details css code part 03 ====================== */
+.add-travel-detail-title {
+    color: var(--themBlackColor);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin: 68px 0;
+}
+
+.add-travel-detail .Discounted-price-bx {
+    display: flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 15px;
+    background: #EAEEFF;
+    max-width: 210px;
+    height: 43px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.add-travel-detail .Discounted-price-bx p {
+    color: #009D06;
+    font-family: Manrope;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: inline-block;
+}
+
+.add-travel-detail .Discounted-price-bx p svg {
+    display: inline-block;
+}
+
+.main-bx-add-travel {
+    max-width: 602px;
+    width: 100%;
+    margin: auto;
+}
+
+.add-travel-details-bx {
+    max-width: 602px;
+    width: 100%;
+    margin: auto;
+    min-height: 126px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.add-travel-details-bx .add-travel-bx .servcie-image-bx img {
+    max-width: 57px;
+    width: 100%;
+    height: 47px;
+    flex-shrink: 0;
+}
+
+.add-travel-details-bx .add-travel-bx .servcie-image-bx p {
+    color: var(--themTextDarkColor);
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.add-travel-details-bx .add-travel-bx h5 {
+    color: var(--themTextDarkColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+}
+
+.add-travel-details-bx .add-travel-bx p {
+    color: var(--themTextDarkColor);
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.add-travel-details-bx .add-travel-bx .contentLine {
+    color: var(--themTextDarkColor);
+    font-family: Manrope;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: center;
+    position: relative;
+}
+
+.add-travel-details-bx .add-travel-bx .contentLine::after {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background-color: var(--themBlackColor);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(88%, -33%);
+}
+
+.add-travel-details-bx .add-travel-bx .contentLine::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background-color: var(--themBlackColor);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-190%, -54%);
+}
+
+.add-travel-details-bx .add-travel-bx:nth-child(1) {
+    max-width: 20%;
+    width: 100%;
+}
+
+.add-travel-details-bx .add-travel-bx:nth-child(2) {
+    max-width: 20%;
+    width: 100%;
+}
+
+.add-travel-details-bx .add-travel-bx:nth-child(3) {
+    max-width: 40%;
+    width: 100%;
+}
+
+.add-travel-details-bx .add-travel-bx:nth-child(4) {
+    max-width: 20%;
+    width: 100%;
+}
+
+.add-travel-list-bx {
+    max-width: 245px;
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    gap: 50px;
+    justify-content: space-around;
+    margin-left: 24px;
+}
+
+.add-travel-list-bx ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.add-travel-list-bx ul li {
+    color: var(--themBlackColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    padding-bottom: 10px;
+    /* 15px */
+}
+
+.button-process.procced-chnage-space {
+    margin: 52px 0;
+}
+
+h3.flightName {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+/* =================== Add travel details css code part 03 ====================== */
+
+
+/* =================== Booking Details css code part 03 ====================== */
+.booking-details-inr-dl {
+    max-width: 1280px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.booking-details-inr-dl .booking-detail-list-dl {
+    max-width: 340px;
+    width: 100%;
+    min-height: 70px;
+    flex-shrink: 0;
+}
+
+.booking-details-inr-dl .booking-detail-list-dl .list-of-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 17px;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 1px solid var(--themTextDarkColor);
+    background-color: var(--themWhiteColor);
+    /* margin-bottom: 20px; */
+}
+
+.list-of-content {
+    padding-left: 16px;
+}
+
+.list-of-content h3 {
+    color: var(--themTextColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+}
+
+.list-of-content p {
+    color: var(--themTextColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+}
+
+.booking-detail-list-dl-rt {
+    max-width: 343px;
+    width: 100%;
+    min-height: 367px;
+    flex-shrink: 0;
+}
+
+.booking-detail-list-dl-rt h3 {
+    color: var(--themBlackColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin-bottom: 20px;
+}
+
+.input-add-promo {
+    position: relative;
+}
+
+.input-add-promo input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px dashed var(--themBlackColor);
+    padding: 10px 252px 10px 10px
+}
+
+.input-add-promo button {
+    color: var(--themBlackColor);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+.list-of-summary .list-of-summary-inr {
+    width: 100%;
+    border-bottom: 1px solid #A7A7A7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(1) {
+    max-width: 60%;
+    width: 100%;
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(1)>h3 {
+    color: var(--themBlackColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin-bottom: 5px;
+    /* 17.5px */
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(1)>p {
+    color: var(--themBlackColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(2) {
+    max-width: 40%;
+    width: 100%;
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(2)>p {
+    color: var(--themBlackColor);
+    text-align: right;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2px;
+}
+
+.list-of-summary .list-of-summary-inr div:nth-child(2)>p>svg {
+    width: 8px;
+}
+
+.list-of-summary-inr02 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #A7A7A7;
+}
+
+.list-of-summary-inr02>div>h3 {
+    color: var(--themBlackColor);
+    text-align: left;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    margin-bottom: 20px;
+}
+
+.list-of-summary-inr02>div>h3:last-child,
+.list-of-summary-inr02>div>p:last-child {
+    margin-bottom: 0;
+}
+
+.list-of-summary-inr02>div>p {
+    color: var(--themBlackColor);
+    text-align: right;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 20px;
+}
+
+/* =================== Booking Details css code part 03 ====================== */
+
+/* =================== tab bar css code part 03 ====================== */
+.tabButtonMain {
+    width: 100%;
+    padding: 0;
+    border: solid #dadada;
+    border-radius: 3px;
+}
+
+.tabButtonMain .button-class-cm {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+}
+
+.HideShow {
+    display: none !important;
+}
+
+/* =================== tab bar css code part 03 ====================== */
+
+/* =================== Seat design css code part 03 ====================== */
+/* styles.css */
+.tabButton {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.tabButton .tab-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EAEEFF;
+    padding: 3px;
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.tabButton .tab-bar .tab {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #101010;
+    font-weight: 600;
+}
+
+.tab-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 2px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab.active {
+    background-color: var(--themTextColor);
+    color: #fff !important;
+}
+
+.mian-box-clas {
+    border: 1px solid #a7a7a74f;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+th,
+td {
+    border: 2px solid #fff;
+    padding: 5px;
+    text-align: center;
+    background-color: #e1e8ff;
+    color: #000;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
+
+.seatList-tr th div {
+    width: 40px !important;
+    margin: auto;
+}
+
+.seat-table {
+    overflow-y: auto;
+}
+.activeSeat {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor);
+}
+.userNmae-list {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.listName-rr {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0;
+}
+.listName-rr > div {
+    width: 100%;
+    max-width: 180px;
+    border: 1px solid var(--themTextColor);
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--themTextColor);
+    cursor: pointer;
+    font-size: 13px;
+}
+.userName-dd > svg {
+    display: inline-block;
+}
+.mealListData {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.mealListData > div {
+    width: 100%;
+    max-width: calc(50% - 5px);
+    border: 1px solid #a7a7a74f;
+    border-radius: 3px;
+}
+.dsfbsdb-dsfsdbjfb {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px;
+}
+.food-icon {
+    max-width: 15%;
+    width: 100%;
+    font-size: 32px;
+}
+.heekj-sdfsdkdsk {
+    max-width: 85%;
+    width: 100%;
+}
+.userName-dd.new-userName-dd {
+    flex-direction: column;
+    align-items: stretch;
+}
+.activeButon {
+    background-color: var(--themTextColor);
+    color: var(--themWhiteColor) !important;
+}
+/* =================== Seat design css code part 03 ====================== */

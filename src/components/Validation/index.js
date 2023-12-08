@@ -78,14 +78,15 @@ export const emailValidation = (email) => {
 }
 
 export const postalCodeValidation = (postalCode) => {
-    let postalReg = /^[0-9]{6}$/  //validated name 
+    // let postalReg = /^[0-9]{6}$/  //validated name 
     if (postalCode === '') {
         toast.error(`Postal Code is a mandatory field.`)
         return false;
-    }else if (!postalReg?.test(postalCode)) {
-        toast.error(`Please enter a valid 6 digit Postal code.`);
-        return false;
     }
+    // else if (!postalReg?.test(postalCode)) {
+    //     toast.error(`Please enter a valid 6 digit Postal code.`);
+    //     return false;
+    // }
     return true;
 }
 
@@ -95,7 +96,7 @@ export const stateValidation = (state) => {
         toast.error(`This is a mandatory field.`)
         return false;
     }else if (!stateReg?.test(state)) {
-        toast.error(`Only alphabets and. are allowed`);
+        toast.error(`Please enter valid state name.`);
         return false;
     }
     return true;
@@ -151,14 +152,15 @@ export const validateAccountNumber = (accountNumber) => {
 }
 
 export const validateBankId = (BankId) => {
-    let BankIdReg = /^\d{1,2}$/  //validated name 
+    // let BankIdReg = /^\d{1,2}$/  //validated name 
     if (BankId === '') {
-        toast.error(`Bank Id is a mandatory field.`)
-        return false;
-    }else if (!BankIdReg?.test(BankId)) {
-        toast.error(`Bank Id is not valid. It should be 2 characters long.`);
+        toast.error(`Bank name is a mandatory field.`)
         return false;
     }
+    // else if (!BankIdReg?.test(BankId)) {
+    //     toast.error(`Bank Id is not valid. It should be 2 characters long.`);
+    //     return false;
+    // }
     return true;
 }
 
@@ -176,14 +178,15 @@ export const validateIFSCCode = (ifscCode) => {
 }
 
 export const validateDateFormat = (inputDate) => {
-    let inputDateReg = /^(?:19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/; //validated name 
+    // let inputDateReg = /^(?:19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/; //validated name 
     if (inputDate === '') {
-        toast.error(`Date format is a mandatory field.`)
-        return false;
-    }else if (!inputDateReg?.test(inputDate)) {
-        toast.error(`Date format is not valid.`);
+        toast.error(`Date is a mandatory field.`)
         return false;
     }
+    // else if (!inputDateReg?.test(inputDate)) {
+    //     toast.error(`Date format is not valid.`);
+    //     return false;
+    // }
     return true;
 }
 

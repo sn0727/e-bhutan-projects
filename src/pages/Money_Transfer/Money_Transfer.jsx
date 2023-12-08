@@ -75,7 +75,7 @@ const MobileNumberVerify = () => {
               <Input placeholder='Enter mobile no.' className='search-input' onChange={(e) => setMob(e.target.value)} />
             </div>
 
-            <div className='button-process my-0' style={{ margin: '20px 0' }}>
+            <div className='button-process my-0' style={{ margin: '20px 0 !important' }}>
               <button type='button' className='button-pro'>
                 <Link onClick={() => onsubmitQuaryEmmiter()}>
                   {

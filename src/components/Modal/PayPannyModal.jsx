@@ -72,7 +72,7 @@ const PayPannyModal = ({ itemData, mobileNo, fetchBeneficiaryFun }) => {
 
                                 </div>
 
-                                <div className='button-process my-0' style={{ margin: '20px 0' }}>
+                                <div className='button-process my-0' style={{ margin: '20px 0 !important' }}>
                                     <button type='button' className='button-pro'>
                                         <Link onClick={() => transferMoneyDropPenny()}>
                                             {

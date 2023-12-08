@@ -88,6 +88,12 @@ export const ApiUrl = {
   fastTagFetchDetails: `${apiBaseUrl}fastTag/fetchDetails`,
   fastTagDoRecharge: `${apiBaseUrl}fastTag/doRecharge`,
 
+
+  // booking api route
+  bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
+  fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
+  bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
+
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
   // electricityFetchBill: `${apiBaseUrl}electricity/bill-payment/fetchBill`,
@@ -146,6 +152,7 @@ export const ApiUrl = {
   balanceEnquiry: `${APIBank}aeps/balanceEnquiry `,
   getMiniStatement: `${APIBank}aeps/getMiniStatement `,
   getBanks: `${APIBank}dmt/transfer/getBanks `,
+  bankAccountVerify: `${APIBank}account/verify/details `,
 
 
   // DMT api route

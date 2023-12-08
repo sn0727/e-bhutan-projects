@@ -5,7 +5,8 @@ export const InputFeild = (props) => {
         PlaceHolderTitle = '',
         setInputFeildValue,
         type = '',
-        disc = ''
+        disc = '',
+        uppercase=''
     } = props
 
     return (
@@ -19,6 +20,7 @@ export const InputFeild = (props) => {
                             value={InputFeildValue ? InputFeildValue : ''}
                             onChange={(e) => setInputFeildValue(e.target.value)}
                             className='enter-mobile-num bg-white border-cs InputTextColor'
+                            style={{ textTransform: uppercase === 'uppercase' ? 'uppercase' : ''}}
                         />
                         <span className='mt-1'>{disc ? disc : ''}</span>
                     </div>

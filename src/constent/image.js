@@ -51,5 +51,13 @@ export const image = {
     BondInvestment : require("../assets/service-icon/FinancialServices/Bond Investment.png"),
     EducationFee : require("../assets/service-icon/FinancialServices/Education Fee.png"),
     DigitalSignature : require("../assets/service-icon/FinancialServices/Digital Signature.png"),
-    SyncArrow : require("../assets/travel/SyncArrow.png")
+    SyncArrow : require("../assets/travel/SyncArrow.png"),
+
+    // flightBooking service image ===============
+    airIndiaImage : require("../assets/flightBooking/air-india.png"),
+    vistara : require("../assets/flightBooking/vistara.png"),
+    paymentSuccess : require("../assets/gif/paymentSuccess.gif"),
+    downloadIcon : require("../assets/gif/download.png"),
+    printIcon : require("../assets/gif/print.png"),
+    shareIcon : require("../assets/gif/share.png")
 }
