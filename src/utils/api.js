@@ -167,6 +167,10 @@ export const ApiUrl = {
   dhanVerifyOTP: `${APIBank}account/quick/dhan/verifyOTP`,
 
 
+
+  // Payment success get data 
+  getDetailsPayment: `${APIBank}account/quick/dhan/getDetails/`,
+
 };
 
 

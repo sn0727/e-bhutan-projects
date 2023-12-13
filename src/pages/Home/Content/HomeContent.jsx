@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BiSolidChevronRight } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import { services } from "../../../constent/services-data"
+import { APIRequest, ApiUrl } from '../../../utils/api';
 
 const HomeContent = () => {
+  
+
   
   return (
     <>
       {/* <section className='offer-box'>
         <div className="container">
-          <div className="offerboxs">
+          <div className="offerboxs">   
             <div className='offer-box'>
               <img src="assets/image/offer/offer.png" alt="offer" />
               <span>Get 40% cash back on Mobile Recharge</span>
