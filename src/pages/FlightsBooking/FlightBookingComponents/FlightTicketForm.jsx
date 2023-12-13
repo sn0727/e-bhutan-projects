@@ -11,13 +11,17 @@ import { APIRequest, ApiUrl } from '../../../utils/api'
 import Loader from '../../../components/Feature/Loader'
 import { toast } from 'react-toastify'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { adultsQuantity1, apiData, childrenQuantity1, infantsQuantity1, ipAddressSave, travelClassValue } from '../atom/atom'
+import { FlightListData, adultsQuantity1, apiData, childrenQuantity1, infantsQuantity1, ipAddressSave, travelClassValue } from '../atom/atom'
 import FlightBookingCustomeModal from '../modal/FlightBookingCustomeModal'
 import moment from 'moment'
+import { setFlightReturn, setFlights } from '../../../app/slice/FlightSlice'
+import { useDispatch } from 'react-redux'
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
 const FlightsBookingForm = ({ setIdComponent }) => {
+    const dispatch = useDispatch();
     const [apiDatas, setApidata] = useRecoilState(apiData)
+    const [FlightList, setFlightList] = useState(FlightListData)
     const [Tab, setTab] = useState(1);
     const [ipAddress, setIpAddress] = useRecoilState(ipAddressSave);
     const [isLoading, setIsLoading] = useState(false)
@@ -58,35 +62,35 @@ const FlightsBookingForm = ({ setIdComponent }) => {
     const bookingHandlerFun = () => {
         setIsLoading(true)
         let Segments;
-        if (Tab === 1) {
+        if (Tab === 2) {
             Segments = [
                 {
                     "Origin": fromValue?.title,
                     "Destination": toValue?.title,
-                    "FlightCabinClass": saveClass,
+                    "FlightCabinClass": saveClass?.value,
                     "PreferredDepartureTime": moment(startDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
                     "PreferredArrivalTime": moment(startDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
                 },
                 {
                     "Origin": toValue?.title,
                     "Destination": fromValue?.title,
-                    "FlightCabinClass": saveClass,
+                    "FlightCabinClass": saveClass?.value,
                     "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
                     "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
                 }
-            ]   
-        }else if (Tab === 2) {
+            ]
+        } else {
             Segments = [
-                
                 {
                     "Origin": toValue?.title,
                     "Destination": fromValue?.title,
-                    "FlightCabinClass": saveClass,
+                    "FlightCabinClass": saveClass?.value,
                     "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
                     "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
                 }
             ]
         }
+
         let config = {
             method: 'post',
             url: ApiUrl?.bookingSearch,
@@ -101,18 +105,28 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                 "OneStopFlight": isNonStop,
                 "JourneyType": Tab,
                 "PreferredAirlines": null,
-                Segments,
+                'Segments': Segments,
                 "Sources": null
             },
 
         }
+        console.log(config, '==========');
         APIRequest(
             config,
             res => {
                 console.log(res, '====================== res booking dd')
                 setIsLoading(false)
                 setApidata(res?.data)
-                // setIdComponent(2)
+                if (res?.data?.Response?.Results?.length > 1) {
+                    console.log('if');
+                    dispatch(setFlights(res?.data?.Response?.Results[0]))
+                    dispatch(setFlightReturn(res?.data?.Response?.Results[1]))
+                } else {
+                    console.log('else');
+                    dispatch(setFlights(res?.data?.Response?.Results[0]))
+                    dispatch(setFlightReturn([]))
+                }
+                setIdComponent(2)
             },
             err => {
                 console.log(err, '====================== err booking')

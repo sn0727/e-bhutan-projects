@@ -93,6 +93,8 @@ export const ApiUrl = {
   bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
   fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
   bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
+  flightBook: `${apiBaseUrl}flight/ticket/booking/book`,
+  flightTicket: `${apiBaseUrl}flight/ticket/booking/ticket`,
 
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
@@ -144,7 +146,9 @@ export const ApiUrl = {
   aepsAuthentication: `${APIBank}aeps/authentication`,
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
+  aepsMiniStatement: `${APIBank}aeps/miniStatement`,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
+  aepsBalanceEnquiry: `${APIBank}aeps/check/balance `,
 
   newOnboarding: `${APIBank}aeps/newOnboarding `,
   twoFactorAuthLogin: `${APIBank}aeps/twoFactorAuthLogin `,

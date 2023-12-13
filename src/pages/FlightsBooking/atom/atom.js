@@ -27,7 +27,7 @@ export const infantsQuantity1 = atom({
 
 export const travelClassValue = atom({
     key: 'travelClassValue',
-    default: "Economy"
+    default: { name: 'Economy', value: 2 }
 })
 
 export const ipAddressSave = atom({
@@ -45,3 +45,19 @@ export const formStateAtom = atom({
     key: 'formState',
     default: null, // Default value is an empty array
 });
+
+
+
+export const FlightListData = atom({
+    key: 'FlightListData',
+    default: [],
+});
+export const FlightSelectedDetails = atom({
+    key: 'FlightSelectedDetails',
+    default: { departure: null, return: null },
+})
+
+export const FlightInvoiceNo = atom({
+    key: 'FlightInvoiceNo',
+    default: '',
+})

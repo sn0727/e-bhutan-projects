@@ -76,7 +76,7 @@
     margin: auto;
     flex-shrink: 0;
     border-radius: 10px;
-    border: 1px solid var(--themBlackColor);
+    border: 1px solid #ccc;
     background: var(--themWhiteColor);
     display: flex;
     justify-content: space-between;
@@ -184,13 +184,13 @@
 }
 
 .booking-01.activeClassAdd {
-    border: 2px solid #2c427d;
+    border: 2px solid #2c427d !important;
 }
 
 .button-and-price {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .button-and-price button {
@@ -705,22 +705,26 @@ td {
 .seat-table {
     overflow-y: auto;
 }
+
 .activeSeat {
     background-color: var(--themTextColor);
     color: var(--themWhiteColor);
 }
+
 .userNmae-list {
     width: 100%;
     padding: 0;
     margin-bottom: 20px;
 }
+
 .listName-rr {
     display: flex;
     justify-content: flex-start;
     gap: 10px;
     padding: 0;
 }
-.listName-rr > div {
+
+.listName-rr>div {
     width: 100%;
     max-width: 180px;
     border: 1px solid var(--themTextColor);
@@ -733,9 +737,11 @@ td {
     cursor: pointer;
     font-size: 13px;
 }
-.userName-dd > svg {
+
+.userName-dd>svg {
     display: inline-block;
 }
+
 .mealListData {
     width: 100%;
     padding: 0;
@@ -745,33 +751,78 @@ td {
     gap: 10px;
     flex-wrap: wrap;
 }
-.mealListData > div {
+
+.mealListData>div {
     width: 100%;
     max-width: calc(50% - 5px);
     border: 1px solid #a7a7a74f;
     border-radius: 3px;
 }
+
 .dsfbsdb-dsfsdbjfb {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 10px 10px;
 }
+
 .food-icon {
     max-width: 15%;
     width: 100%;
     font-size: 32px;
 }
+
 .heekj-sdfsdkdsk {
     max-width: 85%;
     width: 100%;
 }
+
 .userName-dd.new-userName-dd {
     flex-direction: column;
     align-items: stretch;
 }
+
 .activeButon {
     background-color: var(--themTextColor);
     color: var(--themWhiteColor) !important;
 }
+
 /* =================== Seat design css code part 03 ====================== */
+
+
+
+/* =================== Flight list css code part 04 ====================== */
+
+.flightlistbothbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flightlistbox {
+    width: 48%;
+}
+
+.flightlistboxone {
+    width: 100%;
+}
+
+.multiple-select-button {
+    position: fixed;
+    background: aqua;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+
+
+@media (max-width: 900px) {
+    .flightlistbothbox {
+        display: block;
+    }
+
+    .flightlistbox {
+        width: 100%;
+    }
+}

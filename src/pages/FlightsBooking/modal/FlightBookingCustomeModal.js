@@ -26,7 +26,14 @@ const style = {
 
 };
 
-const SaveBillOption = ['Economy', 'Premium economy', 'Business', 'First class']
+const SaveBillOption = [
+    { name: 'All', value: 1 },
+    { name: 'Economy', value: 2 },
+    { name: 'Premium Economy', value: 3 },
+    { name: 'Business', value: 4 },
+    { name: 'Premium Business', value: 5 },
+    { name: 'First Class', value: 5 },
+]
 
 export default function FlightBookingCustomeModal() {
     const [adultsQuantity, setAdultsQuantity] = useRecoilState(adultsQuantity1);
@@ -100,7 +107,7 @@ export default function FlightBookingCustomeModal() {
                             }}
                         >{SvgIcon?.dots}</span>
                         <span
-                        >{saveClass}</span>
+                        >{saveClass?.name}</span>
                     </p>
                 </div>
             </div>
@@ -178,8 +185,10 @@ export default function FlightBookingCustomeModal() {
                             {SaveBillOption.map((item, i) =>
                                 <button key={`savebillbutton${i}`}
                                     onClick={() => setSaveClass(item)}
-                                    className={saveClass === item ? 'active-btn' : 'btn-sucess'}
-                                >{item}</button>
+                                    className={saveClass.value === item.value ? 'active-btn' : 'btn-sucess'}
+                                >
+                                    {item?.name}
+                                </button>
                             )}
                         </div>
                     </div>
