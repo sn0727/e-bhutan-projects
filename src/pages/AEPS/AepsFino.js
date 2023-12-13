@@ -1029,7 +1029,7 @@ const AepsFino = () => {
 
 
 
-  if (getTokenData?.finoaeps !== 'false') {
+  if (getTokenData?.finoaeps === 'false') {
     return (
       <>
         {/* <Header /> */}
