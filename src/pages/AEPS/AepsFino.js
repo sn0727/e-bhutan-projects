@@ -147,7 +147,10 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
     )
   }
 
-
+  useEffect(() => {
+    setInputFeildValue({ mobile: getTokenData?.contact, email: getTokenData?.email })
+  }, [])
+  
   return (
     <div className="comman-container px-4">
       {/* {children} */}
@@ -228,7 +231,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
 }
 
 // registration on boarding componen
-export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo,setStateUpdate }) => {
+export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setStateUpdate }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
   const [getLocationData, setGetLocationData] = useState({});
@@ -1024,7 +1027,7 @@ const AepsFino = () => {
 
 
 
-  if (getTokenData?.finoaeps === 'false') {
+  if (getTokenData?.finoaeps !== 'false') {
     return (
       <>
         {/* <Header /> */}
