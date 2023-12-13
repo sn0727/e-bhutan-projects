@@ -142,7 +142,7 @@ const ProfileContent = () => {
   }, [])
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 my-100">
+    <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto py-5 lg:py-0">
         <div className="setcostuasdnf max-w-7xl bg-white rounded-lg shadow dark:border md:mt-0 lg:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

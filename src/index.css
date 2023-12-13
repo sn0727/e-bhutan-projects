@@ -47,7 +47,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html[native-dark-active] body {
+  background: #000;
+}
 html[native-dark-active] a,
 html[native-dark-active] button {
   color: #fff !important;
@@ -175,7 +177,9 @@ a:hover {
   color: inherit;
   text-decoration: none;
 }
-
+.button-process.my-20 {
+  margin: 20px 0 !important;
+}
 a,
 button {
   color: inherit;
@@ -708,4 +712,7 @@ p.verify {
   font-size: 28px;
   line-height: unset;
   display: inline-block;
+}
+.button-process.my-0 {
+  margin: 20px 0 !important;
 }

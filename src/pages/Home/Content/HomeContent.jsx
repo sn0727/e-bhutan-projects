@@ -120,7 +120,7 @@ const HomeContent = () => {
       {/* Banking Services & Insurance Services */}
 
       {/* Tour & Travel */}
-      {/* <section className='rechages-bill-payment'>
+      <section className='rechages-bill-payment'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox h-178">
             <h2>Tour & Travel</h2>
@@ -142,7 +142,7 @@ const HomeContent = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Tour & Travel */}
 
       {/* Financial Services */}
