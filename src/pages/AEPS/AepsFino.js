@@ -124,7 +124,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
       method: 'post',
       body: {
         merchantcode: getTokenData?.partnerId,
-        mobile: inputFeildValue?.contact,
+        mobile: inputFeildValue?.mobile,
         is_new: "1",
         email: inputFeildValue?.email,
         firm: "Nakshtra Ventures"
@@ -137,6 +137,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
         console.log(res, '====================== de de')
         toast.success(res?.message)
         // window.location.reload()
+        window.location.replace(res?.data?.redirecturl);
         setStateUpdate('2')
         setIsloading(false)
       },
@@ -150,7 +151,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
   useEffect(() => {
     setInputFeildValue({ mobile: getTokenData?.contact, email: getTokenData?.email })
   }, [])
-  
+  console.log(inputFeildValue);
   return (
     <div className="comman-container px-4">
       {/* {children} */}
@@ -225,6 +226,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             </Link>
           </button>
         </div>
+        <Loader isLoading={isLoading} />
       </div>
     </div >
   )
