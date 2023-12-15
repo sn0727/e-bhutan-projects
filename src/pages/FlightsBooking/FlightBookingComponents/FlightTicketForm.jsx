@@ -14,7 +14,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { FlightListData, adultsQuantity1, apiData, childrenQuantity1, infantsQuantity1, ipAddressSave, travelClassValue } from '../atom/atom'
 import FlightBookingCustomeModal from '../modal/FlightBookingCustomeModal'
 import moment from 'moment'
-import { setFlightReturn, setFlights } from '../../../app/slice/FlightSlice'
+import { setAllPassenger, setFlightReturn, setFlights } from '../../../app/slice/FlightSlice'
 import { useDispatch } from 'react-redux'
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
@@ -58,6 +58,20 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         setFromValue(toValue);
         setToValue(fromValue);
     };
+
+    const setPassengerData = () => {
+        let AllPassenger = []
+        for (let i = 0; i < adultsQuantity; i++) {
+            AllPassenger.push({ isShow: false, label: `Adult ${i + 1}` })
+        }
+        for (let i = 0; i < childrenQuantity; i++) {
+            AllPassenger.push({ isShow: false, label: `Child ${i + 1}` })
+        }
+        for (let i = 0; i < infantsQuantity; i++) {
+            AllPassenger.push({ isShow: false, label: `Infant ${i + 1}` })
+        }
+        dispatch(setAllPassenger(AllPassenger))
+    }
 
     const bookingHandlerFun = () => {
         setIsLoading(true)
@@ -126,6 +140,7 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                     dispatch(setFlights(res?.data?.Response?.Results[0]))
                     dispatch(setFlightReturn([]))
                 }
+                setPassengerData()
                 setIdComponent(2)
             },
             err => {

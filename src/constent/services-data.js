@@ -218,12 +218,12 @@ export const services = [
         ],
         // // Tour and Travel service objects
         TourAndTravel: [
-            {
-                id: 1,
-                link: "/",
-                title: "Hotel",
-                image: image.Hotel
-            },
+            // {
+            //     id: 1,
+            //     link: "/",
+            //     title: "Hotel",
+            //     image: image.Hotel
+            // },
             {
                 id: 2,
                 link: "/filght-booking",
@@ -236,24 +236,24 @@ export const services = [
                 title: "Bus",
                 image: image.Bus
             },
-            {
-                id: 4,
-                link: "/",
-                title: "Train",
-                image: image.Train 
-            },
-            {
-                id: 5,
-                link: "/",
-                title: "Tour & Travel",
-                image: image.TourTravel
-            },
-            {
-                id: 6,
-                link: "/",
-                title: "Offers & Package",
-                image: image.OffersPackage
-            }
+            // {
+            //     id: 4,
+            //     link: "/",
+            //     title: "Train",
+            //     image: image.Train 
+            // },
+            // {
+            //     id: 5,
+            //     link: "/",
+            //     title: "Tour & Travel",
+            //     image: image.TourTravel
+            // },
+            // {
+            //     id: 6,
+            //     link: "/",
+            //     title: "Offers & Package",
+            //     image: image.OffersPackage
+            // }
         ],
 
         // // Financial Services objects
@@ -342,12 +342,12 @@ export const services = [
 ]
 
 export const TourAndTravelData = [
-    {
-        id: 6,
-        link: "/",
-        title: "Offers",
-        icon: SvgIcon?.OfferIcon
-    },
+    // {
+    //     id: 6,
+    //     link: "/",
+    //     title: "Offers",
+    //     icon: SvgIcon?.OfferIcon
+    // },
     {
         id: 2,
         link: "/filght-booking",
@@ -360,16 +360,16 @@ export const TourAndTravelData = [
         title: "Bus",
         icon: SvgIcon?.BusIcon
     },
-    {
-        id: 1,
-        link: "/",
-        title: "Metro",
-        icon: SvgIcon?.MetroIcon
-    },
-    {
-        id: 4,
-        link: "/",
-        title: "Train",
-        icon: SvgIcon?.TrainIcon
-    },
+    // {
+    //     id: 1,
+    //     link: "/",
+    //     title: "Metro",
+    //     icon: SvgIcon?.MetroIcon
+    // },
+    // {
+    //     id: 4,
+    //     link: "/",
+    //     title: "Train",
+    //     icon: SvgIcon?.TrainIcon
+    // },
 ]

@@ -67,20 +67,20 @@ const FlightsBooking = () => {
                         )
                     }
 
-                    {
+                    {/* {
                         idComponent === 5 && (
                             <>
                                 <BookingDetails setIdComponent={setIdComponent} />
                             </>
                         )
-                    }
-                    {/* {
+                    } */}
+                    {
                         idComponent === 5 && (
                             <>
                                 <SeatsMain setIdComponent={setIdComponent} />
                             </>
                         )
-                    } */}
+                    }
 
                     {
                         idComponent === 6 && (

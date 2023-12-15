@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 
-const UserForm = ({ onSave, label, isShow }) => {
+const UserForm = ({ onSave, label, isShow, value  }) => {
+  // const value = {}
   const [pessengerAddObj, setPessengerAddObj] = useState({
-    FirstName: '',
-    LastName: '',
-    ContactNo: '',
-    Email: '',
-    City: '',
-    DateOfBirth: '',
-    Gender: '',
-    PassportNo: '',
-    PassportExpiry: '',
-    AddressLine1: '',
-    AddressLine2: ''
+    FirstName: value?.userData?.FirstName,
+    LastName: value?.userData?.LastName,
+    ContactNo: value?.userData?.ContactNo,
+    Email: value?.userData?.Email,
+    City: value?.userData?.City,
+    DateOfBirth: value?.userData?.DateOfBirth,
+    Gender: value?.userData?.Gender,
+    PassportNo: value?.userData?.PassportNo,
+    PassportExpiry: value?.userData?.PassportExpiry,
+    AddressLine1: value?.userData?.AddressLine1,
+    AddressLine2: value?.userData?.AddressLine2
   })
 
   const handlerInputPesserger = (event) => {
@@ -41,6 +42,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               onChange={handlerInputPesserger}
               placeholder='Fist Name'
               name='FirstName'
+              value={pessengerAddObj.FirstName}
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
@@ -52,6 +54,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Last Name"
               name='LastName'
+              value={pessengerAddObj.LastName}
               required />
           </div>
         </div>
@@ -62,6 +65,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               onChange={handlerInputPesserger}
               placeholder='Contact No'
               name='ContactNo'
+              value={pessengerAddObj.ContactNo}
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
@@ -73,6 +77,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Email Id"
               name='Email'
+              value={pessengerAddObj.Email}
               required />
           </div>
         </div>
@@ -84,6 +89,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="City"
               name='City'
+              value={pessengerAddObj.City}
               required
             />
           </div>
@@ -93,6 +99,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               onChange={handlerInputPesserger}
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               name='DateOfBirth'
+              value={pessengerAddObj.DateOfBirth}
               required
             />
           </div>
@@ -102,6 +109,7 @@ const UserForm = ({ onSave, label, isShow }) => {
             <label htmlFor="Gender" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Gender</label>
             <select
               name="Gender"
+              value={pessengerAddObj.Gender}
               style={{ minHeight: '41px' }}
               id="Gender"
               onChange={handlerInputPesserger}
@@ -118,6 +126,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Passport No"
               name='PassportNo'
+              value={pessengerAddObj.PassportNo}
               required />
           </div>
         </div>
@@ -129,6 +138,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Passport Expiry Date"
               name='PassportExpiry'
+              value={pessengerAddObj.PassportExpiry}
               required />
           </div>
           <div className='w-50'>
@@ -139,6 +149,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Address Line 1"
               name='AddressLine1'
+              value={pessengerAddObj.AddressLine1}
               required
             />
           </div>
@@ -151,6 +162,7 @@ const UserForm = ({ onSave, label, isShow }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Address Line 2"
               name='AddressLine2'
+              value={pessengerAddObj.AddressLine2}
               required
             />
           </div>

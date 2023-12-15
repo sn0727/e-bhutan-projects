@@ -8,32 +8,33 @@ import { IoClose } from "react-icons/io5";
 import { FaAngleRight } from "react-icons/fa6";
 import { SeatData } from './SeatsData'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAllPassenger } from '../../../../../app/slice/FlightSlice'
 
 const SeatsList = ({ setIdComponent }) => {
-  const formState = useRecoilValue(formStateAtom);
-  const formStoreData = useSetRecoilState(formStateAtom);
-
+  const dispatch = useDispatch()
+  const ResultIndex = useSelector(state => state.flights.ResultIndex);
+  const AllPassenger = useSelector(state => state.flights.AllPassenger)
   const [AddTravelDetailRes, setAddTravelDetailRes] = useState([])
-  const setApiSingalData = useRecoilValue(apiSingalData);
   const saveResponseData = useRecoilValue(apiData)
   const ipAddress = useRecoilValue(ipAddressSave)
   const [isLoading, setIsLoading] = useState(true)
   const [activeButton, setActiveButton] = useState(0)
-  const [selectUserState, setSelectUserState] = useState(formState[0])
-  const [selectedSeat, setSelectedSeat] = useState('')
+  const [selectUserState, setSelectUserState] = useState(AllPassenger[0])
   const [resError, setEesError] = useState({})
 
   console.log(AddTravelDetailRes, 'AddTravelDetailRes =================')
 
-  useEffect(() => {
+  // Get ssr api 
+  const SendRequest = (type) => {
     setIsLoading(true)
     let config = {
       method: 'post',
       url: ApiUrl?.bookingGetSSR,
       body: {
         "EndUserIp": ipAddress,
-        "TraceId": saveResponseData?.TraceId,
-        "ResultIndex": setApiSingalData?.ResultIndex
+        "TraceId": saveResponseData?.Response?.TraceId,
+        "ResultIndex": ResultIndex[type]
       }
     }
     APIRequest(
@@ -42,7 +43,6 @@ const SeatsList = ({ setIdComponent }) => {
         console.log(res, '====================== res seats')
         setAddTravelDetailRes(res?.data?.Response)
         setIsLoading(false)
-        // setIdComponent(4)
       },
       err => {
         console.log(err, '====================== err seats')
@@ -50,7 +50,16 @@ const SeatsList = ({ setIdComponent }) => {
         setIsLoading(false)
       }
     )
-  }, [setAddTravelDetailRes])
+  }
+
+  useEffect(() => {
+    if (ResultIndex?.departure) {
+      SendRequest('departure')
+    }
+    if (ResultIndex?.return) {
+      SendRequest('return')
+    }
+  }, [])
 
   // Find object in Code for show box on right position
   const findObjectByCode = (seats, code) => {
@@ -58,20 +67,20 @@ const SeatsList = ({ setIdComponent }) => {
     return foundObject || null;
   }
 
+  // find user and insert seat data in user
   const findUser = (seat, ActiveUser) => {
-    console.log(ActiveUser, '6789876545678467');
-    const updatedData = formState.map(user => {
-      if (user.id === ActiveUser.id) {
-        console.log('waesrfyijutdse');
-        return { ...user, SeatDynamic: [seat] };
+    const updatedData = AllPassenger.map(user => {
+      if (user.label === ActiveUser.label) {
+        return { ...user, userData: { ...user.userData, SeatDynamic: [seat] } };
       }
-      return user;
     });
-    formStoreData(updatedData);
+    dispatch(setAllPassenger(updatedData));
   }
 
+  // Find object in Code for show box on right position
   const findByCode = (code) => {
-    const foundObject = formState.find(user => user?.SeatDynamic && user?.SeatDynamic[0]?.Code === code);
+    // console.log(code, 'dddddd', AllPassenger[0].userData.SeatDynamic[0]?.Code);
+    const foundObject = AllPassenger.find(user => user?.userData?.SeatDynamic && user.userData.SeatDynamic[0]?.Code === code);
     return foundObject !== undefined;
   }
 
@@ -81,9 +90,7 @@ const SeatsList = ({ setIdComponent }) => {
     return foundObject || null;
   }
 
-  useEffect(()=> {
-    console.log(formState, '================ formState')
-  }, [formState])
+
 
   const selectedUserFuc = (data, index) => {
     setSelectUserState(data)
@@ -103,11 +110,11 @@ const SeatsList = ({ setIdComponent }) => {
               <div className='userNmae-list'>
                 <div className='listName-rr'>
                   {
-                    formState?.map((userData, index) => (
+                    AllPassenger?.map((userData, index) => (
                       <div className={`userName-dd ${activeButton === index ? 'activeButon' : ''}`} onClick={() => selectedUserFuc(userData, index)}>
                         <FaAngleRight />
-                        <span>Mr {userData?.fistname} {userData?.lastname} </span>
-                        <span>{userData?.SeatDynamic ? `(${userData?.SeatDynamic[0]?.Code})` : null}</span>
+                        <span>Mr {userData?.userData?.FirstName} {userData?.userData?.LastName} </span>
+                        <span>{userData?.userData?.SeatDynamic ? `(${userData?.userData?.SeatDynamic[0]?.Code})` : null}</span>
                       </div>
                     ))
                   }
@@ -137,9 +144,9 @@ const SeatsList = ({ setIdComponent }) => {
                 </thead>
                 <tbody>
                   {
-                    AddTravelDetailRes?.SeatDynamic[0]?.SegmentSeat[0]?.RowSeats?.length > 0 ?
+                    AddTravelDetailRes?.SeatDynamic?
                       AddTravelDetailRes?.SeatDynamic[0]?.SegmentSeat[0]?.RowSeats?.map((items, index) => (
-                        <tr className='seatList-tr'>
+                        <tr className='seatList-tr' key={`SeatList${index}`}>
                           {
                             findObjectByCode(items?.Seats, `${index}A`) ?
                               <td onClick={() => !findByCode(`${index}A`) ? handlerSelectedSeat(items?.Seats, `${index}A`) : alert('Seat Booked')} className={findByCode(`${index}A`) ? 'activeButon' : ''} > &#8377; {findObjectByCode(items?.Seats, `${index}A`)?.Price}</td>
@@ -180,7 +187,7 @@ const SeatsList = ({ setIdComponent }) => {
         }
       </div>
       <div className='button-process procced-chnage-space'>
-        <button type='button' className='button-pro' onClick={() => setIdComponent(6)}>
+        <button type='button' className='button-pro' onClick={() => console.log('procced')}>
           <Link type='button'>Proceed</Link>
         </button>
       </div>

@@ -33,6 +33,7 @@ const BookingDetails = ({ setIdComponent }) => {
     }
 
 
+    // Flight ticket api
     const SendRequest2 = (type) => {
         console.log(FlightDetails[type].Fare);
         let setIsLeadPax = false
@@ -100,6 +101,13 @@ const BookingDetails = ({ setIdComponent }) => {
         )
     }
 
+    const Send = (type) => {
+        setTimeout(() => {
+            SendRequest2(type)
+        }, 6000);
+    }
+
+    // Flight book api
     const SendRequest = (type) => {
         console.log(FlightDetails[type].Fare);
         let setIsLeadPax = false
@@ -159,13 +167,7 @@ const BookingDetails = ({ setIdComponent }) => {
             config,
             res => {
                 console.log(res, '====================== res booking')
-                setTimeout(() => {
-                    SendRequest2(type)
-
-                }, 1000 * 5);
-                setIsLoading(false)
-
-                // setIdComponent(4)
+                Send(type)
             },
             err => {
                 console.log(err, '====================== err hhh booking')

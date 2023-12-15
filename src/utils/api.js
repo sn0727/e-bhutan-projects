@@ -92,6 +92,7 @@ export const ApiUrl = {
   // booking api route
   bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
   fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
+  fareRuleSearch: `${apiBaseUrl}flight/ticket/booking/fareRule`,
   bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
   flightBook: `${apiBaseUrl}flight/ticket/booking/book`,
   flightTicket: `${apiBaseUrl}flight/ticket/booking/ticket`,

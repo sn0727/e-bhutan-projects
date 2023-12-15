@@ -4,6 +4,7 @@ import MealList from './SeatsComponents/MealList';
 import BaggageList from './SeatsComponents/BaggageList';
 import { formStateAtom } from '../../atom/atom';
 import { useRecoilValue } from 'recoil';
+import TicketButton from '../../../../components/Button/TicketButton';
 
 const TabBar = ({ tabs, initialTab, onTabChange }) => {
     const [activeTab, setActiveTab] = useState(initialTab);
@@ -40,7 +41,14 @@ const SeatsMain = ({ setIdComponent }) => {
     return (
         <>
             <div>
-                <h3 className='add-travel-detail-title'>Seats List</h3>
+                <h3 className='add-travel-detail-title'>Flight booking details</h3>
+                <div>
+                    <TicketButton
+                        lable='Skip to payment'
+                        isActive={true}
+                        onClick={() => setIdComponent(6)}
+                    />
+                </div>
                 <div className='my-4 mian-box-clas'>
                     <div className='tabButton'>
                         <TabBar
@@ -50,9 +58,9 @@ const SeatsMain = ({ setIdComponent }) => {
                         />
                     </div>
                     {/* Your content for each tab goes here */}
-                    {selectedTab === 'Seat' && <SeatsList setIdComponent={setIdComponent} />}
+                    {/* {selectedTab === 'Seat' && <SeatsList />}
                     {selectedTab === 'Meal' && <MealList />}
-                    {selectedTab === 'Baggage' && <BaggageList />}
+                    {selectedTab === 'Baggage' && <BaggageList />} */}
                 </div>
             </div>
         </>

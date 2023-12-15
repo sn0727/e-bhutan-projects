@@ -58,6 +58,31 @@ const AddTravelDetails = ({ setIdComponent }) => {
             }
         )
     }
+    const SendRequest1 = (type) => {
+        setIsLoading(true)
+        let config = {
+            method: 'post',
+            url: ApiUrl?.fareRuleSearch,
+            body: {
+                "EndUserIp": ipAddress,
+                "TraceId": saveResponseData?.Response?.TraceId,
+                "ResultIndex": ResultIndex[type]
+            }
+        }
+        console.log(config);
+        APIRequest(
+            config,
+            res => {
+                console.log(res, '====================== res booking')
+                setIsLoading(false)
+            },
+            err => {
+                console.log(err, '====================== err hhh booking')
+                setIsLoading(false)
+                toast.error(err?.message)
+            }
+        )
+    }
 
 
 
@@ -65,11 +90,13 @@ const AddTravelDetails = ({ setIdComponent }) => {
     useEffect(() => {
         if (ResultIndex?.departure) {
             SendRequest('departure')
+            SendRequest1('departure')
         } else {
             dispatch(setFlightDetails({ departure: null }))
         }
         if (ResultIndex?.return) {
             SendRequest('return')
+            SendRequest1('return')
         } else {
             dispatch(setFlightDetails({ return: null }))
         }
