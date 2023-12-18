@@ -240,7 +240,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setS
 
   // get current date and time
   const date = new Date();
-  let formateDate = moment(date).format('yyyy-DD-mm H:mm:ss');
+  let formateDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
 
   const [inputFeildValue, setInputFeildValue] = useState({
     adhaarnumber: "",
