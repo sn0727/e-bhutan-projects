@@ -179,13 +179,25 @@ const BookingDetails = ({ setIdComponent }) => {
 
 
     const Submit = () => {
-        console.log(AllPassenger, 'AllPassenger');
-        if (ResultIndex?.departure) {
+        console.log(AllPassenger, FlightDetails, ResultIndex, 'AllPassenger');
+        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC===true) {
+            SendRequest2('departure')
+        }
+        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC===false) {
             SendRequest('departure')
         }
-        if (ResultIndex?.return) {
+        if (FlightDetails?.return?.ResultIndex &&  FlightDetails?.return?.IsLCC===true) {
+            SendRequest2('return')
+        }
+        if (FlightDetails?.return?.ResultIndex && FlightDetails?.return?.IsLCC===false) {
             SendRequest('return')
         }
+        // if (ResultIndex?.departure) {
+        //     SendRequest('departure')
+        // }
+        // if (ResultIndex?.return) {
+        //     SendRequest('return')
+        // }
     }
 
 

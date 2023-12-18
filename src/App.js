@@ -67,6 +67,7 @@ import { Another } from './pages/Testing/Another';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import AepsParent from './pages/AEPS/AepsParent';
+import FlightTicketCancel from './pages/FlightsBooking/FlightTicketCancel';
 // import HorizontalList from './pages/Testing/HorizontalList';
 
 function App() {
@@ -142,6 +143,7 @@ function App() {
             <Route path='/quick-dhan' element={<QuickDhan />} />
             <Route path='/bank-account-verification' element={<BankAccountVerification />} />
             <Route path='/bus-booking' element={<BusBooking />} />
+            <Route path='/flight-ticket-cancel' element={<FlightTicketCancel />} />
           </Route>
           {/* protected router */}
         </Routes> : <NetwordError />}

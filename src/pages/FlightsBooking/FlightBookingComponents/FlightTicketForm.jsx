@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import TicketButton from '../../../components/Button/TicketButton'
 import { image } from '../../../constent/image'
 import { Checkbox, FormControlLabel } from '@mui/material'
@@ -16,9 +16,12 @@ import FlightBookingCustomeModal from '../modal/FlightBookingCustomeModal'
 import moment from 'moment'
 import { setAllPassenger, setFlightReturn, setFlights } from '../../../app/slice/FlightSlice'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import SearchCity from './component/SearchCity'
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
 const FlightsBookingForm = ({ setIdComponent }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [apiDatas, setApidata] = useRecoilState(apiData)
     const [FlightList, setFlightList] = useState(FlightListData)
@@ -36,6 +39,7 @@ const FlightsBookingForm = ({ setIdComponent }) => {
     const infantsQuantity = useRecoilValue(infantsQuantity1)
     const saveClass = useRecoilValue(travelClassValue)
 
+
     // get ip address value
     const getIpAddressFun = async () => {
         const response = await fetch(
@@ -52,6 +56,7 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         options: top100Films,
         getOptionLabel: (option) => option.title,
     };
+
 
     // Swap the values between fromValue and toValue
     const exchangeValues = () => {
@@ -79,15 +84,15 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         if (Tab === 2) {
             Segments = [
                 {
-                    "Origin": fromValue?.title,
-                    "Destination": toValue?.title,
+                    "Origin": fromValue?.AIRPORTCODE,
+                    "Destination": toValue?.AIRPORTCODE,
                     "FlightCabinClass": saveClass?.value,
                     "PreferredDepartureTime": moment(startDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
                     "PreferredArrivalTime": moment(startDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
                 },
                 {
-                    "Origin": toValue?.title,
-                    "Destination": fromValue?.title,
+                    "Origin": toValue?.AIRPORTCODE,
+                    "Destination": fromValue?.AIRPORTCODE,
                     "FlightCabinClass": saveClass?.value,
                     "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
                     "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
@@ -96,11 +101,11 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         } else {
             Segments = [
                 {
-                    "Origin": toValue?.title,
-                    "Destination": fromValue?.title,
+                    "Origin": toValue?.AIRPORTCODE,
+                    "Destination": fromValue?.AIRPORTCODE,
                     "FlightCabinClass": saveClass?.value,
-                    "PreferredDepartureTime": moment(returnDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-                    "PreferredArrivalTime": moment(returnDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
+                    "PreferredDepartureTime": moment(startDate).startOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+                    "PreferredArrivalTime": moment(startDate).add(1, 'hour').startOf('day').format('YYYY-MM-DDTHH:mm:ss')
                 }
             ]
         }
@@ -108,8 +113,6 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         let config = {
             method: 'post',
             url: ApiUrl?.bookingSearch,
-            url: "https://api.ebhuktan.com/api/flight/ticket/booking/search",
-
             body: {
                 "EndUserIp": ipAddress,
                 "AdultCount": adultsQuantity,
@@ -162,10 +165,9 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                         </div>
                         <div>
                             <div className='flight-input-from-to my-4'>
-                                <div className='w-45' style={{ width: '45%' }}>
+                                {/* <div className='w-45' style={{ width: '45%' }}>
                                     <p className='ticket-gray-text text-left'>From</p>
                                     <p className='ticket-gray-bold-text'>{fromValue?.title}</p>
-                                    {/* <input type='text' name='from' value={'Delhi'} className='ticket-gray-text' /> */}
                                     <Autocomplete
                                         {...defaultProps}
                                         id="disable-close-on-select"
@@ -178,14 +180,15 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                                             <TextField {...params} label="From" variant="standard" />
                                         )}
                                     />
-                                </div>
-                                <div style={{ width: '10%' }} onClick={() => exchangeValues()}>
+                                </div> */}
+                                <SearchCity type={'From'} setValue={setFromValue} Value={fromValue} />
+                                <div style={{ width: '10%', marginTop: 20, }} onClick={() => exchangeValues()}>
                                     <img src={image.SyncArrow} alt="Fingerprint" className={`Image-SyncArrow `} />
                                 </div>
-                                <div style={{ width: '45%' }}>
+                                <SearchCity type={'To'} setValue={setToValue} Value={toValue} />
+                                {/* <div style={{ width: '45%' }}>
                                     <p className='ticket-gray-text text-right'>To</p>
                                     <p className='ticket-gray-bold-text text-right'>{toValue?.title}</p>
-                                    {/* <input type='text' name='from' value={'Mumbai'} className='ticket-gray-text text-right' /> */}
                                     <Autocomplete
                                         {...defaultProps}
                                         id="disable-close-on-select"
@@ -198,7 +201,7 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                                             <TextField {...params} label="To" variant="standard" />
                                         )}
                                     />
-                                </div>
+                                </div> */}
                             </div>
                             <div className='flight-input-from-to my-4 gap-10'>
                                 <div className='flex-fill'>
@@ -234,8 +237,14 @@ const FlightsBookingForm = ({ setIdComponent }) => {
                             </div>
                             <TicketButton lable={'Search Flights'} isActive={true} onClick={bookingHandlerFun} isCircular={true} />
                         </div>
+                        <div style={{ textAlign: 'center', marginTop: 15, }}>
+                            <TicketButton lable='Cancel Flight Ticket'
+                                onClick={() => navigate('/flight-ticket-cancel')}
+                            />
+                        </div>
                     </div>
                 </div>
+
             </div>
             <>
                 <Loader isLoading={isLoading} />
@@ -259,4 +268,6 @@ const top100Films = [
     { title: 'Goa', year: 1957 },
     { title: "Gujarat", year: 1993 },
     { title: 'Maharashtra', year: 1994 },
+    { title: 'JFK', year: 1994 },
+    { title: 'YXU', year: 1994 },
 ]

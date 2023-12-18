@@ -137,7 +137,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
         console.log(res, '====================== de de')
         toast.success(res?.message)
         // window.location.reload()
-        window.location.replace(res?.data?.redirecturl);
+        window.open(res?.data?.redirecturl, '_blank');
         setStateUpdate('2')
         setIsloading(false)
       },

@@ -96,6 +96,11 @@ export const ApiUrl = {
   bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
   flightBook: `${apiBaseUrl}flight/ticket/booking/book`,
   flightTicket: `${apiBaseUrl}flight/ticket/booking/ticket`,
+  flightReleasePNRRequest: `${apiBaseUrl}flight/ticket/booking/releasePNRRequest`,
+  flightSendChangeRequest: `${apiBaseUrl}flight/ticket/booking/sendChangeRequest`,
+  flightGetChangeRequestStatus: `${apiBaseUrl}flight/ticket/booking/getChangeRequestStatus`,
+  flightGetCancellationCharges: `${apiBaseUrl}flight/ticket/booking/getCancellationCharges`,
+  flightGetAirportcode: `${apiBaseUrl}flight/ticket/booking/getAirPortCode`,
 
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
@@ -179,6 +184,17 @@ export const ApiUrl = {
   dhanVerifyOTP: `${APIBank}account/quick/dhan/verifyOTP`,
   dhanCheckStatus: `${APIBank}account/quick/dhan/checkStatus`,
 
+
+
+
+
+  // Bus ticket booking api
+  busCityList: `${apiBaseUrl}bus/ticket/booking/getBusCityList`,
+  busSearch: `${apiBaseUrl}bus/ticket/booking/search`,
+  busGetBusSeatLayOut: `${apiBaseUrl}bus/ticket/booking/getBusSeatLayOut`,
+  busGetBoardingPointDetails: `${apiBaseUrl}bus/ticket/booking/getBoardingPointDetails`,
+  busBlock: `${apiBaseUrl}bus/ticket/booking/busBlock`,
+  busBook: `${apiBaseUrl}bus/ticket/booking/book`,
 
 };
 

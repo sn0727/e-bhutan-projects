@@ -771,6 +771,7 @@ h1.statusCode-sd img {
     position: relative;
     top: -20px;
 }
+
 input.disabled-flight {
     color: rgba(194, 194, 194, 1) !important;
     background-color: unset;
@@ -799,6 +800,7 @@ input.ticket-gray-text {
 .date-picker-parent input {
     width: 100%;
 }
+
 .date-picker-parent .react-datepicker-wrapper {
     width: 100%;
 }
@@ -807,7 +809,7 @@ input.ticket-gray-text {
     text-align: right;
 }
 
-.heading-name{
+.heading-name {
     font-family: var(--Inter);
     font-size: 18px;
     font-weight: 600;
@@ -816,15 +818,29 @@ input.ticket-gray-text {
     padding-top: 10px;
 
 }
-.add-member-headig{
+
+.add-member-headig {
     font-family: var(--Inter);
     font-size: 14px;
     font-weight: 600;
     line-height: 14px;
 }
-.add-member-subheading{
+
+.add-member-subheading {
     font-family: var(--Inter);
     font-size: 10px;
     font-weight: 500;
     line-height: 16px;
+}
+
+.myW {
+    width: 500px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 550px) {
+    .myW {
+        width: 300px;
+        margin-top: 10px;
+    }
 }
