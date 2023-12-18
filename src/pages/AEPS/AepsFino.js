@@ -408,7 +408,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 
   // get current date and time
   const date = new Date();
-  let formateDate = moment(date).format('yyyy-DD-mm H:mm:ss');
+  let formateDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
 
   const [inputFeildValue, setInputFeildValue] = useState({
     adhaarnumber: "",
@@ -595,7 +595,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
 
   // get current date and time
   const date = new Date();
-  let formateDate = moment(date).format('yyyy-DD-mm H:mm:ss');
+  let formateDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
 
   const [inputFeildValue, setInputFeildValue] = useState({
     adhaarnumber: getTokenData?.aadharNo,
