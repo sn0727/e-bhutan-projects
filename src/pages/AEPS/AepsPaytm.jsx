@@ -43,10 +43,10 @@ const SelectBiometricDeviceTab = ({ savePaymentOption, setSavePaymentOption }) =
   ]
   return (
     <>
-      <div className='mobile-recharge'>
+      {/* <div className='mobile-recharge'>
         <BackButton link={"home"} />
-        <h1>AEPS</h1>
-      </div>
+        <h1>AEPS Paytm</h1>
+      </div> */}
       {/* <p className='Select-Biometric-Device'>Select Biometric Device</p> */}
       {/* <div className='Figure-biometric-Device'>
         {
