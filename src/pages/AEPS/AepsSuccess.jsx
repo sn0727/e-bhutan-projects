@@ -34,21 +34,21 @@ const AepsSuccess = () => {
     }, []);
 
     useEffect(() => {
-        if (data?.data?.ministatementlist) {
-            const data1 = data?.data?.ministatementlist?.npcidata?.split("    ");
+        if (data?.ministatementlist) {
+            const data1 = data?.ministatementlist?.npcidata?.split("    ");
             console.log(data1);
             const regex = /(\d{2}\/\d{2}\/\d{2})\s+(DR)\s+(\d+\.\d{2})/g;
             let matches;
             const transactions = [];
 
-            while ((matches = regex.exec(data?.data?.ministatementlist?.npcidata)) !== null) {
+            while ((matches = regex.exec(data?.ministatementlist?.npcidata)) !== null) {
                 const date = matches[1];
                 const type = matches[2];
                 const amount = parseFloat(matches[3]);
 
                 transactions.push({ date, type, amount });
             }
-            while ((matches = regex.exec(data?.data?.ministatement)) !== null) {
+            while ((matches = regex.exec(data?.ministatement)) !== null) {
                 const date = matches[1];
                 const type = matches[2];
                 const amount = parseFloat(matches[3]);
@@ -57,7 +57,7 @@ const AepsSuccess = () => {
 
             setListData(transactions)
         }
-        console.log(data?.data, 'data--');
+        console.log(data,ListData, 'data--');
     }, [data])
     return (
         <>
