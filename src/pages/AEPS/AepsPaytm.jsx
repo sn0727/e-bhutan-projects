@@ -938,7 +938,7 @@ const AepsPaytm = () => {
   const [getTokenData, setGetTokenData] = useState({});
   const [invoiceNo, setInvoiceNo] = useState({});
   const [savePaymentOption, setSavePaymentOption] = useState('');
-  const [StateUpdate, setStateUpdate] = useState('')
+  const [StateUpdate, setStateUpdate] = useState('1')
   const [ipAddress, setipAddress] = useState('')
 
 
@@ -1004,6 +1004,10 @@ const AepsPaytm = () => {
     }
   }
 
+
+  useEffect(() => {
+    GetByToken()
+  }, [StateUpdate])
 
   useEffect(() => {
     GetByToken()
