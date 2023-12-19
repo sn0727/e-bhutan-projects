@@ -1027,7 +1027,7 @@ const AepsPaytm = () => {
 
 
 
-  if (getTokenData?.isAEPS !== 'false') {
+  if (getTokenData?.isAEPS === 'false') {
     return (
       <>
         {/* <Header /> */}
