@@ -172,7 +172,8 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="city">City</label>
+                  <input type="text"
                     name="city"
                     onChange={inputHandle}
                     placeholder='City'
@@ -186,6 +187,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
+                  <label for="address">Address</label>
                   <input type="text" min="1" max="5"
                     name="address"
                     onChange={inputHandle}
@@ -200,7 +202,8 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="address">Pan number</label>
+                  <input type="pannumber" maxLength={10}
                     name="pannumber"
                     value={inputFeildValue?.pannumber}
                     onChange={inputHandle}
@@ -525,7 +528,8 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobilenumber"
                     onChange={inputHandle}
                     placeholder='Mobile Number'
@@ -539,7 +543,8 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="adhaarnumber">Aadhaar number</label>
+                  <input type="text" maxLength={12}
                     name="adhaarnumber"
                     value={inputFeildValue?.adhaarnumber}
                     onChange={inputHandle}
@@ -794,6 +799,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
         <div className="style-row">
           <div className="col-6">
             <div className="enter-mobilenum select-plan mt-5">
+              <label for="controllable-states-demo">Select bank</label>
               <Autocomplete
                 value={Bank}
                 getOptionLabel={(Options) => Options.bankName}
@@ -812,7 +818,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobilenumber"
                     onChange={inputHandle}
                     placeholder='Mobile Number'
@@ -826,7 +833,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="adhaarnumber">Aadhaar number</label>
+                  <input type="text" maxLength={12}
                     name="adhaarnumber"
                     value={inputFeildValue?.adhaarnumber}
                     onChange={inputHandle}
@@ -840,7 +848,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="pannumber">Pan number</label>
+                  <input type="text" maxLength={10}
                     name="pannumber"
                     value={inputFeildValue?.pannumber}
                     onChange={inputHandle}
@@ -854,6 +863,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
+                  <label for="city">City</label>
                   <input type="text" min="1" max="5"
                     name="city"
                     value={inputFeildValue?.city}
@@ -868,7 +878,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="amount">Enter amount</label>
+                  <input type="number" min="1" max="5"
                     name="amount"
                     value={inputFeildValue?.amount}
                     onChange={inputHandle}
@@ -1003,25 +1014,25 @@ const AepsPaytm = () => {
 
 
 
-        // get ip address value
-        const getIpAddressFun = async () => {
-          const response = await fetch(
-              `https://api.db-ip.com/v2/free/self`
-          );
-          const data = await response.json();
-          setipAddress(data?.ipAddress);
-      }
-      useEffect(() => {
-          getIpAddressFun()
-      }, [])
-  
+  // get ip address value
+  const getIpAddressFun = async () => {
+    const response = await fetch(
+      `https://api.db-ip.com/v2/free/self`
+    );
+    const data = await response.json();
+    setipAddress(data?.ipAddress);
+  }
+  useEffect(() => {
+    getIpAddressFun()
+  }, [])
+
 
 
   if (getTokenData?.isAEPS !== 'false') {
     return (
       <>
         {/* <Header /> */}
-        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}  ipAddress={ipAddress}>
+        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </MarchantOnBoarding>
         {/* <Footer /> */}
@@ -1040,13 +1051,13 @@ const AepsPaytm = () => {
   else if (getTokenData?.isAuthentication === null || moment().diff(getTokenData?.isAuthentication, 'hours') > 24) {
     return (
       <>
-        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate}  ipAddress={ipAddress}>
+        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsAuthentication>
       </>
     )
   }
-   else {
+  else {
     return (
       <>
         <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} ipAddress={ipAddress}>
