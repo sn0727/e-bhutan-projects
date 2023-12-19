@@ -238,7 +238,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
 }
 
 // registration on boarding componen
-export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) => {
+export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, ipAddress }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
   const [getLocationData, setGetLocationData] = useState({});
@@ -292,7 +292,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) =
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": location_ip,
+        "ipaddress": ipAddress,
       }
     }
     APIRequest(
@@ -405,7 +405,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) =
   )
 }
 // Authentication on boarding componen
-export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setStateUpdate }) => {
+export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setStateUpdate, ipAddress }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
 
@@ -471,8 +471,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": '192.168.1.37',
-        // "ipaddress": location_ip,
+        "ipaddress": ipAddress,
       }
     }
     APIRequest(
@@ -592,7 +591,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 }
 
 
-export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOption, setSavePaymentOption }) => {
+export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOption, setSavePaymentOption, ipAddress }) => {
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
@@ -656,40 +655,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
     return state[0].Abbreviation
   }
 
-
-  // Withdraw and deposit api hit.
-  // const MerchantBoarding = () => {
-  //   navigate('/aeps-success', {
-  //     state: {
-  //       data: {
-  //         "error": false,
-  //         "message": "Transaction is successful",
-  //         "data": {
-  //             "status": true,
-  //             "message": "Transaction is successful",
-  //             "ackno": 59,
-  //             "amount": 0,
-  //             "balanceamount": "AVL.BA",
-  //             "bankrrn": "208113393345",
-  //             "bankiin": "990320",
-  //             "ministatement": null,
-  //             "ministatementlist": {
-  //                 "npcidata": "14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       125.00            14/05/19 DR       120.00            14/05/19 DR       110.00            13/05/19 DR       110.00            13/05/19 DR       118.00            13/05/19 DR       117.00            13/05/19 DR       112.00            AVL.BAL           155544           "
-  //             },
-  //             "response_code": 1,
-  //             "errorcode": "AEPS-NPCI-00",
-  //             "clientrefno": 100004635,
-  //             "last_aadhar": "4234",
-  //             "name": "Rizwan "
-  //         }
-  //     }
-  //     }
-  //   })
-  // }
   const MerchantBoarding = async () => {
-
-
-
     if (!savePaymentOption) {
       toast.error('Please select your service!')
       return true
@@ -762,8 +728,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
         'merchantmobilenumber': getTokenData?.contact,
         'mobilenumber': inputFeildValue?.mobilenumber,
         'accessmodetype': 'SITE',
-        // 'ipaddress': location_ip,
-        "ipaddress": '106.210.102.217',
+        'ipaddress': ipAddress,
         'adhaarnumber': inputFeildValue?.adhaarnumber,
         'latitude': location_latitude,
         'longitude': location_longitude,
@@ -964,6 +929,7 @@ const AepsPaytm = () => {
   const [invoiceNo, setInvoiceNo] = useState({});
   const [savePaymentOption, setSavePaymentOption] = useState('');
   const [StateUpdate, setStateUpdate] = useState('')
+  const [ipAddress, setipAddress] = useState('')
 
 
   // getting details from the user token
@@ -1037,11 +1003,25 @@ const AepsPaytm = () => {
 
 
 
+        // get ip address value
+        const getIpAddressFun = async () => {
+          const response = await fetch(
+              `https://api.db-ip.com/v2/free/self`
+          );
+          const data = await response.json();
+          setipAddress(data?.ipAddress);
+      }
+      useEffect(() => {
+          getIpAddressFun()
+      }, [])
+  
+
+
   if (getTokenData?.isAEPS !== 'false') {
     return (
       <>
         {/* <Header /> */}
-        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}>
+        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}  ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </MarchantOnBoarding>
         {/* <Footer /> */}
@@ -1060,7 +1040,7 @@ const AepsPaytm = () => {
   else if (getTokenData?.isAuthentication === null || moment().diff(getTokenData?.isAuthentication, 'hours') > 24) {
     return (
       <>
-        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} >
+        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate}  ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsAuthentication>
       </>
@@ -1069,7 +1049,7 @@ const AepsPaytm = () => {
    else {
     return (
       <>
-        <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption}>
+        <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsServices>
       </>

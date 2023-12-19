@@ -10,6 +10,7 @@ const AepsSuccess = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const billDetails = location.state;
+    console.log(location.state);
     const [data, setdata] = useState(billDetails?.data)
     const [ListData, setListData] = useState([])
 
@@ -57,7 +58,7 @@ const AepsSuccess = () => {
 
             setListData(transactions)
         }
-        console.log(data,ListData, 'data--');
+        console.log(data,'555',ListData, 'data--');
     }, [data])
     return (
         <>
@@ -76,19 +77,47 @@ const AepsSuccess = () => {
                         <ul className={styles.liTextL}>
                             {data?.clientrefno ? <li>Order Id</li> : null}
                             {data?.last_aadhar ? < li >Last Aadhar</li> : null}
-                            {data?.balanceamount ? < li > Amount</li> : null}
+                            {data?.amount ? < li > Amount</li> : null}
+                            {data?.balanceamount ? < li > Balance Amount</li> : null}
                             <li>Bill Date</li>
                             {data?.clientrefno ? <li>Invoice No</li> : null}
                         </ul>
                         <ul className={styles.liTextR}>
                             {data?.clientrefno ? <li>{data?.clientrefno}</li> : null}
                             {data?.last_aadhar ? < li > {data?.last_aadhar}</li> : null}
+                            {data?.amount ? < li > {data?.amount}</li> : null}
                             {data?.balanceamount ? < li > {data?.balanceamount}</li> : null}
                             <li>{(new Date().toLocaleString().split(',')[0])}</li>
                             {data?.clientrefno ? <li>{data?.clientrefno}</li> : null}
                         </ul>
                     </div>
-                    {ListData?.length > 0 ? <div>
+                    {
+                    data?.ministatement?
+                    data?.ministatement?.length > 0 ? <div>
+                        <h1 className={styles.header1}>Mini Statement</h1>
+                        <table className={styles.table}>
+                            <tr>
+                                <th className={styles.thth} >Amount</th>
+                                <th className={styles.thth}>Date</th>
+                                <th className={styles.thth}>Type</th>
+                                <th className={styles.thth}>Narration</th>
+                            </tr>
+
+                            {data?.ministatement?.length > 0 ?
+                                data?.ministatement?.map((item, index) => (
+                                    <tr>
+                                        <td className={styles.thth}>{item?.amount}</td>
+                                        <td className={styles.thth}>{item?.date}</td>
+                                        <td className={styles.thth}>{item?.txnType}</td>
+                                        <td className={styles.thth}>{item?.narration}</td>
+                                    </tr>
+                                ))
+                                : null}
+                        </table>
+
+                    </div>
+                    :null:
+                    ListData?.length > 0 ? <div>
                         <h1 className={styles.header1}>Mini Statement</h1>
                         <table className={styles.table}>
                             <tr>
@@ -108,7 +137,8 @@ const AepsSuccess = () => {
                                 : null}
                         </table>
 
-                    </div> : null}
+                    </div>
+                     : null}
 
                 </div>
 

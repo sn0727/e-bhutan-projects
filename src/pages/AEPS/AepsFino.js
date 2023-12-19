@@ -230,7 +230,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
 }
 
 // registration on boarding componen
-export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setStateUpdate }) => {
+export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setStateUpdate, ipAddress }) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
   const [getLocationData, setGetLocationData] = useState({});
@@ -284,7 +284,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setS
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": location_ip,
+        "ipaddress": ipAddress,
       }
 
     }
@@ -401,7 +401,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setS
   )
 }
 // Authentication on boarding componen
-export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setStateUpdate }) => {
+export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setStateUpdate , ipAddress}) => {
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
 
@@ -466,8 +466,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        // "ipaddress": '192.168.1.37',
-        "ipaddress": location_ip,
+        "ipaddress": ipAddress,
       }
     }
     APIRequest(
@@ -589,7 +588,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 }
 
 
-export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOption, setSavePaymentOption }) => {
+export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOption, setSavePaymentOption, ipAddress }) => {
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const [FingerData, setFingerData] = useState('')
@@ -729,8 +728,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
         "submerchantid": getTokenData?.partnerId,
         "timestamp": formateDate,
         "data": FingerData,
-        "ipaddress": "192.168.43.232",
-        "ipaddress": location_ip,
+        "ipaddress": ipAddress,
         "nationalbankidentification": Bank.iinno,
         "requestremarks": "ok",
         "pipe": "bank1",
@@ -956,7 +954,8 @@ const AepsFino = () => {
   const [invoiceNo, setInvoiceNo] = useState({});
   const [savePaymentOption, setSavePaymentOption] = useState('');
   const [StateUpdate, setStateUpdate] = useState('1')
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(false);
+  const [ipAddress, setipAddress] = useState('')
 
 
   // getting details from the user token
@@ -1034,6 +1033,18 @@ const AepsFino = () => {
     GetByToken()
   }, [StateUpdate])
 
+      // get ip address value
+      const getIpAddressFun = async () => {
+        const response = await fetch(
+            `https://api.db-ip.com/v2/free/self`
+        );
+        const data = await response.json();
+        setipAddress(data?.ipAddress);
+    }
+    useEffect(() => {
+        getIpAddressFun()
+    }, [])
+
 
 
 
@@ -1041,7 +1052,7 @@ const AepsFino = () => {
     return (
       <>
         {/* <Header /> */}
-        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}>
+        <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </MarchantOnBoarding>
         {/* <Footer /> */}
@@ -1052,7 +1063,7 @@ const AepsFino = () => {
   else if (getTokenData?.finoRegister === 'false') {
     return (
       <>
-        <RegistrationOnBoarding getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate}>
+        <RegistrationOnBoarding getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </RegistrationOnBoarding>
         <Loader isLoading={isLoading} />
@@ -1063,7 +1074,7 @@ const AepsFino = () => {
   else if (getTokenData?.finoAuthentication === null || moment().diff(getTokenData?.finoAuthentication, 'hours') > 24) {
     return (
       <>
-        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} >
+        <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} ipAddress={ipAddress}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsAuthentication>
         <Loader isLoading={isLoading} />
@@ -1074,7 +1085,8 @@ const AepsFino = () => {
   else {
     return (
       <>
-        <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption}>
+        <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} ipAddress={ipAddress}
+         savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsServices>
         <Loader isLoading={isLoading} />
