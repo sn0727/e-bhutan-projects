@@ -8,6 +8,7 @@ export const BASEURL = 'https://api.ebhuktan.com';
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
 export const SaveBillOption1 = ['Withdrawal', 'Aadhaar Pay', 'Balance Enquiry', 'Mini Statement']
+export const SaveBillOption2 = ['Withdrawal', 'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 

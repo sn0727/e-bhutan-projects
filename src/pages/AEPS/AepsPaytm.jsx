@@ -6,7 +6,7 @@ import ImageFingerprint from "../../assets/aeps/fingerprint.png"
 import ImageHp from "../../assets/aeps/hp.png"
 import ImageMobile from "../../assets/aeps/mobile.png"
 import ImageAirtal from "../../assets/operator/airtal.png"
-import { APIRequest, ApiUrl, SaveBillOption, SaveBillOption1, StatelistCode } from '../../utils/api';
+import { APIRequest, ApiUrl, SaveBillOption, SaveBillOption2, StatelistCode } from '../../utils/api';
 import "./Css/aeps.css"
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/Button/BackButton';
@@ -63,7 +63,7 @@ const SelectBiometricDeviceTab = ({ savePaymentOption, setSavePaymentOption }) =
       <p className='Select-Biometric-Device'>Select your service</p>
       <div className='save-two-btn buttonBtn mt-2 mb-4'>
         {
-          SaveBillOption1.map((items, i) => (
+          SaveBillOption2.map((items, i) => (
             <button key={i} onClick={() => savePaymentOption === items ? setSavePaymentOption('') : setSavePaymentOption(items)} className={`${savePaymentOption === items ? 'active-btn' : 'btn-sucess'}`}> {items} </button>
           ))
         }
