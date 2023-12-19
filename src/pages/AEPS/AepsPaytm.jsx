@@ -162,7 +162,7 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
     <div className="comman-container px-4">
       {/* {children} */}
       <div className='mobile-recharge'>
-        <BackButton link={"home"} />
+        {/* <BackButton link={"home"} /> */}
         <h1>AEPS Onboarding</h1>
       </div>
       {/* <p className='Select-Biometric-Device'>Select Biometric Device</p> */}
@@ -335,7 +335,7 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, }) =
       {/* {children} */}
 
       <div className='mobile-recharge'>
-        <BackButton link={"home"} />
+        {/* <BackButton link={"home"} /> */}
         <h1>AEPS Registration</h1>
       </div>
 
@@ -516,7 +516,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
       {/* {children} */}
 
       <div className='mobile-recharge'>
-        <BackButton link={"home"} />
+        {/* <BackButton link={"home"} /> */}
         <h1>AEPS Authentication</h1>
       </div>
 
@@ -959,7 +959,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
 }
 
 // this is perent component
-const Aeps = () => {
+const AepsPaytm = () => {
   const [getTokenData, setGetTokenData] = useState({});
   const [invoiceNo, setInvoiceNo] = useState({});
   const [savePaymentOption, setSavePaymentOption] = useState('');
@@ -1037,50 +1037,44 @@ const Aeps = () => {
 
 
 
-  if (getTokenData?.isAEPS === 'false') {
+  if (getTokenData?.isAEPS !== 'false') {
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <MarchantOnBoarding getTokenData={getTokenData} setStateUpdate={setStateUpdate}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </MarchantOnBoarding>
-        <Footer />
+        {/* <Footer /> */}
       </>
     )
   }
   // else if (getTokenData?.isRegister === 'false') {
   //   return (
   //     <>
-  //       <Header />
   //       <RegistrationOnBoarding getTokenData={getTokenData} invoiceNo={invoiceNo} >
   //         <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
   //       </RegistrationOnBoarding>
-  //       <Footer />
   //     </>
   //   )
   // }
   else if (getTokenData?.isAuthentication === null || moment().diff(getTokenData?.isAuthentication, 'hours') > 24) {
     return (
       <>
-        <Header />
         <AepsAuthentication getTokenData={getTokenData} invoiceNo={invoiceNo} setStateUpdate={setStateUpdate} >
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsAuthentication>
-        <Footer />
       </>
     )
   }
    else {
     return (
       <>
-        <Header />
         <AepsServices getTokenData={getTokenData} invoiceNo={invoiceNo} savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption}>
           <SelectBiometricDeviceTab savePaymentOption={savePaymentOption} setSavePaymentOption={setSavePaymentOption} />
         </AepsServices>
-        <Footer />
       </>
     )
   }
 }
 
-export default Aeps
+export default AepsPaytm

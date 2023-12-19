@@ -67,6 +67,13 @@ const FlightsBooking = () => {
                         )
                     }
 
+                    {/* {
+                        idComponent === 5 && (
+                            <>
+                                <BookingDetails setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    } */}
                     {
                         idComponent === 5 && (
                             <>

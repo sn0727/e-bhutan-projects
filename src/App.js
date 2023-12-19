@@ -36,7 +36,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import BillDetails from './pages/Bill_Detail/BillDetails';
 import Wallet from './pages/Wallet/Wallet';
 import DTHBillDetails from './pages/DTH_Recharge/DTHBillDetails';
-import Aeps from './pages/AEPS/Aeps';
 import WalletTransaction from './pages/Transaction/WalletTransaction';
 import Laandline from './pages/Landline/Landline';
 import Loan from './pages/Loan/Loan';
@@ -65,84 +64,91 @@ import BankAccountVerification from './pages/BankAccountVerification/BankAccount
 import BusBooking from './pages/BusBooking/BusBooking';
 import HorizontalList from './pages/Testing/HorizontalList';
 import { Another } from './pages/Testing/Another';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+import AepsParent from './pages/AEPS/AepsParent';
+import FlightTicketCancel from './pages/FlightsBooking/FlightTicketCancel';
 // import HorizontalList from './pages/Testing/HorizontalList';
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
   return (
-    <BrowserRouter>
-      <ToastContainer />
-      {navigator.onLine ? <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/signup' element={<MobileNumber />} />
-        <Route path='/account-verification' element={<AccountVerification />} />
-        <Route path='/aadhaar-number' element={<AadhaarNumber />} />
-        <Route path='/aadhaar-verification' element={<AadhaarVerification />} />
-        <Route path='/registration' element={<Registration />} />
-        <Route path='/forget-password' element={<ForgatePassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/send-email' element={<ResetPasswordLink />} />
-        <Route path='/reset-password-success' element={<ResetPasswordSuccess />} />
-        <Route path='/terms-conditions' element={<TermsConditions />} />
-        <Route path='/404page' element={<Page404 />} />
+    <Provider store={store}>
+      <BrowserRouter>
+        <ToastContainer />
+        {navigator.onLine ? <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/signup' element={<MobileNumber />} />
+          <Route path='/account-verification' element={<AccountVerification />} />
+          <Route path='/aadhaar-number' element={<AadhaarNumber />} />
+          <Route path='/aadhaar-verification' element={<AadhaarVerification />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/forget-password' element={<ForgatePassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/send-email' element={<ResetPasswordLink />} />
+          <Route path='/reset-password-success' element={<ResetPasswordSuccess />} />
+          <Route path='/terms-conditions' element={<TermsConditions />} />
+          <Route path='/404page' element={<Page404 />} />
 
 
-        <Route path='/payment-successful' element={<PaymentSuccessful />} />
-        <Route path='/back-page' element={<BackPage />} />
+          <Route path='/payment-successful' element={<PaymentSuccessful />} />
+          <Route path='/back-page' element={<BackPage />} />
 
-        <Route path='/*' element={<Navigate replace to="/404page" />}></Route>
-        {/* protected router */}
-        <Route path='/' element={<ProtectedRoute />}>
-          <Route path='/home' element={<Home />} />
-          <Route path='/change-password' element={<ChangePassword />} />
-          <Route path='/mobile-recharge' element={<MobileRecharge />} />
-          <Route path='/mobile-choice-plan' element={<MobileChoicePlan />} />
-          <Route path='/mobile-recharge-payment' element={<MobileRechargePayment />} />
-          <Route path='/mobile-recharge-bill-details' element={<MobileRechargeBillDetails />} />
-          <Route path='/payment-success' element={<PaymentSuccess />} />
-          <Route path='/gas-booking' element={<GasRecharge />} />
-          <Route path='/gas-booking-bill-details' element={<GasBookingBillDetail />} />
-          <Route path='/electricity-bill-payment' element={<ElectricityBillPayment />} />
-          <Route path='/electricity-bill-details' element={<ElectricityBillDetails />} />
-          <Route path='/dth-recharge' element={<DTHRecharge />} />
-          <Route path='/water-bill' element={<Water />} />
-          <Route path='/broadband-bill' element={<BroadbandBill />} />
-          <Route path='/municipal-service' element={<MunicipalTax />} />
-          <Route path='/credit-card' element={<CreditCard />} />
-          <Route path='/fastag-recharge' element={<FastagRecharge />} />
-          <Route path='/user-profile' element={<Profile />} />
-          <Route path='/transaction' element={<Transaction />} />
-          <Route path='/commission-transaction' element={<CommisionTransaction />} />
-          <Route path='/aeps' element={<Aeps />} />
-          <Route path='/aeps-success' element={<AepsSuccess />} />
-          <Route path='/filght-booking' element={<FlightsBooking />} />
-          <Route path='/wallet-transaction' element={<WalletTransaction />} />
-          <Route path='/landline-recharge' element={<Laandline />} />
-          <Route path='/loan-payment' element={<Loan />} />
-          <Route path='/insurance-emi-payment' element={<Insurance />} />
-          <Route path='/postPaid-recharge' element={<PostPaidMobileRecharge />} />
+          <Route path='/*' element={<Navigate replace to="/404page" />}></Route>
+          {/* protected router */}
+          <Route path='/' element={<ProtectedRoute />}>
+            <Route path='/home' element={<Home />} />
+            <Route path='/change-password' element={<ChangePassword />} />
+            <Route path='/mobile-recharge' element={<MobileRecharge />} />
+            <Route path='/mobile-choice-plan' element={<MobileChoicePlan />} />
+            <Route path='/mobile-recharge-payment' element={<MobileRechargePayment />} />
+            <Route path='/mobile-recharge-bill-details' element={<MobileRechargeBillDetails />} />
+            <Route path='/payment-success' element={<PaymentSuccess />} />
+            <Route path='/gas-booking' element={<GasRecharge />} />
+            <Route path='/gas-booking-bill-details' element={<GasBookingBillDetail />} />
+            <Route path='/electricity-bill-payment' element={<ElectricityBillPayment />} />
+            <Route path='/electricity-bill-details' element={<ElectricityBillDetails />} />
+            <Route path='/dth-recharge' element={<DTHRecharge />} />
+            <Route path='/water-bill' element={<Water />} />
+            <Route path='/broadband-bill' element={<BroadbandBill />} />
+            <Route path='/municipal-service' element={<MunicipalTax />} />
+            <Route path='/credit-card' element={<CreditCard />} />
+            <Route path='/fastag-recharge' element={<FastagRecharge />} />
+            <Route path='/user-profile' element={<Profile />} />
+            <Route path='/transaction' element={<Transaction />} />
+            <Route path='/commission-transaction' element={<CommisionTransaction />} />
+            <Route path='/aeps' element={<AepsParent />} />
+            <Route path='/aeps-success' element={<AepsSuccess />} />
+            <Route path='/filght-booking' element={<FlightsBooking />} />
+            <Route path='/wallet-transaction' element={<WalletTransaction />} />
+            <Route path='/landline-recharge' element={<Laandline />} />
+            <Route path='/loan-payment' element={<Loan />} />
+            <Route path='/insurance-emi-payment' element={<Insurance />} />
+            <Route path='/postPaid-recharge' element={<PostPaidMobileRecharge />} />
 
-          <Route path='/bill-detail' element={<BillDetails />} />
-          <Route path='/fastag-bill-detail' element={<FastagBillDetails />} />
-          <Route path='/payment-success' element={<PaymentSuccess />} />
-          <Route path='/dth-bill-detail' element={<DTHBillDetails />} />
-          <Route path='/wallet' element={<Wallet />} />
-          <Route path='/add-wallet' element={<AddWallet />} />
-          <Route path='/money-request' element={<MoneyRequest />} />
-          <Route path='/money-request-status' element={<MoneyRequestStatus />} />
-          <Route path='/payment-gateway' element={<PaymentGateway />} />
-          <Route path='/network-error' element={<NetwordError />} />
-          <Route path='/open-account' element={<OpenAccount />} />
-          <Route path='/another' element={<Another />} />
-          <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
-          <Route path='/money-transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
-          <Route path='/quick-dhan' element={<QuickDhan />} />
-          <Route path='/bank-account-verification' element={<BankAccountVerification />} />
-          <Route path='/bus-booking' element={<BusBooking />} />
-        </Route>
-        {/* protected router */}
-      </Routes> : <NetwordError />}
-    </BrowserRouter>
+            <Route path='/bill-detail' element={<BillDetails />} />
+            <Route path='/fastag-bill-detail' element={<FastagBillDetails />} />
+            <Route path='/payment-success' element={<PaymentSuccess />} />
+            <Route path='/dth-bill-detail' element={<DTHBillDetails />} />
+            <Route path='/wallet' element={<Wallet />} />
+            <Route path='/add-wallet' element={<AddWallet />} />
+            <Route path='/money-request' element={<MoneyRequest />} />
+            <Route path='/money-request-status' element={<MoneyRequestStatus />} />
+            <Route path='/payment-gateway' element={<PaymentGateway />} />
+            <Route path='/network-error' element={<NetwordError />} />
+            <Route path='/open-account' element={<OpenAccount />} />
+            <Route path='/another' element={<Another />} />
+            <Route path='/register-beneficiary' element={<RegisterBeneficiary />} />
+            <Route path='/money-transfer' element={<ChakraProvider><Money_Transfer /></ChakraProvider>} />
+            <Route path='/quick-dhan' element={<QuickDhan />} />
+            <Route path='/bank-account-verification' element={<BankAccountVerification />} />
+            <Route path='/bus-booking' element={<BusBooking />} />
+            <Route path='/flight-ticket-cancel' element={<FlightTicketCancel />} />
+          </Route>
+          {/* protected router */}
+        </Routes> : <NetwordError />}
+      </BrowserRouter>
+    </Provider>
   );
 }
 

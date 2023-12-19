@@ -7,7 +7,7 @@ export const BASEURL = 'https://api.ebhuktan.com';
 
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
-export const SaveBillOption1 = ['Withdrawal', 'Balance Enquiry', 'Mini Statement']
+export const SaveBillOption1 = ['Withdrawal', 'Aadhaar Pay', 'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 
@@ -92,7 +92,15 @@ export const ApiUrl = {
   // booking api route
   bookingSearch: `${apiBaseUrl}flight/ticket/booking/search`,
   fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
+  fareRuleSearch: `${apiBaseUrl}flight/ticket/booking/fareRule`,
   bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
+  flightBook: `${apiBaseUrl}flight/ticket/booking/book`,
+  flightTicket: `${apiBaseUrl}flight/ticket/booking/ticket`,
+  flightReleasePNRRequest: `${apiBaseUrl}flight/ticket/booking/releasePNRRequest`,
+  flightSendChangeRequest: `${apiBaseUrl}flight/ticket/booking/sendChangeRequest`,
+  flightGetChangeRequestStatus: `${apiBaseUrl}flight/ticket/booking/getChangeRequestStatus`,
+  flightGetCancellationCharges: `${apiBaseUrl}flight/ticket/booking/getCancellationCharges`,
+  flightGetAirportcode: `${apiBaseUrl}flight/ticket/booking/getAirPortCode`,
 
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
@@ -144,7 +152,10 @@ export const ApiUrl = {
   aepsAuthentication: `${APIBank}aeps/authentication`,
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
+  aepsMiniStatement: `${APIBank}aeps/miniStatement`,
+  aepsAadhaarPay: `${APIBank}aeps/aadhaarPay `,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
+  aepsBalanceEnquiry: `${APIBank}aeps/check/balance `,
 
   newOnboarding: `${APIBank}aeps/newOnboarding `,
   twoFactorAuthLogin: `${APIBank}aeps/twoFactorAuthLogin `,
@@ -178,6 +189,15 @@ export const ApiUrl = {
 
   // Payment success get data 
   getDetailsPayment: `${APIBank}account/quick/dhan/getDetails/`,
+
+
+  // Bus ticket booking api
+  busCityList: `${apiBaseUrl}bus/ticket/booking/getBusCityList`,
+  busSearch: `${apiBaseUrl}bus/ticket/booking/search`,
+  busGetBusSeatLayOut: `${apiBaseUrl}bus/ticket/booking/getBusSeatLayOut`,
+  busGetBoardingPointDetails: `${apiBaseUrl}bus/ticket/booking/getBoardingPointDetails`,
+  busBlock: `${apiBaseUrl}bus/ticket/booking/busBlock`,
+  busBook: `${apiBaseUrl}bus/ticket/booking/book`,
 
 };
 

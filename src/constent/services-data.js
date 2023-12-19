@@ -23,7 +23,7 @@ export const services = [
                 title: "Mobile Recharge",
                 image: image.mobile
             },
-            
+
             {
                 id: 17,
                 link: "/postPaid-recharge",
@@ -86,7 +86,7 @@ export const services = [
                 title: "Credit Card",
                 image: image.credit
             },
-           
+
             // {
             //     id: 13,
             //     link: "/",
@@ -122,12 +122,12 @@ export const services = [
         ],
         // // banking service objects
         BankingServicesAndInsuranceServices: [
-            // {
-            //     id: 1,
-            //     link: "/aeps",
-            //     title: "AEPS",
-            //     image: image.AEPS
-            // },
+            {
+                id: 1,
+                link: "/aeps",
+                title: "AEPS",
+                image: image.AEPS
+            },
             {
                 id: 2,
                 link: "/open-account",
@@ -218,12 +218,12 @@ export const services = [
         ],
         // // Tour and Travel service objects
         TourAndTravel: [
-            {
-                id: 1,
-                link: "/",
-                title: "Hotel",
-                image: image.Hotel
-            },
+            // {
+            //     id: 1,
+            //     link: "/",
+            //     title: "Hotel",
+            //     image: image.Hotel
+            // },
             {
                 id: 2,
                 link: "/filght-booking",
@@ -236,24 +236,24 @@ export const services = [
                 title: "Bus",
                 image: image.Bus
             },
-            {
-                id: 4,
-                link: "/",
-                title: "Train",
-                image: image.Train 
-            },
-            {
-                id: 5,
-                link: "/",
-                title: "Tour & Travel",
-                image: image.TourTravel
-            },
-            {
-                id: 6,
-                link: "/",
-                title: "Offers & Package",
-                image: image.OffersPackage
-            }
+            // {
+            //     id: 4,
+            //     link: "/",
+            //     title: "Train",
+            //     image: image.Train 
+            // },
+            // {
+            //     id: 5,
+            //     link: "/",
+            //     title: "Tour & Travel",
+            //     image: image.TourTravel
+            // },
+            // {
+            //     id: 6,
+            //     link: "/",
+            //     title: "Offers & Package",
+            //     image: image.OffersPackage
+            // }
         ],
 
         // // Financial Services objects
@@ -337,17 +337,17 @@ export const services = [
         //         image: image.DigitalSignature
         //     }
         // ]
-        
+
     }
 ]
 
 export const TourAndTravelData = [
-    {
-        id: 6,
-        link: "/",
-        title: "Offers",
-        icon: SvgIcon?.OfferIcon
-    },
+    // {
+    //     id: 6,
+    //     link: "/",
+    //     title: "Offers",
+    //     icon: SvgIcon?.OfferIcon
+    // },
     {
         id: 2,
         link: "/filght-booking",
@@ -360,16 +360,16 @@ export const TourAndTravelData = [
         title: "Bus",
         icon: SvgIcon?.BusIcon
     },
-    {
-        id: 1,
-        link: "/",
-        title: "Metro",
-        icon: SvgIcon?.MetroIcon
-    },
-    {
-        id: 4,
-        link: "/",
-        title: "Train",
-        icon: SvgIcon?.TrainIcon
-    },
+    // {
+    //     id: 1,
+    //     link: "/",
+    //     title: "Metro",
+    //     icon: SvgIcon?.MetroIcon
+    // },
+    // {
+    //     id: 4,
+    //     link: "/",
+    //     title: "Train",
+    //     icon: SvgIcon?.TrainIcon
+    // },
 ]
