@@ -141,20 +141,20 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
       }
     }
     console.log(config);
-    // APIRequest(
-    //   config,
-    //   res => {
-    //     console.log(res, '====================== de de')
-    //     toast.success(res?.message)
-    //     // window.location.reload()
-    //     // setStateUpdate('2')
-    //     setIsloading(false)
-    //   },
-    //   err => {
-    //     toast.success(err?.message)
-    //     setIsloading(false)
-    //   }
-    // )
+    APIRequest(
+      config,
+      res => {
+        console.log(res, '====================== de de')
+        toast.success(res?.message)
+        // window.location.reload()
+        setStateUpdate('2')
+        setIsloading(false)
+      },
+      err => {
+        toast.success(err?.message)
+        setIsloading(false)
+      }
+    )
   }
 
 
@@ -462,7 +462,6 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
 
     let config = {
       url: ApiUrl?.twoFactorAuthLogin,
-      // url: 'https://paysprint.in/service-api/api/v1/service/balance/balance/authenticationcheck',
       method: 'post',
       body: {
         "accessmodetype": "SITE",
@@ -483,7 +482,7 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
         console.log(res)
         toast.success(res?.message)
         ResetState()
-        setStateUpdate('1')
+        setStateUpdate('3')
         // window.location.reload()
         setIsloading(false)
       },
