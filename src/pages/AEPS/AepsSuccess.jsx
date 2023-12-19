@@ -48,6 +48,12 @@ const AepsSuccess = () => {
 
                 transactions.push({ date, type, amount });
             }
+            while ((matches = regex.exec(data?.data?.ministatement)) !== null) {
+                const date = matches[1];
+                const type = matches[2];
+                const amount = parseFloat(matches[3]);
+                transactions.push({ date, type, amount });
+            }
 
             setListData(transactions)
         }
@@ -82,7 +88,7 @@ const AepsSuccess = () => {
                             {data?.clientrefno ? <li>{data?.clientrefno}</li> : null}
                         </ul>
                     </div>
-                    {ListData?.length > 0?<div>
+                    {ListData?.length > 0 ? <div>
                         <h1 className={styles.header1}>Mini Statement</h1>
                         <table className={styles.table}>
                             <tr>
@@ -102,7 +108,7 @@ const AepsSuccess = () => {
                                 : null}
                         </table>
 
-                    </div>:null}
+                    </div> : null}
 
                 </div>
 
