@@ -735,7 +735,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
         "requestremarks": "ok",
         "pipe": "bank1",
         "transactiontype": transcationtype,
-        "amount": savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' ? inputFeildValue?.amount : null,
+        "amount": savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' || savePaymentOption === 'Aadhaar Pay' ? inputFeildValue?.amount : null,
         "is_iris": "NO",
 
         // 'merchant_name': getTokenData?.name,
@@ -888,7 +888,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
               </div>
             </div>
           </div>
-          {(savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit') ? <div className="col-6">
+          {(savePaymentOption === 'Withdrawal' || savePaymentOption === 'Deposit' || savePaymentOption === 'Aadhaar Pay') ? <div className="col-6">
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
