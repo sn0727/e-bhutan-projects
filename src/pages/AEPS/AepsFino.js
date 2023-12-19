@@ -10,16 +10,11 @@ import { APIRequest, ApiUrl, SaveBillOption, SaveBillOption1, StatelistCode } fr
 import "./Css/aeps.css"
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/Button/BackButton';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import moment from 'moment';
-
-
-import $ from 'jquery';
 import { Autocomplete, TextField } from '@mui/material';
 import { ValidateAadhaar, ValidateEmail, ValidatePan, ValidatePhone, isAddressValid } from '../../utils/validation';
 import FingerPrintDevice from '../../utils/FingerPrintDevice';
-import CustomModal from '../../components/Modal/CustomModal';
 import Loader from '../../components/Feature/Loader';
 
 let url, finalUrl, MethodCapture, MethodInfo, OldPort, DString, device, thrownError
@@ -166,7 +161,8 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobile"
                     onChange={inputHandle}
                     placeholder='Mobile no.'
@@ -180,7 +176,8 @@ export const MarchantOnBoarding = ({ children, getTokenData, setStateUpdate }) =
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="email">Email</label>
+                  <input type="email" min="1" max="5"
                     name="email"
                     onChange={inputHandle}
                     placeholder='Email'
@@ -342,7 +339,8 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setS
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobilenumber"
                     onChange={inputHandle}
                     placeholder='Mobile Number'
@@ -356,7 +354,8 @@ export const RegistrationOnBoarding = ({ children, getTokenData, invoiceNo, setS
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="adhaarnumber">Aadhaar number</label>
+                  <input type="text" maxLength={12}
                     name="adhaarnumber"
                     value={inputFeildValue?.adhaarnumber}
                     onChange={inputHandle}
@@ -522,7 +521,8 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobilenumber"
                     onChange={inputHandle}
                     placeholder='Mobile Number'
@@ -536,7 +536,8 @@ export const AepsAuthentication = ({ children, getTokenData, invoiceNo, setState
             <div className="enter-mobilenum select-plan mt-2">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="adhaarnumber">Aadhaar number</label>
+                  <input type="text" maxLength={12}
                     name="adhaarnumber"
                     value={inputFeildValue?.adhaarnumber}
                     onChange={inputHandle}
@@ -705,9 +706,9 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
     if (savePaymentOption === 'Withdrawal') {
       transcationtype = 'CW'
       url = ApiUrl?.aepsWithdraw
-    } else if (savePaymentOption === 'Deposit') {
-      transcationtype = 'M'
-      url = ApiUrl?.aepsDeposit
+    } else if (savePaymentOption === 'Aadhaar Pay') {
+      transcationtype = 'CW'
+      url = ApiUrl?.aepsAadhaarPay
     } else if (savePaymentOption === 'Balance Enquiry') {
       transcationtype = 'BE'
       url = ApiUrl?.aepsBalanceEnquiry
@@ -808,11 +809,11 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
   return (
     <div className="comman-container px-4">
       {children}
-
       <div className="payment_feild">
         <div className="style-row">
           <div className="col-6">
             <div className="enter-mobilenum select-plan mt-5">
+              <label for="controllable-states-demo">Select bank</label>
               <Autocomplete
                 value={Bank}
                 getOptionLabel={(Options) => Options.bankName}
@@ -831,7 +832,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="mobilenumber">Mobile Number</label>
+                  <input type="text" maxLength={10}
                     name="mobilenumber"
                     onChange={inputHandle}
                     placeholder='Mobile Number'
@@ -845,7 +847,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="adhaarnumber">Aadhaar number</label>
+                  <input type="text" maxLength={12}
                     name="adhaarnumber"
                     value={inputFeildValue?.adhaarnumber}
                     onChange={inputHandle}
@@ -859,7 +862,8 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="pannumber">Pan number</label>
+                  <input type="text" maxLength={10}
                     name="pannumber"
                     value={inputFeildValue?.pannumber}
                     onChange={inputHandle}
@@ -873,6 +877,7 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
+                  <label for="city">City</label>
                   <input type="text" min="1" max="5"
                     name="city"
                     value={inputFeildValue?.city}
@@ -887,7 +892,10 @@ export const AepsServices = ({ children, getTokenData, invoiceNo, savePaymentOpt
             <div className="enter-mobilenum select-plan mt-5">
               <div className="enter-mobilenum">
                 <div className='set-p-relative'>
-                  <input type="text" min="1" max="5"
+                  <label for="amount">Enter amount</label>
+                  <input type="number"
+                    max={6}
+                    min={1}
                     name="amount"
                     value={inputFeildValue?.amount}
                     onChange={inputHandle}

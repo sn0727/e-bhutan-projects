@@ -63,7 +63,7 @@ const BusTicketForm = ({ setIdComponent }) => {
             config,
             res => {
                 console.log(res, '====================== res booking')
-                
+
             },
             err => {
                 console.log(err, '====================== err hhh booking')
@@ -78,6 +78,11 @@ const BusTicketForm = ({ setIdComponent }) => {
         setToValue(fromValue);
     };
 
+    useEffect(()=>{
+        const date = new Date();
+        let formateDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
+        console.log(formateDate);
+    },[])
     return (
         <>
             <div className='flight-ticket-outer mb-5 mt-0'>

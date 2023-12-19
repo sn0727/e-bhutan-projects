@@ -7,7 +7,7 @@ export const BASEURL = 'https://api.ebhuktan.com';
 
 const apiBaseUrl = `${BASEURL}/api/`;
 export const SaveBillOption = ['Home', 'Mom', 'Office', 'Other']
-export const SaveBillOption1 = ['Withdrawal', 'Balance Enquiry', 'Mini Statement']
+export const SaveBillOption1 = ['Withdrawal', 'Aadhaar Pay', 'Balance Enquiry', 'Mini Statement']
 export const transactionByType = ['All', 'Sent', 'Received']
 
 
@@ -153,6 +153,7 @@ export const ApiUrl = {
   aepsGetBankList: `${APIBank}aeps/getBankList`,
   aepsWithdraw: `${APIBank}aeps/cash/withdraw`,
   aepsMiniStatement: `${APIBank}aeps/miniStatement`,
+  aepsAadhaarPay: `${APIBank}aeps/aadhaarPay `,
   aepsDeposit: `${APIBank}aeps/aadhaarPay `,
   aepsBalanceEnquiry: `${APIBank}aeps/check/balance `,
 
