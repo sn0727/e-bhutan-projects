@@ -10,6 +10,8 @@ import BusBookingDetails from './BusBookingComponents/BusBookingDetails'
 import AnimateGIF from '../../components/Common/AminateGIF/AnimateGIF'
 import Loading from '../../components/Feature/Loading'
 import { RecoilRoot } from 'recoil'
+import BusDetails from './BusBookingComponents/BusDetails'
+import AddPassenger from './BusBookingComponents/AddPassenger'
 
 const BusBooking = () => {
     const [idComponent, setIdComponent] = useState(1)
@@ -45,17 +47,24 @@ const BusBooking = () => {
                     {
                         idComponent === 4 && (
                             <>
-                                <BusBookingDetails setIdComponent={setIdComponent} />
+                                <AddPassenger setIdComponent={setIdComponent} />
                             </>
                         )
                     }
                     {
                         idComponent === 5 && (
                             <>
-                                <Loading setIdComponent={setIdComponent} />
+                                <BusBookingDetails setIdComponent={setIdComponent} />
                             </>
                         )
                     }
+                    {/* {
+                        idComponent === 6 && (
+                            <>
+                                <Loading setIdComponent={setIdComponent} />
+                            </>
+                        )
+                    } */}
 
                     {
                         idComponent === 6 && (

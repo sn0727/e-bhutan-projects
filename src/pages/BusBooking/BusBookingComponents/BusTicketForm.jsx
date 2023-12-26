@@ -10,25 +10,26 @@ import { APIRequest, ApiUrl } from '../../../utils/api'
 import { apiDataState, ipAddress as importipAddress } from '../atom/atom'
 import { toast } from 'react-toastify'
 import moment from 'moment'
+import { useDispatch } from 'react-redux'
+import { setBuses, setTraceId } from '../../../app/slice/BusSlice'
+import Loader from '../../../components/Feature/Loader'
 
 const SaveBillOption = ['Armed forces', 'Student', 'Senior Citizen']
 
 const BusTicketForm = ({ setIdComponent }) => {
-    const [apidata, setApiData] = useRecoilState(apiDataState)
+    const dispatch = useDispatch()
     const [ipAddress, setipAddress] = useRecoilState(importipAddress)
 
     const [saveBill, setsaveBill] = useState('')
     const [fromValue, setFromValue] = React.useState(null);
     const [toValue, setToValue] = React.useState(null);
     const [startDate, setStartDate] = useState(new Date());
-    const [returnDate, setReturntDate] = useState(new Date());
     const [isLoading, setisLoading] = useState()
-
-
+    const [CityList, setCityList] = useState([])
 
     // set value of dropdown
     const defaultProps = {
-        options: top100Films,
+        options: CityList,
         getOptionLabel: (option) => option.CityName,
     };
 
@@ -40,9 +41,6 @@ const BusTicketForm = ({ setIdComponent }) => {
         const data = await response.json();
         setipAddress(data?.ipAddress);
     }
-    useEffect(() => {
-        getIpAddressFun()
-    }, [])
 
 
     const bookingHandlerFun = () => {
@@ -63,12 +61,40 @@ const BusTicketForm = ({ setIdComponent }) => {
             config,
             res => {
                 console.log(res, '====================== res booking')
-
+                console.log(res?.data?.BusSearchResult?.BusResults);
+                dispatch(setBuses(res?.data?.BusSearchResult?.BusResults))
+                dispatch(setTraceId(res?.data?.BusSearchResult.TraceId))
+                setIdComponent(2)
+                setisLoading(false)
             },
             err => {
                 console.log(err, '====================== err hhh booking')
                 setisLoading(false)
                 toast.error(err?.message)
+            }
+        )
+    }
+
+
+    const GetBusList = () => {
+        setisLoading(true)
+        let config = {
+            method: 'post',
+            url: ApiUrl?.busCityList,
+            body: {
+                "IpAddress": ipAddress,
+            }
+        }
+        APIRequest(
+            config,
+            res => {
+                console.log(res, '====================== res booking')
+                setCityList(res?.data?.BusCities)
+                setisLoading(false)
+            },
+            err => {
+                console.log(err, '====================== err hhh booking')
+                setisLoading(false)
             }
         )
     }
@@ -78,11 +104,14 @@ const BusTicketForm = ({ setIdComponent }) => {
         setToValue(fromValue);
     };
 
-    useEffect(()=>{
-        const date = new Date();
-        let formateDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
-        console.log(formateDate);
-    },[])
+    useEffect(() => {
+        if (ipAddress) {
+            GetBusList()
+        }
+    }, [ipAddress])
+    useEffect(() => {
+        getIpAddressFun()
+    }, [])
     return (
         <>
             <div className='flight-ticket-outer mb-5 mt-0'>
@@ -141,6 +170,7 @@ const BusTicketForm = ({ setIdComponent }) => {
                         </div>
                     </div>
                 </div>
+                <Loader isLoading={isLoading} />
             </div>
         </>
     )

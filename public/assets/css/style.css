@@ -838,6 +838,14 @@ input.ticket-gray-text {
     margin-top: 10px;
 }
 
+.myname {
+    padding: 20px;
+    border: 1px solid #000;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 @media only screen and (max-width: 550px) {
     .myW {
         width: 300px;

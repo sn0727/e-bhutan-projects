@@ -69,7 +69,6 @@ const BookingDetails = ({ setIdComponent }) => {
                 Nationality: "IN",
             }
         });
-
         setIsLoading(true)
         let config = {
             method: 'post',
@@ -100,10 +99,38 @@ const BookingDetails = ({ setIdComponent }) => {
             }
         )
     }
+    const SendRequest3 = (BookingId, PNR) => {
+        setIsLoading(true)
+        let config = {
+            method: 'post',
+            url: ApiUrl?.flightTicket,
+            body: {
+                "EndUserIp": ipAddress,
+                "TraceId": saveResponseData?.Response?.TraceId,
+                "PNR": PNR,
+                "BookingId": BookingId
+            }
+        }
+        console.log(config, 'config');
+        APIRequest(
+            config,
+            res => {
+                console.log(res, '====================== res Ticket')
+                setIsLoading(false)
+                setInvoiceNo(res?.invoiceNo)
+                setIdComponent(7)
+            },
+            err => {
+                console.log(err, '====================== err hhh Ticket')
+                setIsLoading(false)
+                toast.error(err?.message)
+            }
+        )
+    }
 
     const Send = (type) => {
         setTimeout(() => {
-            SendRequest2(type)
+            SendRequest3(type)
         }, 6000);
     }
 
@@ -167,7 +194,7 @@ const BookingDetails = ({ setIdComponent }) => {
             config,
             res => {
                 console.log(res, '====================== res booking')
-                Send(type)
+                SendRequest3(res?.data?.Response?.Response?.BookingId, res?.data?.Response?.Response?.PNR)
             },
             err => {
                 console.log(err, '====================== err hhh booking')
@@ -180,16 +207,16 @@ const BookingDetails = ({ setIdComponent }) => {
 
     const Submit = () => {
         console.log(AllPassenger, FlightDetails, ResultIndex, 'AllPassenger');
-        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC===true) {
+        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC === true) {
             SendRequest2('departure')
         }
-        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC===false) {
+        if (FlightDetails?.departure?.ResultIndex && FlightDetails?.departure?.IsLCC === false) {
             SendRequest('departure')
         }
-        if (FlightDetails?.return?.ResultIndex &&  FlightDetails?.return?.IsLCC===true) {
+        if (FlightDetails?.return?.ResultIndex && FlightDetails?.return?.IsLCC === true) {
             SendRequest2('return')
         }
-        if (FlightDetails?.return?.ResultIndex && FlightDetails?.return?.IsLCC===false) {
+        if (FlightDetails?.return?.ResultIndex && FlightDetails?.return?.IsLCC === false) {
             SendRequest('return')
         }
         // if (ResultIndex?.departure) {

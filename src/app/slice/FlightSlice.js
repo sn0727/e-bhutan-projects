@@ -81,7 +81,6 @@ const flightSlice = createSlice({
     },
     setFlightDetails(state, action) {
       const data = action.payload
-      console.log(data);
       state.FlightDetails = { ...state.FlightDetails, ...data }
     },
     resetFlightDetails(state, action) {

@@ -108,14 +108,14 @@ function FlightTicketList({ setIdComponent }) {
                                     </div>
                                     <div className='booking-01-inr'>
                                         <div className='button-and-price'>
-                                            <p className='price-inr'>{SvgIcon?.indiaRupe} {bookingItem?.Fare?.PublishedFare?.toFixed(2)}</p>
+                                            <p className='price-inr'>{SvgIcon?.indiaRupe} {(bookingItem?.Fare?.PublishedFare * 1.05)?.toFixed(2)}</p>
                                             {filteredFlightsReturn?.length > 1 ? null : < button type="button" class="null"
                                                 onClick={() =>
                                                     getSingalData(bookingItem?.ResultIndex)
                                                 }> Book Now </button>}
                                         </div>
                                         <div className='Discounted-price-at'>
-                                            <p>Discounted price at {SvgIcon?.indiaRupeGreen} {bookingItem?.Fare?.OfferedFare.toFixed(2)}</p>
+                                            <p>Discounted price at {SvgIcon?.indiaRupeGreen} {(bookingItem?.Fare?.PublishedFare).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </div>

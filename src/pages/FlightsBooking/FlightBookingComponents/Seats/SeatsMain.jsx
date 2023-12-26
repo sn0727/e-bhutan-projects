@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SeatsList from './SeatsComponents/SeatsList';
 import MealList from './SeatsComponents/MealList';
 import BaggageList from './SeatsComponents/BaggageList';
-import { formStateAtom } from '../../atom/atom';
+import { apiData, formStateAtom, ipAddressSave } from '../../atom/atom';
 import { useRecoilValue } from 'recoil';
 import TicketButton from '../../../../components/Button/TicketButton';
+import { useSelector } from 'react-redux';
+import { APIRequest, ApiUrl } from '../../../../utils/api';
 
 const TabBar = ({ tabs, initialTab, onTabChange }) => {
     const [activeTab, setActiveTab] = useState(initialTab);
@@ -32,11 +34,51 @@ const TabBar = ({ tabs, initialTab, onTabChange }) => {
 
 const SeatsMain = ({ setIdComponent }) => {
     const [selectedTab, setSelectedTab] = useState('Seat');
+    const ResultIndex = useSelector(state => state.flights.ResultIndex);
+    const ipAddress = useRecoilValue(ipAddressSave)
+    const saveResponseData = useRecoilValue(apiData)
+    const [isLoading, setisLoading] = useState(false)
+
+
     // const [selectedUserDetail, setSelectedUserDetail] = useRecoilValue(saveUserDetails)
 
     const handleTabChange = (tab) => {
         setSelectedTab(tab)
     };
+
+
+    const SendRequest = (type) => {
+        setisLoading(true)
+        let config = {
+            method: 'post',
+            url: ApiUrl?.bookingGetSSR,
+            body: {
+                "EndUserIp": ipAddress,
+                "TraceId": saveResponseData?.Response?.TraceId,
+                "ResultIndex": ResultIndex[type]
+            }
+        }
+        APIRequest(
+            config,
+            res => {
+                console.log(res, '====================== res seats')
+                setisLoading(false)
+            },
+            err => {
+                console.log(err, '====================== err seats')
+                setisLoading(false)
+            }
+        )
+    }
+
+    useEffect(() => {
+        if (ResultIndex?.departure) {
+            SendRequest('departure')
+        }
+        if (ResultIndex?.return) {
+            SendRequest('return')
+        }
+    }, [])
 
     return (
         <>

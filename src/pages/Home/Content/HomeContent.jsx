@@ -5,9 +5,9 @@ import { services } from "../../../constent/services-data"
 import { APIRequest, ApiUrl } from '../../../utils/api';
 
 const HomeContent = () => {
-  
 
-  
+
+
   return (
     <>
       {/* <section className='offer-box'>
@@ -77,7 +77,7 @@ const HomeContent = () => {
             <div className='servics-list'>
               {
 
-                services.map(({RechargeBillPayment}) => (
+                services.map(({ RechargeBillPayment }) => (
                   RechargeBillPayment.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
                       <div className={`serviceItem ${item.ImageColor}`}>
@@ -102,7 +102,7 @@ const HomeContent = () => {
             <h2>Banking Services & Insurance Services</h2>
             <div className='servics-list banking-service'>
               {
-                services.map(({BankingServicesAndInsuranceServices}) => (
+                services.map(({ BankingServicesAndInsuranceServices }) => (
                   BankingServicesAndInsuranceServices.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
                       <div className='serviceItem'>
@@ -127,7 +127,7 @@ const HomeContent = () => {
             <div className='servics-list tour-and-travel'>
               {
 
-                services.map(({TourAndTravel}) => (
+                services.map(({ TourAndTravel }) => (
                   TourAndTravel.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
                       <div className='serviceItem'>

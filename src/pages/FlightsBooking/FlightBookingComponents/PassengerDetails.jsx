@@ -11,6 +11,7 @@ import { setAllPassenger } from '../../../app/slice/FlightSlice';
 const PassengerDetails = ({ setIdComponent }) => {
     const dispatch = useDispatch()
     const Passenger = useSelector(state => state.flights.AllPassenger)
+    const FlightDetails = useSelector(state => state.flights.FlightDetails)
     // const [Passenger, setPassenger] = useState(Passenger1);
     const [users, setUsers] = useState([]);
     const [selectedUserIndex, setSelectedUserIndex] = useState(null);
@@ -72,7 +73,13 @@ const PassengerDetails = ({ setIdComponent }) => {
                                 <p>{item?.label}</p>
                                 {item?.isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
                             </button>
-                            <UserForm value={item} onSave={handleSaveUser} label={item?.label} isShow={item?.isShow} />
+                            <UserForm
+                                value={item}
+                                onSave={handleSaveUser}
+                                label={item?.label}
+                                isShow={item?.isShow}
+                                FlightDetails={FlightDetails}
+                            />
 
                         </div>
                     ))}
