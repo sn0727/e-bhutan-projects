@@ -43,7 +43,8 @@ const Login = () => {
         navigate("/")
       }
     } catch (response_error) {
-      const { error, message } = response_error.response.data;
+      console.log(response_error, '======================= ss')
+      const { error, message } = response_error?.response?.data;
       if (error) {
         setisLoading(false)
         toast.error(message)

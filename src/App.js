@@ -68,7 +68,10 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import AepsParent from './pages/AEPS/AepsParent';
 import FlightTicketCancel from './pages/FlightsBooking/FlightTicketCancel';
+import HotelBooking from './pages/HotelBooking/HotelBooking';
+import MainTesting from './pages/Testing/MainTesting';
 // import HorizontalList from './pages/Testing/HorizontalList';
+
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -144,7 +147,9 @@ function App() {
             <Route path='/bank-account-verification' element={<BankAccountVerification />} />
             <Route path='/bus-booking' element={<BusBooking />} />
             <Route path='/flight-ticket-cancel' element={<FlightTicketCancel />} />
-          </Route>
+            <Route path='/hotel-booking' element={<HotelBooking />} />
+          <Route path='/testing' element={<MainTesting />} />
+        </Route>
           {/* protected router */}
         </Routes> : <NetwordError />}
       </BrowserRouter>

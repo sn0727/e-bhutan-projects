@@ -218,12 +218,12 @@ export const services = [
         ],
         // // Tour and Travel service objects
         TourAndTravel: [
-            // {
-            //     id: 1,
-            //     link: "/",
-            //     title: "Hotel",
-            //     image: image.Hotel
-            // },
+            {
+                id: 1,
+                link: "/hotel-booking",
+                title: "Hotel",
+                image: image.Hotel
+            },
             {
                 id: 2,
                 link: "/filght-booking",
@@ -342,12 +342,12 @@ export const services = [
 ]
 
 export const TourAndTravelData = [
-    // {
-    //     id: 6,
-    //     link: "/",
-    //     title: "Offers",
-    //     icon: SvgIcon?.OfferIcon
-    // },
+    {
+        id: 6,
+        link: "/",
+        title: "Hotel",
+        icon: SvgIcon?.HotelIcon02
+    },
     {
         id: 2,
         link: "/filght-booking",
@@ -366,10 +366,10 @@ export const TourAndTravelData = [
     //     title: "Metro",
     //     icon: SvgIcon?.MetroIcon
     // },
-    // {
-    //     id: 4,
-    //     link: "/",
-    //     title: "Train",
-    //     icon: SvgIcon?.TrainIcon
-    // },
+    {
+        id: 4,
+        link: "/",
+        title: "Train",
+        icon: SvgIcon?.TrainIcon
+    },
 ]

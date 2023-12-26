@@ -5,7 +5,7 @@ const TicketButton = (props) => {
   lable = 'lable',
   isActive = false,
   onClick,
-  isCircular= false
+  isCircular= false,
  } = props
  return (
   <div className={`ticket-button ${isActive ? 'active' : ''} ${isCircular? 'circular':''}`}
