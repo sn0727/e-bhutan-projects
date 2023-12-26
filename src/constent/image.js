@@ -67,4 +67,6 @@ export const image = {
     service03 : require("../assets/HotelBooking/service-03.png"),
     service04 : require("../assets/HotelBooking/service-04.png"),
     trandingImg : require("../assets/HotelBooking/tranding-img.png"),
+    SeatIcon : require("../assets/HotelBooking/seatIcon.png"),
+    seatIconActive : require("../assets/HotelBooking/seatIconActive.png"),
 }

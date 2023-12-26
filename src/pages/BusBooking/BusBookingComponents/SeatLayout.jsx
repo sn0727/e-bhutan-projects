@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedSeat } from "../../../app/slice/BusSlice";
 import { useEffect, useState } from "react";
+import { image } from "../../../constent/image";
 
 // SeatRow component to represent a row of seats
 const SeatRow = ({ seats }) => {
@@ -88,16 +89,39 @@ const Seat = ({ seat, width }) => {
   const selectedSeat = useSelector((state) => state.buses.selectedSeat)
   const dispatch = useDispatch()
   const seatStyle = {
-    backgroundColor: seat.SeatStatus ? (selectedSeat.some(selected => selected.SeatName === seat.SeatName) ? 'gray' : 'blue') : 'red',
+    // backgroundColor: seat.SeatStatus ? (selectedSeat.some(selected => selected.SeatName === seat.SeatName) ? 'gray' : 'blue') : 'red',
+    filter: seat.SeatStatus ? (selectedSeat.some(selected => selected.SeatName === seat.SeatName) ? 'grayscale(100%)' : 'contrast(250%)') : 'sepia(100%)',
+    // filter: seat.SeatStatus ? (selectedSeat.some(selected => selected.SeatName === seat.SeatName) ? 'contrast(100%);' : 'grayscale(100%)') : 'sepia(100%)',
     // backgroundColor: seat.SeatStatus ? 'blue' : 'red',
-    width: `${width * 50}px`, // Adjust width based on seat type
-    height: '50px',
-    margin: '5px',
+    // width: `${width * 50}px`, // Adjust width based on seat type
+    // height: '50px',
+    // margin: '5px',
     textAlign: 'center',
     lineHeight: '50px',
-    border: '1px solid black',
+    // border: '1px solid black',
     color: 'white',
+    cursor: 'pointer'
   };
+
+  // const seatStyle = {
+  //   backgroundImage: seat.SeatStatus
+  //     ? selectedSeat.some(selected => selected.SeatName === seat.SeatName)
+  //       ? `url(${image?.SeatIcon})`
+  //       : `url(${image?.SeatIcon})`
+  //     : `url(${image?.seatIconActive})`,
+  //   width: `${width * 40}px`, // Adjust width based on seat type
+  //   height: '40px',
+  //   margin: '5px',
+  //   textAlign: 'center',
+  //   lineHeight: '44px',
+  //   // border: '1px solid black',
+  //   color: 'white',
+  //   filter: seat.SeatStatus
+  //   ? selectedSeat.some(selected => selected.SeatName === seat.SeatName)
+  //     ? 'grayscale(100%)' // Change to grayscale if selected
+  //     : 'contrast(250%)' // Reduce brightness if not selected
+  //   : 'sepia(100%)', // Apply sepia tone if unavailable
+  // };
 
   const setSeat = (seat) => {
     if (seat?.SeatStatus) {
@@ -105,10 +129,15 @@ const Seat = ({ seat, width }) => {
     }
     console.log(seat);
   }
-
+  console.log(width, 'rtyuytr');
   return (
     <div style={seatStyle} onClick={() => setSeat(seat)}>
-      {seat.SeatName}
+      {/* {seat.SeatName} */}
+      {width == '2' ?
+        <img src={image?.seatIconActive} alt="sdfdfdfdffsd" /> :
+        <img src={image?.SeatIcon} alt="sdfsd" />
+
+      }
     </div>
   );
 };
@@ -150,7 +179,7 @@ const SeatLayout = ({ seatLayoutData }) => {
         ))}
       </div> : null}
       {LowerRow?.length > 0 ? <div className="myname">
-        <h5>LOWER BERTH</h5>
+        <h5 className="mb-4">LOWER BERTH</h5>
         {LowerRow.map((row, index) => (
           <SeatRow key={index} seats={row} />
         ))}

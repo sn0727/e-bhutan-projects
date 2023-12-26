@@ -29,7 +29,7 @@ const BusTicketForm = ({ setIdComponent }) => {
 
     // set value of dropdown
     const defaultProps = {
-        options: CityList,
+        options: top100Films,
         getOptionLabel: (option) => option.CityName,
     };
 
