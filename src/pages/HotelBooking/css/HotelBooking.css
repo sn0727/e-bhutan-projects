@@ -1,0 +1,919 @@
+/* ===================== Hotel Booking css code by the developer date : 12-12-2023 ======================== */
+.ht-layout-css-sr-lst {
+    display: flex;
+    width: 100%;
+    /* max-width: 70%; */
+    max-width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 20px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.ht-layout-css-sr-lst .cl-rt-ht-sr {
+    max-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0px 3px 7px #00000024;
+    position: relative;
+    margin-top: 20px;
+    padding: 20px 10px;
+}
+
+p.room-guest-dt {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.review-sr-ht {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+    height: auto;
+    gap: 10px;
+    position: absolute;
+    top: -15px;
+    right: 0;
+    background-color: var(--primary);
+    border-radius: 10px;
+    color: #fff;
+    padding: 3px 5px;
+}
+
+.review-sr-ht p {
+    padding: 0;
+    margin: 0;
+    font-size: 8px;
+    font-family: var(--Manrope);
+}
+
+.review-sr-ht h5 {
+    font-weight: 600;
+    font-size: var(--fontsize12);
+}
+
+.review-sr-ht div {
+    line-height: 10px;
+    font-size: 13px;
+}
+
+.ht-layout-css-sr-lst .ImageBox-ht-sr {
+    width: 186px;
+    height: 153px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ht-layout-css-sr-lst .ImageBox-ht-sr:hover>img {
+    transform: scale(1.1);
+}
+
+.bedge-xx {
+    width: 100%;
+    background-color: #2c427d47;
+    color: var(--white);
+    padding: 5px;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    line-height: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.bedge-xx p {
+    margin: 0;
+    font-size: var(--fontsize12);
+}
+
+.ht-layout-css-sr-lst .ImageBox-ht-sr img {
+    width: 100%;
+    height: 100%;
+    border-radius: 9px;
+    object-fit: cover;
+}
+
+.content-bx-ht-sr p:nth-child(1) {
+    color: #2A2A2A;
+    font-family: var(--Manrope);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.content-bx-ht-sr {
+    padding-right: 10px;
+}
+
+.content-bx-ht-sr p:nth-child(2) {
+    color: #1C9FE2;
+    font-family: var(--Manrope);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 8px;
+}
+.detail-page-df-ht p {
+    font-size: 13px !important;
+    color: #000 !important;
+}
+
+.chakra-tabs__tablist.css-k008qs button {
+    border: 1px solid #000;
+    margin: 10px;
+}
+
+.content-bx-ht-sr p:nth-child(2)>svg {
+    color: #1C9FE2 !important;
+    display: inline-block;
+}
+
+.content-bx-ht-sr p:nth-child(3) {
+    color: #8D94A2;
+    font-family: var(--Manrope);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 7px;
+    margin-bottom: 3px;
+}
+
+.content-bx-ht-sr p:nth-child(4)>span:nth-child(1) {
+    color: #2A2A2A;
+    text-align: right;
+    font-family: var(--Manrope);
+    font-size: var(--fontsize12);
+    font-style: normal;
+    font-weight: bolder;
+    line-height: normal;
+    display: inline-block;
+}
+
+.content-bx-ht-sr p:nth-child(4)>span:nth-child(2) {
+    color: #8D94A2;
+    font-family: var(--Manrope);
+    font-size: var(--fontsize10);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+button.bookButton:hover {
+    background-color: var(--primary);
+    color: var(--white) !important;
+}
+
+/* ===================== Hotel Booking css code by the developer date : 12-12-2023 ======================== */
+
+/* ===================== Hotel Booking details css code by the developer date : 12-12-2023 ======================== */
+.serach-bx-ht-sr {
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 1px 1px 6px #0000001a;
+    gap: 10px;
+}
+
+.serach-bx-ht-sr>div:first-child {
+    width: 100%;
+    max-width: calc(50% - 10px);
+    border-radius: 5px;
+}
+
+.serach-bx-ht-sr>div {
+    width: 100%;
+    max-width: calc(25% - 5px);
+    border-radius: 5px;
+}
+
+.serach-bx-ht-sr>div:nth-child(1) {
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.new-dt-ad-cls label+.css-l4u8b9-MuiInputBase-root-MuiInput-root {
+    margin-top: 0 !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.new-dt-ad-cls .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+    transform: translate(0, 4px) scale(1);
+}
+
+.MuiAutocomplete-hasPopupIcon.new-dt-ad-cls .css-l4u8b9-MuiInputBase-root-MuiInput-root:before {
+    border: 0;
+}
+
+.MuiAutocomplete-hasPopupIcon.new-dt-ad-cls:hover~.css-l4u8b9-MuiInputBase-root-MuiInput-root {
+    border: 0 !important;
+    outline: none !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.new-dt-ad-cls .css-l4u8b9-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before {
+    border-bottom: 0 !important;
+}
+
+.comman-border-ht {
+    /* border: 1px solid var(--primary); */
+    height: 41px;
+    line-height: 41px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 6px #0000001a;
+}
+
+.serach-bx-ht-sr .date-picker-parent.border-underline.pt-1 {
+    border: 0;
+    padding: 0 !important;
+}
+
+.serach-bx-ht-sr .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: 0 !important;
+}
+
+.serach-bx-ht-sr .date-picker-parent input {
+    line-height: initial;
+}
+
+.serach-bx-ht-sr .ticket-button.circular {
+    border-radius: 5px !important;
+}
+
+.serach-bx-ht-sr .css-1h51icj-MuiAutocomplete-root .MuiInput-root .MuiInput-input {
+    position: relative;
+    top: 8px;
+    font-size: 14px !important;
+}
+
+.image-bx-tanding img {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ===================== Hotel Booking details css code by the developer date : 12-12-2023 ======================== */
+
+/* ===================== Hotel Booking details css code by the developer date : 12-12-2023 ======================== */
+.main-bx-dt-sr {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
+
+.main-bx-dt-sr>div {
+    width: 100%;
+    max-width: 49%;
+}
+
+.mian-in-ht-sr-bk .dt-image {
+    width: 100%;
+    height: 408px;
+}
+
+.mian-in-ht-sr-bk .dt-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.main-bx-dt-sr .Preview-ht-dt {
+    color: var(--black);
+    font-family: var(--Manrope);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.image-thum-ht-st {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow: auto;
+}
+
+.sdfsdhfds-dsfksdj {
+    width: 100%;
+    overflow: auto;
+}
+
+.image-thum-ht-st .img01-ht {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.image-thum-ht-st .img01-ht img {
+    border-radius: 9px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.activeBorder img {
+    border: 2px solid var(--primary);
+}
+
+.right-content-ht-dt {
+    position: relative;
+}
+
+/* ===================== Hotel Booking details css code by the developer date : 12-12-2023 ======================== */
+/* ===================== room list css code by the developer date : 12-12-2023 ======================== */
+.rmSelectRooms {
+    box-shadow: 0 4px 8px #8a6b7614;
+}
+
+.rmHeader {
+    background: #f0f0f0;
+    border: 1px solid #bababa;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: flex;
+    left: 0;
+    position: static;
+    position: -webkit-sticky;
+    top: 114px;
+    z-index: 8;
+}
+
+.rmHeader__item:first-child {
+    flex-shrink: 0;
+    width: 410px;
+}
+
+.rmHeader__item:first-child {
+    flex-shrink: 0;
+    width: 410px;
+}
+
+.rmHeader__item:nth-child(2) {
+    flex-shrink: 0;
+    width: 260px;
+}
+
+.rmHeader__item:nth-child(3) {
+    flex: 1;
+}
+
+.rmHeader__item {
+    align-items: center;
+    border-right: 1px solid #bababa;
+    display: flex;
+    padding: 16px;
+    position: relative;
+}
+
+.rmHeader__item .font14 {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.latoBlack {
+    font-weight: 900;
+}
+
+.rmSelectCont {
+    border: 1px solid #bababa;
+    border-radius: 0 0 4px 4px;
+    border-top: 0;
+}
+
+.appendBottom20 {
+    margin-bottom: 20px;
+}
+
+.rmSelect__card {
+    border-bottom: 8px solid #e1e0e0;
+    display: flex;
+    flex: 1;
+}
+
+.rmSelect__card--wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.rmSelect__card--wrapRow:last-child,
+.rmSelect__card:last-child {
+    border-bottom: 0;
+}
+
+.rmSelect__card--wrapRow {
+    border-bottom: 8px solid #e1e0e0;
+    display: flex;
+    flex: 1;
+    flex-basis: auto;
+}
+
+.rmSelect__card--left {
+    border-right: 1px solid #bababa;
+    flex-shrink: 0;
+    padding: 16px;
+    width: 410px;
+}
+
+.rmType {
+    position: static;
+    position: -webkit-sticky;
+    top: 180px;
+}
+
+.rmPhotos {
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rmType__roomName {
+    color: #000;
+    font-size: 22px;
+    font-weight: 900;
+    word-break: break-word;
+    margin-bottom: 10px;
+}
+
+.rmTypeList.vertical {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.rmTypeList__item {
+    align-items: center;
+    display: flex;
+}
+
+html[dir=ltr] .appendRight10 {
+    margin-right: 10px;
+}
+
+.rmTypeList__item--icon {
+    display: flex;
+    flex: 0 0 22px;
+}
+
+.rmTypeList__item--icon img {
+    max-width: 22px;
+    width: 100%;
+}
+
+.rmAmnt li {
+    font-size: 14px;
+    margin: 0 20px 8px 0;
+    padding-left: 10px;
+    position: relative;
+}
+
+.rmAmnt {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.appendTop20 {
+    margin-top: 20px;
+}
+
+.rmAmnt li:before {
+    background-color: #4a4a4a;
+    border-radius: 50%;
+    content: "";
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 8px;
+    width: 3px;
+}
+
+.appendTop20 {
+    margin-top: 20px;
+}
+
+.font14 {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.latoBlack {
+    font-weight: 900;
+}
+
+.rmSelect__card--right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.rmSelect__card--row {
+    border-bottom: 1px solid #bababa;
+    display: flex;
+    flex: 1;
+    flex-basis: auto;
+    width: 100%;
+}
+
+.rmSelect__card--rowLeft {
+    border-right: 1px solid #bababa;
+    flex-shrink: 0;
+    padding: 16px;
+    width: 260px;
+}
+
+.makeFlex.end {
+    align-items: flex-end;
+}
+
+.makeFlex.end {
+    align-items: baseline;
+}
+
+.font12.latoBold.appendTop15 {
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.makeFlex.flexWrap {
+    flex-wrap: wrap;
+}
+
+.makeFlex {
+    display: flex;
+    margin-left: 10px;
+}
+
+.rmRatePlan__rec {
+    border: 1px solid green;
+    border-radius: 8px;
+    color: #fff;
+    background-color: green;
+    display: inline-flex;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding: 2px 15px;
+    text-transform: uppercase;
+}
+
+.rmRatePlan__heading {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 20px;
+}
+button.bookButton.activeBtn {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+    border-color: var(--primary) !important;
+}
+
+
+.rmRatePlan__list {
+    display: grid;
+    gap: 0px;
+    grid-template-columns: 1fr;
+    margin-top: 3px;
+}
+
+.rmRatePlan__list--item {
+    display: flex;
+}
+
+.rmRatePlan__list--itemIcon {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-right: 8px;
+    padding-top: 3px;
+    width: 15px;
+}
+
+.dtlSprite.icCircularRedCross {
+    background-position: -79px -180px;
+    height: 13px;
+    width: 13px;
+}
+
+.dtlSprite {
+    background: url(//imgak.mmtcdn.com/pwa_v3/pwa_hotel_assets/sprite_prod/premium-details-sprite_hashf003c6a….png) no-repeat;
+    background-size: 300px 400px;
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: 0;
+}
+
+.rmPayable__dtl {
+    display: flex;
+}
+
+.flexOne.rmRatePlan__list--dtl p {
+    font-size: 12px;
+}
+
+.rmPayable__dtl--left {
+    flex: 1;
+}
+
+.grayText {
+    color: #9b9b9b;
+}
+
+.appendBottom5 {
+    margin-bottom: 5px;
+}
+
+p.font22.latoBlack {
+    font-size: 22px;
+}
+
+.appendTop5 {
+    margin-top: 5px;
+}
+
+.font14 {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.latoBold {
+    font-weight: 700;
+}
+
+.rmPayable__dtl--right {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.rmPayable__dtl--cta.primaryBtn {
+    font-size: 16px;
+    margin-top: auto;
+}
+
+a.primaryBtn {
+    color: #fff;
+}
+
+.font12 {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.latoBold {
+    font-weight: 700;
+}
+
+.latoBlack {
+    font-weight: 900;
+}
+
+.rmSelect__card--rowRight {
+    flex: 1;
+    padding: 16px;
+    position: relative;
+}
+
+.rmPayable__dtl {
+    display: flex;
+}
+
+/* ===================== room list cs details css code by the developer date : 12-12-2023 ======================== */
+/* ===================== passenger details css code by the developer date : 12-12-2023 ======================== */
+.rvWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: -40px auto 0;
+    max-width: 1200px;
+    padding-bottom: 30px;
+}
+
+.appendBottom20 {
+    margin-bottom: 20px;
+}
+
+.paper {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 8px #0000002e;
+    display: flex;
+    flex-direction: column;
+}
+
+.htlInfo__wrapper {
+    border-top: 1px solid #d8d8d8;
+}
+
+.rvHtlInfo {
+    display: flex;
+    padding: 15px 20px;
+}
+
+.rvHtlInfoLft {
+    flex: 1;
+}
+
+.blackText {
+    color: #000000;
+}
+
+.makeFlex.hrtlCenter {
+    align-items: center;
+}
+
+.appendTop8 {
+    margin-top: 8px;
+}
+
+.makeFlex {
+    display: flex;
+}
+
+.sRating {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.sRating__row--active {
+    position: absolute;
+}
+
+.sRating__row {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.Cancel-booking h5 {
+    text-transform: capitalize;
+}
+
+.Cancel-booking a {
+    color: #1C9FE2;
+    text-decoration: underline;
+}
+
+.booking-cancel-dfdoe p {
+    text-align: left;
+}
+
+.sdbfsdj-dsfdskjb p svg {
+    display: inline-block;
+    color: green;
+}
+
+/* ===================== passenger cs details css code by the developer date : 12-12-2023 ======================== */
+/* ===================== filter css code by the developer date : 12-12-2023 ======================== */
+.ht-layout-css-sr-lsts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+.ht-layout-css-sr-lsts .filter-main-dv {
+    max-width: 30%;
+    width: 100%;
+}
+
+.SuggestedForYou h3 {
+    font-size: 16px;
+    line-height: 16px;
+    color: #000;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: var(--Manrope);
+}
+
+.check-btn-right label,
+.check-btn-right input {
+    margin: 0;
+    cursor: pointer;
+    color: #8D94A2;
+}
+
+.check-btn-right input {
+    width: 15px;
+    height: 15px;
+}
+
+.check-btn-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.start-svg svg {
+    color: #ffc30d !important;
+    display: inline-flex;
+    font-size: 13px;
+    position: relative;
+    top: -2px;
+}
+
+.rupes-svg svg {
+    color: #8D94A2 !important;
+    display: inline-flex;
+    font-size: 13px;
+    position: relative;
+    top: -2px;
+}
+
+.SuggestedForYou-ht {
+    margin-top: 20px;
+}
+
+.filter-main-dv .SuggestedForYou-ht h2 {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: var(--Manrope);
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-main-dv .SuggestedForYou-ht h2 .clear-dfdsjk {
+    border: 1px solid #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+.recently-veiw-ss {
+    border-bottom: 1px solid #8D94A2;
+    font-family: var(--Manrope);
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 13px;
+    padding: 2px 0;
+}
+
+.cencel-click-btn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.cencel-click-btn .ticket-button {
+    width: 100% !important;
+    max-width: 180px !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+
+/* ===================== filter css details css code by the developer date : 12-12-2023 ======================== */
+
+
+
+.list-item {
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.mian-in-ht-sr-bk .scroll {
+    height: 120px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: auto;
+}
+
+li.list-item.img01-ht img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}

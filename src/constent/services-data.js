@@ -220,7 +220,7 @@ export const services = [
         TourAndTravel: [
             {
                 id: 1,
-                link: "/",
+                link: "/hotel-booking",
                 title: "Hotel",
                 image: image.Hotel
             },
@@ -345,8 +345,8 @@ export const TourAndTravelData = [
     {
         id: 6,
         link: "/",
-        title: "Offers",
-        icon: SvgIcon?.OfferIcon
+        title: "Hotel",
+        icon: SvgIcon?.HotelIcon02
     },
     {
         id: 2,
@@ -360,12 +360,12 @@ export const TourAndTravelData = [
         title: "Bus",
         icon: SvgIcon?.BusIcon
     },
-    {
-        id: 1,
-        link: "/",
-        title: "Metro",
-        icon: SvgIcon?.MetroIcon
-    },
+    // {
+    //     id: 1,
+    //     link: "/",
+    //     title: "Metro",
+    //     icon: SvgIcon?.MetroIcon
+    // },
     {
         id: 4,
         link: "/",

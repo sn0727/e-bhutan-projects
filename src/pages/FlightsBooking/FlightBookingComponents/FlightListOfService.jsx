@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const FlightListOfService = () => {
 
     return (
-        <div className="px-4">
+        <div className="px-5">
             <div className='travel-service-list new-class-travel py-8'>
                 {
                     TourAndTravelData?.map((item, index) => (

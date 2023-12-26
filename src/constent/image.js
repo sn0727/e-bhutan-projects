@@ -59,5 +59,12 @@ export const image = {
     paymentSuccess : require("../assets/gif/paymentSuccess.gif"),
     downloadIcon : require("../assets/gif/download.png"),
     printIcon : require("../assets/gif/print.png"),
-    shareIcon : require("../assets/gif/share.png")
+    shareIcon : require("../assets/gif/share.png"),
+
+    // Hotel service image ===============
+    service01 : require("../assets/HotelBooking/service-01.jpg"),
+    service02 : require("../assets/HotelBooking/service-02.png"),
+    service03 : require("../assets/HotelBooking/service-03.png"),
+    service04 : require("../assets/HotelBooking/service-04.png"),
+    trandingImg : require("../assets/HotelBooking/tranding-img.png"),
 }

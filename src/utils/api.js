@@ -94,6 +94,14 @@ export const ApiUrl = {
   fareQuoteSearch: `${apiBaseUrl}flight/ticket/booking/fareQuote`,
   bookingGetSSR: `${apiBaseUrl}flight/ticket/booking/getSSR`,
 
+  // hotel booking api route 
+  hotelSearch : `${apiBaseUrl}hotel/ticket/booking/getHotelSearchResult`,
+  getDestinationSearchStaticData : `${apiBaseUrl}hotel/ticket/booking/getDestinationSearchStaticData`,
+  getHotelInfo : `${apiBaseUrl}hotel/ticket/booking/getHotelInfo`,
+  getHotelRoom : `${apiBaseUrl}hotel/ticket/booking/getHotelRoom`,
+  hotelBlockRoom : `${apiBaseUrl}hotel/ticket/booking/blockRoom`,
+  bookHotelTicket : `${apiBaseUrl}hotel/ticket/booking/bookHotelTicket`,
+
   // electricityGetOperatorList: `${apiBaseUrl}electricity/bill-payment/getOperaterList`,
   // electricityGetState: `${apiBaseUrl}electricity/bill-payment/getState`,
   // electricityFetchBill: `${apiBaseUrl}electricity/bill-payment/fetchBill`,

@@ -89,7 +89,6 @@ const FlightsBookingForm = ({ setIdComponent }) => {
         }
         let config = {
             method: 'post',
-            url: ApiUrl?.bookingSearch,
             url: "https://api.ebhuktan.com/api/flight/ticket/booking/search",
 
             body: {

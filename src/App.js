@@ -65,7 +65,10 @@ import BankAccountVerification from './pages/BankAccountVerification/BankAccount
 import BusBooking from './pages/BusBooking/BusBooking';
 import HorizontalList from './pages/Testing/HorizontalList';
 import { Another } from './pages/Testing/Another';
+import HotelBooking from './pages/HotelBooking/HotelBooking';
+import MainTesting from './pages/Testing/MainTesting';
 // import HorizontalList from './pages/Testing/HorizontalList';
+
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
@@ -139,6 +142,8 @@ function App() {
           <Route path='/quick-dhan' element={<QuickDhan />} />
           <Route path='/bank-account-verification' element={<BankAccountVerification />} />
           <Route path='/bus-booking' element={<BusBooking />} />
+          <Route path='/hotel-booking' element={<HotelBooking />} />
+          <Route path='/testing' element={<MainTesting />} />
         </Route>
         {/* protected router */}
       </Routes> : <NetwordError />}
