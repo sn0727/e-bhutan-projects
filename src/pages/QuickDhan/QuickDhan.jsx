@@ -191,7 +191,7 @@ const QuickDhan = () => {
             <div className="comman-container px-4">
                 <div className='mobile-recharge'>
                     <BackButton link={"home"} />
-                    <h1>Upi cash withdrawal</h1>
+                    <h1>UPI Cash Withdrawal</h1>
                 </div>
                 <div className="comman-container px-4">
                     <div className='button-process'>

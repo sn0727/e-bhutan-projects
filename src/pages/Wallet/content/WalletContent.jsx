@@ -150,7 +150,7 @@ const WalletContent = () => {
               <p className={styles.text}>Wallet Balance</p>
               <strong className={styles.dflex}><LuIndianRupee /> <span>{parseFloat(WalletAmount).toFixed(2)}</span></strong>
             </div>
-            <button onClick={() => navigate('/add-wallet')} type='button' className={styles.addMoney}>
+            <button onClick={() => navigate('/quick-dhan')} type='button' className={styles.addMoney}>
               <div className='text-white'>Add Money</div>
             </button>
           </div>
@@ -175,7 +175,7 @@ const WalletContent = () => {
             </div>
           </div> */}
         </div>
-        <div style={{ display: 'block' }}>
+        <div style={{ display: 'none' }}>
           <div className="Wallet-desing">
             <label className={styles.textAddmon}>Send Money to Wallet</label>
             <div className='set-p-relative'>
@@ -193,7 +193,7 @@ const WalletContent = () => {
             </div>
           </div>
         </div>
-        <div className={styles.inputFeild2} style={{ display: 'block' }}>
+        <div className={styles.inputFeild2} style={{ display: 'none' }}>
           <div className='buttonBtn'>
             {
               [200, 500, 1000, 2000].map((items, index) => (
@@ -214,7 +214,7 @@ const WalletContent = () => {
 
           </div>
           :
-          <div className='button-process' style={{ display: 'block' }}>
+          <div className='button-process' style={{ display: 'none' }}>
             <button type='button' className='button-pro'>
               <Link onClick={() => Submit()} className={styles.ButtnWidth}>Send Money {AddAmount}</Link>
             </button>

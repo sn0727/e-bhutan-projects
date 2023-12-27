@@ -6,6 +6,7 @@ import "./style.css"
 import { ApiUrl } from '../../../utils/api';
 import axios from 'axios';
 import ProfileDropdown from '../../ProfileDropdown/ProfileDropdown';
+import { FaIndianRupeeSign } from 'react-icons/fa6';
 
 const Header = () => {
     const [profileData, seProfileData] = useState([])
@@ -34,6 +35,8 @@ const Header = () => {
         getProfile()
     }, [])
 
+    console.log('profileData', profileData?.amount)
+
     return (
         <>
             <header className='header-part'>
@@ -43,16 +46,20 @@ const Header = () => {
                             <Link to="/home"><img src="assets/image/logo/logo.png" alt="logo" /></Link>
                         </div>
                         <div className="serarch-and-profile-icon ">
-                            <div className="searchBar-icon">
+                            {/* <div className="searchBar-icon">
                                 <form action="/action_page.php">
                                     <input type="text" placeholder="Search.." name="search" />
                                     <Link className='serarch-ci' >
                                         <BiSearch className='serarch-icon' />
                                     </Link>
                                 </form>
-                            </div>
+                            </div> */}
 
                             <ProfileDropdown token02={decodeToken} profileData={profileData} />
+
+                            <div className='total-Price'>
+                                <p><FaIndianRupeeSign /> <span>{(profileData?.amount) ? (profileData?.amount): '....'}</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
