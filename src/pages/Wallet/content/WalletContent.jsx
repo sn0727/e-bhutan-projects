@@ -147,7 +147,7 @@ const WalletContent = () => {
               </svg>
             </div>
             <div>
-              <p className={styles.text}>Wallet Balance dd</p>
+              <p className={styles.text}>Wallet Balance</p>
               <strong className={styles.dflex}><LuIndianRupee /> <span>{parseFloat(WalletAmount).toFixed(2)}</span></strong>
             </div>
             <button onClick={() => navigate('/quick-dhan')} type='button' className={styles.addMoney}>
