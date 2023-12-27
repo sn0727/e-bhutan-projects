@@ -49,10 +49,10 @@ function BusTicketList({ setIdComponent }) {
                     }
                 </div>
             </div>
-            <div className='booking-list-tb-content'>
-                <h3 className='tb-title'>Fares with Exclusive discounts</h3>
+            <h3 className='tb-title mb-5'>Fares with Exclusive discounts</h3>
+            <div className='booking-list-tb-content booking-list-bus'>
                 {filteredBuses?.map((item, index) => (
-                    <div key={index + 'buseslist'} className='booking-01'
+                    <div key={index + 'buseslist'} className='booking-01 bus-booking-col'
                         onClick={() => Submit(item)}>
                         <div className='booking-01-inr'>
                             <div className='service-logo'>
@@ -67,7 +67,7 @@ function BusTicketList({ setIdComponent }) {
                         </div>
                         <div className='booking-01-inr'>
                             <p className='price-inr'>{SvgIcon?.indiaRupe} {(item?.BusPrice?.PublishedPrice * 1.05).toFixed(2)}</p>
-                            <div className='Discounted-price-at'>
+                            <div className='Discounted-price-at extra-width-add'>
                                 <p>Discounted price at {SvgIcon?.indiaRupeGreen} {item?.BusPrice?.PublishedPrice}</p>
                             </div>
                         </div>

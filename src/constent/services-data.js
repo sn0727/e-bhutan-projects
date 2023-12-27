@@ -257,86 +257,86 @@ export const services = [
         ],
 
         // // Financial Services objects
-        // FinancialServices: [
-        //     {
-        //         id: 1,
-        //         link: "/",
-        //         title: "Company Formation",
-        //         image: image.CompanyFormation
-        //     },
-        //     {
-        //         id: 2,
-        //         link: "/",
-        //         title: "GST",
-        //         image: image.GST
-        //     },
-        //     {
-        //         id: 3,
-        //         link: "/",
-        //         title: "Pan Card",
-        //         image: image.PanCard
-        //     },
-        //     {
-        //         id: 4,
-        //         link: "/",
-        //         title: "ITR",
-        //         image: image.ITR 
-        //     },
-        //     {
-        //         id: 5,
-        //         link: "/",
-        //         title: "Design & Development",
-        //         image: image.DesignDevelopment
-        //     },
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Accounting Services",
-        //         image: image.AccountingServices
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Gold Investment",
-        //         image: image.GoldInvestment
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Digital Marketing",
-        //         image: image.DigitalMarketing
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Mutual Fund",
-        //         image: image.MutualFund
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Bond Investment",
-        //         image: image.BondInvestment
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Education Fee",
-        //         image: image.EducationFee
-        //     }
-        //     ,
-        //     {
-        //         id: 6,
-        //         link: "/",
-        //         title: "Digital Signature",
-        //         image: image.DigitalSignature
-        //     }
-        // ]
+        FinancialServices: [
+            {
+                id: 1,
+                link: "/",
+                title: "Company Formation",
+                image: image.CompanyFormation
+            },
+            {
+                id: 2,
+                link: "/",
+                title: "GST",
+                image: image.GST
+            },
+            {
+                id: 3,
+                link: "/",
+                title: "Pan Card",
+                image: image.PanCard
+            },
+            {
+                id: 4,
+                link: "/",
+                title: "ITR",
+                image: image.ITR 
+            },
+            {
+                id: 5,
+                link: "/",
+                title: "Design & Development",
+                image: image.DesignDevelopment
+            },
+            {
+                id: 6,
+                link: "/",
+                title: "Accounting Services",
+                image: image.AccountingServices
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Gold Investment",
+                image: image.GoldInvestment
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Digital Marketing",
+                image: image.DigitalMarketing
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Mutual Fund",
+                image: image.MutualFund
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Bond Investment",
+                image: image.BondInvestment
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Education Fee",
+                image: image.EducationFee
+            }
+            ,
+            {
+                id: 6,
+                link: "/",
+                title: "Digital Signature",
+                image: image.DigitalSignature
+            }
+        ]
 
     }
 ]

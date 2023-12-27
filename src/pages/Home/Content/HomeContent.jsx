@@ -146,7 +146,7 @@ const HomeContent = () => {
       {/* Tour & Travel */}
 
       {/* Financial Services */}
-      {/* <section className='rechages-bill-payment mb-319'>
+      <section className='rechages-bill-payment mb-319'>
         <div className="container">
           <div className="recharge-bill-payment-innerBox h-318">
             <h2>Financial Services</h2>
@@ -168,7 +168,7 @@ const HomeContent = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Financial Services */}
 
     </>

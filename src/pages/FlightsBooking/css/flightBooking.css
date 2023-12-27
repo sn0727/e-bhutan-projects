@@ -68,7 +68,22 @@
 .booking-01 {
     width: 100%;
 }
-
+.booking-list-bus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.booking-list-bus .bus-booking-col {
+    width: 100%;
+    max-width: 49% !important;
+    min-height: 109px;
+}
+.booking-list-bus .extra-width-add {
+    width: 150px;
+    border-radius: 5px;
+    top: -50px;
+    right: -21px;
+}
 .booking-01 {
     width: 100%;
     max-width: 753px;
