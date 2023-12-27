@@ -70,6 +70,14 @@ import AepsParent from './pages/AEPS/AepsParent';
 import FlightTicketCancel from './pages/FlightsBooking/FlightTicketCancel';
 import HotelBooking from './pages/HotelBooking/HotelBooking';
 import MainTesting from './pages/Testing/MainTesting';
+import CompanyFormation from './pages/CompanyFormation/CompanyFormation';
+import GstService from './pages/GstService/GstService';
+import PanCard from './pages/PanCard/PanCard';
+import ITRService from './pages/ITRService/ITRService';
+import DesignAndDevelopment from './pages/DesignAndDevelopment/DesignAndDevelopment';
+import DigitalMarketing from './pages/DigitalMarketing/DigitalMarketing';
+import AccountingService from './pages/AccountingService/AccountingService';
+import DigitalSignature from './pages/DigitalSignature/DigitalSignature';
 // import HorizontalList from './pages/Testing/HorizontalList';
 
 
@@ -148,6 +156,14 @@ function App() {
             <Route path='/bus-booking' element={<BusBooking />} />
             <Route path='/flight-ticket-cancel' element={<FlightTicketCancel />} />
             <Route path='/hotel-booking' element={<HotelBooking />} />
+            <Route path='/company-information' element={<CompanyFormation />} />
+            <Route path='/gst-service' element={<GstService />} />
+            <Route path='/pan-card' element={<PanCard />} />
+            <Route path='/itr-service' element={<ITRService />} />
+            <Route path='/design-and-development' element={<DesignAndDevelopment />} />
+            <Route path='/digital-marketing' element={<DigitalMarketing />} />
+            <Route path='/accounting-service' element={<AccountingService />} />
+            <Route path='/digital-signature' element={<DigitalSignature />} />
           <Route path='/testing' element={<MainTesting />} />
         </Route>
           {/* protected router */}

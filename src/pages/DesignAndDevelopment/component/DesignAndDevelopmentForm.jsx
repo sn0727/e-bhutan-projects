@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer'
-import "../css/CompanyInformation.css"
-import { RadioButton } from '../../../components/Feature/RadioButton'
 
-const ContactForm = ({ setIdComponent }) => {
-    const [type, settype] = useState('1');
-    const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
+const DesignAndDevelopmentForm = ({ setIdComponent }) => {
     const [pessengerAddObj, setPessengerAddObj] = useState({
         fullname: '',
         email: '',
@@ -17,16 +13,13 @@ const ContactForm = ({ setIdComponent }) => {
     const handlerInputPesserger = (event) => {
         setPessengerAddObj({ ...pessengerAddObj, [event.target.name]: event.target.value })
     }
-    const radioChangeHandler = (e) => {
-        settype(e.target.value);
-        setSelectedOption(null)
-    };
+
 
     return (
         <LayoutContainer>
             <div className='my-5'>
                 <div className={`border-0 setcostuasdnf max-w-7xl bg-white rounded-lg shadow dark:border md:mt-0 lg:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700`}>
-                    <p className='company-infomation-dd'>Company Information</p>
+                    <p className='company-infomation-dd'>Website Design & Development</p>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <form className="space-y-4 md:space-y-6">
                             <div className="formGroup">
@@ -62,38 +55,14 @@ const ContactForm = ({ setIdComponent }) => {
                                     />
                                 </div>
                                 <div className='w-50'>
-                                    <label htmlFor="pincode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pin Code</label>
-                                    <input type="text"
+                                    <label htmlFor="queryMess" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your query</label>
+                                    <textarea type="text"
                                         onChange={handlerInputPesserger}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Pin Code"
-                                        name='pinCode'
+                                        placeholder="Enter your query"
+                                        name='queryMess'
                                         required />
                                 </div>
-                            </div>
-                            <div className='radia-button'>
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="1"
-                                    isSelected={type === "1"}
-                                    label="One person registeration"
-                                    value="1"
-                                    className={'custome_class'}
-                                />
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="2"
-                                    isSelected={type === "2"}
-                                    label="Pvt. Ltd. registration"
-                                    value="2"
-                                />
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="3"
-                                    isSelected={type === "3"}
-                                    label="LLP registration"
-                                    value="3"
-                                />
                             </div>
                             <button type="submit"
                             onClick={()=> setIdComponent(2)}
@@ -107,4 +76,4 @@ const ContactForm = ({ setIdComponent }) => {
     )
 }
 
-export default ContactForm
+export default DesignAndDevelopmentForm

@@ -1,0 +1,10 @@
+.company-infomation-dd {
+    font-size: 32px;
+    display: inline-block;
+    width: 100%;
+    padding-left: 20px;
+    padding-top: 23px;
+}
+label {
+    margin: 0;
+}

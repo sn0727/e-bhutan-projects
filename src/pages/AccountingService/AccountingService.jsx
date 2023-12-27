@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import ContactForm from './component/ContactForm'
 import SuccessMessage from '../../components/Common/AminateGIF/SuccessMessage'
 import Header from "../../components/Common/Header/Header"
 import Footer from "../../components/Common/Footer/Footer"
+import AccountingServiceForm from './component/AccountingServiceForm'
 
-const CompanyFormation = () => {
+const AccountingService = () => {
   const [idComponent, setIdComponent] = useState(1)
   return (
     <>
       <Header />
       {
         (idComponent === 1) && (
-          <ContactForm setIdComponent={setIdComponent} />
+          <AccountingServiceForm setIdComponent={setIdComponent} />
         )
       }
       {
@@ -24,4 +24,4 @@ const CompanyFormation = () => {
   )
 }
 
-export default CompanyFormation
+export default AccountingService

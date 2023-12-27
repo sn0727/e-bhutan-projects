@@ -155,7 +155,7 @@ const HomeContent = () => {
 
                 services.map(({FinancialServices}) => (
                   FinancialServices.map((item, index) => (
-                    <Link to="" className='services_is' key={index}>
+                    <Link to={item?.link} className='services_is' key={index}>
                       <div className='serviceItem'>
                         <img src={item.image} alt="upi" />
                       </div>
