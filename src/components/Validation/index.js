@@ -68,7 +68,7 @@ export const mobileNoValidation = (mobileNo) => {
 export const emailValidation = (email) => {
     let emailReg = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/  //validated name 
     if (email === '') {
-        toast.error(`This is a mandatory field.`)
+        toast.error(`Email is a mandatory field.`)
         return false;
     }else if (!emailReg?.test(email)) {
         toast.error(`Please enter a valid email id`);
@@ -93,7 +93,7 @@ export const postalCodeValidation = (postalCode) => {
 export const stateValidation = (state) => {
     let stateReg = /^[A-Za-z\s]+$/  //validated name 
     if (state === '') {
-        toast.error(`This is a mandatory field.`)
+        toast.error(`State is a mandatory field.`)
         return false;
     }else if (!stateReg?.test(state)) {
         toast.error(`Please enter valid state name.`);
@@ -105,7 +105,7 @@ export const stateValidation = (state) => {
 export const AadhaarNoValidation = (aadhaarNo) => {
     let aadhaarReg = /^[0-9]{12}$/  //validated name 
     if (aadhaarNo === '') {
-        toast.error(`This is a mandatory field.`)
+        toast.error(`Aadhaar number is a mandatory field.`)
         return false;
     }else if (!aadhaarReg?.test(aadhaarNo)) {
         toast.error(`Please enter a valid 12 digit Aadhaar number.`);
@@ -117,7 +117,7 @@ export const AadhaarNoValidation = (aadhaarNo) => {
 export const PanNoValidation = (panNo) => {
     let panNoReg = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/  //validated name 
     if (panNo === '') {
-        toast.error(`This is a mandatory field.`)
+        toast.error(`Pan card number is a mandatory field.`)
         return false;
     }else if (!panNoReg?.test(panNo)) {
         toast.error(`Please enter a valid 10 digit pan card number.`);
@@ -189,6 +189,97 @@ export const validateDateFormat = (inputDate) => {
     // }
     return true;
 }
+
+export const AadhaarEnrolmentID = (inputEnrolmentID) => {
+    if (inputEnrolmentID === '') {
+        toast.error(`Aadhaar Enrolment Id is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const BlockNo = (inputBlockNo) => {
+    if (inputBlockNo === '') {
+        toast.error(`Flat/Door/Block No. is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+
+export const postOffice = (inputPostOffice) => {
+    if (inputPostOffice === '') {
+        toast.error(`Road/Street/Post Office. is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const areaLocality = (inputAreaLocality) => {
+    if (inputAreaLocality === '') {
+        toast.error(`Road/Street/Post Office. is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const townCityDis = (inputTownCityDis) => {
+    if (inputTownCityDis === '') {
+        toast.error(`Town / City / District is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const countryFun = (inputCountry) => {
+    if (inputCountry === '') {
+        toast.error(`Country is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const docmentFile = (inputDocmentFile) => {
+    if (inputDocmentFile === '') {
+        toast.error(`Bank Statement is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const validateIFSCCode = (ifscCode) => {
+//     // let ifscCodeReg = /^[A-Z]{4}\d{7}$/ //validated name 
+//     if (ifscCode === '') {
+//         toast.error(`IFSC code is a mandatory field.`)
+//         return false;
+//     }
+//     // else if (!ifscCodeReg?.test(ifscCode)) {
+//     //     toast.error(`IFSC code is not valid.`);
+//     //     return false;
+//     // }
+//     return true;
+// }
 
 // const regexPatterns = {
 //     name: /^[a-zA-Z_]+( [a-zA-Z_]+)+$/,  //validated name 

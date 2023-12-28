@@ -1,266 +1,244 @@
 import React, { useState } from 'react'
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer'
 // import "../css/CompanyInformation.css"
-import { RadioButton } from '../../../components/Feature/RadioButton'
+import { InputCustome } from '../../../components/Input/InputFeild';
+import { emailValidation, nameValidation, mobileNoValidation, postalCodeValidation, PanNoValidation, AadhaarNoValidation, validateDateFormat, AadhaarEnrolmentID, BlockNo, postOffice, areaLocality, townCityDis, stateValidation, countryFun, docmentFile } from '../../../components/Validation';
+import BackButton from '../../../components/Button/BackButton';
 
 const GstServiceForm = ({ setIdComponent }) => {
-  const [type, settype] = useState('1');
-  const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
-  const [pessengerAddObj, setPessengerAddObj] = useState({
+
+  const [formationFormValue, setFormationFormValue] = useState({
     fullname: '',
     email: '',
     mobileNo: '',
     pinCode: '',
+    panNo: '',
+    AadhaarNo: '',
+    AadhaarEnrolmentID: '',
+    DateofBirth: '',
+    BlockNo: '',
+    postOffice: '',
+    areaLocality: '',
+    townCityDis: '',
+    stateValue: '',
+    country: ''
   })
 
-  // get input value funcation
-  const handlerInputPesserger = (event) => {
-    setPessengerAddObj({ ...pessengerAddObj, [event.target.name]: event.target.value })
+  // reset value from the form.
+  const resetValue = () => {
+    setFormationFormValue({
+      fullname: '',
+      email: '',
+      mobileNo: '',
+      pinCode: '',
+      panNo: '',
+      AadhaarNo: '',
+      AadhaarEnrolmentID: '',
+      DateofBirth: '',
+      BlockNo: '',
+      postOffice: '',
+      areaLocality: '',
+      townCityDis: '',
+      stateValue: '',
+      country: '',
+    })
   }
-  const radioChangeHandler = (e) => {
-    settype(e.target.value);
-    setSelectedOption(null)
+
+  // get input value funcation
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormationFormValue((prevFormValue) => ({
+      ...prevFormValue,
+      [name]: value
+    }));
   };
+
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    if (
+      nameValidation(formationFormValue?.fullname) &&
+      emailValidation(formationFormValue?.email) &&
+      mobileNoValidation(formationFormValue?.mobileNo) &&
+      postalCodeValidation(formationFormValue?.pinCode) &&
+      PanNoValidation(formationFormValue?.panNo) &&
+      AadhaarNoValidation(formationFormValue?.AadhaarNo) &&
+      validateDateFormat(formationFormValue?.DateofBirth) &&
+      BlockNo(formationFormValue?.BlockNo) &&
+      postOffice(formationFormValue?.postOffice) &&
+      areaLocality(formationFormValue?.areaLocality) &&
+      townCityDis(formationFormValue?.townCityDis) &&
+      stateValidation(formationFormValue?.stateValue) &&
+      countryFun(formationFormValue?.country)
+    ) {
+      console.log('formationFormValue', formationFormValue)
+      // setIdComponent(2)
+      resetValue();
+    }
+  }
 
   return (
     <LayoutContainer>
+      <div className='mobile-recharge'>
+        <BackButton link={""} />
+      </div>
       <div className='my-5'>
         <div className={`border-0 setcostuasdnf max-w-7xl bg-white rounded-lg shadow dark:border md:mt-0 lg:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700`}>
-          <p className='company-infomation-dd'>GST Information</p>
+          <p className='company-infomation-dd'>GST Formation</p>
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <form className="space-y-4 md:space-y-6">
+              {/* 1 row */}
               <div className="formGroup">
                 <div className='w-50 position-relative'>
-                  <label htmlFor="fullname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Full Name'
+                  <InputCustome
+                    placeholderTitle={'Full Name'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.fullname}
                     name='fullname'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                    required={'required'}
+                    type={'text'}
                   />
                 </div>
                 <div className='w-50'>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
-                  <input type="email"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Email Address"
+                  <InputCustome
+                    placeholderTitle={'Email'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.email}
                     name='email'
-                    required />
+                    required={'required'}
+                    type={'email'}
+                  />
                 </div>
                 <div className='w-50 position-relative'>
-                  <label htmlFor="mobileNo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Mobile Number'
+                  <InputCustome
+                    placeholderTitle={'Mobile number'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.mobileNo}
                     name='mobileNo'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                    required={'required'}
+                    type={'number'}
                   />
                 </div>
-                <div className='w-50'>
-                  <label htmlFor="pincode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pin Code</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Pin Code"
-                    name='pinCode'
-                    required />
-                </div>
               </div>
+
               {/* 2 row */}
               <div className="formGroup">
                 <div className='w-50 position-relative'>
-                  <label htmlFor="PanNo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PanNo</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Pan No'
-                    name='PanNo'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                  <InputCustome
+                    placeholderTitle={'Pan No'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.panNo}
+                    name='panNo'
+                    required={'required'}
+                    type={'text'}
                   />
                 </div>
                 <div className='w-50'>
-                  <label htmlFor="Aadhaarnumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aadhaar number</label>
-                  <input type="email"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Aadhaar number"
+                  <InputCustome
+                    placeholderTitle={'Aadhaar number'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.AadhaarNo}
                     name='AadhaarNo'
-                    required />
+                    required={'required'}
+                    type={'number'}
+                  />
                 </div>
                 <div className='w-50 position-relative'>
-                  <label htmlFor="AadhaarEnrolmentID" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aadhaar Enrolment ID</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Aadhaar Enrolment ID'
-                    name='AadhaarEnrolmentID'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                  <InputCustome
+                    placeholderTitle={'Date of Birth'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.DateofBirth}
+                    name='DateofBirth'
+                    required={'required'}
+                    type={'date'}
                   />
-                </div>
-                <div className='w-50'>
-                  <label htmlFor="pincode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pin Code</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Pin Code"
-                    name='pinCode'
-                    required />
                 </div>
               </div>
 
               {/* 3 row */}
               <div className="formGroup">
-                <div className='w-50 position-relative'>
-                  <label htmlFor="DateofBirth" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
-                  <input type="date"
-                    onChange={handlerInputPesserger}
-                    placeholder='Date of Birth'
-                    name='DateofBirth'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
                 <div className='w-50'>
-                  <label htmlFor="BlockNo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Flat/Door/Block No.</label>
-                  <input type="number"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Flat/Door/Block No."
+                  <InputCustome
+                    placeholderTitle={'Flat/Door/Block No.'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.BlockNo}
                     name='BlockNo'
-                    required />
+                    required={'required'}
+                    type={'text'}
+                  />
                 </div>
                 <div className='w-50 position-relative'>
-                  <label htmlFor="PostOffice" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Road/Street/Post Office</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Road/Street/Post Office'
-                    name='PostOffice'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                  <InputCustome
+                    placeholderTitle={'Road/Street/Post Office.'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.postOffice}
+                    name='postOffice'
+                    required={'required'}
+                    type={'text'}
                   />
                 </div>
                 <div className='w-50'>
-                  <label htmlFor="areaLocality" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area / Locality</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Area / Locality"
+                  <InputCustome
+                    placeholderTitle={'Area / Locality'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.areaLocality}
                     name='areaLocality'
-                    required />
+                    required={'required'}
+                    type={'text'}
+                  />
+                </div>
+                <div className='w-50 position-relative'>
+                  <InputCustome
+                    placeholderTitle={'Town / City / District'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.townCityDis}
+                    name='townCityDis'
+                    required={'required'}
+                    type={'text'}
+                  />
                 </div>
               </div>
 
               {/* 4 row */}
               <div className="formGroup">
-                <div className='w-50 position-relative'>
-                  <label htmlFor="townCityDis" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Town / City / District</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Town / City / District'
-                    name='townCityDis'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
                 <div className='w-50'>
-                  <label htmlFor="stateValue" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
-                  <input type="number"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="State"
+                  <InputCustome
+                    placeholderTitle={'State'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.stateValue}
                     name='stateValue'
-                    required />
+                    required={'required'}
+                    type={'text'}
+                  />
                 </div>
                 <div className='w-50 position-relative'>
-                  <label htmlFor="country" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Country'
+                  <InputCustome
+                    placeholderTitle={'Country'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.country}
                     name='country'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                    required={'required'}
+                    type={'text'}
                   />
                 </div>
                 <div className='w-50'>
-                  <label htmlFor="pinCode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pincode</label>
-                  <input type="number"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Pincode"
+                  <InputCustome
+                    placeholderTitle={'Pin Code'}
+                    onChange={handleInputChange}
+                    value={formationFormValue?.pinCode}
                     name='pinCode'
-                    required />
-                </div>
-              </div>
-
-              {/* 5 row */}
-              <div className="formGroup">
-                <div className='w-50 position-relative'>
-                  <label htmlFor="NatureofEmploymen" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nature of Employmen</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Nature of Employmen'
-                    name='NatureofEmploymen'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className='w-50'>
-                  <label htmlFor="fieldUs" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Filed u/s</label>
-                  <input type="number"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Filed u/s"
-                    name='fieldUs'
-                    required />
-                </div>
-                <div className='w-50 position-relative'>
-                  <label htmlFor="FiledResponse" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Filed in response to</label>
-                  <input type="text"
-                    onChange={handlerInputPesserger}
-                    placeholder='Filed in response to'
-                    name='FiledResponse'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className='w-50'>
-                  <label htmlFor="dateofFilling" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Filing Original Return</label>
-                  <input type="date"
-                    onChange={handlerInputPesserger}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Date of Filing Original Return"
-                    name='dateofFilling'
-                    required />
-                </div>
-              </div>
-
-              {/* 6 row */}
-              <div className='formGroup'>
-                <div className='w-50 position-relative'>
-                  <label htmlFor="NatureofEmploymen" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Bank Statement</label>
-                  <input type="file"
-                    onChange={handlerInputPesserger}
-                    placeholder='Upload Bank Statement'
-                    name='NatureofEmploymen'
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                    required={'required'}
+                    type={'number'}
                   />
                 </div>
                 {/* faltu div use for only space */}
-                <div className='w-50 position-relative'>
-                </div>
-                <div className='w-50 position-relative'>
-                </div>
-                <div className='w-50 position-relative'>
-                </div>
+                {/* <div className='w-50 position-relative'>
+                </div> */}
                 {/* faltu div use for only space */}
               </div>
 
               <button type="submit"
-                onClick={() => setIdComponent(2)}
+                onClick={formSubmitHandler}
                 className="w-40 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 button-color"
               >Submit</button>
             </form>

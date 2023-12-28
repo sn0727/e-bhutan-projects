@@ -2,204 +2,162 @@ import React, { useState } from 'react'
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer'
 // import "../css/CompanyInformation.css"
 import { RadioButton, RadioButton2 } from '../../../components/Feature/RadioButton'
+import { AadhaarEnrolmentID, AadhaarNoValidation, emailValidation, mobileNoValidation, nameValidation, postalCodeValidation, validateDateFormat } from '../../../components/Validation';
+import { InputCustome } from '../../../components/Input/InputFeild';
+import BackButton from '../../../components/Button/BackButton';
 
 const PanCardForm = ({ setIdComponent }) => {
-    const [type, settype] = useState('1');
+    const [type, settype] = useState('New Pan - Indian Citizen (Form 49A)');
     const [type1, settype1] = useState('Individual');
-    const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
-    const [pessengerAddObj, setPessengerAddObj] = useState({
+    const [formationFormValue, setFormationFormValue] = useState({
         fullname: '',
         email: '',
         mobileNo: '',
-        pinCode: '',
+        AadhaarNo: '',
+        DateofBirth: ''
     })
 
-    // get input value funcation
-    const handlerInputPesserger = (event) => {
-        setPessengerAddObj({ ...pessengerAddObj, [event.target.name]: event.target.value })
+    // reset value from the form.
+    const resetValue = () => {
+        setFormationFormValue({
+            fullname: '',
+            email: '',
+            mobileNo: '',
+            AadhaarNo: '',
+            DateofBirth: ''
+        })
     }
+
+    // get input value funcation
+    const handleInputChange = (event) => {
+        setFormationFormValue({ ...formationFormValue, [event.target.name]: event.target.value })
+    }
+
     const radioChangeHandler = (e) => {
         settype(e.target.value);
-        setSelectedOption(null)
     };
 
     const radioChangeHandler1 = (e) => {
         settype1(e.target.value);
     };
 
-    console.log('type1', type1)
+    const formSubmitHandler = (event) => {
+        event.preventDefault();
+        if (
+            nameValidation(formationFormValue?.fullname) &&
+            emailValidation(formationFormValue?.email) &&
+            mobileNoValidation(formationFormValue?.mobileNo) &&
+            AadhaarNoValidation(formationFormValue?.AadhaarNo) &&
+            validateDateFormat(formationFormValue?.DateofBirth)
+        ) {
+            console.log('formationFormValue', formationFormValue)
+            console.log('type', type)
+            console.log('type', type1)
+            // setIdComponent(2)
+            resetValue();
+        }
+    }
 
     return (
         <LayoutContainer>
+            <div className='mobile-recharge'>
+                <BackButton link={""} />
+            </div>
             <div className='my-5'>
                 <div className={`border-0 setcostuasdnf max-w-7xl bg-white rounded-lg shadow dark:border md:mt-0 lg:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700`}>
-                    <p className='company-infomation-dd'>Pan Card Information</p>
+                    <p className='company-infomation-dd'>Pan Card Creation</p>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <form className="space-y-4 md:space-y-6">
+                            {/* 1 row */}
                             <div className="formGroup">
                                 <div className='w-50 position-relative'>
-                                    <label htmlFor="fullname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
-                                    <input type="text"
-                                        onChange={handlerInputPesserger}
-                                        placeholder='Full Name'
+                                    <InputCustome
+                                        placeholderTitle={'Full Name'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.fullname}
                                         name='fullname'
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
+                                        required={'required'}
+                                        type={'text'}
                                     />
                                 </div>
                                 <div className='w-50'>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
-                                    <input type="email"
-                                        onChange={handlerInputPesserger}
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Email Address"
+                                    <InputCustome
+                                        placeholderTitle={'Email Address'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.email}
                                         name='email'
-                                        required />
+                                        required={'required'}
+                                        type={'email'}
+                                    />
                                 </div>
                                 <div className='w-50 position-relative'>
-                                    <label htmlFor="mobileNo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number</label>
-                                    <input type="text"
-                                        onChange={handlerInputPesserger}
-                                        placeholder='Mobile Number'
+                                    <InputCustome
+                                        placeholderTitle={'Mobile Number'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.mobileNo}
                                         name='mobileNo'
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
+                                        required={'required'}
+                                        type={'number'}
                                     />
                                 </div>
                             </div>
                             {/* 2 row */}
                             <div className="formGroup">
                                 <div className='w-50'>
-                                    <label htmlFor="Aadhaarnumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aadhaar number</label>
-                                    <input type="email"
-                                        onChange={handlerInputPesserger}
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Aadhaar number"
+                                    <InputCustome
+                                        placeholderTitle={'Aadhaar number'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.AadhaarNo}
                                         name='AadhaarNo'
-                                        required />
-                                </div>
-                                <div className='w-50 position-relative'>
-                                    <label htmlFor="AadhaarEnrolmentID" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aadhaar Enrolment ID</label>
-                                    <input type="text"
-                                        onChange={handlerInputPesserger}
-                                        placeholder='Aadhaar Enrolment ID'
-                                        name='AadhaarEnrolmentID'
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
+                                        required={'required'}
+                                        type={'number'}
                                     />
                                 </div>
                                 <div className='w-50 position-relative'>
-                                    <label htmlFor="DateofBirth" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
-                                    <input type="date"
-                                        onChange={handlerInputPesserger}
-                                        placeholder='Date of Birth'
+                                    <InputCustome
+                                        placeholderTitle={'Date of Birth'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.DateofBirth}
                                         name='DateofBirth'
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
+                                        required={'required'}
+                                        type={'date'}
                                     />
+                                </div>
+                                <div className='w-50 position-relative'>
                                 </div>
                             </div>
                             <div className='radia-button'>
                                 <p className='mb-3'>Application Type</p>
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="1"
-                                    isSelected={type === "1"}
-                                    label="New Pan - Indian Citizen (Form 49A)"
-                                    value="1"
-                                    className={'custome_class'}
-                                />
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="2"
-                                    isSelected={type === "2"}
-                                    label="New Pan - Foreign Citizen (Form 49AA)"
-                                    value="2"
-                                />
-                                <RadioButton
-                                    changed={radioChangeHandler}
-                                    id="3"
-                                    isSelected={type === "3"}
-                                    label="Changes pr Correction in existing PAN Data/ Reprint of Pan Card ( No changes in existing PAN Data)"
-                                    value="3"
-                                />
+                                {
+                                    badioButtonArr?.ApplicationType?.map((item, i) => (
+                                        <RadioButton
+                                            changed={radioChangeHandler}
+                                            id={item?.id}
+                                            isSelected={type === item?.id}
+                                            label={item?.id}
+                                            value={item?.id}
+                                            className={item?.className}
+                                        />
+                                    ))
+                                }
                             </div>
                             <div className='radia-button'>
                                 <p className='mb-3'>Category</p>
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category1"
-                                    isSelected={type1 === "Individual"}
-                                    label="Individual"
-                                    value="Individual"
-                                    className={'custome_class'}
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category2"
-                                    isSelected={type1 === "Association of persons"}
-                                    label="Association of persons"
-                                    value="Association of persons"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category3"
-                                    isSelected={type1 === "Body of individuals"}
-                                    label="Body of individuals"
-                                    value="Body of individuals"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category4"
-                                    isSelected={type1 === "Trust"}
-                                    label="Trust"
-                                    value="Trust"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category5"
-                                    isSelected={type1 === "Limited liability partnership"}
-                                    label="Limited liability partnership"
-                                    value="Limited liability partnership"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category6"
-                                    isSelected={type1 === "Firm"}
-                                    label="Firm"
-                                    value="Firm"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category7"
-                                    isSelected={type1 === "Government"}
-                                    label="Government"
-                                    value="Government"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category8"
-                                    isSelected={type1 === "Hindu Undivided family"}
-                                    label="Hindu Undivided family"
-                                    value="Hindu Undivided family"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category9"
-                                    isSelected={type1 === "Artificial juridicial person"}
-                                    label="Artificial juridicial person"
-                                    value="Artificial juridicial person"
-                                />
-                                <RadioButton2
-                                    changed={radioChangeHandler1}
-                                    id="Category10"
-                                    isSelected={type1 === "Local Authority"}
-                                    label="Local Authority"
-                                    value="Local Authority"
-                                />
+                                {
+                                    badioButtonArr?.Category?.map((item, i) => (
+                                        <RadioButton2
+                                            changed={radioChangeHandler1}
+                                            id={item?.id}
+                                            isSelected={type1 === item?.id}
+                                            label={item?.id}
+                                            value={item?.id}
+                                            className={item?.className}
+                                        />
+                                    ))
+                                }
                             </div>
                             <button type="submit"
-                                onClick={() => setIdComponent(2)}
+                                onClick={formSubmitHandler}
                                 className="w-40 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 button-color"
                             >Submit</button>
                         </form>
@@ -211,3 +169,63 @@ const PanCardForm = ({ setIdComponent }) => {
 }
 
 export default PanCardForm
+
+//  i used id key multiple value for example : id, label, value, isSelected 
+const badioButtonArr = {
+    "ApplicationType": [
+        {
+            id: 'New Pan - Indian Citizen (Form 49A)',
+            className: 'custome_class'
+        },
+        {
+            id: 'New Pan - Foreign Citizen (Form 49AA)',
+            className: 'custome_class'
+        },
+        {
+            id: 'Changes pr Correction in existing PAN Data/ Reprint of Pan Card ( No changes in existing PAN Data)',
+            className: 'custome_class'
+        }
+    ],
+    "Category": [
+        {
+            id: 'Individual',
+            className: 'custome_class'
+        },
+        {
+            id: 'Association of persons',
+            className: 'custome_class'
+        },
+        {
+            id: 'Trust',
+            className: 'custome_class'
+        },
+        {
+            id: 'Limited liability partnership',
+            className: 'custome_class'
+        },
+        {
+            id: 'Firm',
+            className: 'custome_class'
+        },
+        {
+            id: 'Body of individuals',
+            className: 'custome_class'
+        },
+        {
+            id: 'Government',
+            className: 'custome_class'
+        },
+        {
+            id: 'Hindu Undivided family',
+            className: 'custome_class'
+        },
+        {
+            id: 'Artificial juridicial person',
+            className: 'custome_class'
+        },
+        {
+            id: 'Local Authority',
+            className: 'custome_class'
+        }
+    ]
+}
