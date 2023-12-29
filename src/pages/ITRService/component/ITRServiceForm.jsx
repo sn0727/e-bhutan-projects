@@ -6,15 +6,16 @@ import { FaFilePdf } from 'react-icons/fa6'
 import { AadhaarEnrolmentID, AadhaarNoValidation, emailValidation, mobileNoValidation, nameValidation, validateDateFormat } from '../../../components/Validation'
 import { InputCustome } from '../../../components/Input/InputFeild'
 import BackButton from '../../../components/Button/BackButton'
+import { APIRequest, ApiUrl } from '../../../utils/api'
+import { toast } from 'react-toastify'
+import moment from 'moment'
 
 const ITRServiceForm = ({ setIdComponent }) => {
     const [formationFormValue, setFormationFormValue] = useState({
         fullname: '',
         email: '',
         mobileNo: '',
-        pinCode: '',
         AadhaarNo: '',
-        AadhaarEnrolmentID: '',
         DateofBirth: ''
     })
 
@@ -40,6 +41,37 @@ const ITRServiceForm = ({ setIdComponent }) => {
         }))
     }
 
+    // ITR formation function.
+    const itrFormation = () => {
+        let config = {
+            url: ApiUrl?.ITRFormation,
+            method: 'post',
+            body: {
+                "FullName": formationFormValue?.fullname,
+                "Email": formationFormValue?.email,
+                "Contact": formationFormValue?.mobileNo,
+                "AadhaarNo": formationFormValue?.AadhaarNo,
+                "DOB": moment(formationFormValue?.fullname).format('dd/mm/yyyy'),
+            }
+
+        }
+        APIRequest(
+            config,
+            res => {
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
+
     // this function is form submit
     const formSubmitHandler = (event) => {
         event.preventDefault();
@@ -50,9 +82,7 @@ const ITRServiceForm = ({ setIdComponent }) => {
             AadhaarNoValidation(formationFormValue?.AadhaarNo) &&
             validateDateFormat(formationFormValue?.DateofBirth)
         ) {
-            console.log('formationFormValue', formationFormValue)
-            // setIdComponent(2)
-            resetValue();
+            itrFormation()
         }
     }
 

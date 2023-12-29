@@ -4,6 +4,9 @@ import { RadioButton } from '../../../components/Feature/RadioButton';
 import { InputCustome } from '../../../components/Input/InputFeild';
 import { emailValidation, nameValidation, mobileNoValidation, postalCodeValidation, PanNoValidation, AadhaarNoValidation, validateDateFormat, AadhaarEnrolmentID, BlockNo, postOffice, areaLocality, townCityDis, stateValidation, countryFun, docmentFile } from '../../../components/Validation';
 import BackButton from '../../../components/Button/BackButton';
+import { APIRequest, ApiUrl } from '../../../utils/api';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const DigitalSignatureForm = ({ setIdComponent }) => {
     const [type, settype] = useState('Class 1')
@@ -58,6 +61,45 @@ const DigitalSignatureForm = ({ setIdComponent }) => {
         settype(e.target.value);
     };
 
+    // Digital signature function.
+  const digitalSignature = () => {
+    let config = {
+      url: ApiUrl?.digitalSignature,
+      method: 'post',
+      body: {
+        "FullName": formationFormValue?.fullname,
+        "Email": formationFormValue?.email,
+        "PanNo": formationFormValue?.panNo,
+        "Contact": formationFormValue?.mobileNo,
+        "AadhaarNo": formationFormValue?.AadhaarNo,
+        "DOB": moment(formationFormValue?.fullname).format('dd/mm/yyyy'),
+        "HomeNo": formationFormValue?.BlockNo,
+        "StreetNo": formationFormValue?.postOffice,
+        "Locality": formationFormValue?.areaLocality,
+        "City": formationFormValue?.townCityDis,
+        "State": formationFormValue?.stateValue,
+        "Country": formationFormValue?.country,
+        "PinCode": formationFormValue?.pinCode,
+      }
+
+    }
+    APIRequest(
+      config,
+      res => {
+        if (!res?.error) {
+          toast.success(res?.message)
+          setIdComponent(2)
+          resetValue();
+        }
+      },
+      err => {
+        if (err?.error) {
+          toast.error(err?.message)
+        }
+      }
+    )
+  }
+
     const formSubmitHandler = (event) => {
         event.preventDefault();
         if (
@@ -75,9 +117,7 @@ const DigitalSignatureForm = ({ setIdComponent }) => {
             stateValidation(formationFormValue?.stateValue) &&
             countryFun(formationFormValue?.country)
         ) {
-            console.log('formationFormValue', formationFormValue)
-            // setIdComponent(2)
-            resetValue();
+            digitalSignature()
         }
     }
 

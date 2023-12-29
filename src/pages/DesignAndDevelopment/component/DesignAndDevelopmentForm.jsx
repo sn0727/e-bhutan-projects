@@ -3,6 +3,8 @@ import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer
 import { emailValidation, mobileNoValidation, nameValidation, postalCodeValidation } from '../../../components/Validation'
 import { InputCustome } from '../../../components/Input/InputFeild'
 import BackButton from '../../../components/Button/BackButton'
+import { APIRequest, ApiUrl } from '../../../utils/api'
+import { toast } from 'react-toastify'
 
 const DesignAndDevelopmentForm = ({ setIdComponent }) => {
     const [formationFormValue, setFormationFormValue] = useState({
@@ -32,6 +34,36 @@ const DesignAndDevelopmentForm = ({ setIdComponent }) => {
         }));
     };
 
+    // Website formation function.
+    const websiteFormation = () => {
+        let config = {
+            url: ApiUrl?.websiteQuery,
+            method: 'post',
+            body: {
+                "FullName": formationFormValue?.fullname,
+                "Email": formationFormValue?.email,
+                "Contact": formationFormValue?.mobileNo,
+                "Text": formationFormValue?.queryMess
+            }
+
+        }
+        APIRequest(
+            config,
+            res => {
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
+
     const formSubmitHandler = (event) => {
         event.preventDefault();
         if (
@@ -39,9 +71,7 @@ const DesignAndDevelopmentForm = ({ setIdComponent }) => {
             emailValidation(formationFormValue?.email) &&
             mobileNoValidation(formationFormValue?.mobileNo)
         ) {
-            console.log('formationFormValue', formationFormValue)
-            // setIdComponent(2)
-            resetValue();
+            websiteFormation()
         }
     }
 

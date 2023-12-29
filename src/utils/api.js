@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ClearSession from "./ClearSession";
 
-export const BASEURL = 'https://api.ebhuktan.com';
+export const BASEURL = 'https://dev.ebhuktan.com';
 // export const BASEURL = 'http://65.2.143.179:3000';
 
 const apiBaseUrl = `${BASEURL}/api/`;
@@ -207,6 +207,15 @@ export const ApiUrl = {
   busGetBoardingPointDetails: `${apiBaseUrl}bus/ticket/booking/getBoardingPointDetails`,
   busBlock: `${apiBaseUrl}bus/ticket/booking/busBlock`,
   busBook: `${apiBaseUrl}bus/ticket/booking/book`,
+
+  // Financial Services api route.
+  companyFormation: `${apiBaseUrl}form/company/formation/submit`,
+  GSTFormation: `${apiBaseUrl}form/gst/submit`,
+  ITRFormation: `${apiBaseUrl}form/ITR/formation/submit`,
+  websiteQuery: `${apiBaseUrl}form/website/query/submit`,
+  accountingService: `${apiBaseUrl}form/accounting/services/submit`,
+  digitalMarketing: `${apiBaseUrl}form/digital/marketing/submit`,
+  digitalSignature: `${apiBaseUrl}form/digital/signature/submit`,
 
 };
 

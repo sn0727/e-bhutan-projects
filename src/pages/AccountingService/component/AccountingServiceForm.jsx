@@ -4,6 +4,8 @@ import { RadioButton, RadioButton3, RadioButton4, RadioButton5 } from '../../../
 import { InputCustome } from '../../../components/Input/InputFeild';
 import { emailValidation, mobileNoValidation, nameValidation, postalCodeValidation } from '../../../components/Validation';
 import BackButton from '../../../components/Button/BackButton';
+import { APIRequest, ApiUrl } from '../../../utils/api';
+import { toast } from 'react-toastify';
 
 const AccountingServiceForm = ({ setIdComponent }) => {
     const [type, settype] = useState('Personal');
@@ -53,6 +55,40 @@ const AccountingServiceForm = ({ setIdComponent }) => {
         settype3(e.target.value);
     };
 
+    // Accounting formation function.
+    const accountingFormation = () => {
+        let config = {
+            url: ApiUrl?.accountingService,
+            method: 'post',
+            body: {
+                "FullName": formationFormValue?.fullname,
+                "Email": formationFormValue?.email,
+                "Contact": formationFormValue?.mobileNo,
+                "Address": formationFormValue?.Address,
+                "BusinessType":type,
+                "Income": type1,
+                "ServiceType": type2,
+                "EmployeeType":type3
+            }
+
+        }
+        APIRequest(
+            config,
+            res => {
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
+
     const formSubmitHandler = (event) => {
         event.preventDefault();
         if (
@@ -61,6 +97,7 @@ const AccountingServiceForm = ({ setIdComponent }) => {
             mobileNoValidation(formationFormValue?.mobileNo) &&
             postalCodeValidation(formationFormValue?.pinCode)
         ) {
+            accountingFormation()
             console.log('formationFormValue', formationFormValue)
             console.log('type', type)
             console.log('type1', type1)

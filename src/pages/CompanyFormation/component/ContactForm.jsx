@@ -5,6 +5,8 @@ import { RadioButton } from '../../../components/Feature/RadioButton'
 import { emailValidation, mobileNoValidation, nameValidation, postalCodeValidation } from '../../../components/Validation'
 import { InputCustome } from '../../../components/Input/InputFeild'
 import BackButton from '../../../components/Button/BackButton'
+import { APIRequest, ApiUrl } from '../../../utils/api'
+import { toast } from 'react-toastify'
 
 const ContactForm = ({ setIdComponent }) => {
     const [type, settype] = useState('One person registeration');
@@ -38,6 +40,37 @@ const ContactForm = ({ setIdComponent }) => {
         settype(e.target.value);
     };
 
+    // company formation function.
+    const companyFormation = () => {
+        let config = {
+            url: ApiUrl?.companyFormation,
+            method: 'post',
+            body: {
+                "FullName": formationFormValue?.fullname,
+                "Email": formationFormValue?.email,
+                "Contact": formationFormValue?.mobileNo,
+                "PinCode": formationFormValue?.pinCode,
+                "Type": type
+            }
+
+        }
+        APIRequest(
+            config,
+            res => {
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
+
     const formSubmitHandler = (event) => {
         event.preventDefault();
         if (
@@ -46,10 +79,7 @@ const ContactForm = ({ setIdComponent }) => {
             mobileNoValidation(formationFormValue?.mobileNo) &&
             postalCodeValidation(formationFormValue?.pinCode)
         ) {
-            console.log('formationFormValue', formationFormValue)
-            console.log('type', type)
-            // setIdComponent(2)
-            resetValue();
+            companyFormation()
         }
     }
 

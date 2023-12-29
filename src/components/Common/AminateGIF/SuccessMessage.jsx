@@ -35,7 +35,7 @@ const SuccessMessage = ({ setIdComponent }) => {
                     margin: '20px auto 0'
                 }}
             >
-                <Link>
+                {/* <Link>
                     <img width={30} height={40} src={image?.shareIcon} alt="" />
                 </Link>
                 <Link>
@@ -43,12 +43,13 @@ const SuccessMessage = ({ setIdComponent }) => {
                 </Link>
                 <Link>
                     <img width={30} height={40} src={image?.downloadIcon} alt="" />
-                </Link>
+                </Link> */}
             </div>
 
             <div className='button-process procced-chnage-space'>
                 <button type='button' className='button-pro'>
-                    <Link onClick={() => alert()}>Share Bill</Link>
+                    {/* <Link onClick={() => navigator('/')}>Share Bill</Link> */}
+                    <Link to={'/'}>Back to Home</Link>
                 </button>
             </div>
         </div>

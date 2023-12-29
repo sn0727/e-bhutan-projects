@@ -4,6 +4,9 @@ import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer
 import { InputCustome } from '../../../components/Input/InputFeild';
 import { emailValidation, nameValidation, mobileNoValidation, postalCodeValidation, PanNoValidation, AadhaarNoValidation, validateDateFormat, AadhaarEnrolmentID, BlockNo, postOffice, areaLocality, townCityDis, stateValidation, countryFun, docmentFile } from '../../../components/Validation';
 import BackButton from '../../../components/Button/BackButton';
+import { APIRequest, ApiUrl } from '../../../utils/api';
+import { toast } from 'react-toastify';
+import moment from 'moment';
 
 const GstServiceForm = ({ setIdComponent }) => {
 
@@ -54,6 +57,46 @@ const GstServiceForm = ({ setIdComponent }) => {
     }));
   };
 
+  // GST formation function.
+  const gstFormation = () => {
+    let config = {
+      url: ApiUrl?.GSTFormation,
+      method: 'post',
+      body: {
+        "FullName": formationFormValue?.fullname,
+        "Email": formationFormValue?.email,
+        "PanNo": formationFormValue?.panNo,
+        "Contact": formationFormValue?.mobileNo,
+        "AadhaarNo": formationFormValue?.AadhaarNo,
+        // "DOB": "01/02/2001",
+        "DOB": moment(formationFormValue?.fullname).format('dd/mm/yyyy'),
+        "HomeNo": formationFormValue?.BlockNo,
+        "StreetNo": formationFormValue?.postOffice,
+        "Locality": formationFormValue?.areaLocality,
+        "City": formationFormValue?.townCityDis,
+        "State": formationFormValue?.stateValue,
+        "Country": formationFormValue?.country,
+        "PinCode": formationFormValue?.pinCode,
+      }
+
+    }
+    APIRequest(
+      config,
+      res => {
+        if (!res?.error) {
+          toast.success(res?.message)
+          setIdComponent(2)
+          resetValue();
+        }
+      },
+      err => {
+        if (err?.error) {
+          toast.error(err?.message)
+        }
+      }
+    )
+  }
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (
@@ -71,9 +114,7 @@ const GstServiceForm = ({ setIdComponent }) => {
       stateValidation(formationFormValue?.stateValue) &&
       countryFun(formationFormValue?.country)
     ) {
-      console.log('formationFormValue', formationFormValue)
-      // setIdComponent(2)
-      resetValue();
+      gstFormation()
     }
   }
 
