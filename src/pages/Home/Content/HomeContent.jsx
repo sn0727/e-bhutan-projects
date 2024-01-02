@@ -123,6 +123,32 @@ const HomeContent = () => {
       <section className='rechages-bill-payment'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox h-178">
+            <h2>Loan Services</h2>
+            <div className='servics-list tour-and-travel'>
+              {
+
+                services.map(({ PersonalLoan }) => (
+                  PersonalLoan.map((item, index) => (
+                    <Link to={item.link} className='services_is' key={index}>
+                      <div className='serviceItem'>
+                      {item.image ? <img src={item.image} alt="loan" /> : <div>{item.icon}</div>}
+                      </div>
+                      <p>{item.title}</p>
+                    </Link>
+                  ))
+                ))
+              }
+
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Tour & Travel */}
+
+      {/* Tour & Travel */}
+      <section className='rechages-bill-payment'>
+        <div className="container px-4">
+          <div className="recharge-bill-payment-innerBox h-178">
             <h2>Tour & Travel</h2>
             <div className='servics-list tour-and-travel'>
               {
@@ -153,7 +179,7 @@ const HomeContent = () => {
             <div className='servics-list tour-and-travel'>
               {
 
-                services.map(({FinancialServices}) => (
+                services.map(({ FinancialServices }) => (
                   FinancialServices.map((item, index) => (
                     <Link to={item?.link} className='services_is' key={index}>
                       <div className='serviceItem'>

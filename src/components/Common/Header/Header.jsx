@@ -58,7 +58,10 @@ const Header = () => {
                             <ProfileDropdown token02={decodeToken} profileData={profileData} />
 
                             <div className='total-Price'>
-                                <p><FaIndianRupeeSign /> <span>{(profileData?.amount) ? (profileData?.amount): '....'}</span></p>
+                                <p className='button-sdfdfd'>
+                                    <FaIndianRupeeSign />
+                                    <span>{(profileData?.amount) ? (profileData?.amount): '....'}</span>
+                                </p>
                             </div>
                         </div>
                     </div>

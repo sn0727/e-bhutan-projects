@@ -54,7 +54,8 @@ export const validateBankName = (bankName) => {
 }
 
 export const mobileNoValidation = (mobileNo) => {
-    let mobileNoReg = /^[0-9]{10}$/  //validated name 
+    // let mobileNoReg = /^[0-9]{10}$/  //validated name 
+    let mobileNoReg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/  //validated name 
     if (mobileNo === '') {
         toast.error(`Mobile number is a mandatory field.`)
         return false;
@@ -201,6 +202,14 @@ export const AadhaarEnrolmentID = (inputEnrolmentID) => {
 export const BlockNo = (inputBlockNo) => {
     if (inputBlockNo === '') {
         toast.error(`Flat/Door/Block No. is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const businessTypeFuc = (businessType) => {
+    if (businessType === '') {
+        toast.error(`Business Type is a mandatory field.`)
         return false;
     }
     return true;

@@ -83,7 +83,7 @@ const DigitalMarketingForm = ({ setIdComponent }) => {
             </div>
             <div className='my-5'>
                 <div className={`border-0 setcostuasdnf max-w-7xl bg-white rounded-lg shadow dark:border md:mt-0 lg:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700`}>
-                    <p className='company-infomation-dd'>Digital Marketing.</p>
+                    <p className='company-infomation-dd'>Digital Marketing Services</p>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <form className="space-y-4 md:space-y-6">
                             <div className="formGroup">

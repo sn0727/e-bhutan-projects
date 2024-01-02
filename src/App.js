@@ -78,6 +78,11 @@ import DesignAndDevelopment from './pages/DesignAndDevelopment/DesignAndDevelopm
 import DigitalMarketing from './pages/DigitalMarketing/DigitalMarketing';
 import AccountingService from './pages/AccountingService/AccountingService';
 import DigitalSignature from './pages/DigitalSignature/DigitalSignature';
+import PersonalLoan from './pages/PersonalLoanServices/PersonalLoan'
+import HousingLoan from './pages/PersonalLoanServices/HousingLoan'
+import MSMELoan from './pages/PersonalLoanServices/MSMELoan'
+import LoanAgainstProperty from './pages/PersonalLoanServices/LoanAgainstProperty'
+import BusinessLoan from './pages/PersonalLoanServices/BusinessLoan'
 // import HorizontalList from './pages/Testing/HorizontalList';
 
 
@@ -164,6 +169,11 @@ function App() {
             <Route path='/digital-marketing' element={<DigitalMarketing />} />
             <Route path='/accounting-service' element={<AccountingService />} />
             <Route path='/digital-signature' element={<DigitalSignature />} />
+            <Route path='/personal-loan' element={<PersonalLoan />} />
+            <Route path='/housing-loan' element={<HousingLoan />} />
+            <Route path='/business-loan' element={<BusinessLoan />} />
+            <Route path='/loan-against-property' element={<LoanAgainstProperty />} />
+            <Route path='/msme-loan' element={<MSMELoan />} />
           <Route path='/testing' element={<MainTesting />} />
         </Route>
           {/* protected router */}

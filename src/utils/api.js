@@ -217,6 +217,9 @@ export const ApiUrl = {
   digitalMarketing: `${apiBaseUrl}form/digital/marketing/submit`,
   digitalSignature: `${apiBaseUrl}form/digital/signature/submit`,
 
+  // Loans Services api route.
+  personalLoan: `${apiBaseUrl}personal/loan/form/submit`,
+
 };
 
 

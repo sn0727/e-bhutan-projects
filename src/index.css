@@ -716,3 +716,13 @@ p.verify {
 .button-process.my-0 {
   margin: 20px 0 !important;
 }
+
+.select-drp {
+  border: 1px solid #dee2e6;
+  width: 100%;
+  min-height: 37px;
+  border-radius: 5px;
+  color: #a2a3a4 !important;
+  background-color: #f9fafb;
+  outline: none;
+}

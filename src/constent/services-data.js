@@ -144,7 +144,7 @@ export const services = [
             {
                 id: 3,
                 link: "/quick-dhan",
-                title: "Upi cash withdrawal",
+                title: "UPI Cash Withdrawal",
                 icon: <GiMoneyStack />
             },
             // {
@@ -216,6 +216,41 @@ export const services = [
             //     image: image.CarInsurance
             // }
         ],
+
+        // Personal Loan service objects
+        PersonalLoan: [
+            {
+                id: 1,
+                link: "/personal-loan",
+                title: "Personal Loan",
+                icon: SvgIcon?.PersonalLoan
+            },
+            {
+                id: 2,
+                link: "/business-loan",
+                title: "Business Loan",
+                icon: SvgIcon?.BusinessLoan
+            },
+            {
+                id: 3,
+                link: "/housing-loan",
+                title: "Housing Loan",
+                icon: SvgIcon?.HousingLoan
+            },
+            {
+                id: 3,
+                link: "/loan-against-property",
+                title: "Loan Against Property",
+                icon: SvgIcon?.LoanAgainstProperty
+            },
+            {
+                id: 3,
+                link: "/msme-loan",
+                title: "MSME Loan",
+                icon: SvgIcon?.MSMELoan
+            }
+        ],
+
         // // Tour and Travel service objects
         TourAndTravel: [
             {
