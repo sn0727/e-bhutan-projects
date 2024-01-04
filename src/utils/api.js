@@ -220,6 +220,13 @@ export const ApiUrl = {
   // Loans Services api route.
   personalLoan: `${apiBaseUrl}personal/loan/form/submit`,
 
+  // Insurance Services api route
+  healthInsurance: `${apiBaseUrl}insurance/form/submit/health`,
+  travelInsurance: `${apiBaseUrl}insurance/form/submit/travel`,
+  groupInsurance: `${apiBaseUrl}insurance/form/submit/group`,
+  lifeInsurance: `${apiBaseUrl}insurance/form/submit/life`,
+  vehcleInsurance: `${apiBaseUrl}insurance/form/submit/vehicle`,
+
 };
 
 

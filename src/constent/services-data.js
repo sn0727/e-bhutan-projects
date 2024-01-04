@@ -251,6 +251,40 @@ export const services = [
             }
         ],
 
+        // Personal Loan service objects
+        InsuranceServices: [
+            {
+                id: 1,
+                link: "/health-insurance",
+                title: "Health Insurance",
+                icon: SvgIcon?.HealthIcon
+            },
+            {
+                id: 2,
+                link: "/travel-insurance",
+                title: "Travel Insurance",
+                icon: SvgIcon?.TravelIcon
+            },
+            {
+                id: 3,
+                link: "/group-insurance",
+                title: "Group Insurance",
+                icon: SvgIcon?.GroupTeam
+            },
+            {
+                id: 3,
+                link: "/life-insurance",
+                title: "Life Insurance",
+                icon: SvgIcon?.LifeInsuranceIcon
+            },
+            {
+                id: 3,
+                link: "/vehcle-insurance",
+                title: "Vehicle Insurance",
+                icon: SvgIcon?.CommercialIcon
+            }
+        ],
+
         // // Tour and Travel service objects
         TourAndTravel: [
             {

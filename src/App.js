@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MobileRecharge from './pages/Mobile_Recharge/MobileRecharge';
 import MobileChoicePlan from './pages/Mobile_Recharge/MobileChoicePlan';
@@ -83,14 +83,31 @@ import HousingLoan from './pages/PersonalLoanServices/HousingLoan'
 import MSMELoan from './pages/PersonalLoanServices/MSMELoan'
 import LoanAgainstProperty from './pages/PersonalLoanServices/LoanAgainstProperty'
 import BusinessLoan from './pages/PersonalLoanServices/BusinessLoan'
+import HealthInsurance from './pages/InsuranceService/HealthInsurance/HealthInsurance';
+import LifeInsurance from './pages/InsuranceService/LifeInsurance/LifeInsurance';
+import GroupTeamInsurance from './pages/InsuranceService/GroupTeamInsurance/GroupTeamInsurance';
+import VehcleInsurance from './pages/InsuranceService/VehcleInsurance/VehcleInsurance';
+import TravelInsurance from './pages/InsuranceService/TravelInsurance/TravelInsurance';
+import { useEffect } from 'react';
 // import HorizontalList from './pages/Testing/HorizontalList';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   // const authToken = sessionStorage.getItem("token");
+
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <ScrollToTop />
         <ToastContainer />
         {navigator.onLine ? <Routes>
           <Route path='/' element={<Login />} />
@@ -174,8 +191,13 @@ function App() {
             <Route path='/business-loan' element={<BusinessLoan />} />
             <Route path='/loan-against-property' element={<LoanAgainstProperty />} />
             <Route path='/msme-loan' element={<MSMELoan />} />
-          <Route path='/testing' element={<MainTesting />} />
-        </Route>
+            <Route path='/health-insurance' element={<HealthInsurance />} />
+            <Route path='/life-insurance' element={<LifeInsurance />} />
+            <Route path='/group-insurance' element={<GroupTeamInsurance />} />
+            <Route path='/vehcle-insurance' element={<VehcleInsurance />} />
+            <Route path='/travel-insurance' element={<TravelInsurance />} />
+            <Route path='/testing' element={<MainTesting />} />
+          </Route>
           {/* protected router */}
         </Routes> : <NetwordError />}
       </BrowserRouter>

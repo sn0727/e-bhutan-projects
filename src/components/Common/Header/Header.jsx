@@ -31,6 +31,20 @@ const Header = () => {
             });
     }
 
+    function formatLargeNumber(value) {
+        if (value >= 1000000000) {
+            return (value / 1000000000).toFixed(2) + ' B';
+        } else if (value >= 10000000) {
+            return (value / 10000000).toFixed(2) + ' CR';
+        } else if (value >= 100000) {
+            return (value / 100000).toFixed(2) + ' L';
+        } else if (value >= 1000) {
+            return (value / 1000).toFixed(2) + ' K';
+        } else {
+            return value.toString();
+        }
+    }
+
     useEffect(() => {
         getProfile()
     }, [])
@@ -60,7 +74,7 @@ const Header = () => {
                             <div className='total-Price'>
                                 <p className='button-sdfdfd'>
                                     <FaIndianRupeeSign />
-                                    <span>{(profileData?.amount) ? (profileData?.amount): '....'}</span>
+                                    <span>{(profileData?.amount) ? formatLargeNumber((profileData?.amount)) : '....'}</span>
                                 </p>
                             </div>
                         </div>

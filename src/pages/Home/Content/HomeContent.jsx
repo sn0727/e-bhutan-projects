@@ -99,7 +99,7 @@ const HomeContent = () => {
       <section className='rechages-bill-payment mb-5'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox">
-            <h2>Banking Services & Insurance Services</h2>
+            <h2>Banking Services</h2>
             <div className='servics-list banking-service'>
               {
                 services.map(({ BankingServicesAndInsuranceServices }) => (
@@ -119,7 +119,7 @@ const HomeContent = () => {
       </section>
       {/* Banking Services & Insurance Services */}
 
-      {/* Tour & Travel */}
+      {/* Personal Loan */}
       <section className='rechages-bill-payment'>
         <div className="container px-4">
           <div className="recharge-bill-payment-innerBox h-178">
@@ -131,7 +131,7 @@ const HomeContent = () => {
                   PersonalLoan.map((item, index) => (
                     <Link to={item.link} className='services_is' key={index}>
                       <div className='serviceItem'>
-                      {item.image ? <img src={item.image} alt="loan" /> : <div>{item.icon}</div>}
+                        {item.image ? <img src={item.image} alt="loan" /> : <div>{item.icon}</div>}
                       </div>
                       <p>{item.title}</p>
                     </Link>
@@ -143,7 +143,33 @@ const HomeContent = () => {
           </div>
         </div>
       </section>
-      {/* Tour & Travel */}
+      {/* Personal Loan */}
+
+      {/* Personal Loan */}
+      <section className='rechages-bill-payment'>
+        <div className="container px-4">
+          <div className="recharge-bill-payment-innerBox h-178">
+            <h2>Insurance Service</h2>
+            <div className='servics-list tour-and-travel'>
+              {
+
+                services.map(({ InsuranceServices }) => (
+                  InsuranceServices.map((item, index) => (
+                    <Link to={item.link} className='services_is' key={index}>
+                      <div className='serviceItem'>
+                        {item.image ? <img src={item.image} alt="loan" /> : <div>{item.icon}</div>}
+                      </div>
+                      <p>{item.title}</p>
+                    </Link>
+                  ))
+                ))
+              }
+
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Personal Loan */}
 
       {/* Tour & Travel */}
       <section className='rechages-bill-payment'>
