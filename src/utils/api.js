@@ -226,6 +226,9 @@ export const ApiUrl = {
   groupInsurance: `${apiBaseUrl}insurance/form/submit/group`,
   lifeInsurance: `${apiBaseUrl}insurance/form/submit/life`,
   vehcleInsurance: `${apiBaseUrl}insurance/form/submit/vehicle`,
+  
+  // Pan Card Creation api route
+  createGenerateURL: `${apiBaseUrl}pan/card/create/generateURL`,
 
 };
 

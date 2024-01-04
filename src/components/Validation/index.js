@@ -13,6 +13,38 @@ export const nameValidation = (name) => {
     return true;
 }
 
+export const firstnameFuc = (name) => {
+    if (name === '') {
+        toast.error(`First Name is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const lastnameFuc = (name) => {
+    if (name === '') {
+        toast.error(`Last Name is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const titleFunc = (name) => {
+    if (name === '') {
+        toast.error(`Title is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
+export const middleNameFun = (name) => {
+    if (name === '') {
+        toast.error(`Middle Name is a mandatory field.`)
+        return false;
+    }
+    return true;
+}
+
 export const validateFirstName = (firstName) => {
     let firstNameReg = /^[A-Za-z]+$/  //validated name 
     if (firstName === '') {

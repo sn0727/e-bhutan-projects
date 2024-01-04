@@ -141,7 +141,7 @@ const HotelBookingTicketForm = ({ setIdComponent }) => {
                 // console.log(res?.data, 'res hotel booking ==================')
                 setHotelDataResponse(res?.data)
                 setIsLoading(false)
-                setIdComponent(2)
+                // setIdComponent(2)
             },
             err => {
                 // console.log(err, 'err ============ hotel booking')

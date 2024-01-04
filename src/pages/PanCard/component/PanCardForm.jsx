@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer'
 // import "../css/CompanyInformation.css"
 import { RadioButton, RadioButton2 } from '../../../components/Feature/RadioButton'
-import { AadhaarEnrolmentID, AadhaarNoValidation, emailValidation, mobileNoValidation, nameValidation, postalCodeValidation, validateDateFormat } from '../../../components/Validation';
+import { firstnameFuc, lastnameFuc, middleNameFun, titleFunc, validateDateFormat } from '../../../components/Validation';
 import { InputCustome } from '../../../components/Input/InputFeild';
 import BackButton from '../../../components/Button/BackButton';
+import { APIRequest, APIRequestWithFile, ApiUrl } from '../../../utils/api';
+import { toast } from 'react-toastify';
 
 const PanCardForm = ({ setIdComponent }) => {
-    const [type, settype] = useState('New Pan - Indian Citizen (Form 49A)');
-    const [type1, settype1] = useState('Individual');
+    const [modeType, setModeType] = useState('P');
+    const [title, setTitle] = useState('');
+    const [panCardRes, setPanCardRes] = useState({})
+    const [statusChecker, setStatus] = useState(false)
+    const [generateForm, setGenerateForm] = useState('')
     const [formationFormValue, setFormationFormValue] = useState({
-        fullname: '',
-        email: '',
-        mobileNo: '',
-        AadhaarNo: '',
-        DateofBirth: ''
+        firstname: '',
+        middlename: '',
+        lastname: '',
+        email: ''
     })
 
     // reset value from the form.
@@ -34,29 +38,94 @@ const PanCardForm = ({ setIdComponent }) => {
     }
 
     const radioChangeHandler = (e) => {
-        settype(e.target.value);
+        setModeType(e.target.value);
     };
 
-    const radioChangeHandler1 = (e) => {
-        settype1(e.target.value);
-    };
+    // Website formation function.
+    const panCardCreationFun = () => {
+        let config = {
+            url: ApiUrl?.createGenerateURL,
+            method: 'post',
+            body: {
+                "title": title,
+                "firstname": formationFormValue?.firstname,
+                "middlename": formationFormValue?.middlename,
+                "lastname": formationFormValue?.lastname,
+                "mode": modeType,
+                "gender": title === "1" ? "male" : title === "2" ? "female" : title === "3" ? "Third Gender" : '',
+                "email": formationFormValue?.email,
+                "kyctype": "E"
+            }
+
+        }
+        APIRequest(
+            config,
+            res => {
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    setPanCardRes(res?.data)
+                    setStatus(true)
+                    // setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
         if (
-            nameValidation(formationFormValue?.fullname) &&
-            emailValidation(formationFormValue?.email) &&
-            mobileNoValidation(formationFormValue?.mobileNo) &&
-            AadhaarNoValidation(formationFormValue?.AadhaarNo) &&
-            validateDateFormat(formationFormValue?.DateofBirth)
+            titleFunc(title) &&
+            firstnameFuc(formationFormValue?.firstname) &&
+            middleNameFun(formationFormValue?.middlename) &&
+            lastnameFuc(formationFormValue?.lastname)
         ) {
-            console.log('formationFormValue', formationFormValue)
-            console.log('type', type)
-            console.log('type', type1)
+            panCardCreationFun()
             // setIdComponent(2)
             resetValue();
         }
     }
+
+    const genrateUrlFun = () => {
+        let config = {
+            url: panCardRes?.data?.url,
+            method: 'post',
+            body: {
+                "encdata" : panCardRes?.data?.encdata
+            }
+
+        }
+        APIRequestWithFile(
+            config,
+            res => {
+                console.log('res ================ ddgg', res)
+                setGenerateForm(res)
+                if (!res?.error) {
+                    toast.success(res?.message)
+                    // setPanCardRes(res)
+                    // setIdComponent(2)
+                    resetValue();
+                }
+            },
+            err => {
+                console.log('err ================ ddgg', err)
+                if (err?.error) {
+                    toast.error(err?.message)
+                }
+            }
+        )
+    }
+
+    useEffect(() => {
+        if (statusChecker) {
+            genrateUrlFun()
+        }
+    }, [statusChecker])
 
     return (
         <LayoutContainer>
@@ -70,12 +139,41 @@ const PanCardForm = ({ setIdComponent }) => {
                         <form className="space-y-4 md:space-y-6">
                             {/* 1 row */}
                             <div className="formGroup">
+                                <div className='w-50'>
+                                    <label for="exampleSelect" className='d-block'>Title</label>
+                                    <select id="exampleSelect" onChange={(e) => setTitle(e.target.value)} name="exampleSelect" className='bg-gray-50 border border-gray-300 text-gray-200 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none'>
+                                        <option>Select</option>
+                                        <option value="1">Shri</option>
+                                        <option value="2">Smt/Kumari</option>
+                                        <option value="3">Third Gender</option>
+                                    </select>
+                                </div>
                                 <div className='w-50 position-relative'>
                                     <InputCustome
-                                        placeholderTitle={'Full Name'}
+                                        placeholderTitle={'First Name'}
                                         onChange={handleInputChange}
-                                        value={formationFormValue?.fullname}
-                                        name='fullname'
+                                        value={formationFormValue?.firstname}
+                                        name='firstname'
+                                        required={'required'}
+                                        type={'text'}
+                                    />
+                                </div>
+                                <div className='w-50 position-relative'>
+                                    <InputCustome
+                                        placeholderTitle={'Middle Name'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.middlename}
+                                        name='middlename'
+                                        required={'required'}
+                                        type={'text'}
+                                    />
+                                </div>
+                                <div className='w-50 position-relative'>
+                                    <InputCustome
+                                        placeholderTitle={'Last Name'}
+                                        onChange={handleInputChange}
+                                        value={formationFormValue?.lastname}
+                                        name='lastname'
                                         required={'required'}
                                         type={'text'}
                                     />
@@ -90,72 +188,24 @@ const PanCardForm = ({ setIdComponent }) => {
                                         type={'email'}
                                     />
                                 </div>
-                                <div className='w-50 position-relative'>
-                                    <InputCustome
-                                        placeholderTitle={'Mobile Number'}
-                                        onChange={handleInputChange}
-                                        value={formationFormValue?.mobileNo}
-                                        name='mobileNo'
-                                        required={'required'}
-                                        type={'number'}
-                                    />
-                                </div>
                             </div>
-                            {/* 2 row */}
-                            <div className="formGroup">
-                                <div className='w-50'>
-                                    <InputCustome
-                                        placeholderTitle={'Aadhaar number'}
-                                        onChange={handleInputChange}
-                                        value={formationFormValue?.AadhaarNo}
-                                        name='AadhaarNo'
-                                        required={'required'}
-                                        type={'number'}
-                                    />
-                                </div>
-                                <div className='w-50 position-relative'>
-                                    <InputCustome
-                                        placeholderTitle={'Date of Birth'}
-                                        onChange={handleInputChange}
-                                        value={formationFormValue?.DateofBirth}
-                                        name='DateofBirth'
-                                        required={'required'}
-                                        type={'date'}
-                                    />
-                                </div>
-                                <div className='w-50 position-relative'>
-                                </div>
-                            </div>
+
                             <div className='radia-button'>
                                 <p className='mb-3'>Application Type</p>
                                 {
-                                    badioButtonArr?.ApplicationType?.map((item, i) => (
+                                    modyType?.panCardModeType?.map((item, i) => (
                                         <RadioButton
                                             changed={radioChangeHandler}
-                                            id={item?.id}
-                                            isSelected={type === item?.id}
+                                            id={item?.modyType}
+                                            isSelected={modeType === item?.modyType}
                                             label={item?.id}
-                                            value={item?.id}
+                                            value={item?.modyType}
                                             className={item?.className}
                                         />
                                     ))
                                 }
                             </div>
-                            <div className='radia-button'>
-                                <p className='mb-3'>Category</p>
-                                {
-                                    badioButtonArr?.Category?.map((item, i) => (
-                                        <RadioButton2
-                                            changed={radioChangeHandler1}
-                                            id={item?.id}
-                                            isSelected={type1 === item?.id}
-                                            label={item?.id}
-                                            value={item?.id}
-                                            className={item?.className}
-                                        />
-                                    ))
-                                }
-                            </div>
+
                             <button type="submit"
                                 onClick={formSubmitHandler}
                                 className="w-40 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 button-color"
@@ -163,6 +213,7 @@ const PanCardForm = ({ setIdComponent }) => {
                         </form>
                     </div>
                 </div>
+                <div dangerouslySetInnerHTML={{ __html: generateForm }} />
             </div>
         </LayoutContainer>
     )
@@ -171,61 +222,18 @@ const PanCardForm = ({ setIdComponent }) => {
 export default PanCardForm
 
 //  i used id key multiple value for example : id, label, value, isSelected 
-const badioButtonArr = {
-    "ApplicationType": [
+const modyType = {
+    "panCardModeType": [
         {
-            id: 'New Pan - Indian Citizen (Form 49A)',
+            modyType: 'P',
+            id: 'Physical Pan',
             className: 'custome_class'
         },
         {
-            id: 'New Pan - Foreign Citizen (Form 49AA)',
-            className: 'custome_class'
-        },
-        {
-            id: 'Changes pr Correction in existing PAN Data/ Reprint of Pan Card ( No changes in existing PAN Data)',
-            className: 'custome_class'
-        }
-    ],
-    "Category": [
-        {
-            id: 'Individual',
-            className: 'custome_class'
-        },
-        {
-            id: 'Association of persons',
-            className: 'custome_class'
-        },
-        {
-            id: 'Trust',
-            className: 'custome_class'
-        },
-        {
-            id: 'Limited liability partnership',
-            className: 'custome_class'
-        },
-        {
-            id: 'Firm',
-            className: 'custome_class'
-        },
-        {
-            id: 'Body of individuals',
-            className: 'custome_class'
-        },
-        {
-            id: 'Government',
-            className: 'custome_class'
-        },
-        {
-            id: 'Hindu Undivided family',
-            className: 'custome_class'
-        },
-        {
-            id: 'Artificial juridicial person',
-            className: 'custome_class'
-        },
-        {
-            id: 'Local Authority',
-            className: 'custome_class'
+            id: 'Electronic Pan',
+            className: 'custome_class',
+            modyType: 'E'
         }
     ]
+
 }
