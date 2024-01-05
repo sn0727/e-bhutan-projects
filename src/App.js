@@ -89,6 +89,7 @@ import GroupTeamInsurance from './pages/InsuranceService/GroupTeamInsurance/Grou
 import VehcleInsurance from './pages/InsuranceService/VehcleInsurance/VehcleInsurance';
 import TravelInsurance from './pages/InsuranceService/TravelInsurance/TravelInsurance';
 import { useEffect } from 'react';
+import PanCardVerification from './components/panCardVerification/panCardVerification';
 // import HorizontalList from './pages/Testing/HorizontalList';
 
 function ScrollToTop() {
@@ -196,6 +197,7 @@ function App() {
             <Route path='/group-insurance' element={<GroupTeamInsurance />} />
             <Route path='/vehcle-insurance' element={<VehcleInsurance />} />
             <Route path='/travel-insurance' element={<TravelInsurance />} />
+            <Route path='/pan-card-status' element={<PanCardVerification />} />
             <Route path='/testing' element={<MainTesting />} />
           </Route>
           {/* protected router */}

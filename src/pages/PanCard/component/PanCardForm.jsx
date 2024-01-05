@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer'
 // import "../css/CompanyInformation.css"
 import { RadioButton, RadioButton2 } from '../../../components/Feature/RadioButton'
@@ -7,6 +7,7 @@ import { InputCustome } from '../../../components/Input/InputFeild';
 import BackButton from '../../../components/Button/BackButton';
 import { APIRequest, APIRequestWithFile, ApiUrl } from '../../../utils/api';
 import { toast } from 'react-toastify';
+import PanCardVerification from '../../../components/panCardVerification/panCardVerification';
 
 const PanCardForm = ({ setIdComponent }) => {
     const [modeType, setModeType] = useState('P');
@@ -96,7 +97,7 @@ const PanCardForm = ({ setIdComponent }) => {
             url: panCardRes?.data?.url,
             method: 'post',
             body: {
-                "encdata" : panCardRes?.data?.encdata
+                "encdata": panCardRes?.data?.encdata
             }
 
         }
@@ -127,6 +128,13 @@ const PanCardForm = ({ setIdComponent }) => {
         }
     }, [statusChecker])
 
+    setTimeout(() => {
+        console.log('object ======== gg')
+        const panForm = document?.getElementById('panForm');
+        panForm?.submit();
+        setStatus(false)
+    }, 1500)
+
     return (
         <LayoutContainer>
             <div className='mobile-recharge'>
@@ -139,7 +147,7 @@ const PanCardForm = ({ setIdComponent }) => {
                         <form className="space-y-4 md:space-y-6">
                             {/* 1 row */}
                             <div className="formGroup">
-                                <div className='w-50'>
+                                <div className='w-50 md:w-full'>
                                     <label for="exampleSelect" className='d-block'>Title</label>
                                     <select id="exampleSelect" onChange={(e) => setTitle(e.target.value)} name="exampleSelect" className='bg-gray-50 border border-gray-300 text-gray-200 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none'>
                                         <option>Select</option>
@@ -148,7 +156,7 @@ const PanCardForm = ({ setIdComponent }) => {
                                         <option value="3">Third Gender</option>
                                     </select>
                                 </div>
-                                <div className='w-50 position-relative'>
+                                <div className='w-50 md:w-full position-relative'>
                                     <InputCustome
                                         placeholderTitle={'First Name'}
                                         onChange={handleInputChange}
@@ -158,7 +166,7 @@ const PanCardForm = ({ setIdComponent }) => {
                                         type={'text'}
                                     />
                                 </div>
-                                <div className='w-50 position-relative'>
+                                <div className='w-50 md:w-full position-relative'>
                                     <InputCustome
                                         placeholderTitle={'Middle Name'}
                                         onChange={handleInputChange}
@@ -168,7 +176,7 @@ const PanCardForm = ({ setIdComponent }) => {
                                         type={'text'}
                                     />
                                 </div>
-                                <div className='w-50 position-relative'>
+                                <div className='w-50 md:w-full position-relative'>
                                     <InputCustome
                                         placeholderTitle={'Last Name'}
                                         onChange={handleInputChange}
@@ -178,7 +186,7 @@ const PanCardForm = ({ setIdComponent }) => {
                                         type={'text'}
                                     />
                                 </div>
-                                <div className='w-50'>
+                                <div className='w-50 md:w-full'>
                                     <InputCustome
                                         placeholderTitle={'Email Address'}
                                         onChange={handleInputChange}
